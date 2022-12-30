@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <link href="~/css/mdbootstrap4/core.min.css" rel="stylesheet" />
+    <link href="~/css/font_awesome/all.min.css" rel="stylesheet" />
+    <link href="~/css/Account.css" rel="stylesheet" />
+    <link href="~/css/LeftbarMenu.css" rel="stylesheet" />
+    <link href="~/css/Layout.css" rel="stylesheet" />
+    <link href="~/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+
+    @*This JS is use for Scroll bar*@
+    <script src="~/lib/scrollbar/compiled.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.dataTables.min.js"></script>
+    <script src="~/js/Layout.js"></script>
+
+</head>
+<body>
+
+    <div class='dashboard'>
+        <div class="dashboard-nav">
+            <header>
+                <a href="#!" class="menu-toggle">
+                <i class="fas fa-bars"></i></a>
+                <a href="#"class="brand-logo">
+                    <i class="fas fa-anchor"></i> <span>BRAND</span>
+                </a>
+            </header>
+            <nav class="dashboard-nav-list">
+
+                <a href="#" class="dashboard-nav-item"><i class="fas fa-home"></i>Home</a>
+                @*<a href="#" class="dashboard-nav-item active"><i class="fas fa-tachometer-alt"></i> dashboard</a>*@
+                <a href="#" class="dashboard-nav-item active"><i class="fas fa-tachometer-alt"></i> dashboard</a>
+                <a href="#" class="dashboard-nav-item"><i class="fas fa-file-upload"></i> Upload </a>
+
+                <div class='dashboard-nav-dropdown show'>
+                    <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-photo-video"></i> Media</a>
+                    <div class='dashboard-nav-dropdown-menu'>
+                        <a href="#"
+                           class="dashboard-nav-dropdown-item">All</a><a href="#" class="dashboard-nav-dropdown-item">Recent</a>
+                        <a href="#" class="dashboard-nav-dropdown-item active">Images</a>
+                        <a href="#" class="dashboard-nav-dropdown-item">Video</a>
+                    </div>
+                </div>
+                <div class='dashboard-nav-dropdown'>
+                    <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle">
+                        <i class="fas fa-users"></i> Users
+                    </a>
+                    <div class='dashboard-nav-dropdown-menu'>
+                        <a href="#" class="dashboard-nav-dropdown-item">All</a>
+                        <a href="#" class="dashboard-nav-dropdown-item">Subscribed</a>
+                        <a href="#" class="dashboard-nav-dropdown-item">Non-subscribed</a>
+                        <a href="#" class="dashboard-nav-dropdown-item">Banned</a>
+                        <a href="#" class="dashboard-nav-dropdown-item">New</a>
+                    </div>
+                </div>
+                <div class='dashboard-nav-dropdown'>
+                    <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle">
+                        <i class="fas fa-money-check-alt"></i> Payments
+                    </a>
+                    <div class='dashboard-nav-dropdown-menu'>
+                        <a href="#"
+                           class="dashboard-nav-dropdown-item">All</a>
+                        <a href="#" class="dashboard-nav-dropdown-item">Recent</a>
+                        <a href="#" class="dashboard-nav-dropdown-item"> Projections</a>
+                    </div>
+                </div>
+                <a href="#" class="dashboard-nav-item"><i class="fas fa-cogs"></i> Settings </a>
+                <a href="#" class="dashboard-nav-item"><i class="fas fa-user"></i> Profile </a>
+                <div class="nav-item-divider"></div>
+                <a href="#" class="dashboard-nav-item"><i class="fas fa-sign-out-alt"></i> Logout </a>
+            </nav>
+        </div>
+        <div class='dashboard-app'>
+            <header class='dashboard-toolbar'><a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a></header>
+            @RenderBody()
+            @*<div class='dashboard-content'>
+            <div class='container'>
+                <div class='card'>
+                    <div class='card-header'>
+                        <h1>Welcome back Jim</h1>
+                    </div>
+                    <div class='card-body'>
+                        <p>Your account type is: Administrator</p>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+        </div>
+    </div>
+
+
+
+    @*<header>
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+                <div class="container">
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">AccountERPApp</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a href="@Url.Action("Account","Login")" class="nav-link text-dark">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="@Url.Action("Account","Register")">Register</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+
+        <footer class="border-top footer text-muted">
+            <div class="container">
+                &copy; 2022 - AccountERPApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </footer>*@
+    
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
