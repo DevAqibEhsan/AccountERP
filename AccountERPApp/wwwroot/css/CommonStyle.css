@@ -1,0 +1,63 @@
+﻿.maincontent {
+    margin: 0 auto;
+    width: 98%;
+    margin-top: 10px;
+}
+
+    .maincontent .card-header {
+        text-align: left !important;
+        font-size: 16pt;
+    }
+
+
+    .maincontent .card {
+        border-radius: 0.25rem !important;
+    }
+
+        .maincontent .card .form-row .active {
+            background: none;
+        }
+
+        .maincontent .card .form-group .active {
+            background: none;
+        }
+
+.btn-primary1 {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+    .btn-primary1:hover {
+        color: #fff;
+        background-color: #0069d9;
+        border-color: #0062cc;
+    }
+
+    .btn-primary1:not(:disabled):not(.disabled).active, .btn-primary1:not(:disabled):not(.disabled):active, .show > .btn-primary1.dropdown-toggle {
+        color: #fff;
+        background-color: #0062cc;
+        border-color: #005cbf;
+    }
+
+.btn-secondary1 {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+    .btn-secondary1:hover {
+        color: #fff;
+        background-color: #5a6268;
+        border-color: #545b62;
+    }
+
+    .btn-secondary1:not(:disabled):not(.disabled).active, .btn-secondary1:not(:disabled):not(.disabled):active, .show > .btn-secondary1.dropdown-toggle {
+        color: #fff;
+        background-color: #545b62;
+        border-color: #4e555b;
+    }
+
+.btnsection {
+    text-align: right;
+}
