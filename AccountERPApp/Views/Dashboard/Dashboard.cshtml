@@ -4,7 +4,34 @@
 }
 
 <link href="~/css/CommonStyle.css" rel="stylesheet" />
+<script src="~/js/Common.js"></script>
 
+<style>
+
+    #form {
+        display:none;
+    }
+
+    .card-header .btnsection {
+        display: inline-block;
+        float: right;
+    }
+
+</style>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#btnAddDashboard").click(function () { FormShow() });
+
+        $("#btnCancel").click(function(){ GridShow() });
+
+        RemoveSortingClass('tblAction');
+
+    });
+
+</script>
 
 @*Page Sample*@
 @*<div class="maincontent">
@@ -21,15 +48,73 @@
     </div>
 
 </div>*@
-@*TESTING GIT*@
-<script type="text/javascript">
-
-    $(document).ready(function () {
-        $('#example').DataTable();
-    });
-</script>
+   
 
 <div class="maincontent">
+
+    @*Grid / Data Table Start*@
+    <div id="grid" class="card">
+        <div class="card-header">
+            Dashboard
+            <div class="btnsection">
+                <button type="button" id="btnAddDashboard" class="btn btn-success1"><i class="fa fa-plus" style="margin-right: 10px;"></i> Add</button>
+            </div>
+        </div>
+        <div class="card-body">
+            <table id="example" class="display" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Position</th>
+                        <th>Office</th>
+                        <th>Age</th>
+                        <th>Start date</th>
+                        <th>Salary</th>
+                        <th id="tblAction">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Tiger Nixon</td>
+                        <td>System Architect</td>
+                        <td>Edinburgh</td>
+                        <td>61</td>
+                        <td>2011-04-25</td>
+                        <td>$320,800</td>
+                        <td>A</td>
+                    </tr>
+                    <tr>
+                        <td>Garrett Winters</td>
+                        <td>Accountant</td>
+                        <td>Tokyo</td>
+                        <td>63</td>
+                        <td>2011-07-25</td>
+                        <td>$170,750</td>
+                        <td>A</td>
+                    </tr>
+                    <tr>
+                        <td>Ashton Cox</td>
+                        <td>Junior Technical Author</td>
+                        <td>San Francisco</td>
+                        <td>66</td>
+                        <td>2009-01-12</td>
+                        <td>$86,000</td>
+                        <td>A</td>
+                    </tr>
+                    <tr>
+                        <td>Cedric Kelly</td>
+                        <td>Senior Javascript Developer</td>
+                        <td>Edinburgh</td>
+                        <td>22</td>
+                        <td>2012-03-29</td>
+                        <td>$433,060</td>
+                        <td>A</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    @*Grid / Data Table End*@
 
     @*Add/Edit Form Section Start*@
     <div id="form" class="card">
@@ -83,66 +168,14 @@
                 </div>
                 <div class="btnsection">
                     <button type="submit" class="btn btn-primary1">Sign in</button>
-                    <button type="submit" class="btn btn-secondary1">Cancel</button>
+                    <button type="button" id="btnCancel" class="btn btn-secondary1"><i class="fa fa-close" style="margin-right: 10px;"></i>Cancel</button>
                 </div>
             </form>
         </div>
     </div>
     @*Add/Edit Form Section End*@
 
-    <div id="grid" class="card">
-        <div class="card-header">
-            Dashboard
-        </div>
-        <div class="card-body">
-            <table id="example" class="display" style="width:100%">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>61</td>
-                        <td>2011-04-25</td>
-                        <td>$320,800</td>
-                    </tr>
-                    <tr>
-                        <td>Garrett Winters</td>
-                        <td>Accountant</td>
-                        <td>Tokyo</td>
-                        <td>63</td>
-                        <td>2011-07-25</td>
-                        <td>$170,750</td>
-                    </tr>
-                    <tr>
-                        <td>Ashton Cox</td>
-                        <td>Junior Technical Author</td>
-                        <td>San Francisco</td>
-                        <td>66</td>
-                        <td>2009-01-12</td>
-                        <td>$86,000</td>
-                    </tr>
-                    <tr>
-                        <td>Cedric Kelly</td>
-                        <td>Senior Javascript Developer</td>
-                        <td>Edinburgh</td>
-                        <td>22</td>
-                        <td>2012-03-29</td>
-                        <td>$433,060</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+
 
 </div>
 
