@@ -39,44 +39,122 @@
             <nav class="dashboard-nav-list">
 
                 <a href="#" class="dashboard-nav-item"><i class="fas fa-home"></i>Home</a>
-                @*<a href="#" class="dashboard-nav-item active"><i class="fas fa-tachometer-alt"></i> dashboard</a>*@
-                <a href="#" class="dashboard-nav-item active"><i class="fas fa-tachometer-alt"></i> dashboard</a>
-                <a href="#" class="dashboard-nav-item"><i class="fas fa-file-upload"></i> Upload </a>
 
-                <div class='dashboard-nav-dropdown show'>
-                    <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-photo-video"></i> Media</a>
-                    <div class='dashboard-nav-dropdown-menu'>
-                        <a href="#"
-                           class="dashboard-nav-dropdown-item">All</a><a href="#" class="dashboard-nav-dropdown-item">Recent</a>
-                        <a href="#" class="dashboard-nav-dropdown-item active">Images</a>
-                        <a href="#" class="dashboard-nav-dropdown-item">Video</a>
-                    </div>
-                </div>
+                @*<div class='dashboard-nav-dropdown show'>*@
                 <div class='dashboard-nav-dropdown'>
-                    <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle">
-                        <i class="fas fa-users"></i> Users
-                    </a>
+                    <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-photo-video"></i> Sales</a>
                     <div class='dashboard-nav-dropdown-menu'>
-                        <a href="#" class="dashboard-nav-dropdown-item">All</a>
-                        <a href="#" class="dashboard-nav-dropdown-item">Subscribed</a>
-                        <a href="#" class="dashboard-nav-dropdown-item">Non-subscribed</a>
-                        <a href="#" class="dashboard-nav-dropdown-item">Banned</a>
-                        <a href="#" class="dashboard-nav-dropdown-item">New</a>
+                        @*<a href="#" class="dashboard-nav-dropdown-item active">Images</a>*@
+                        <a href="#" class="dashboard-nav-dropdown-item">Quotation</a>
+                        <a href="#" class="dashboard-nav-dropdown-item">Order</a>
+                        <a href="#" class="dashboard-nav-dropdown-item">Delivery</a>
+                        <a href="#" class="dashboard-nav-dropdown-item">Invoice</a>
+                        <a href="#" class="dashboard-nav-dropdown-item">Recuring Invoice</a>
+                        <a href="#" class="dashboard-nav-dropdown-item">Return</a>
+                        <a href="#" class="dashboard-nav-dropdown-item">Receive Money</a>
+                        <a href="#" class="dashboard-nav-dropdown-item">Refund</a>
+                        <a href="#" class="dashboard-nav-dropdown-item">Settlement</a>
                     </div>
                 </div>
+
                 <div class='dashboard-nav-dropdown'>
-                    <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle">
-                        <i class="fas fa-money-check-alt"></i> Payments
-                    </a>
+                    <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-photo-video"></i> Purchase</a>
                     <div class='dashboard-nav-dropdown-menu'>
-                        <a href="#"
-                           class="dashboard-nav-dropdown-item">All</a>
-                        <a href="#" class="dashboard-nav-dropdown-item">Recent</a>
-                        <a href="#" class="dashboard-nav-dropdown-item"> Projections</a>
+                        <a href="#" class="dashboard-nav-dropdown-item">Order</a>
+                        <a href="#" class="dashboard-nav-dropdown-item">Good Receiving</a>
+                        <a href="#" class="dashboard-nav-dropdown-item">Invoice</a>
+                        <a href="#" class="dashboard-nav-dropdown-item">Return</a>
+                        <a href="#" class="dashboard-nav-dropdown-item">Make Payment</a>
+                        <a href="#" class="dashboard-nav-dropdown-item">Refund</a>
+                        <a href="#" class="dashboard-nav-dropdown-item">Settlement</a>
                     </div>
                 </div>
-                <a href="#" class="dashboard-nav-item"><i class="fas fa-cogs"></i> Settings </a>
-                <a href="#" class="dashboard-nav-item"><i class="fas fa-user"></i> Profile </a>
+
+                <div class='dashboard-nav-dropdown'>
+                    <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-photo-video"></i> POS</a>
+                    <div class='dashboard-nav-dropdown-menu'>
+                        <a href="#" class="dashboard-nav-dropdown-item">Checkout Counter</a>
+                        <a href="#" class="dashboard-nav-dropdown-item">POS</a>
+                        <a href="#" class="dashboard-nav-dropdown-item">Barcode</a>
+                        <a href="#" class="dashboard-nav-dropdown-item">Daily Summary</a>
+                    </div>
+                </div>
+
+                <div class='dashboard-nav-dropdown'>
+                    <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-photo-video"></i> Accounts</a>
+                    <div class='dashboard-nav-dropdown-menu'>
+                        <a href="#" class="dashboard-nav-dropdown-item">Expense</a>
+                        <a href="#" class="dashboard-nav-dropdown-item">Journal Entry</a>
+                        <a href="#" class="dashboard-nav-dropdown-item">Chart Account</a>
+                        <a href="#" class="dashboard-nav-dropdown-item">Bank Account</a>
+                        <a href="#" class="dashboard-nav-dropdown-item">Bank Deposit</a>
+                        <a href="#" class="dashboard-nav-dropdown-item">Credit Note</a>
+                        <a href="#" class="dashboard-nav-dropdown-item">Debit Note</a>
+                        <a href="#" class="dashboard-nav-dropdown-item">Funds Transfer</a>
+                        <a href="#" class="dashboard-nav-dropdown-item">Other Collections</a>
+                        <a href="#" class="dashboard-nav-dropdown-item">Other payments</a>
+                    </div>
+                </div>
+
+                <div class='dashboard-nav-dropdown'>
+                    <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-photo-video"></i> Inventory</a>
+                    <div class='dashboard-nav-dropdown-menu'>
+                        <a href="#" class="dashboard-nav-dropdown-item">Stock Movement</a>
+                        <a href="#" class="dashboard-nav-dropdown-item">Stock Adjustment</a>
+                        <a href="#" class="dashboard-nav-dropdown-item">Scheduled Valuation</a>
+                    </div>
+                </div>
+
+                <div class='dashboard-nav-dropdown'>
+                    <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-photo-video"></i> Manufacturing</a>
+                    <div class='dashboard-nav-dropdown-menu'>
+                        <a href="#" class="dashboard-nav-dropdown-item">Assembling</a>
+                        <a href="#" class="dashboard-nav-dropdown-item">Disassembling</a>
+                    </div>
+                </div>
+
+                <div class='dashboard-nav-dropdown'>
+                    <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-photo-video"></i> Setup - Lists</a>
+                    <div class='dashboard-nav-dropdown-menu'>
+                        <a href="#" class="dashboard-nav-dropdown-item">Customers</a>
+                        <a href="#" class="dashboard-nav-dropdown-item">Vendors</a>
+                        <a href="#" class="dashboard-nav-dropdown-item">Products</a>
+                        <a href="#" class="dashboard-nav-dropdown-item">Employees</a>
+                        <a href="#" class="dashboard-nav-dropdown-item">Sales Persons</a>
+                        <a href="#" class="dashboard-nav-dropdown-item">Users</a>
+                        <a href="#" class="dashboard-nav-dropdown-item">Other Contacts</a>
+                    </div>
+                </div>
+
+                <div class='dashboard-nav-dropdown'>
+                    <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-photo-video"></i> Setup - Categories</a>
+                    <div class='dashboard-nav-dropdown-menu'>
+                        <a href="#" class="dashboard-nav-dropdown-item">Customer</a>
+                        <a href="#" class="dashboard-nav-dropdown-item">Other Contact</a>
+                        <a href="#" class="dashboard-nav-dropdown-item">Vendor</a>
+                        <a href="#" class="dashboard-nav-dropdown-item">Product</a>
+                        <a href="#" class="dashboard-nav-dropdown-item">Brands</a>
+                        <a href="#" class="dashboard-nav-dropdown-item">Departments</a>
+                        <a href="#" class="dashboard-nav-dropdown-item">Designations</a>
+                    </div>
+                </div>
+
+                <div class='dashboard-nav-dropdown'>
+                    <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-photo-video"></i> Setup - General</a>
+                    <div class='dashboard-nav-dropdown-menu'>
+                        <a href="#" class="dashboard-nav-dropdown-item">Taxes</a>
+                        <a href="#" class="dashboard-nav-dropdown-item">Warehouses</a>
+                        <a href="#" class="dashboard-nav-dropdown-item">Adjustment Types</a>
+                        <a href="#" class="dashboard-nav-dropdown-item">Consignments</a>
+                        <a href="#" class="dashboard-nav-dropdown-item">Custom Fields</a>
+                        <a href="#" class="dashboard-nav-dropdown-item">Multiple Price Levels</a>
+                    </div>
+                </div>
+
+                <a href="#" class="dashboard-nav-item"><i class="fas fa-home"></i>Reports</a>
+                @*<a href="#" class="dashboard-nav-item active"><i class="fas fa-tachometer-alt"></i> dashboard</a>*@
+                <a href="#" class="dashboard-nav-item"><i class="fas fa-tachometer-alt"></i> Refer And Earn</a>
+
                 <div class="nav-item-divider"></div>
                 <a href="#" class="dashboard-nav-item"><i class="fas fa-sign-out-alt"></i> Logout </a>
             </nav>
