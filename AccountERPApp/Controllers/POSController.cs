@@ -8,7 +8,22 @@ namespace AccountERPApp.Controllers
 {
     public class POSController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Barcode()
+        {
+            return View();
+        }
+
+        public IActionResult CheckoutCounter()
+        {
+            return View();
+        }
+
+        public IActionResult DailySummary()
+        {
+            return View();
+        }
+
+        public IActionResult POS()
         {
             return View();
         }

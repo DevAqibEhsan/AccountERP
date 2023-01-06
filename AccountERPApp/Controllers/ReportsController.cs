@@ -8,7 +8,7 @@ namespace AccountERPApp.Controllers
 {
     public class ReportsController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Reports()
         {
             return View();
         }

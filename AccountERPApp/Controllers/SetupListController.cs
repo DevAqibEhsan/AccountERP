@@ -8,7 +8,37 @@ namespace AccountERPApp.Controllers
 {
     public class SetupListController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Customers()
+        {
+            return View();
+        }
+
+        public IActionResult Employees()
+        {
+            return View();
+        }
+
+        public IActionResult OtherContacts()
+        {
+            return View();
+        }
+
+        public IActionResult Products()
+        {
+            return View();
+        }
+
+        public IActionResult SalesPersons()
+        {
+            return View();
+        }
+
+        public IActionResult Users()
+        {
+            return View();
+        }
+
+        public IActionResult Vendors()
         {
             return View();
         }

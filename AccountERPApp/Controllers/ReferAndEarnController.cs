@@ -8,7 +8,7 @@ namespace AccountERPApp.Controllers
 {
     public class ReferAndEarnController : Controller
     {
-        public IActionResult Index()
+        public IActionResult ReferAndEarn()
         {
             return View();
         }

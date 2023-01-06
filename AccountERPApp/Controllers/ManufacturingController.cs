@@ -8,7 +8,12 @@ namespace AccountERPApp.Controllers
 {
     public class ManufacturingController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Assembling()
+        {
+            return View();
+        }
+
+        public IActionResult Disassembling()
         {
             return View();
         }
