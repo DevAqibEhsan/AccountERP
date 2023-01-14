@@ -1,4 +1,5 @@
-﻿using AccountERPApi.IRepositories;
+﻿using AccountERPApi.DBManager;
+using AccountERPApi.IRepositories;
 using AccountERPClassLibraries;
 using AccountERPClassLibraries.DTOLibraries;
 using Dapper;
@@ -12,16 +13,48 @@ namespace AccountERPApi.Repositories
 {
     public class AuthenticationRepository : IAuthenticationRepository
     {
+        private readonly IDapper _dapper;
+
+        public AuthenticationRepository(IDapper dapper)
+        {
+            _dapper = dapper;
+        }
+
         public ClaimDTO Authenticate(LoginCredentials obj)
         {
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("Email", obj.Email, DbType.String, ParameterDirection.Input);
-            parameters.Add("Password", obj.Password, DbType.String, ParameterDirection.Input);
+            try
+            {
+                DynamicParameters parameters = new DynamicParameters();
+                parameters.Add("Email", obj.Email, DbType.String, ParameterDirection.Input);
+                parameters.Add("Password", obj.Password, DbType.String, ParameterDirection.Input);
 
+                var data = _dapper.Get<ClaimDTOInherit>(@"usp_ValidateLogin", parameters);
+                ClaimDTO claimDTO = null;
 
+                if (data != null)
+                {
+                    claimDTO = new ClaimDTO();
+                    claimDTO = data;
 
+                    claimDTO.Companies = new System.Collections.Generic.List<int>();
+                    if (data.CompanyIdsText != null)
+                    {
+                        claimDTO.Companies = data.CompanyIdsText.Split(',').Select(x => int.Parse(x)).ToList();
+                    }
 
-            throw new NotImplementedException();
+                    claimDTO.Branches = new System.Collections.Generic.List<int>();
+                    if (data.BranchIdsText != null)
+                    {
+                        claimDTO.Branches = data.BranchIdsText.Split(',').Select(x => int.Parse(x)).ToList();
+                    }
+                }
+                
+                return claimDTO;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }
