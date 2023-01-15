@@ -11,6 +11,7 @@ namespace AccountERPClassLibraries.DTOLibraries
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
+        public string DynamicMenu { get; set; }
         public List<int> Companies { get; set; }
         public List<int> Branches { get; set; }
     }

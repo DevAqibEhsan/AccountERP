@@ -1,3 +1,8 @@
+using AccountERPApi.DBManager;
+using AccountERPApi.IRepositories;
+using AccountERPApi.IServices;
+using AccountERPApi.Repositories;
+using AccountERPApi.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -25,7 +30,21 @@ namespace AccountERPApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddTransient<IDapper, Dapperr>();
+
+            //Repositories
+            services.AddTransient<IAuthenticationRepository, AuthenticationRepository>();
+            services.AddTransient<IModulesRepository, ModulesRepository>();
+            services.AddTransient<IModulePagesRepository, ModulePagesRepository>();
+
+            //Services
+            services.AddTransient<IAuthenticationService, AuthenticationService>();
+            services.AddTransient<IModulesService, ModulesService>();
+            services.AddTransient<IModulePagesService, ModulePagesService>();
+
+            services.AddCors(o => o.AddPolicy("MyCorePloicy", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
+            services.AddControllers().AddJsonOptions(opts => opts.JsonSerializerOptions.PropertyNamingPolicy = null);
+            //services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,7 +58,7 @@ namespace AccountERPApi
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseCors("MyCorePloicy");
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
