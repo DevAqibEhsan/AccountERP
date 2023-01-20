@@ -31,7 +31,7 @@ namespace AccountERPApi.Repositories
                 var data = _dapper.Get<ClaimDTOInherit>(@"usp_ValidateLogin", parameters);
                 ClaimDTO claimDTO = null;
 
-                if (data != null)
+                if (data != null && data.UserID != 0 && data.RoleID != 0)
                 {
                     claimDTO = new ClaimDTO();
                     claimDTO = data;
@@ -47,6 +47,10 @@ namespace AccountERPApi.Repositories
                     {
                         claimDTO.Branches = data.BranchIdsText.Split(',').Select(x => int.Parse(x)).ToList();
                     }
+                }
+                else
+                {
+                    claimDTO = null;
                 }
                 
                 return claimDTO;

@@ -1,13 +1,26 @@
-﻿
+﻿@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+
 @{
     ViewData["Title"] = "Login";
     Layout = null;
 }
 
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/sweetalert2@11/sweetalert2@11.js"></script>
+<script src="~/lib/jquery/dist/jquery.dataTables.min.js"></script>
+
+<script src="~/js/Common.js"></script>
+<script src="~/js/Account/Login.js"></script>
+
 
 <link href="~/css/mdbootstrap4/core.min.css" rel="stylesheet" />
 <link href="~/css/font_awesome/all.min.css" rel="stylesheet" />
 <link href="~/css/Account.css" rel="stylesheet" />
+
+<input type="hidden" id="baseApiUrl" value="@Configuration.GetSection("UrlSetting").GetSection("baseApiUrl").Value" />
+<input type="hidden" id="baseWebUrl" value="@Configuration.GetSection("UrlSetting").GetSection("baseWebUrl").Value" />
+<input type="hidden" id="baseUrlForMVCAction" value="@Configuration.GetSection("UrlSetting").GetSection("baseUrlForMVCAction").Value" />
 
 <section class="pb-4">
     <div class="bg-white border rounded-5">
@@ -51,8 +64,8 @@
 
                             <!-- Email input -->
                             <div class="form-outline mb-4">
-                                <input type="email" id="loginName" class="form-control" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;">
-                                <label class="form-label" for="loginName" style="margin-left: 0px;">Email or username</label>
+                                <input type="text" id="txtUserName" class="form-control" onkeypress="MaterialActiveClass_Add_In_Textbox(this)" onblur="MaterialActiveClass_Remove_In_Textbox(this)" />
+                                <label class="form-label" for="txtUserName" style="margin-left: 0px;">Email or username</label>
                                 <div class="form-notch">
                                     <div class="form-notch-leading" style="width: 9px;"></div>
                                     <div class="form-notch-middle" style="width: 114.4px;"></div>
@@ -62,8 +75,8 @@
 
                             <!-- Password input -->
                             <div class="form-outline mb-4">
-                                <input type="password" id="loginPassword" class="form-control" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;">
-                                <label class="form-label" for="loginPassword" style="margin-left: 0px;">Password</label>
+                                <input type="password" id="txtPassword" class="form-control" onkeypress="MaterialActiveClass_Add_In_Textbox(this)" onblur="MaterialActiveClass_Remove_In_Textbox(this)" />
+                                <label class="form-label" for="txtPassword" style="margin-left: 0px;">Password</label>
                                 <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 64.8px;"></div><div class="form-notch-trailing"></div></div>
                             </div>
 
@@ -72,7 +85,7 @@
                                 <div class="col-md-6 d-flex justify-content-center">
                                     <!-- Checkbox -->
                                     <div class="form-check mb-3 mb-md-0">
-                                        <input class="form-check-input" type="checkbox" value="" id="loginCheck" checked="">
+                                        <input class="form-check-input" type="checkbox" value="" id="loginCheck">
                                         <label class="form-check-label" for="loginCheck"> Remember me </label>
                                     </div>
                                 </div>
@@ -85,7 +98,9 @@
 
                             <!-- Submit button -->
                             @*<button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>*@
-                            <a href="@Url.Action("Dashboard","Dashboard")" class="btn btn-primary btn-block mb-4">Sign in</a>
+                            <a href="javascript:void(0)" id="btnLogin" class="btn btn-primary btn-block mb-4">
+                                Sign in
+                            </a>
 
                             <!-- Register buttons -->
                             <div class="text-center">

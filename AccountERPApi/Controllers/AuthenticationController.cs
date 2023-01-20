@@ -37,89 +37,97 @@ namespace AccountERPApi.Controllers
 
             try
             {
-                //obj.Password = Secure.EncryptData(obj.Password);
-                var user = _authenticationService.Authenticate(obj);
-
-                if (user == null)
+                if (!string.IsNullOrEmpty(obj.Email) && !string.IsNullOrEmpty(obj.Password))
                 {
-                    return CustomStatusResponse.GetResponse(320);
+                    //obj.Password = Secure.EncryptData(obj.Password);
+                    var user = _authenticationService.Authenticate(obj);
+
+                    if (user == null)
+                    {
+                        return CustomStatusResponse.GetResponse(320);
+                    }
+                    else
+                    {
+                        #region Super Admin Section
+                        if (user.RoleID == 1) // Super Admin
+                        {
+                            List<DynamicMenu> dynamicMenuList = new List<DynamicMenu>();
+
+                            var Modules = _modulesService.GetAll().ToList();
+                            var ModulePages = _modulePagesService.GetAll().ToList();
+
+                            if (Modules.Count > 0)
+                            {
+                                if (ModulePages.Count > 0)
+                                {
+                                    for (int i = 0; i < Modules.Count; i++)
+                                    {
+                                        var ModuleName = Modules[i].ModuleName;
+                                        DynamicMenu dynamicMenu = new DynamicMenu();
+                                        dynamicMenu.ModuleName = ModuleName == null ? "No Module" : ModuleName;
+                                        dynamicMenu.Icon = Modules[i].Icon;
+                                        dynamicMenu.OrderN = Modules[i].OrderN;
+                                        dynamicMenu.DynamicSubMenues = new List<DynamicSubMenu>();
+                                        var Pages = ModulePages.Where(x => x.ModuleID == Modules[i].ModuleID).ToList();
+
+                                        for (int j = 0; j < Pages.Count; j++)
+                                        {
+                                            DynamicSubMenu dynamicSubMenu = new DynamicSubMenu();
+
+                                            dynamicSubMenu.ModulePageName = Pages[j].ModulePageName;
+                                            dynamicSubMenu.ControllerURL = Pages[j].ControllerURL;
+                                            dynamicSubMenu.ActionURL = Pages[j].ActionURL;
+                                            dynamicSubMenu.OrderN = Pages[j].OrderN;
+                                            dynamicMenu.DynamicSubMenues.Add(dynamicSubMenu);
+                                        }
+
+                                        dynamicMenuList.Add(dynamicMenu);
+                                    }
+                                }
+                            }
+
+                            if (dynamicMenuList != null && dynamicMenuList.Count > 0)
+                            {
+                                for (int i = 0; i < dynamicMenuList.Count; i++)
+                                {
+                                    dynamicMenuList[i].DynamicSubMenues = dynamicMenuList[i].DynamicSubMenues.OrderBy(o => o.OrderN).ToList();
+                                }
+
+                            }
+
+                            dynamicMenuList = dynamicMenuList.OrderBy(O => O.OrderN).ToList();
+                            user.DynamicMenu = JsonConvert.SerializeObject(dynamicMenuList);
+                        }
+
+                        #endregion
+
+                        #region Other Admin Section
+                        else // Other User
+                        {
+
+                        }
+                        #endregion
+
+                        var menu = JsonConvert.DeserializeObject<List<DynamicMenu>>(user.DynamicMenu);
+
+                        response = CustomStatusResponse.GetResponse(200);
+                        response.Token = TokenManager.GenerateToken(user);
+                        response.Data = new
+                        {
+                            DataObj = user,
+                            Menu = menu,
+                            IndexPageController = menu[0].DynamicSubMenues[0].ControllerURL,
+                            IndexPageAction = menu[0].DynamicSubMenues[0].ActionURL
+
+                        };
+
+                        return response;
+                    }
                 }
                 else
                 {
-                    #region Super Admin Section
-                    if (user.RoleID == 1) // Super Admin
-                    {
-                        List<DynamicMenu> dynamicMenuList = new List<DynamicMenu>();
-
-                        var Modules = _modulesService.GetAll().ToList();
-                        var ModulePages = _modulePagesService.GetAll().ToList();
-
-                        if (Modules.Count > 0)
-                        {
-                            if (ModulePages.Count > 0)
-                            {
-                                for (int i = 0; i < Modules.Count; i++)
-                                {
-                                    var ModuleName = Modules[i].ModuleName;
-                                    DynamicMenu dynamicMenu = new DynamicMenu();
-                                    dynamicMenu.ModuleName = ModuleName == null ? "No Module" : ModuleName;
-                                    dynamicMenu.Icon = Modules[i].Icon;
-                                    dynamicMenu.OrderN = Modules[i].OrderN;
-                                    dynamicMenu.DynamicSubMenues = new List<DynamicSubMenu>();
-                                    var Pages = ModulePages.Where(x => x.ModuleID == Modules[i].ModuleID).ToList();
-
-                                    for (int j = 0; j < Pages.Count; j++)
-                                    {
-                                        DynamicSubMenu dynamicSubMenu = new DynamicSubMenu();
-
-                                        dynamicSubMenu.ModulePageName = Pages[j].ModulePageName;
-                                        dynamicSubMenu.ControllerURL = Pages[j].ControllerURL;
-                                        dynamicSubMenu.ActionURL = Pages[j].ActionURL;
-                                        dynamicSubMenu.OrderN = Pages[j].OrderN;
-                                        dynamicMenu.DynamicSubMenues.Add(dynamicSubMenu);
-                                    }
-
-                                    dynamicMenuList.Add(dynamicMenu);
-                                }
-                            }
-                        }
-
-                        if (dynamicMenuList != null && dynamicMenuList.Count > 0)
-                        {
-                            for (int i = 0; i < dynamicMenuList.Count; i++)
-                            {
-                                dynamicMenuList[i].DynamicSubMenues = dynamicMenuList[i].DynamicSubMenues.OrderBy(o => o.OrderN).ToList();
-                            }
-                            
-                        }
-
-                        dynamicMenuList = dynamicMenuList.OrderBy(O => O.OrderN).ToList();
-                        user.DynamicMenu = JsonConvert.SerializeObject(dynamicMenuList);
-                    }
-
-                    #endregion
-
-                    #region Other Admin Section
-                    else // Other User
-                    { 
-                    
-                    }
-                    #endregion
-
-                    var menu = JsonConvert.DeserializeObject<List<DynamicMenu>>(user.DynamicMenu);
-
-                    response = CustomStatusResponse.GetResponse(200);
-                    response.Token = TokenManager.GenerateToken(user);
-                    response.Data = new
-                    {
-                        DataObj = user,
-                        Menu = menu,
-                        IndexPageController = menu[0].DynamicSubMenues[0].ControllerURL,
-                        IndexPageAction = menu[0].DynamicSubMenues[0].ActionURL
-
-                    };
-
-                    return response;
+                    response.Status = 0;
+                    response.ResponseMsg = "Please enter Username and Password !";
                 }
             }
             catch (Exception ex)

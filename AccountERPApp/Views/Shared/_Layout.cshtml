@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
 
@@ -16,13 +19,14 @@
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/sweetalert2@11/sweetalert2@11.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-
 
     @*This JS is use for Scroll bar*@
     <script src="~/lib/scrollbar/compiled.min.js"></script>
     <script src="~/lib/jquery/dist/jquery.dataTables.min.js"></script>
     <script src="~/js/Layout.js"></script>
+    <script src="~/js/Common.js"></script>
 
     <script type="text/javascript">
 
@@ -47,12 +51,17 @@
 </head>
 <body onload="GetURLAndSetMenuSelected()">
 
+    <input type="hidden" id="baseApiUrl" value="@Configuration.GetSection("UrlSetting").GetSection("baseApiUrl").Value" />
+    <input type="hidden" id="baseWebUrl" value="@Configuration.GetSection("UrlSetting").GetSection("baseWebUrl").Value" />
+    <input type="hidden" id="baseUrlForMVCAction" value="@Configuration.GetSection("UrlSetting").GetSection("baseUrlForMVCAction").Value" />
+
     <div class="dashboard">
         <div class="dashboard-nav">
             <header>
                 <a href="#!" class="menu-toggle">
-                <i class="fas fa-bars"></i></a>
-                <a href="#"class="brand-logo">
+                    <i class="fas fa-bars"></i>
+                </a>
+                <a href="#" class="brand-logo">
                     <i class="fas fa-anchor"></i> <span>BRAND</span>
                 </a>
             </header>
@@ -183,17 +192,17 @@
             <header class='dashboard-toolbar'><a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a></header>
             @RenderBody()
             @*<div class='dashboard-content'>
-            <div class='container'>
-                <div class='card'>
-                    <div class='card-header'>
-                        <h1>Welcome back Jim</h1>
+                    <div class='container'>
+                        <div class='card'>
+                            <div class='card-header'>
+                                <h1>Welcome back Jim</h1>
+                            </div>
+                            <div class='card-body'>
+                                <p>Your account type is: Administrator</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class='card-body'>
-                        <p>Your account type is: Administrator</p>
-                    </div>
-                </div>
-            </div>
-        </div>*@
+                </div>*@
         </div>
     </div>
 
@@ -231,7 +240,7 @@
                 &copy; 2022 - AccountERPApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
             </div>
         </footer>*@
-    
+
     @*@RenderSection("Scripts", required: false)*@
 </body>
 </html>
