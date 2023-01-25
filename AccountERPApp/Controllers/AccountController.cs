@@ -47,5 +47,15 @@ namespace AccountERPApp.Controllers
             return HttpUtility.CustomHttp(ApiBaseURL, "api/Authentication/Authenticate", content, HttpContext);
 
         }
+
+        [HttpPost]
+        public Task<object> Logout()
+        {
+            string content = "";
+            var buffer = System.Text.Encoding.UTF8.GetBytes(content);
+            //string a=HttpContext.Session.GetString("authorization");
+            return HttpUtility.CustomHttp(ApiBaseURL, "api/Authentication/Logout", content, HttpContext);
+
+        }
     }
 }

@@ -20,11 +20,11 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/lib/sweetalert2@11/sweetalert2@11.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-
-    @*This JS is use for Scroll bar*@
+    <script src="~/lib/handlebars/handlebars.js"></script>
     <script src="~/lib/scrollbar/compiled.min.js"></script>
     <script src="~/lib/jquery/dist/jquery.dataTables.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
     <script src="~/js/Layout.js"></script>
     <script src="~/js/Common.js"></script>
 
@@ -49,7 +49,8 @@
     </script>
 
 </head>
-<body onload="GetURLAndSetMenuSelected()">
+@*<body onload="GetURLAndSetMenuSelected()">*@
+<body>
 
     <input type="hidden" id="baseApiUrl" value="@Configuration.GetSection("UrlSetting").GetSection("baseApiUrl").Value" />
     <input type="hidden" id="baseWebUrl" value="@Configuration.GetSection("UrlSetting").GetSection("baseWebUrl").Value" />
@@ -67,127 +68,129 @@
             </header>
             <nav class="dashboard-nav-list">
 
-                <a href="@Url.Action("Dashboard","Dashboard")" id="mDashboardDashboard" class="dashboard-nav-item"><i class="fas fa-home"></i>Home</a>
+                <div id="navMenuList">
+                    @*<a href="@Url.Action("Dashboard","Dashboard")" id="mDashboardDashboard" class="dashboard-nav-item"><i class="fas fa-home"></i>Home</a>*@
 
-                @*<div class='dashboard-nav-dropdown show'>*@
-                <div id="dvSales" class='dashboard-nav-dropdown'>
-                    <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-photo-video"></i> Sales</a>
-                    <div class='dashboard-nav-dropdown-menu'>
-                        @*<a href="#" class="dashboard-nav-dropdown-item active">Images</a>*@
-                        <a href="@Url.Action("Quotation","Sales")" id="mSalesQuotation" class="dashboard-nav-dropdown-item">Quotation</a>
-                        <a href="@Url.Action("Order","Sales")" id="mSalesOrder" class="dashboard-nav-dropdown-item">Order</a>
-                        <a href="@Url.Action("Delivery","Sales")" id="mSalesDelivery" class="dashboard-nav-dropdown-item">Delivery</a>
-                        <a href="@Url.Action("Invoice","Sales")" id="mSalesInvoice" class="dashboard-nav-dropdown-item">Invoice</a>
-                        <a href="@Url.Action("RecuringInvoice","Sales")" id="mSalesRecuringInvoice" class="dashboard-nav-dropdown-item">Recuring Invoice</a>
-                        <a href="@Url.Action("Return","Sales")" id="mSalesReturn" class="dashboard-nav-dropdown-item">Return</a>
-                        <a href="@Url.Action("ReceiveMoney","Sales")" id="mSalesReceiveMoney" class="dashboard-nav-dropdown-item">Receive Money</a>
-                        <a href="@Url.Action("Refund","Sales")" id="mSalesRefund" class="dashboard-nav-dropdown-item">Refund</a>
-                        <a href="@Url.Action("Settlement","Sales")" id="mSalesSettlement" class="dashboard-nav-dropdown-item">Settlement</a>
+                    @*<div class='dashboard-nav-dropdown show'>*@
+                    <!--<div id="dvSales" class='dashboard-nav-dropdown'>
+                        <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-photo-video"></i> Sales</a>
+                        <div class='dashboard-nav-dropdown-menu'>-->
+                    @*<a href="#" class="dashboard-nav-dropdown-item active">Images</a>*@
+                    <!--<a href="@Url.Action("Quotation","Sales")" id="mSalesQuotation" class="dashboard-nav-dropdown-item">Quotation</a>
+                            <a href="@Url.Action("Order","Sales")" id="mSalesOrder" class="dashboard-nav-dropdown-item">Order</a>
+                            <a href="@Url.Action("Delivery","Sales")" id="mSalesDelivery" class="dashboard-nav-dropdown-item">Delivery</a>
+                            <a href="@Url.Action("Invoice","Sales")" id="mSalesInvoice" class="dashboard-nav-dropdown-item">Invoice</a>
+                            <a href="@Url.Action("RecuringInvoice","Sales")" id="mSalesRecuringInvoice" class="dashboard-nav-dropdown-item">Recuring Invoice</a>
+                            <a href="@Url.Action("Return","Sales")" id="mSalesReturn" class="dashboard-nav-dropdown-item">Return</a>
+                            <a href="@Url.Action("ReceiveMoney","Sales")" id="mSalesReceiveMoney" class="dashboard-nav-dropdown-item">Receive Money</a>
+                            <a href="@Url.Action("Refund","Sales")" id="mSalesRefund" class="dashboard-nav-dropdown-item">Refund</a>
+                            <a href="@Url.Action("Settlement","Sales")" id="mSalesSettlement" class="dashboard-nav-dropdown-item">Settlement</a>
+                        </div>
                     </div>
-                </div>
 
-                <div id="dvPurchase" class='dashboard-nav-dropdown'>
-                    <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-photo-video"></i> Purchase</a>
-                    <div class='dashboard-nav-dropdown-menu'>
-                        <a href="@Url.Action("Order","Purchase")" id="mPurchaseOrder" class="dashboard-nav-dropdown-item">Order</a>
-                        <a href="@Url.Action("GoodReceiving","Purchase")" id="mPurchaseGoodReceiving" class="dashboard-nav-dropdown-item">Good Receiving</a>
-                        <a href="@Url.Action("Invoice","Purchase")" id="mPurchaseInvoice" class="dashboard-nav-dropdown-item">Invoice</a>
-                        <a href="@Url.Action("Return","Purchase")" id="mPurchaseReturn" class="dashboard-nav-dropdown-item">Return</a>
-                        <a href="@Url.Action("Makepayment","Purchase")" id="mPurchaseMakepayment" class="dashboard-nav-dropdown-item">Make Payment</a>
-                        <a href="@Url.Action("Refund","Purchase")" id="mPurchaseRefund" class="dashboard-nav-dropdown-item">Refund</a>
-                        <a href="@Url.Action("Settlement","Purchase")" id="mPurchaseSettlement" class="dashboard-nav-dropdown-item">Settlement</a>
+                    <div id="dvPurchase" class='dashboard-nav-dropdown'>
+                        <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-photo-video"></i> Purchase</a>
+                        <div class='dashboard-nav-dropdown-menu'>
+                            <a href="@Url.Action("Order","Purchase")" id="mPurchaseOrder" class="dashboard-nav-dropdown-item">Order</a>
+                            <a href="@Url.Action("GoodReceiving","Purchase")" id="mPurchaseGoodReceiving" class="dashboard-nav-dropdown-item">Good Receiving</a>
+                            <a href="@Url.Action("Invoice","Purchase")" id="mPurchaseInvoice" class="dashboard-nav-dropdown-item">Invoice</a>
+                            <a href="@Url.Action("Return","Purchase")" id="mPurchaseReturn" class="dashboard-nav-dropdown-item">Return</a>
+                            <a href="@Url.Action("Makepayment","Purchase")" id="mPurchaseMakepayment" class="dashboard-nav-dropdown-item">Make Payment</a>
+                            <a href="@Url.Action("Refund","Purchase")" id="mPurchaseRefund" class="dashboard-nav-dropdown-item">Refund</a>
+                            <a href="@Url.Action("Settlement","Purchase")" id="mPurchaseSettlement" class="dashboard-nav-dropdown-item">Settlement</a>
+                        </div>
                     </div>
-                </div>
 
-                <div id="dvPOS" class='dashboard-nav-dropdown'>
-                    <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-photo-video"></i> POS</a>
-                    <div class='dashboard-nav-dropdown-menu'>
-                        <a href="@Url.Action("CheckoutCounter","POS")" id="mPOSCheckoutCounter" class="dashboard-nav-dropdown-item">Checkout Counter</a>
-                        <a href="@Url.Action("POS","POS")" id="mPOSPOS" class="dashboard-nav-dropdown-item">POS</a>
-                        <a href="@Url.Action("Barcode","POS")" id="mPOSBarcode" class="dashboard-nav-dropdown-item">Barcode</a>
-                        <a href="@Url.Action("DailySummary","POS")" id="mPOSDailySummary" class="dashboard-nav-dropdown-item">Daily Summary</a>
+                    <div id="dvPOS" class='dashboard-nav-dropdown'>
+                        <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-photo-video"></i> POS</a>
+                        <div class='dashboard-nav-dropdown-menu'>
+                            <a href="@Url.Action("CheckoutCounter","POS")" id="mPOSCheckoutCounter" class="dashboard-nav-dropdown-item">Checkout Counter</a>
+                            <a href="@Url.Action("POS","POS")" id="mPOSPOS" class="dashboard-nav-dropdown-item">POS</a>
+                            <a href="@Url.Action("Barcode","POS")" id="mPOSBarcode" class="dashboard-nav-dropdown-item">Barcode</a>
+                            <a href="@Url.Action("DailySummary","POS")" id="mPOSDailySummary" class="dashboard-nav-dropdown-item">Daily Summary</a>
+                        </div>
                     </div>
-                </div>
 
-                <div id="dvAccountsManagement" class='dashboard-nav-dropdown'>
-                    <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-photo-video"></i> Accounts</a>
-                    <div class='dashboard-nav-dropdown-menu'>
-                        <a href="@Url.Action("Expense","AccountsManagement")" id="mAccountsManagementExpense" class="dashboard-nav-dropdown-item">Expense</a>
-                        <a href="@Url.Action("JournalEntry","AccountsManagement")" id="mAccountsManagementJournalEntry" class="dashboard-nav-dropdown-item">Journal Entry</a>
-                        <a href="@Url.Action("ChartAccount","AccountsManagement")" id="mAccountsManagementChartAccount" class="dashboard-nav-dropdown-item">Chart Account</a>
-                        <a href="@Url.Action("BankAccount","AccountsManagement")" id="mAccountsManagementBankAccount" class="dashboard-nav-dropdown-item">Bank Account</a>
-                        <a href="@Url.Action("BankDeposit","AccountsManagement")" id="mAccountsManagementBankDeposit" class="dashboard-nav-dropdown-item">Bank Deposit</a>
-                        <a href="@Url.Action("CreditNote","AccountsManagement")" id="mAccountsManagementCreditNote" class="dashboard-nav-dropdown-item">Credit Note</a>
-                        <a href="@Url.Action("DebitNote","AccountsManagement")" id="mAccountsManagementDebitNote" class="dashboard-nav-dropdown-item">Debit Note</a>
-                        <a href="@Url.Action("FundsTransfer","AccountsManagement")" id="mAccountsManagementFundsTransfer" class="dashboard-nav-dropdown-item">Funds Transfer</a>
-                        <a href="@Url.Action("OtherCollections","AccountsManagement")" id="mAccountsManagementOtherCollections" class="dashboard-nav-dropdown-item">Other Collections</a>
-                        <a href="@Url.Action("OtherPayments","AccountsManagement")" id="mAccountsManagementOtherPayments" class="dashboard-nav-dropdown-item">Other payments</a>
+                    <div id="dvAccountsManagement" class='dashboard-nav-dropdown'>
+                        <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-photo-video"></i> Accounts</a>
+                        <div class='dashboard-nav-dropdown-menu'>
+                            <a href="@Url.Action("Expense","AccountsManagement")" id="mAccountsManagementExpense" class="dashboard-nav-dropdown-item">Expense</a>
+                            <a href="@Url.Action("JournalEntry","AccountsManagement")" id="mAccountsManagementJournalEntry" class="dashboard-nav-dropdown-item">Journal Entry</a>
+                            <a href="@Url.Action("ChartAccount","AccountsManagement")" id="mAccountsManagementChartAccount" class="dashboard-nav-dropdown-item">Chart Account</a>
+                            <a href="@Url.Action("BankAccount","AccountsManagement")" id="mAccountsManagementBankAccount" class="dashboard-nav-dropdown-item">Bank Account</a>
+                            <a href="@Url.Action("BankDeposit","AccountsManagement")" id="mAccountsManagementBankDeposit" class="dashboard-nav-dropdown-item">Bank Deposit</a>
+                            <a href="@Url.Action("CreditNote","AccountsManagement")" id="mAccountsManagementCreditNote" class="dashboard-nav-dropdown-item">Credit Note</a>
+                            <a href="@Url.Action("DebitNote","AccountsManagement")" id="mAccountsManagementDebitNote" class="dashboard-nav-dropdown-item">Debit Note</a>
+                            <a href="@Url.Action("FundsTransfer","AccountsManagement")" id="mAccountsManagementFundsTransfer" class="dashboard-nav-dropdown-item">Funds Transfer</a>
+                            <a href="@Url.Action("OtherCollections","AccountsManagement")" id="mAccountsManagementOtherCollections" class="dashboard-nav-dropdown-item">Other Collections</a>
+                            <a href="@Url.Action("OtherPayments","AccountsManagement")" id="mAccountsManagementOtherPayments" class="dashboard-nav-dropdown-item">Other payments</a>
+                        </div>
                     </div>
-                </div>
 
-                <div id="dvInventory" class='dashboard-nav-dropdown'>
-                    <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-photo-video"></i> Inventory</a>
-                    <div class='dashboard-nav-dropdown-menu'>
-                        <a href="@Url.Action("StockMovement","Inventory")" id="mInventoryStockMovement" class="dashboard-nav-dropdown-item">Stock Movement</a>
-                        <a href="@Url.Action("StockAdjustment","Inventory")" id="mInventoryStockAdjustment" class="dashboard-nav-dropdown-item">Stock Adjustment</a>
-                        <a href="@Url.Action("ScheduledValuation","Inventory")" id="mInventoryScheduledValuation" class="dashboard-nav-dropdown-item">Scheduled Valuation</a>
+                    <div id="dvInventory" class='dashboard-nav-dropdown'>
+                        <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-photo-video"></i> Inventory</a>
+                        <div class='dashboard-nav-dropdown-menu'>
+                            <a href="@Url.Action("StockMovement","Inventory")" id="mInventoryStockMovement" class="dashboard-nav-dropdown-item">Stock Movement</a>
+                            <a href="@Url.Action("StockAdjustment","Inventory")" id="mInventoryStockAdjustment" class="dashboard-nav-dropdown-item">Stock Adjustment</a>
+                            <a href="@Url.Action("ScheduledValuation","Inventory")" id="mInventoryScheduledValuation" class="dashboard-nav-dropdown-item">Scheduled Valuation</a>
+                        </div>
                     </div>
-                </div>
 
-                <div id="dvManufacturing" class='dashboard-nav-dropdown'>
-                    <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-photo-video"></i> Manufacturing</a>
-                    <div class='dashboard-nav-dropdown-menu'>
-                        <a href="@Url.Action("Assembling","Manufacturing")" id="mManufacturingAssembling" class="dashboard-nav-dropdown-item">Assembling</a>
-                        <a href="@Url.Action("Disassembling","Manufacturing")" id="mManufacturingDisassembling" class="dashboard-nav-dropdown-item">Disassembling</a>
+                    <div id="dvManufacturing" class='dashboard-nav-dropdown'>
+                        <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-photo-video"></i> Manufacturing</a>
+                        <div class='dashboard-nav-dropdown-menu'>
+                            <a href="@Url.Action("Assembling","Manufacturing")" id="mManufacturingAssembling" class="dashboard-nav-dropdown-item">Assembling</a>
+                            <a href="@Url.Action("Disassembling","Manufacturing")" id="mManufacturingDisassembling" class="dashboard-nav-dropdown-item">Disassembling</a>
+                        </div>
                     </div>
-                </div>
 
-                <div id="dvSetupList" class='dashboard-nav-dropdown'>
-                    <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-photo-video"></i> Setup - Lists</a>
-                    <div class='dashboard-nav-dropdown-menu'>
-                        <a href="@Url.Action("Customers","SetupList")" id="mSetupListCustomers" class="dashboard-nav-dropdown-item">Customers</a>
-                        <a href="@Url.Action("Vendors","SetupList")" id="mSetupListVendors" class="dashboard-nav-dropdown-item">Vendors</a>
-                        <a href="@Url.Action("Products","SetupList")" id="mSetupListProducts" class="dashboard-nav-dropdown-item">Products</a>
-                        <a href="@Url.Action("Employees","SetupList")" id="mSetupListEmployees" class="dashboard-nav-dropdown-item">Employees</a>
-                        <a href="@Url.Action("SalesPersons","SetupList")" id="mSetupListSalesPersons" class="dashboard-nav-dropdown-item">Sales Persons</a>
-                        <a href="@Url.Action("Users","SetupList")" id="mSetupListUsers" class="dashboard-nav-dropdown-item">Users</a>
-                        <a href="@Url.Action("OtherContacts","SetupList")" id="mSetupListOtherContacts" class="dashboard-nav-dropdown-item">Other Contacts</a>
+                    <div id="dvSetupList" class='dashboard-nav-dropdown'>
+                        <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-photo-video"></i> Setup - Lists</a>
+                        <div class='dashboard-nav-dropdown-menu'>
+                            <a href="@Url.Action("Customers","SetupList")" id="mSetupListCustomers" class="dashboard-nav-dropdown-item">Customers</a>
+                            <a href="@Url.Action("Vendors","SetupList")" id="mSetupListVendors" class="dashboard-nav-dropdown-item">Vendors</a>
+                            <a href="@Url.Action("Products","SetupList")" id="mSetupListProducts" class="dashboard-nav-dropdown-item">Products</a>
+                            <a href="@Url.Action("Employees","SetupList")" id="mSetupListEmployees" class="dashboard-nav-dropdown-item">Employees</a>
+                            <a href="@Url.Action("SalesPersons","SetupList")" id="mSetupListSalesPersons" class="dashboard-nav-dropdown-item">Sales Persons</a>
+                            <a href="@Url.Action("Users","SetupList")" id="mSetupListUsers" class="dashboard-nav-dropdown-item">Users</a>
+                            <a href="@Url.Action("OtherContacts","SetupList")" id="mSetupListOtherContacts" class="dashboard-nav-dropdown-item">Other Contacts</a>
+                        </div>
                     </div>
-                </div>
 
-                <div id="dvSetupCategories" class='dashboard-nav-dropdown'>
-                    <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-photo-video"></i> Setup - Categories</a>
-                    <div class='dashboard-nav-dropdown-menu'>
-                        <a href="@Url.Action("Customer","SetupCategories")" id="mSetupCategoriesCustomer" class="dashboard-nav-dropdown-item">Customer</a>
-                        <a href="@Url.Action("OtherContact","SetupCategories")" id="mSetupCategoriesOtherContact" class="dashboard-nav-dropdown-item">Other Contact</a>
-                        <a href="@Url.Action("Vendor","SetupCategories")" id="mSetupCategoriesVendor" class="dashboard-nav-dropdown-item">Vendor</a>
-                        <a href="@Url.Action("Product","SetupCategories")" id="mSetupCategoriesProduct" class="dashboard-nav-dropdown-item">Product</a>
-                        <a href="@Url.Action("Brands","SetupCategories")" id="mSetupCategoriesBrands" class="dashboard-nav-dropdown-item">Brands</a>
-                        <a href="@Url.Action("Departments","SetupCategories")" id="mSetupCategoriesDepartments" class="dashboard-nav-dropdown-item">Departments</a>
-                        <a href="@Url.Action("Designations","SetupCategories")" id="mSetupCategoriesDesignations" class="dashboard-nav-dropdown-item">Designations</a>
+                    <div id="dvSetupCategories" class='dashboard-nav-dropdown'>
+                        <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-photo-video"></i> Setup - Categories</a>
+                        <div class='dashboard-nav-dropdown-menu'>
+                            <a href="@Url.Action("Customer","SetupCategories")" id="mSetupCategoriesCustomer" class="dashboard-nav-dropdown-item">Customer</a>
+                            <a href="@Url.Action("OtherContact","SetupCategories")" id="mSetupCategoriesOtherContact" class="dashboard-nav-dropdown-item">Other Contact</a>
+                            <a href="@Url.Action("Vendor","SetupCategories")" id="mSetupCategoriesVendor" class="dashboard-nav-dropdown-item">Vendor</a>
+                            <a href="@Url.Action("Product","SetupCategories")" id="mSetupCategoriesProduct" class="dashboard-nav-dropdown-item">Product</a>
+                            <a href="@Url.Action("Brands","SetupCategories")" id="mSetupCategoriesBrands" class="dashboard-nav-dropdown-item">Brands</a>
+                            <a href="@Url.Action("Departments","SetupCategories")" id="mSetupCategoriesDepartments" class="dashboard-nav-dropdown-item">Departments</a>
+                            <a href="@Url.Action("Designations","SetupCategories")" id="mSetupCategoriesDesignations" class="dashboard-nav-dropdown-item">Designations</a>
+                        </div>
                     </div>
+
+                    <div id="dvSetupGeneral" class='dashboard-nav-dropdown'>
+                        <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-photo-video"></i> Setup - General</a>
+                        <div class='dashboard-nav-dropdown-menu'>
+                            <a href="@Url.Action("Taxes","SetupGeneral")" id="mSetupGeneralTaxes" class="dashboard-nav-dropdown-item">Taxes</a>
+                            <a href="@Url.Action("Warehouses","SetupGeneral")" id="mSetupGeneralWarehouses" class="dashboard-nav-dropdown-item">Warehouses</a>
+                            <a href="@Url.Action("AdjustmentTypes","SetupGeneral")" id="mSetupGeneralAdjustmentTypes" class="dashboard-nav-dropdown-item">Adjustment Types</a>
+                            <a href="@Url.Action("Consignments","SetupGeneral")" id="mSetupGeneralConsignments" class="dashboard-nav-dropdown-item">Consignments</a>
+                            <a href="@Url.Action("CustomFields","SetupGeneral")" id="mSetupGeneralCustomFields" class="dashboard-nav-dropdown-item">Custom Fields</a>
+                            <a href="@Url.Action("MultiplePriceLevels","SetupGeneral")" id="mSetupGeneralMultiplePriceLevels" class="dashboard-nav-dropdown-item">Multiple Price Levels</a>
+                        </div>
+                    </div>-->
+                    @*<a href="@Url.Action("Reports","Reports")" id="mReportsReports" class="dashboard-nav-item"><i class="fas fa-home"></i>Reports</a>*@
+                    @*<a href="#" class="dashboard-nav-item active"><i class="fas fa-tachometer-alt"></i> dashboard</a>*@
+                    @*<a href="@Url.Action("ReferAndEarn","ReferAndEarn")" id="mReferAndEarnReferAndEarn" class="dashboard-nav-item"><i class="fas fa-tachometer-alt"></i> Refer And Earn</a>*@
                 </div>
-
-                <div id="dvSetupGeneral" class='dashboard-nav-dropdown'>
-                    <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-photo-video"></i> Setup - General</a>
-                    <div class='dashboard-nav-dropdown-menu'>
-                        <a href="@Url.Action("Taxes","SetupGeneral")" id="mSetupGeneralTaxes" class="dashboard-nav-dropdown-item">Taxes</a>
-                        <a href="@Url.Action("Warehouses","SetupGeneral")" id="mSetupGeneralWarehouses" class="dashboard-nav-dropdown-item">Warehouses</a>
-                        <a href="@Url.Action("AdjustmentTypes","SetupGeneral")" id="mSetupGeneralAdjustmentTypes" class="dashboard-nav-dropdown-item">Adjustment Types</a>
-                        <a href="@Url.Action("Consignments","SetupGeneral")" id="mSetupGeneralConsignments" class="dashboard-nav-dropdown-item">Consignments</a>
-                        <a href="@Url.Action("CustomFields","SetupGeneral")" id="mSetupGeneralCustomFields" class="dashboard-nav-dropdown-item">Custom Fields</a>
-                        <a href="@Url.Action("MultiplePriceLevels","SetupGeneral")" id="mSetupGeneralMultiplePriceLevels" class="dashboard-nav-dropdown-item">Multiple Price Levels</a>
-                    </div>
-                </div>
-
-                <a href="@Url.Action("Reports","Reports")" id="mReportsReports" class="dashboard-nav-item"><i class="fas fa-home"></i>Reports</a>
-                @*<a href="#" class="dashboard-nav-item active"><i class="fas fa-tachometer-alt"></i> dashboard</a>*@
-                <a href="@Url.Action("ReferAndEarn","ReferAndEarn")" id="mReferAndEarnReferAndEarn" class="dashboard-nav-item"><i class="fas fa-tachometer-alt"></i> Refer And Earn</a>
-
                 <div class="nav-item-divider"></div>
-                <a href="#" class="dashboard-nav-item"><i class="fas fa-sign-out-alt"></i> Logout </a>
+                <a href="#" class="dashboard-nav-item" id="btnLogout"><i class="fas fa-sign-out-alt"></i> Logout </a>
+
             </nav>
         </div>
+
         <div class='dashboard-app'>
             <header class='dashboard-toolbar'><a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a></header>
             @RenderBody()
@@ -242,5 +245,22 @@
         </footer>*@
 
     @*@RenderSection("Scripts", required: false)*@
+
+
+
+    <script type="text/x-handlebars" id="temp_navMenuList">
+
+        {{#each this}}
+        <div id="dv{{NameAsModuleID}}" class='dashboard-nav-dropdown'>
+            <a href="javascript:void(0)" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas {{Icon}}"></i>{{ModuleName}}</a>
+            <div class='dashboard-nav-dropdown-menu'>
+                {{#each DynamicSubMenues}}
+                <a href="{{baseUrlForMVCAction}}/{{ControllerURL}}/{{ActionURL}}" id="m{{ControllerURL}}{{ActionURL}}" class="dashboard-nav-dropdown-item">{{ModulePageName}}</a>
+                {{/each}}
+            </div>
+        </div>
+        {{/each}}
+    </script>
+
 </body>
 </html>

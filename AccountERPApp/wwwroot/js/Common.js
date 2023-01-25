@@ -54,12 +54,14 @@ function isNullOrUndefined(value) {
 }
 
 function ErrorAlert(Message) {
-    Swal.fire({
-        title: "Error",
-        text: Message,
-        icon: "error",
-        dangerMode: true,
-    });
+    if (Message != "") {
+        Swal.fire({
+            title: "Error",
+            text: Message,
+            icon: "error",
+            dangerMode: true,
+        });
+    }
 }
 
 function MaterialActiveClass_Add_In_Textbox(thisid) {
@@ -81,6 +83,18 @@ function MaterialActiveClass_Remove_In_Textbox(thisid) {
     }
 }
 
+function fillData(res, tempContainerId, fillContainerId, IsRefresh) {
+    if (res) {
+        $(fillContainerId).html('');
+        let template = $(tempContainerId).html()
+        var templateScript = Handlebars.compile(template);
+        $(fillContainerId).html(templateScript(res));
+
+        if (IsRefresh)
+            $(fillContainerId).selectpicker('refresh');
+
+    }
+}
 
 //$().buttonLoader("start") / $().buttonLoader("stop") function Start
 (function ($) {

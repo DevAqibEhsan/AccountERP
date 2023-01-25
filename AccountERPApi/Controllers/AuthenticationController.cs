@@ -65,6 +65,7 @@ namespace AccountERPApi.Controllers
                                         var ModuleName = Modules[i].ModuleName;
                                         DynamicMenu dynamicMenu = new DynamicMenu();
                                         dynamicMenu.ModuleName = ModuleName == null ? "No Module" : ModuleName;
+                                        dynamicMenu.NameAsModuleID = Modules[i].NameAsModuleID;
                                         dynamicMenu.Icon = Modules[i].Icon;
                                         dynamicMenu.OrderN = Modules[i].OrderN;
                                         dynamicMenu.DynamicSubMenues = new List<DynamicSubMenu>();
@@ -121,7 +122,7 @@ namespace AccountERPApi.Controllers
 
                         };
 
-                        return response;
+                        //return response;
                     }
                 }
                 else
@@ -129,6 +130,31 @@ namespace AccountERPApi.Controllers
                     response.Status = 0;
                     response.ResponseMsg = "Please enter Username and Password !";
                 }
+            }
+            catch (Exception ex)
+            {
+                response.Status = ExceptionStatusCode.GetExceptionCode(ex);
+                response.ResponseMsg = ex.Message;
+            }
+
+            return response;
+        }
+
+        [HttpPost("Logout")]
+        public Response Logout()
+        {
+            Response response = new Response();
+            try
+            {
+                string token = Request.Headers["Authorization"];
+                if (token != null)
+                {
+                    TokenManager.RemoveToken(token);
+                }
+
+                response = CustomStatusResponse.GetResponse(200);
+                response.Data = null;
+                response.Token = null;
             }
             catch (Exception ex)
             {
