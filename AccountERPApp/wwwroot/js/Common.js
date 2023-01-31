@@ -38,6 +38,26 @@ function postRequest(url, requestData, handledata) {
     });
 }
 
+function postRequest_NotAsync(url, requestData, handledata) {
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json;charset=utf-8',
+        dataType: "json",
+        url: url,
+        async:false,
+        headers: {
+            "Authorization": GetAuthorizationHeader()
+        },
+        data: JSON.stringify(requestData),
+        success: function (data, textStatus, xhr) {
+            handledata(data);
+        },
+        error: function (xhr, textStatus, errorThrown) {
+            ErrorAlert("Something Went Wrong!");
+        }
+    });
+}
+
 function GetAuthorizationHeader() {
     let token = localStorage.getItem('authorization');
     if (isNullOrUndefined(token)) {
@@ -54,12 +74,11 @@ function isNullOrUndefined(value) {
 }
 
 function ErrorAlert(Message) {
-    if (Message != "") {
+    if (Message != "" && Message != null) {
         Swal.fire({
             title: "Error",
             text: Message,
-            icon: "error",
-            dangerMode: true,
+            icon: "error"
         });
     }
 }

@@ -89,6 +89,12 @@ h1, .h1 {
     padding: 1.25rem;
 }
 
+#dvDataTable {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+}
+
 .card-header {
     padding: 0.75rem 1.25rem;
     margin-bottom: 0;
@@ -98,12 +104,56 @@ h1, .h1 {
 }
 
 .dashboard {
-    display: -webkit-box;
+    /* display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    min-height: 100vh;
+    min-height: 100vh;*/
 }
+
+.dataTable thead {
+    background-color: #3b5585;
+    color: white;
+}
+
+.dataTables_wrapper .dataTables_paginate span .paginate_button.current {
+    color: white !important;
+    background: #3b5585 !important;
+}
+
+.dataTables_wrapper .dataTables_paginate span .paginate_button.current:hover {
+    color: white !important;
+    background: #3b71ca !important;
+    border: 1px solid #3b71ca !important;
+}
+
+.dataTables_wrapper .dataTables_paginate span .paginate_button:hover {
+    color: white !important;
+    background: #3b71ca !important;
+    border: 1px solid #3b71ca !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.previous:hover {
+    background: #3b71ca !important;
+    border: 1px solid #3b71ca !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.previous.disabled:hover {
+    background: none !important;
+    border: 1px solid #fff !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.next:hover {
+    background: #3b71ca !important;
+    border: 1px solid #3b71ca !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.next.disabled:hover {
+    background: none !important;
+    border: 1px solid #fff !important;
+}
+
+
 
 .dashboard-app {
     display: -webkit-box;
@@ -178,9 +228,9 @@ h1, .h1 {
     background-color: #443ea2;
 }*/
 
-    .dashboard-nav a {
-        color: #fff !important;
-    }
+.dashboard-nav a {
+    color: #fff !important;
+}
 
 .brand-logo {
     font-family: "Nunito", sans-serif;
@@ -241,7 +291,7 @@ h1, .h1 {
         margin-left: -40px;
     }
 
-    /*.dashboard-nav-item:hover {
+/*.dashboard-nav-item:hover {
         background: rgba(255, 255, 255, 0.04);
     }*/
 
@@ -265,22 +315,22 @@ h1, .h1 {
         background: rgba(255, 255, 255, 0.04);
     }*/
 
-        .dashboard-nav-dropdown.show > .dashboard-nav-dropdown-toggle {
-            font-weight: bold;
+    .dashboard-nav-dropdown.show > .dashboard-nav-dropdown-toggle {
+        font-weight: bold;
+    }
+
+        .dashboard-nav-dropdown.show > .dashboard-nav-dropdown-toggle:after {
+            -webkit-transform: none;
+            -o-transform: none;
+            transform: none;
         }
 
-            .dashboard-nav-dropdown.show > .dashboard-nav-dropdown-toggle:after {
-                -webkit-transform: none;
-                -o-transform: none;
-                transform: none;
-            }
-
-        .dashboard-nav-dropdown.show > .dashboard-nav-dropdown-menu {
-            display: -webkit-box;
-            display: -webkit-flex;
-            display: -ms-flexbox;
-            display: flex;
-        }
+    .dashboard-nav-dropdown.show > .dashboard-nav-dropdown-menu {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+    }
 
 .dashboard-nav-dropdown-toggle:after {
     content: "";
@@ -323,7 +373,7 @@ h1, .h1 {
     transition: ease-out 0.5s;
 }
 
-    /*.dashboard-nav-dropdown-item:hover {
+/*.dashboard-nav-dropdown-item:hover {
         background: rgba(255, 255, 255, 0.04);
     }*/
 

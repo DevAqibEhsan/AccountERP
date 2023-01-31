@@ -60,6 +60,9 @@ function Login() {
 
             ErrorAlert(res.ResponseMsg);
         }
+        if (res.statusCode == 404) {
+            ErrorAlert(res.reasonPhrase);
+        }
         if (res.Status == 320) {
             $(btnLogin).buttonLoader('stop');
 

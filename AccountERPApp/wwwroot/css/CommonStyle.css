@@ -104,5 +104,20 @@
     box-shadow: inset 0 0 0 1px #3b71ca !important;
 }
 
+#dvDataTable table {
+    table-layout: fixed;
+}
+
+.text-center{
+    text-align:center !important;
+}
+
+.text-left {
+    text-align: left !important;
+}
+
+.text-right {
+    text-align: right !important;
+}
     
 

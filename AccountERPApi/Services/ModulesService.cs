@@ -21,5 +21,15 @@ namespace AccountERPApi.Services
         {
             return _repository.GetAll();
         }
+
+        public Modules AddModule(Modules obj)
+        {
+            return _repository.AddModule(obj);
+        }
+
+        public Modules UpdateModule(Modules obj)
+        {
+            return _repository.UpdateModule(obj);
+        }
     }
 }

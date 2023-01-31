@@ -9,5 +9,9 @@ namespace AccountERPApi.IRepositories
     public interface IModulesRepository
     {
         public List<Modules> GetAll();
+
+        Modules AddModule(Modules obj);
+
+        Modules UpdateModule(Modules obj);
     }
 }

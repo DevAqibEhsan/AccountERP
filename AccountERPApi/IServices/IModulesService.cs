@@ -9,5 +9,9 @@ namespace AccountERPApi.IServices
     public interface IModulesService
     {
         public List<Modules> GetAll();
+
+        Modules AddModule(Modules obj);
+
+        Modules UpdateModule(Modules obj);
     }
 }

@@ -15,6 +15,7 @@ namespace AccountERPApp.htputlty
     {
         public static async Task<object> CustomHttp(string BaseUrl, string Url, string content, HttpContext httpContext)
         {
+            
             using (var client = new HttpClient())
             {
 
@@ -28,7 +29,7 @@ namespace AccountERPApp.htputlty
                 if (!String.IsNullOrEmpty(httpContext.Session.GetString("authorization")))
                     request.Headers.Add("authorization", httpContext.Session.GetString("authorization"));
                 request.Content = new StringContent(content, Encoding.UTF8, "application/json");
-
+                
                 HttpResponseMessage Res = await client.SendAsync(request);
                 if (Res.IsSuccessStatusCode)
                 {
@@ -38,7 +39,9 @@ namespace AccountERPApp.htputlty
                     return response;
                 }
                 else
-                    return null;
+                {
+                    return Res;
+                }   
             }
         }
     }
