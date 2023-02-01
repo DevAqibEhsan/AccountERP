@@ -10,8 +10,12 @@ namespace AccountERPApi.IRepositories
     {
         public List<Modules> GetAll();
 
+        public List<Modules> GetAllActive();
+
         Modules AddModule(Modules obj);
 
         Modules UpdateModule(Modules obj);
+
+        Modules GetModuleByID(int id);
     }
 }

@@ -22,6 +22,11 @@ namespace AccountERPApi.Services
             return _repository.GetAll();
         }
 
+        public List<Modules> GetAllActive()
+        {
+            return _repository.GetAllActive();
+        }
+
         public Modules AddModule(Modules obj)
         {
             return _repository.AddModule(obj);
@@ -30,6 +35,11 @@ namespace AccountERPApi.Services
         public Modules UpdateModule(Modules obj)
         {
             return _repository.UpdateModule(obj);
+        }
+
+        public Modules GetModuleByID(int id)
+        {
+            return _repository.GetModuleByID(id);
         }
     }
 }
