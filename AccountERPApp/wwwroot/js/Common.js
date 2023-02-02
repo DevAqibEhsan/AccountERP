@@ -115,6 +115,17 @@ function fillData(res, tempContainerId, fillContainerId, IsRefresh) {
     }
 }
 
+function CheckboxIsChecked(ElementID) {
+    
+    var IsCheckedVal = 0;
+
+    if ($("#" + ElementID).is(':checked')) {
+        IsCheckedVal = 1;
+    }
+
+    return IsCheckedVal;
+}
+
 //$().buttonLoader("start") / $().buttonLoader("stop") function Start
 (function ($) {
     $.fn.buttonLoader = function (action) {

@@ -1,9 +1,12 @@
 ﻿using AccountERPApp.htputlty;
+using AccountERPClassLibraries;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace AccountERPApp.Controllers
@@ -67,6 +70,39 @@ namespace AccountERPApp.Controllers
             //var byteContent = new ByteArrayContent(buffer);
             //string a=HttpContext.Session.GetString("authorization");
             return HttpUtility.CustomHttp(ApiBaseURL, "api/ManageModule/GetAll", content, HttpContext);
+        }
+
+        [HttpPost]
+        public Task<object> AddModule([FromBody] Modules obj)
+        {
+            string content = JsonConvert.SerializeObject(obj);
+            var buffer = System.Text.Encoding.UTF8.GetBytes(content);
+            var byteContent = new ByteArrayContent(buffer);
+            //string a=HttpContext.Session.GetString("authorization");
+            return HttpUtility.CustomHttp(ApiBaseURL, "api/ManageModule/AddModule", content, HttpContext);
+
+        }
+
+        [HttpPost]
+        public Task<object> UpdateModule([FromBody] Modules obj)
+        {
+            string content = JsonConvert.SerializeObject(obj);
+            var buffer = System.Text.Encoding.UTF8.GetBytes(content);
+            var byteContent = new ByteArrayContent(buffer);
+            //string a=HttpContext.Session.GetString("authorization");
+            return HttpUtility.CustomHttp(ApiBaseURL, "api/ManageModule/UpdateModule", content, HttpContext);
+
+        }
+
+        [HttpPost]
+        public Task<object> GetModuleByID(int id)
+        {
+            string content = "";
+            //var buffer = System.Text.Encoding.UTF8.GetBytes(content);
+            //var byteContent = new ByteArrayContent(buffer);
+            //string a=HttpContext.Session.GetString("authorization");
+            return HttpUtility.CustomHttp(ApiBaseURL, "api/ManageModule/GetModuleByID/"+id, content, HttpContext);
+
         }
     }
 }

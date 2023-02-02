@@ -3,7 +3,6 @@
     ViewData["Title"] = "Manage Module";
 }
 
-
 <link href="~/css/CommonStyle.css" rel="stylesheet" />
 <script src="~/js/Common.js"></script>
 <script src="~/js/SiteConfiguration/ManageModule.js"></script>
@@ -26,7 +25,7 @@
 
         $("#btnAddModule").click(function () { FormShow() });
 
-        $("#btnCancel").click(function () { GridShow() });
+        $("#btnCancel").click(function () { ClearAllField(); GridShow(); });
 
         RemoveSortingClass('tblAction');
 
@@ -49,38 +48,22 @@
                 <table id="dataTableModule" class="display" style="width:100%">
                     <thead>
                         <tr>
-                            <th class="text-center" style="width:50px;">S.No</th>
-                            <th class="text-center" style="width:200px;">Module Name</th>
-                            <th class="text-center" style="width:110px;">Module Icon</th>
-                            <th class="text-center" style="width:200px;">Module Name As ID</th>
-                            <th class="text-center" style="width:147px;">Module Order No.</th>
-                            <th class="text-center" style="width:80px;">Is Active</th>
-                            <th class="text-center" style="width:200px;">Created User</th>
-                            <th class="text-center" style="width:175px;">Created On</th>
-                            <th class="text-center" style="width:200px;">Created User IP</th>
-                            <th class="text-center" style="width:200px;">Last User</th>
-                            <th class="text-center" style="width:175px;">Last Modified</th>
-                            <th class="text-center" style="width:200px;">Last User IP</th>
-                            <th class="text-center" style="width:75px;" id="tblAction">Action</th>
+                            <th class="text-center">S.No</th>
+                            <th class="text-center">Module Name</th>
+                            <th class="text-center">Module Icon</th>
+                            <th class="text-center">Module Name As ID</th>
+                            <th class="text-center">Module Order No.</th>
+                            <th class="text-center">Is Active</th>
+                            <th class="text-center">Created User</th>
+                            <th class="text-center">Created On</th>
+                            <th class="text-center">Created User IP</th>
+                            <th class="text-center">Last User</th>
+                            <th class="text-center">Last Modified</th>
+                            <th class="text-center">Last User IP</th>
+                            <th class="text-center" id="tblAction">Action</th>
                         </tr>
                     </thead>
                     <tbody id="dataRow">
-                        @*<tr>
-                    td>Tiger Nixon</td>
-                    <td>Tiger Nixon</td>
-                    <td><li class="fas fa-photo-video"></li></td>
-                    <td>Edinburgh</td>
-                    <td>61</td>
-                    <td>2011-04-25</td>
-                    <td>asdf</td>
-                    <td>2011-04-25</td>
-                    <td>192.168.1.1</td>
-                    <td>fdasdfad</td>
-                    <td>2011-04-25</td>
-                    <td>192.168.1.1</td>
-                    <td>Action</td>
-                </tr>*@
-
                     </tbody>
                 </table>
             </div>
@@ -95,6 +78,7 @@
         </div>
         <div class="card-body">
             <form id="ManageModuleForm">
+                <input type="hidden" name="hdnModuleID" id="hdnModuleID" value="0" />
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="txtModuleName">Module Name</label>
@@ -125,7 +109,7 @@
                     </div>
                 </div>
                 <div class="btnsection">
-                    <button type="submit" class="btn btn-primary1" id="btnSave">Save</button>
+                    <button type="button" class="btn btn-primary1" id="btnSave">Save</button>
                     <button type="button" id="btnCancel" class="btn btn-secondary1"><i class="fa fa-close" style="margin-right: 10px;"></i>Cancel</button>
                 </div>
             </form>

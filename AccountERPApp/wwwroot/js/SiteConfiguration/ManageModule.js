@@ -4,9 +4,14 @@ let txtModuleName = "#txtModuleName";
 let txtModuleIcon = "#txtModuleIcon";
 let txtModuleNameasID = "#txtModuleNameasID";
 let txtModuleOrderNo = "#txtModuleOrderNo";
-let chkModuleIsActive = "#chkModuleIsActive";
+let hdnModuleID = "#hdnModuleID";
+let DataTable = "#dataTableModule";
+
+var oTable;
 
 $(document).ready(function () {
+
+    //$(DataTable).DataTable();
 
     BaseUrl = $("#baseUrlForMVCAction").val();
     baseApiUrl = $("#baseApiUrl").val();
@@ -20,54 +25,47 @@ $(document).ready(function () {
 
 });
 
-function GetAllModule() {
-    postRequest_NotAsync(BaseUrl + "/SiteConfiguration/GetAllModule", null, function (res) {
+function GetModuleByID(id) {
+
+    postRequest(BaseUrl + "/SiteConfiguration/GetModuleByID/"+id, null, function (res) {
         if (res.Status == 200) {
             if (res.Data != null) {
 
-                var ModuleData = "";
-                $(res.Data).each(function (i, e) {
-                    ModuleData += "<tr>";
-                    ModuleData += "<td>" + e.ModuleID+"</td>";
-                    ModuleData += "<td>" + e.ModuleName +"</td>";
-                    ModuleData += "<td class='text-center'><li class='fas " + e.Icon +"'></li></td>";
-                    ModuleData += "<td>" + e.NameAsModuleID +"</td>";
-                    ModuleData += "<td>" + e.OrderN +"</td>";
-                    ModuleData += "<td>" + (e.IsActive == 1 ? "True":"False") +"</td>";
-                    ModuleData += "<td>" + e.CreatedByUserName +"</td>";
-                    ModuleData += "<td>" + MomentDateTimeFormat(e.CreatedOn) +"</td>";
-                    ModuleData += "<td>" + (e.CreatedByIP != "" ? e.CreatedByIP : "-") +"</td>";
-                    ModuleData += "<td>" + e.ModifiedByUserName +"</td>";
-                    ModuleData += "<td>" + MomentDateTimeFormat(e.ModifiedOn) +"</td>";
-                    ModuleData += "<td>" + (e.ModifiedByIP != "" ? e.ModifiedByIP : "-") +"</td>";
-                    ModuleData += "<td class='text-center'><i class='fas fa-edit'></i></td>";
-                    ModuleData += "</tr>";
-                });
+                $(txtModuleName).val(res.Data.ModuleName);
+                $(txtModuleIcon).val(res.Data.Icon);
+                $(txtModuleNameasID).val(res.Data.NameAsModuleID);
+                $(txtModuleOrderNo).val(res.Data.OrderN);
+                $(hdnModuleID).val(res.Data.ModuleID);
 
-                $("#dataRow").html(ModuleData);
-
-                $('#dataTableModule').DataTable();
+                if (res.Data.IsActive == 1) {
+                    $("#chkModuleIsActive").prop("checked", true);
+                }
+                else {
+                    $("#chkModuleIsActive").prop("checked", false);
+                }
+                
+                FormShow();
             }
         }
-        if (res.Status == 401) {
+        else if (res.Status == 401) {
             localStorage.removeItem("userData");
             localStorage.removeItem("Menu");
 
             window.location.href = baseWebUrl + "Account/Login";
         }
-        if (res.Status == 403) {
+        else if (res.Status == 403) {
             ErrorAlert(res.ResponseMsg);
         }
-        if (res.statusCode == 404) {
+        else if (res.statusCode == 404) {
             ErrorAlert(res.reasonPhrase);
         }
-        if (res.Status == 320) {
+        else if (res.Status == 320) {
             ErrorAlert(res.ResponseMsg);
         }
-        if (res.Status == 500) {
+        else if (res.Status == 500) {
             ErrorAlert(res.ResponseMsg);
         }
-        if (res.Status == 600) {
+        else if (res.Status == 600) {
             ErrorAlert(res.ResponseMsg);
         }
         else {
@@ -76,7 +74,276 @@ function GetAllModule() {
     });
 }
 
+function GetAllModule() {
+
+    oTable = $(DataTable).DataTable({
+
+        "lengthChange": true,
+        "processing": false, // for show progress bar
+        "serverSide": false, // for process server side
+        "filter": true, // this is for disable filter (search box)
+        "orderMulti": false, // for disable multiple column at once
+        "pageLength": 10,
+        "orderClasses": false,
+        "aaSorting": [
+            [0, 'asc']
+        ],
+        //"initComplete": function (settings, json) {
+        //    HideKeys();
+        //},
+
+        "ajax": {
+            "url": BaseUrl + "/SiteConfiguration/GetAllModule",
+            "type": "POST",
+            "datatype": "json",
+            'beforeSend': function (request) {
+
+            },
+            "dataSrc": function (data) {
+                if (data.Status == 200) {
+
+                }
+
+                else if (data.Status == 401) {
+                    localStorage.removeItem("userData");
+                    localStorage.removeItem("Menu");
+
+                    window.location.href = baseWebUrl + "Account/Login";
+                }
+                else if (data.Status == 403) {
+                    ErrorAlert(res.ResponseMsg);
+                }
+                else if (data.statusCode == 404) {
+                    ErrorAlert(res.reasonPhrase);
+                }
+                else if (data.Status == 320) {
+                    ErrorAlert(res.ResponseMsg);
+                }
+                else if (data.Status == 500) {
+                    ErrorAlert(res.ResponseMsg);
+                }
+                else if (data.Status == 600) {
+                    ErrorAlert(res.ResponseMsg);
+                }
+                else {
+                    ErrorAlert(data.ResponseMsg);
+                }
+
+                return data.Data;
+            }
+        },
+
+        "columnDefs": [{
+            "targets": [12],
+            "visible": true,
+            "searchable": false,
+            "sortable": true
+        }],
+
+        "columns": [
+            {
+                "data": "ModuleID",
+                "name": "ModuleID",
+                "width": "50px",
+                "render": function (data) { return '<a href="javascript:;" onclick="GetModuleByID(' + data + ')" data-id="' + data + '">' + data + '</a>' }
+            },
+            {
+                "data": "ModuleName",
+                "name": "ModuleName",
+                "width": "200px"
+            },
+            {
+                "data": "Icon",
+                "name": "Icon",
+                "width": "110px",
+                "render": function (data) { return '<li class="fas ' + data +'"></li>' }
+            },
+            {
+                "data": "NameAsModuleID",
+                "name": "NameAsModuleID",
+                "width": "200px"
+            },
+            {
+                "data": "OrderN",
+                "name": "OrderN",
+                "width": "147px"
+            },
+            {
+                "data": "IsActive",
+                "name": "IsActive",
+                "width": "80px",
+                "render": function (data) {
+                    return (data == 1 ? "True" : "False")
+                }
+            },
+            {
+                "data": "CreatedByUserName",
+                "name": "CreatedByUserName",
+                "width": "200px"
+            },
+            {
+                "data": "CreatedOn",
+                "name": "CreatedOn",
+                "width": "175px",
+                "render": function (data) {
+                    return MomentDateTimeFormat(data);
+                }
+            },
+            {
+                "data": "CreatedByIP",
+                "name": "CreatedByIP",
+                "width": "200px",
+                "render": function (data) {
+                    return (data != null ? data : "-")
+                }
+            },
+            {
+                "data": "ModifiedByUserName",
+                "name": "ModifiedByUserName",
+                "width": "200px"
+            },
+            {
+                "data": "ModifiedOn",
+                "name": "ModifiedOn",
+                "width": "175px",
+                "render": function (data) {
+                    return MomentDateTimeFormat(data);
+                }
+            },
+            {
+                "data": "ModifiedByIP",
+                "name": "ModifiedByIP",
+                "width": "200px",
+                "render": function (data) {
+                    return (data != null ? data : "-")
+                }
+            },
+            {
+                "width": "75px",
+                "render": function (data, type, full, meta) {
+                    return "<i class='fas fa-edit' onclick='GetModuleByID('" + data + "')' data-id='" + full.ModuleID+"'></i>";
+                }
+            }
+        ]
+
+    //}).on("draw.dt", function () {
+    //    HideKeys();
+
+    });
+}
 
 function SaveModuleData() {
+    $(btnSave).prop("disabled", true);
 
+    let ModuleID = Number($(hdnModuleID).val());
+
+    let ModuleIsActive = CheckboxIsChecked("chkModuleIsActive");
+
+    let obj = {
+        ModuleID: ModuleID,
+        ModuleName: $(txtModuleName).val(),
+        NameAsModuleID: $(txtModuleNameasID).val(),
+        Icon: $(txtModuleIcon).val(),
+        OrderN: Number($(txtModuleOrderNo).val()),
+        IsActive: Number(ModuleIsActive)
+    };
+
+    if (ModuleID > 0) {
+        postRequest(BaseUrl + "/SiteConfiguration/UpdateModule", obj, function (res) {
+            if (res.Status == 200) {
+                if (res.Data != null) {
+                    Swal.fire({
+                        title: 'Saved',
+                        icon: 'success',
+                        html: res.ResponseMsg
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            ClearAllField();
+                            $(DataTable).DataTable().destroy();
+                            GetAllModule();
+                            GridShow();
+                        }
+                    });
+                }
+            }
+            else if (res.Status == 401) {
+                localStorage.removeItem("userData");
+                localStorage.removeItem("Menu");
+
+                window.location.href = baseWebUrl + "Account/Login";
+            }
+            else if (res.Status == 403) {
+                ErrorAlert(res.ResponseMsg);
+            }
+            else if (res.statusCode == 404) {
+                ErrorAlert(res.reasonPhrase);
+            }
+            else if (res.Status == 320) {
+                ErrorAlert(res.ResponseMsg);
+            }
+            else if (res.Status == 500) {
+                ErrorAlert(res.ResponseMsg);
+            }
+            else if (res.Status == 600) {
+                ErrorAlert(res.ResponseMsg);
+            }
+            else {
+                ErrorAlert(res.ResponseMsg);
+            }
+        });
+    }
+    else {
+        postRequest(BaseUrl + "/SiteConfiguration/AddModule", obj, function (res) {
+            if (res.Status == 200) {
+                if (res.Data != null) {
+                    Swal.fire({
+                        title: 'Saved',
+                        icon: 'success',
+                        html: res.ResponseMsg
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            ClearAllField();
+                            $(DataTable).DataTable().destroy();
+                            GetAllModule();
+                            GridShow();
+                        }
+                    });
+                }
+            }
+            else if (res.Status == 401) {
+                localStorage.removeItem("userData");
+                localStorage.removeItem("Menu");
+
+                window.location.href = baseWebUrl + "Account/Login";
+            }
+            else if (res.Status == 403) {
+                ErrorAlert(res.ResponseMsg);
+            }
+            else if (res.statusCode == 404) {
+                ErrorAlert(res.reasonPhrase);
+            }
+            else if (res.Status == 320) {
+                ErrorAlert(res.ResponseMsg);
+            }
+            else if (res.Status == 500) {
+                ErrorAlert(res.ResponseMsg);
+            }
+            else if (res.Status == 600) {
+                ErrorAlert(res.ResponseMsg);
+            }
+            else {
+                ErrorAlert(res.ResponseMsg);
+            }
+        });
+    }
+    $(btnSave).prop("disabled", false);
+}
+
+function ClearAllField() {
+    $("#ModuleID").val(0);
+    $(txtModuleName).val("");
+    $(txtModuleNameasID).val("");
+    $(txtModuleIcon).val("");
+    $(txtModuleOrderNo).val("");
+    IsActive: $("#chkModuleIsActive").val("");
 }

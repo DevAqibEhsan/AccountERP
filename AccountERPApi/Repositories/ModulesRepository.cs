@@ -24,6 +24,12 @@ namespace AccountERPApi.Repositories
             return _dapper.GetAll<Modules>(@"usp_Module_GetAll", parameters);
         }
 
+        public List<Modules> GetAllActive()
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            return _dapper.GetAll<Modules>(@"usp_Module_GetAllActive", parameters);
+        }
+
         public Modules AddModule(Modules obj)
         {
             DynamicParameters parameters = new DynamicParameters();

@@ -39,41 +39,41 @@ function Login() {
 
             window.location.href = baseWebUrl + "" + res.Data.IndexPageController + "/" + res.Data.IndexPageAction;
         }
-        if (res.Status == 304) {
+        else if (res.Status == 304) {
             $(btnLogin).buttonLoader('stop');
             localStorage.removeItem("userData");
 
             ErrorAlert(res.ResponseMsg);
         }
-        if (res.Status == 305) {
+        else if (res.Status == 305) {
             localStorage.setItem('RedirectionId', res.Data)
             window.location.href = baseWebUrl + "Account/ExpiredPasswordChanged";
         }
-        if (res.Status == 401) {
+        else if (res.Status == 401) {
             $(btnLogin).buttonLoader('stop');
             localStorage.removeItem("userData");
 
             ErrorAlert(res.ResponseMsg);
         }
-        if (res.Status == 403) {
+        else if (res.Status == 403) {
             $(btnLogin).buttonLoader('stop');
 
             ErrorAlert(res.ResponseMsg);
         }
-        if (res.statusCode == 404) {
+        else if (res.statusCode == 404) {
             ErrorAlert(res.reasonPhrase);
         }
-        if (res.Status == 320) {
+        else if (res.Status == 320) {
             $(btnLogin).buttonLoader('stop');
 
             ErrorAlert(res.ResponseMsg);
         }
-        if (res.Status == 500) {
+        else if (res.Status == 500) {
             $(btnLogin).buttonLoader('stop');
 
             ErrorAlert(res.ResponseMsg);
         }
-        if (res.Status == 600) {
+        else if (res.Status == 600) {
             $(btnLogin).buttonLoader('stop');
 
             ErrorAlert(res.ResponseMsg);
