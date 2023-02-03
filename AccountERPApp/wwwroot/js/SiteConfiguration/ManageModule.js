@@ -11,13 +11,24 @@ var oTable;
 
 $(document).ready(function () {
 
-    //$(DataTable).DataTable();
-
     BaseUrl = $("#baseUrlForMVCAction").val();
     baseApiUrl = $("#baseApiUrl").val();
     baseWebUrl = $("#baseWebUrl").val();
 
     GetAllModule();
+    var connection = new signalR.HubConnectionBuilder().withUrl(baseApiUrl + "signalrServer",
+        {
+            skipNegotiation: true,
+            transport: signalR.HttpTransportType.WebSockets
+        }).build();
+    connection.start();
+    connection.on("LoadModules", function () {
+
+        $(DataTable).DataTable().destroy();
+
+        GetAllModule();
+        
+    });
 
     $(btnSave).click(function () {
         SaveModuleData();

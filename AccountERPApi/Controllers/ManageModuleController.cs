@@ -4,6 +4,7 @@ using AccountERPClassLibraries;
 using AccountERPClassLibraries.DTOLibraries;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,10 +17,13 @@ namespace AccountERPApi.Controllers
     public class ManageModuleController : ControllerBase
     {
         private IModulesService _modulesService;
+
+        private readonly IHubContext<SignalrServer> _signalrHub;
         
-        public ManageModuleController(IModulesService modulesService)
+        public ManageModuleController(IModulesService modulesService, IHubContext<SignalrServer> signalrHub)
         {
             _modulesService = modulesService;
+            _signalrHub = signalrHub;
         }
 
 
@@ -181,6 +185,7 @@ namespace AccountERPApi.Controllers
                                 obj.CreatedByIP = Request.HttpContext.Connection.RemoteIpAddress.ToString();
 
                                 var res = _modulesService.AddModule(obj);
+                                _signalrHub.Clients.All.SendAsync("LoadModules");
 
                                 if (!string.IsNullOrEmpty(res.ModuleName))
                                 {
@@ -250,10 +255,10 @@ namespace AccountERPApi.Controllers
 
                         obj.NameAsModuleID = obj.NameAsModuleID.Replace(" ", "").Trim();
 
-                        var CheckNameAsModuleID = Data.Where(x => x.NameAsModuleID.Contains(obj.NameAsModuleID) && x.ModuleID != obj.ModuleID).ToList();
+                        var CheckNameAsModuleID = Data.Where(x => x.ModuleID != obj.ModuleID && x.NameAsModuleID == obj.NameAsModuleID).Count();
 
-                        if (CheckNameAsModuleID.Count > 0)
-                        {
+                        if (CheckNameAsModuleID > 0)
+                        {   
                             response.Status = 0;
                             response.ResponseMsg = "The Name As Module ID " + obj.NameAsModuleID + " Already exists.";
                             response.Token = TokenManager.GenerateToken(claimDTO);
@@ -261,8 +266,8 @@ namespace AccountERPApi.Controllers
                         }
                         else
                         {
-                            var CheckModuleName = Data.Where(x => x.ModuleName.Contains(obj.ModuleName) && x.ModuleID != obj.ModuleID).ToList();
-                            if (CheckModuleName.Count > 0)
+                            var CheckModuleName = Data.Where(x => x.ModuleID != obj.ModuleID && x.ModuleName == obj.ModuleName).Count();
+                            if (CheckModuleName > 0)
                             {
                                 response.Status = 0;
                                 response.ResponseMsg = "The Module Name " + obj.ModuleName + " Already exists.";
@@ -276,6 +281,8 @@ namespace AccountERPApi.Controllers
                                 obj.ModifiedByIP = Request.HttpContext.Connection.RemoteIpAddress.ToString();
 
                                 var res = _modulesService.UpdateModule(obj);
+
+                                _signalrHub.Clients.All.SendAsync("LoadModules");
 
                                 if (!string.IsNullOrEmpty(res.ModuleName))
                                 {
