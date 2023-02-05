@@ -14,18 +14,17 @@ namespace AccountERPApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ManageModuleController : ControllerBase
+    public class ManageModulePagesController : ControllerBase
     {
-        private IModulesService _modulesService;
+        private IModulePagesService _modulePagesService;
 
         private readonly IHubContext<SignalrServer> _signalrHub;
-        
-        public ManageModuleController(IModulesService modulesService, IHubContext<SignalrServer> signalrHub)
+
+        public ManageModulePagesController(IModulePagesService modulePagesService, IHubContext<SignalrServer> signalrHub)
         {
-            _modulesService = modulesService;
+            _modulePagesService = modulePagesService;
             _signalrHub = signalrHub;
         }
-
 
         [HttpPost("GetAll")]
         public Response GetAll()
@@ -46,10 +45,10 @@ namespace AccountERPApi.Controllers
                         HasPermission = false;
                         // Here We Check Permission and than Set True
                     }
-                        
+
                     if (HasPermission)
                     {
-                        var Data = _modulesService.GetAll().ToList();
+                        var Data = _modulePagesService.GetAll().ToList();
 
                         response.Status = 200;
                         response.Token = TokenManager.GenerateToken(claimDTO);
@@ -102,7 +101,7 @@ namespace AccountERPApi.Controllers
 
                     if (HasPermission)
                     {
-                        var Data = _modulesService.GetAllActive().ToList();
+                        var Data = _modulePagesService.GetAllActive().ToList();
 
                         response.Status = 200;
                         response.Token = TokenManager.GenerateToken(claimDTO);
@@ -133,102 +132,8 @@ namespace AccountERPApi.Controllers
             return response;
         }
 
-        [HttpPost("AddModule")]
-        public Response AddModule(Modules obj)
-        {
-            Response response = new Response();
-            ClaimDTO claimDTO = new ClaimDTO();
-
-            try
-            {
-                claimDTO = TokenManager.GetValidateToken(Request);
-
-                if (claimDTO != null)
-                {
-                    bool HasPermission = true;
-
-                    if (claimDTO.RoleID != 1)
-                    {
-                        HasPermission = false;
-                        // Here We Check Permission and than Set True
-                    }
-
-                    if(HasPermission)
-                    {
-                        var Data = _modulesService.GetAll().ToList();
-
-                        obj.NameAsModuleID = obj.NameAsModuleID.Replace(" ", "").Trim();
-
-                        var CheckNameAsModuleID = Data.Where(x => x.NameAsModuleID.Contains(obj.NameAsModuleID)).ToList();
-
-                        if (CheckNameAsModuleID.Count > 0)
-                        {
-                            response.Status = 0;
-                            response.ResponseMsg = "The Name As Module ID " + obj.NameAsModuleID + " Already exists.";
-                            response.Token = TokenManager.GenerateToken(claimDTO);
-                            response.Data = null;
-                        }
-
-                        var CheckModuleName = Data.Where(x => x.ModuleName.Contains(obj.ModuleName)).ToList();
-                        if (CheckModuleName.Count > 0)
-                        {
-                            response.Status = 0;
-                            response.ResponseMsg = "The Module Name " + obj.ModuleName + " Already exists.";
-                            response.Token = TokenManager.GenerateToken(claimDTO);
-                            response.Data = null;
-                        }
-                        else
-                        {
-                            obj.CreatedBy = claimDTO.UserID;
-                            obj.CreatedOn = TimeZoneManager.GetDateTimeByTimeZone(TimeZonesStarndard.PakistanTimeZone);
-                            obj.CreatedByIP = Request.HttpContext.Connection.RemoteIpAddress.ToString();
-
-                            var res = _modulesService.AddModule(obj);
-                            _signalrHub.Clients.All.SendAsync("LoadModules");
-
-                            if (!string.IsNullOrEmpty(res.ModuleName))
-                            {
-                                response.Status = 200;
-                                response.ResponseMsg = "The Module " + obj.ModuleName + " Is Successfully Added.";
-                                response.Token = TokenManager.GenerateToken(claimDTO);
-                                response.Data = res;
-                            }
-                            else
-                            {
-                                response.Status = 0;
-                                response.ResponseMsg = "This Module Name " + obj.ModuleName + " Data is not Added.";
-                                response.Token = TokenManager.GenerateToken(claimDTO);
-                                response.Data = null;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        response.Status = 403;
-                        response.ResponseMsg = "You don’t have permission to this action.";
-                        response.Token = null;
-                        response.Data = null;
-                    }
-                }
-                else
-                {
-                    response.Status = 401;
-                    response.ResponseMsg = "unauthorized";
-                    response.Token = null;
-                    response.Data = null;
-                }
-            }
-            catch (Exception ex)
-            {
-                response.Status = ExceptionStatusCode.GetExceptionCode(ex);
-                response.ResponseMsg = ex.Message;
-            }
-
-            return response;
-        }
-
-        [HttpPost("UpdateModule")]
-        public Response UpdateModule(Modules obj)
+        [HttpPost("GetModulePageByID/{id}")]
+        public Response GetModulePageByID(int id)
         {
             Response response = new Response();
             ClaimDTO claimDTO = new ClaimDTO();
@@ -249,104 +154,7 @@ namespace AccountERPApi.Controllers
 
                     if (HasPermission)
                     {
-                        var Data = _modulesService.GetAll().ToList();
-
-                        obj.NameAsModuleID = obj.NameAsModuleID.Replace(" ", "").Trim();
-
-                        var CheckNameAsModuleID = Data.Where(x => x.ModuleID != obj.ModuleID && x.NameAsModuleID == obj.NameAsModuleID).Count();
-
-                        if (CheckNameAsModuleID > 0)
-                        {   
-                            response.Status = 0;
-                            response.ResponseMsg = "The Name As Module ID " + obj.NameAsModuleID + " Already exists.";
-                            response.Token = TokenManager.GenerateToken(claimDTO);
-                            response.Data = null;
-                        }
-                        else
-                        {
-                            var CheckModuleName = Data.Where(x => x.ModuleID != obj.ModuleID && x.ModuleName == obj.ModuleName).Count();
-                            if (CheckModuleName > 0)
-                            {
-                                response.Status = 0;
-                                response.ResponseMsg = "The Module Name " + obj.ModuleName + " Already exists.";
-                                response.Token = TokenManager.GenerateToken(claimDTO);
-                                response.Data = null;
-                            }
-                            else
-                            {
-                                obj.ModifiedBy = claimDTO.UserID;
-                                obj.ModifiedOn = TimeZoneManager.GetDateTimeByTimeZone(TimeZonesStarndard.PakistanTimeZone);
-                                obj.ModifiedByIP = Request.HttpContext.Connection.RemoteIpAddress.ToString();
-
-                                var res = _modulesService.UpdateModule(obj);
-
-                                _signalrHub.Clients.All.SendAsync("LoadModules");
-
-                                if (!string.IsNullOrEmpty(res.ModuleName))
-                                {
-                                    response.Status = 200;
-                                    response.ResponseMsg = "The Module ID " + obj.ModuleID + " Is Successfully Updated.";
-                                    response.Token = TokenManager.GenerateToken(claimDTO);
-                                    response.Data = res;
-                                }
-                                else
-                                {
-                                    response.Status = 0;
-                                    response.ResponseMsg = "This Module " + obj.ModuleID + " Data is not Updated.";
-                                    response.Token = TokenManager.GenerateToken(claimDTO);
-                                    response.Data = null;
-                                }
-                            }
-                        }
-                    }
-                    else
-                    {
-                        response.Status = 403;
-                        response.ResponseMsg = "You don’t have permission to this action.";
-                        response.Token = null;
-                        response.Data = null;
-                    }
-                }
-                else
-                {
-                    response.Status = 401;
-                    response.ResponseMsg = "unauthorized";
-                    response.Token = null;
-                    response.Data = null;
-                }
-            }
-            catch (Exception ex)
-            {
-                response.Status = ExceptionStatusCode.GetExceptionCode(ex);
-                response.ResponseMsg = ex.Message;
-            }
-
-            return response;
-        }
-
-        [HttpPost("GetModuleByID/{id}")]
-        public Response GetModuleByID(int id)
-        {
-            Response response = new Response();
-            ClaimDTO claimDTO = new ClaimDTO();
-
-            try
-            {
-                claimDTO = TokenManager.GetValidateToken(Request);
-
-                if (claimDTO != null)
-                {
-                    bool HasPermission = true;
-
-                    if (claimDTO.RoleID != 1)
-                    {
-                        HasPermission = false;
-                        // Here We Check Permission and than Set True
-                    }
-
-                    if (HasPermission)
-                    {
-                        var Data = _modulesService.GetModuleByID(id);
+                        var Data = _modulePagesService.GetModulePageByID(id);
                         if (Data != null)
                         {
                             response.Status = 200;
@@ -379,8 +187,8 @@ namespace AccountERPApi.Controllers
             return response;
         }
 
-        [HttpPost("GetAllModuleForDropDown")]
-        public Response GetAllModuleForDropDown()
+        [HttpPost("AddModulePge")]
+        public Response AddModulePge(ModulePages obj)
         {
             Response response = new Response();
             ClaimDTO claimDTO = new ClaimDTO();
@@ -401,11 +209,42 @@ namespace AccountERPApi.Controllers
 
                     if (HasPermission)
                     {
-                        var Data = _modulesService.GetAllActive().ToList();
+                        var Data = _modulePagesService.GetAll().ToList();
 
-                        response.Status = 200;
-                        response.Token = TokenManager.GenerateToken(claimDTO);
-                        response.Data = Data;
+                        var CheckModuleIDWithName = Data.Where(x => x.ModuleID == obj.ModuleID && x.ModulePageName == obj.ModulePageName).Count();
+
+                        if (CheckModuleIDWithName > 0)
+                        {
+                            response.Status = 0;
+                            response.ResponseMsg = "The Module Page Name " + obj.ModulePageName + " is  Already exists with Module ID "+obj.ModuleID+".";
+                            response.Token = TokenManager.GenerateToken(claimDTO);
+                            response.Data = null;
+                        }
+
+                        else
+                        {
+                            obj.CreatedBy = claimDTO.UserID;
+                            obj.CreatedOn = TimeZoneManager.GetDateTimeByTimeZone(TimeZonesStarndard.PakistanTimeZone);
+                            obj.CreatedByIP = Request.HttpContext.Connection.RemoteIpAddress.ToString();
+
+                            var res = _modulePagesService.AddModulePge(obj);
+                            _signalrHub.Clients.All.SendAsync("LoadModulePages");
+
+                            if (!string.IsNullOrEmpty(res.ModulePageName))
+                            {
+                                response.Status = 200;
+                                response.ResponseMsg = "The Module Page " + obj.ModulePageName + " Is Successfully Added.";
+                                response.Token = TokenManager.GenerateToken(claimDTO);
+                                response.Data = res;
+                            }
+                            else
+                            {
+                                response.Status = 0;
+                                response.ResponseMsg = "This Module " + obj.ModulePageName + " Data is not Added.";
+                                response.Token = TokenManager.GenerateToken(claimDTO);
+                                response.Data = null;
+                            }
+                        }
                     }
                     else
                     {
@@ -431,6 +270,93 @@ namespace AccountERPApi.Controllers
 
             return response;
         }
+
+        [HttpPost("UpdateModulePge")]
+        public Response UpdateModulePge(ModulePages obj)
+        {
+            Response response = new Response();
+            ClaimDTO claimDTO = new ClaimDTO();
+
+            try
+            {
+                claimDTO = TokenManager.GetValidateToken(Request);
+
+                if (claimDTO != null)
+                {
+                    bool HasPermission = true;
+
+                    if (claimDTO.RoleID != 1)
+                    {
+                        HasPermission = false;
+                        // Here We Check Permission and than Set True
+                    }
+
+                    if (HasPermission)
+                    {
+                        var Data = _modulePagesService.GetAll().ToList();
+
+                        var CheckModuleIDwithName = Data.Where(x => x.ModulePageID != obj.ModulePageID && x.ModuleID == obj.ModuleID && x.ModulePageName == obj.ModulePageName).Count();
+
+                        if (CheckModuleIDwithName > 0)
+                        {
+                            response.Status = 0;
+                            response.ResponseMsg = "The Module Page Name " + obj.ModulePageName + " Already exists with Module ID "+obj.ModuleID+".";
+                            response.Token = TokenManager.GenerateToken(claimDTO);
+                            response.Data = null;
+                        }
+
+                        else
+                        {
+                            obj.ModifiedBy = claimDTO.UserID;
+                            obj.ModifiedOn = TimeZoneManager.GetDateTimeByTimeZone(TimeZonesStarndard.PakistanTimeZone);
+                            obj.ModifiedByIP = Request.HttpContext.Connection.RemoteIpAddress.ToString();
+
+                            var res = _modulePagesService.UpdateModulePge(obj);
+
+                            _signalrHub.Clients.All.SendAsync("LoadModulePages");
+
+                            if (!string.IsNullOrEmpty(res.ModuleName))
+                            {
+                                response.Status = 200;
+                                response.ResponseMsg = "The Module Page Name " + obj.ModulePageName + " Is Successfully Updated.";
+                                response.Token = TokenManager.GenerateToken(claimDTO);
+                                response.Data = res;
+                            }
+                            else
+                            {
+                                response.Status = 0;
+                                response.ResponseMsg = "This Module Page " + obj.ModulePageName + " Data is not Updated.";
+                                response.Token = TokenManager.GenerateToken(claimDTO);
+                                response.Data = null;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        response.Status = 403;
+                        response.ResponseMsg = "You don’t have permission to this action.";
+                        response.Token = null;
+                        response.Data = null;
+                    }
+                }
+                else
+                {
+                    response.Status = 401;
+                    response.ResponseMsg = "unauthorized";
+                    response.Token = null;
+                    response.Data = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                response.Status = ExceptionStatusCode.GetExceptionCode(ex);
+                response.ResponseMsg = ex.Message;
+            }
+
+            return response;
+        }
+
+        
 
     }
 }

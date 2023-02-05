@@ -60,7 +60,7 @@ namespace AccountERPApp.Controllers
         }
 
 
-
+        #region Modules Start
 
         [HttpPost]
         public Task<object> GetAllModule()
@@ -104,5 +104,63 @@ namespace AccountERPApp.Controllers
             return HttpUtility.CustomHttp(ApiBaseURL, "api/ManageModule/GetModuleByID/"+id, content, HttpContext);
 
         }
+
+        #endregion
+
+        #region Module Pages Start
+        [HttpPost]
+        public Task<object> GetAllModulePages()
+        {
+            string content = ""; //JsonConvert.SerializeObject(obj);
+            //var buffer = System.Text.Encoding.UTF8.GetBytes(content);
+            //var byteContent = new ByteArrayContent(buffer);
+            //string a=HttpContext.Session.GetString("authorization");
+            return HttpUtility.CustomHttp(ApiBaseURL, "api/ManageModulePages/GetAll", content, HttpContext);
+        }
+
+        [HttpPost]
+        public Task<object> GetAllModuleForDropDown()
+        {
+            string content = ""; //JsonConvert.SerializeObject(obj);
+            //var buffer = System.Text.Encoding.UTF8.GetBytes(content);
+            //var byteContent = new ByteArrayContent(buffer);
+            //string a=HttpContext.Session.GetString("authorization");
+            return HttpUtility.CustomHttp(ApiBaseURL, "api/ManageModule/GetAllModuleForDropDown", content, HttpContext);
+        }
+
+        [HttpPost]
+        public Task<object> AddModulePge([FromBody] ModulePages obj)
+        {
+            string content = JsonConvert.SerializeObject(obj);
+            var buffer = System.Text.Encoding.UTF8.GetBytes(content);
+            var byteContent = new ByteArrayContent(buffer);
+            //string a=HttpContext.Session.GetString("authorization");
+            return HttpUtility.CustomHttp(ApiBaseURL, "api/ManageModulePages/AddModulePge", content, HttpContext);
+
+        }
+
+        [HttpPost]
+        public Task<object> UpdateModulePge([FromBody] ModulePages obj)
+        {
+            string content = JsonConvert.SerializeObject(obj);
+            var buffer = System.Text.Encoding.UTF8.GetBytes(content);
+            var byteContent = new ByteArrayContent(buffer);
+            //string a=HttpContext.Session.GetString("authorization");
+            return HttpUtility.CustomHttp(ApiBaseURL, "api/ManageModulePages/UpdateModulePge", content, HttpContext);
+
+        }
+
+        [HttpPost]
+        public Task<object> GetModulePageByID(int id)
+        {
+            string content = "";
+            //var buffer = System.Text.Encoding.UTF8.GetBytes(content);
+            //var byteContent = new ByteArrayContent(buffer);
+            //string a=HttpContext.Session.GetString("authorization");
+            return HttpUtility.CustomHttp(ApiBaseURL, "api/ManageModulePages/GetModulePageByID/" + id, content, HttpContext);
+
+        }
+
+        #endregion'
     }
 }

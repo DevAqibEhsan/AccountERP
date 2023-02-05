@@ -97,7 +97,7 @@ function GetAllModule() {
         "pageLength": 10,
         "orderClasses": false,
         "aaSorting": [
-            [0, 'asc']
+            [10, 'desc']
         ],
         //"initComplete": function (settings, json) {
         //    HideKeys();
@@ -232,7 +232,7 @@ function GetAllModule() {
             {
                 "width": "75px",
                 "render": function (data, type, full, meta) {
-                    return "<i class='fas fa-edit' onclick='GetModuleByID('" + data + "')' data-id='" + full.ModuleID+"'></i>";
+                    return "<i class='fas fa-edit' onclick='GetModuleByID(" + full.ModuleID+")' data-id='" + full.ModuleID+"'></i>";
                 }
             }
         ]
@@ -351,10 +351,11 @@ function SaveModuleData() {
 }
 
 function ClearAllField() {
+    $(btnSave).prop("disabled", false);
     $("#ModuleID").val(0);
     $(txtModuleName).val("");
     $(txtModuleNameasID).val("");
     $(txtModuleIcon).val("");
     $(txtModuleOrderNo).val("");
-    IsActive: $("#chkModuleIsActive").val("");
+    $("#chkModuleIsActive").prop("checked", false);
 }

@@ -3,5 +3,137 @@
     ViewData["Title"] = "Manage Module Page";
 }
 
-<h1>Manage Module Page</h1>
+<link href="~/css/CommonStyle.css" rel="stylesheet" />
+<script src="~/js/Common.js"></script>
+<script src="~/js/SiteConfiguration/ManageModulePage.js"></script>
+<style>
 
+    #form {
+        display: none;
+    }
+
+    .card-header .btnsection {
+        display: inline-block;
+        float: right;
+    }
+</style>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#btnAddModulePage").click(function () { GetAllModuleForDropDown(); FormShow(); });
+
+        $("#btnCancel").click(function () { ClearAllField(); GridShow(); });
+
+        RemoveSortingClass('tblAction');
+
+    });
+
+</script>
+
+<div class="maincontent">
+
+    @*Grid / Data Table Start*@
+    <div id="grid" class="card">
+        <div class="card-header">
+            @ViewData["Title"]
+            <div class="btnsection">
+                <button type="button" id="btnAddModulePage" class="btn btn-success1"><i class="fa fa-plus" style="margin-right: 10px;"></i> Add</button>
+            </div>
+        </div>
+        <div class="card-body">
+            <div id="dvDataTable">
+                <table id="dataTableModulePage" class="display" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th class="text-center">S.No</th>
+                            <th class="text-center">Module Name</th>
+                            <th class="text-center">Module Page Name</th>
+                            <th class="text-center">Controller URL</th>
+                            <th class="text-center">Action URL</th>
+                            <th class="text-center">Module Page Order No.</th>
+                            <th class="text-center">Is Active</th>
+                            <th class="text-center">Created User</th>
+                            <th class="text-center">Created On</th>
+                            <th class="text-center">Created User IP</th>
+                            <th class="text-center">Last User</th>
+                            <th class="text-center">Last Modified</th>
+                            <th class="text-center">Last User IP</th>
+                            <th class="text-center" id="tblAction">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dataRow">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    @*Grid / Data Table End*@
+
+    @*Add/Edit Form Section Start*@
+    <div id="form" class="card">
+        <div class="card-header">
+            @ViewData["Title"]
+        </div>
+        <div class="card-body">
+            <form id="ManageModulePageForm">
+                <input type="hidden" name="hdnModulePageID" id="hdnModulePageID" value="0" />
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="ddlModuleID">Module Name</label>
+                        <select id="ddlModuleID" class="form-control selectpicker" data-live-search="true">
+                            <option selected>Choose...</option>
+                            <option>...</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="txtModulePageName">Module Page Name</label>
+                        <input type="text" class="form-control" id="txtModulePageName" placeholder="Module Page Name">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="txtControllerURL">Controller URL</label>
+                        <input type="text" class="form-control" id="txtControllerURL" placeholder="Controller URL">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="txtActionURL">Action URL</label>
+                        <input type="text" class="form-control" id="txtActionURL" placeholder="Action URL">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="txtModulePageOrderNo">Module Page Order No.</label>
+                        <input type="text" class="form-control" id="txtModulePageOrderNo" placeholder="Module Page Order No.">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="chkModulePageIsActive">
+                        <label class="form-check-label" for="chkModulePageIsActive">Is Active Module Page</label>
+                    </div>
+                </div>
+
+                <div class="btnsection">
+                    <button type="button" class="btn btn-primary1" id="btnSave">Save</button>
+                    <button type="button" id="btnCancel" class="btn btn-secondary1"><i class="fa fa-close" style="margin-right: 10px;"></i>Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    @*Add/Edit Form Section End*@
+
+</div>
+
+<script type="text/x-handlebars" id="temp_ddlModuleID">
+
+    {{#each this}}
+    <option value="{{ModuleID}}">{{ModuleName}}</option>
+    {{/each}}
+
+</script>

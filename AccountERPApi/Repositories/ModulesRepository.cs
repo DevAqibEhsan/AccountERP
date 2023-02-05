@@ -67,7 +67,7 @@ namespace AccountERPApi.Repositories
         {
             DynamicParameters parameters = new DynamicParameters();
 
-            parameters.Add("ModuleID", id, DbType.String, ParameterDirection.Input);
+            parameters.Add("ModuleID", id, DbType.Int32, ParameterDirection.Input);
             
             return _dapper.Get<Modules>(@"usp_Module_GetModuleByID", parameters);
         }

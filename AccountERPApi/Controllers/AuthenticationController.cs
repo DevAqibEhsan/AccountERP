@@ -54,7 +54,7 @@ namespace AccountERPApi.Controllers
                             List<DynamicMenu> dynamicMenuList = new List<DynamicMenu>();
 
                             var Modules = _modulesService.GetAllActive().ToList();
-                            var ModulePages = _modulePagesService.GetAll().ToList();
+                            var ModulePages = _modulePagesService.GetAllActive().ToList();
 
                             if (Modules.Count > 0)
                             {

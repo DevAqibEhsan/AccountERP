@@ -21,5 +21,25 @@ namespace AccountERPApi.Services
         {
             return _repository.GetAll();
         }
+
+        public List<ModulePages> GetAllActive()
+        {
+            return _repository.GetAllActive();
+        }
+
+        public ModulePages GetModulePageByID(int id)
+        {
+            return _repository.GetModulePageByID(id);
+        }
+
+        public ModulePages AddModulePge(ModulePages obj)
+        {
+            return _repository.AddModulePge(obj);
+        }    
+
+        public ModulePages UpdateModulePge(ModulePages obj)
+        {
+            return _repository.UpdateModulePge(obj);
+        }
     }
 }
