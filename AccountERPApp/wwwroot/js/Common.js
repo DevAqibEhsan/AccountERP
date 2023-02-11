@@ -38,6 +38,26 @@ function postRequest(url, requestData, handledata) {
     });
 }
 
+function postRequestFormData(url, requestData, handledata) {
+    $.ajax({
+        type: 'POST',
+        processData: false,
+        contentType: false,
+        enctype: 'multipart/form-data',
+        url: url,
+        headers: {
+            "Authorization": $("#tkn").val()
+        },
+        data: requestData,
+        success: function (data, textStatus, xhr) {
+            handledata(data);
+        },
+        error: function (xhr, textStatus, errorThrown) {
+            ErrorAlert("Something Went Wrong!");
+        }
+    });
+}
+
 function postRequest_NotAsync(url, requestData, handledata) {
     $.ajax({
         type: 'POST',

@@ -119,5 +119,9 @@
 .text-right {
     text-align: right !important;
 }
-    
+
+.btn-light:hover {
+    background-color: white !important;
+    border-color: white !important;
+}
 

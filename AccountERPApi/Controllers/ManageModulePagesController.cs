@@ -211,7 +211,7 @@ namespace AccountERPApi.Controllers
                     {
                         var Data = _modulePagesService.GetAll().ToList();
 
-                        var CheckModuleIDWithName = Data.Where(x => x.ModuleID == obj.ModuleID && x.ModulePageName == obj.ModulePageName).Count();
+                        var CheckModuleIDWithName = Data.Where(x => x.ModuleID == obj.ModuleID && x.ModulePageName.ToLower() == obj.ModulePageName.ToLower()).Count();
 
                         if (CheckModuleIDWithName > 0)
                         {
@@ -295,7 +295,7 @@ namespace AccountERPApi.Controllers
                     {
                         var Data = _modulePagesService.GetAll().ToList();
 
-                        var CheckModuleIDwithName = Data.Where(x => x.ModulePageID != obj.ModulePageID && x.ModuleID == obj.ModuleID && x.ModulePageName == obj.ModulePageName).Count();
+                        var CheckModuleIDwithName = Data.Where(x => x.ModulePageID != obj.ModulePageID && x.ModuleID == obj.ModuleID && x.ModulePageName.ToLower() == obj.ModulePageName.ToLower()).Count();
 
                         if (CheckModuleIDwithName > 0)
                         {

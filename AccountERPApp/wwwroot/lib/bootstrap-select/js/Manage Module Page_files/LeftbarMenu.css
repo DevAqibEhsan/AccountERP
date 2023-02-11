@@ -1,0 +1,19 @@
+﻿.dashboard-nav {
+    background-color: #3b71ca !important;
+}
+
+/*.dashboard-nav-dropdown.show {
+    background: #3c66ad;
+}*/
+
+.dashboard-nav-item:hover {
+    background: #325ca9;
+}
+
+.dashboard-nav-dropdown-item:hover {
+    background: #325ca9;
+}
+
+.active {
+    background: #3b5585;
+}

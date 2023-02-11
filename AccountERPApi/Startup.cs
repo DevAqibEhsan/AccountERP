@@ -37,11 +37,25 @@ namespace AccountERPApi
             services.AddTransient<IAuthenticationRepository, AuthenticationRepository>();
             services.AddTransient<IModulesRepository, ModulesRepository>();
             services.AddTransient<IModulePagesRepository, ModulePagesRepository>();
+            services.AddTransient<ICountryRepository, CountryRepository>();
+            services.AddTransient<IStateRepository, StateRepository>();
+            services.AddTransient<ICityRepository, CityRepository>();
+            services.AddTransient<IBusinessTypeRepository, BusinessTypeRepository>();
+            services.AddTransient<ISiteConfigRepository, SiteConfigRepository>();
+            services.AddTransient<IRoleRepository, RoleRepository>();
+            services.AddTransient<ITimeZonesRepository, TimeZonesRepository>();
 
             //Services
             services.AddTransient<IAuthenticationService, AuthenticationService>();
             services.AddTransient<IModulesService, ModulesService>();
             services.AddTransient<IModulePagesService, ModulePagesService>();
+            services.AddTransient<ICountryService, CountryService>();
+            services.AddTransient<IStateService, StateService>();
+            services.AddTransient<ICityService, CityService>();
+            services.AddTransient<IBusinessTypeService, BusinessTypeService>();
+            services.AddTransient<ISiteConfigService, SiteConfigService>();
+            services.AddTransient<IRoleService, RoleService>();
+            services.AddTransient<ITimeZonesService, TimeZonesService>();
 
             services.AddCors(o => o.AddPolicy("MyCorePloicy", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
             services.AddControllers().AddJsonOptions(opts => opts.JsonSerializerOptions.PropertyNamingPolicy = null);

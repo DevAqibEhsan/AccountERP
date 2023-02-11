@@ -25,10 +25,11 @@ namespace AccountERPApp
         {
             services.AddSession(options =>
             {
-                options.IdleTimeout = TimeSpan.FromMinutes(5);//You can set Time
+                options.IdleTimeout = TimeSpan.FromMinutes(50);//You can set Time
             });
 
             services.AddControllersWithViews();
+            services.AddSingleton<Microsoft.AspNetCore.Http.IHttpContextAccessor, Microsoft.AspNetCore.Http.HttpContextAccessor>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

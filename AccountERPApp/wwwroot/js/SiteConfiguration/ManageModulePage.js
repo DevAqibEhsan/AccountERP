@@ -29,7 +29,6 @@ $(document).ready(function () {
         $(DataTable).DataTable().destroy();
 
         GetAllModulePages();
-
     });
 
     $(btnSave).click(function () {
@@ -39,6 +38,9 @@ $(document).ready(function () {
 });
 
 function GetAllModulePages() {
+
+    GetAllModuleForDropDown();
+
     oTable = $(DataTable).DataTable({
 
         "lengthChange": true,
@@ -49,7 +51,7 @@ function GetAllModulePages() {
         "pageLength": 10,
         "orderClasses": false,
         "aaSorting": [
-            [11, 'desc']
+            [0, 'desc']
         ],
         //"initComplete": function (settings, json) {
         //    HideKeys();
@@ -188,7 +190,7 @@ function GetAllModulePages() {
             {
                 "width": "75px",
                 "render": function (data, type, full, meta) {
-                    return "<i class='fas fa-edit' onclick='GetModulePageByID('" + data + "')' data-id='" + full.ModulePageID + "'></i>";
+                    return "<i class='fas fa-edit' onclick='GetModulePageByID(" + full.ModulePageID+")' data-id='" + full.ModulePageID + "'></i>";
                 }
             }
         ]
@@ -199,7 +201,7 @@ function GetAllModulePages() {
     });
 }
 
-function GetModulePageByID() {
+function GetModulePageByID(id) {
     postRequest(BaseUrl + "/SiteConfiguration/GetModulePageByID/" + id, null, function (res) {
         if (res.Status == 200) {
             if (res.Data != null) {
@@ -275,10 +277,7 @@ function SaveModulePageData() {
                         html: res.ResponseMsg
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            ClearAllField();
-                            $(DataTable).DataTable().destroy();
-                            GetAllModulePages();
-                            GridShow();
+                            CancelButtonAction();
                         }
                     });
                 }
@@ -319,10 +318,7 @@ function SaveModulePageData() {
                         html: res.ResponseMsg
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            ClearAllField();
-                            $(DataTable).DataTable().destroy();
-                            GetAllModulePages();
-                            GridShow();
+                            CancelButtonAction();
                         }
                     });
                 }
@@ -398,4 +394,11 @@ function ClearAllField() {
     $(txtActionURL).val("");
     $(txtModulePageOrderNo).val("");
     $("#chkModulePageIsActive").prop("checked", false);
+}
+
+function CancelButtonAction() {
+    ClearAllField();
+    $(DataTable).DataTable().destroy();
+    GetAllModulePages();
+    GridShow();
 }

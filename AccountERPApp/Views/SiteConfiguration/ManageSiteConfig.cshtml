@@ -1,7 +1,117 @@
-﻿
+﻿@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+
 @{
     ViewData["Title"] = "Manage Site Config";
 }
 
-<h1>Manage Site Config</h1>
+<link href="~/css/CommonStyle.css" rel="stylesheet" />
+<script src="~/js/Common.js"></script>
+<script src="~/js/SiteConfiguration/ManageSiteConfig.js"></script>
+
+<style>
+
+    #form {
+        display: none;
+    }
+
+    .card-header .btnsection {
+        display: inline-block;
+        float: right;
+    }
+</style>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#btnAddSiteConfig").click(function () { FormShow(); $("#dvLogo").hide(); $('#imgLogo').attr('src', ""); });
+
+        $("#btnCancel").click(function () { CancelButtonAction(); });
+
+        RemoveSortingClass('tblAction');
+
+    });
+
+</script>
+
+<div class="maincontent">
+    @*Grid / Data Table Start*@
+    <div id="grid" class="card">
+        <div class="card-header">
+            @ViewData["Title"]
+            <div class="btnsection">
+                <button type="button" id="btnAddSiteConfig" class="btn btn-success1"><i class="fa fa-plus" style="margin-right: 10px;"></i> Add</button>
+            </div>
+        </div>
+        <div class="card-body">
+            <div id="dvDataTable">
+                <table id="dataTableSiteConfig" class="display" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th class="text-center">S.No</th>
+                            <th class="text-center">Logo</th>
+                            <th class="text-center">Powered By</th>
+                            <th class="text-center">Is Active</th>
+                            <th class="text-center">Created User</th>
+                            <th class="text-center">Created On</th>
+                            <th class="text-center">Created User IP</th>
+                            <th class="text-center">Last User</th>
+                            <th class="text-center">Last Modified</th>
+                            <th class="text-center">Last User IP</th>
+                            <th class="text-center" id="tblAction">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dataRow">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    @*Grid / Data Table End*@
+
+    @*Add/Edit Form Section Start*@
+    <div id="form" class="card">
+        <div class="card-header">
+            @ViewData["Title"]
+        </div>
+        <div class="card-body">
+            <form id="ManageSiteConfigForm">
+                <input type="hidden" name="hdnConfigurationID" id="hdnConfigurationID" value="0" />
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="txtLogo">Upload Logo</label>
+                        <input type="file" class="form-control" id="txtLogo" placeholder="Upload Logo">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="txtPoweredBy">Powered By</label>
+                        <input type="text" class="form-control" id="txtPoweredBy" placeholder="Powered By">
+                    </div>
+                </div>
+
+                <div id="dvLogo" class="form-group" style="display:none;">
+                    <div class="form-group col-md-6">
+                        <label for="txtPoweredBy">Uploaded Logo</label>
+                        <img id="imgLogo" src="..." class="img-thumbnail" alt="Site Logo">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="chkSiteConfigIsActive">
+                        <label class="form-check-label" for="chkSiteConfigIsActive">Is Active Site Config</label>
+                    </div>
+                </div>
+
+                <div class="btnsection">
+                    <button type="button" class="btn btn-primary1" id="btnSave">Save</button>
+                    <button type="button" id="btnCancel" class="btn btn-secondary1"><i class="fa fa-close" style="margin-right: 10px;"></i>Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    @*Add/Edit Form Section End*@
+
+</div>
 

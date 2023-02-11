@@ -159,7 +159,7 @@ namespace AccountERPApi.Controllers
 
                         obj.NameAsModuleID = obj.NameAsModuleID.Replace(" ", "").Trim();
 
-                        var CheckNameAsModuleID = Data.Where(x => x.NameAsModuleID.Contains(obj.NameAsModuleID)).ToList();
+                        var CheckNameAsModuleID = Data.Where(x => x.NameAsModuleID.ToLower() == obj.NameAsModuleID.ToLower()).ToList();
 
                         if (CheckNameAsModuleID.Count > 0)
                         {
@@ -169,7 +169,7 @@ namespace AccountERPApi.Controllers
                             response.Data = null;
                         }
 
-                        var CheckModuleName = Data.Where(x => x.ModuleName.Contains(obj.ModuleName)).ToList();
+                        var CheckModuleName = Data.Where(x => x.ModuleName.ToLower() == obj.ModuleName.ToLower()).ToList();
                         if (CheckModuleName.Count > 0)
                         {
                             response.Status = 0;
@@ -253,7 +253,7 @@ namespace AccountERPApi.Controllers
 
                         obj.NameAsModuleID = obj.NameAsModuleID.Replace(" ", "").Trim();
 
-                        var CheckNameAsModuleID = Data.Where(x => x.ModuleID != obj.ModuleID && x.NameAsModuleID == obj.NameAsModuleID).Count();
+                        var CheckNameAsModuleID = Data.Where(x => x.ModuleID != obj.ModuleID && x.NameAsModuleID.ToLower() == obj.NameAsModuleID.ToLower()).Count();
 
                         if (CheckNameAsModuleID > 0)
                         {   
@@ -264,7 +264,7 @@ namespace AccountERPApi.Controllers
                         }
                         else
                         {
-                            var CheckModuleName = Data.Where(x => x.ModuleID != obj.ModuleID && x.ModuleName == obj.ModuleName).Count();
+                            var CheckModuleName = Data.Where(x => x.ModuleID != obj.ModuleID && x.ModuleName.ToLower() == obj.ModuleName.ToLower()).Count();
                             if (CheckModuleName > 0)
                             {
                                 response.Status = 0;

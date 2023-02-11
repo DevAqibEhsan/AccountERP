@@ -1,0 +1,1353 @@
+{
+	"info": {
+		"_postman_id": "da85fb9d-8b12-4708-9847-171aeb904706",
+		"name": "AccountERPCollection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authenticate",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Email\":\"superadmin@gmail.com\",\r\n    \"Password\":\"superadmin@1312023\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/Authentication/Authenticate",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"Authentication",
+						"Authenticate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Module",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzQ3OTMzOTQsImV4cCI6MTY3NTAwOTM5NCwiaWF0IjoxNjc0NzkzMzk0LCJpc3MiOiJBY2NvdW50RVJQIn0.kmDhlTo2Dl0UoS3dahjVgSvsM9Ys-ZdSdNVshg9CDbI",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageModule/GetAll",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageModule",
+						"GetAll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Module",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzUxNTA2MTUsImV4cCI6MTY3NTM2NjYxNCwiaWF0IjoxNjc1MTUwNjE1LCJpc3MiOiJBY2NvdW50RVJQIn0.FCba5qvKh6mlFnS3a_nq_DaYSqkamDpJflf5pYIQdb8",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ModuleName\":\"Accounts1\",\r\n    \"NameAsModuleID\":\"Acc ounts Manage ment1\",\r\n    \"Icon\":\"fa-photo-video\",\r\n    \"OrderN\":2,\r\n    \"IsActive\":0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageModule/AddModule",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageModule",
+						"AddModule"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Module",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzUxNTA2MTUsImV4cCI6MTY3NTM2NjYxNCwiaWF0IjoxNjc1MTUwNjE1LCJpc3MiOiJBY2NvdW50RVJQIn0.FCba5qvKh6mlFnS3a_nq_DaYSqkamDpJflf5pYIQdb8",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ModuleName\":\"Acsdfsdfscounts1\",\r\n    \"NameAsModuleID\":\"Acc ounts Mafsdfsdfsdfnage ment1\",\r\n    \"Icon\":\"fa-photo-video\",\r\n    \"OrderN\":2,\r\n    \"IsActive\":0,\r\n    \"ModuleID\":15\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageModule/UpdateModule",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageModule",
+						"UpdateModule"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Module By ID",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzUxNTA2MTUsImV4cCI6MTY3NTM2NjYxNCwiaWF0IjoxNjc1MTUwNjE1LCJpc3MiOiJBY2NvdW50RVJQIn0.FCba5qvKh6mlFnS3a_nq_DaYSqkamDpJflf5pYIQdb8",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageModule/GetModuleByID/15",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageModule",
+						"GetModuleByID",
+						"15"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Module Pages",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzU1OTg5ODYsImV4cCI6MTY3NTgxNDk4NiwiaWF0IjoxNjc1NTk4OTg2LCJpc3MiOiJBY2NvdW50RVJQIn0.LMMJPfwNf05f8dz6hZvZBkkUseAq2_LzMYO6AKQnb1o",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageModulePages/GetAll",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageModulePages",
+						"GetAll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Module Page By ID",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzU1OTg5ODYsImV4cCI6MTY3NTgxNDk4NiwiaWF0IjoxNjc1NTk4OTg2LCJpc3MiOiJBY2NvdW50RVJQIn0.LMMJPfwNf05f8dz6hZvZBkkUseAq2_LzMYO6AKQnb1o",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageModulePages/GetModuleByID/21",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageModulePages",
+						"GetModuleByID",
+						"21"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Module Page",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzU1OTg5ODYsImV4cCI6MTY3NTgxNDk4NiwiaWF0IjoxNjc1NTk4OTg2LCJpc3MiOiJBY2NvdW50RVJQIn0.LMMJPfwNf05f8dz6hZvZBkkUseAq2_LzMYO6AKQnb1o",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"ModuleID\":2,\r\n\"ModulePageName\":\"Quotationewr\",\r\n\"ControllerURL\":\"asdf\",\r\n\"ActionURL\":\"asdf\",\r\n\"OrderN\":12,\r\n\"IsActive\":0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageModulePages/AddModulePge",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageModulePages",
+						"AddModulePge"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Module Page",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzU1OTg5ODYsImV4cCI6MTY3NTgxNDk4NiwiaWF0IjoxNjc1NTk4OTg2LCJpc3MiOiJBY2NvdW50RVJQIn0.LMMJPfwNf05f8dz6hZvZBkkUseAq2_LzMYO6AKQnb1o",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"ModulePageID\":59,\r\n\"ModuleID\":2,\r\n\"ModulePageName\":\"Quotation sdf\",\r\n\"ControllerURL\":\"asdf\",\r\n\"ActionURL\":\"asdf\",\r\n\"OrderN\":12,\r\n\"IsActive\":0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageModulePages/UpdateModulePge",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageModulePages",
+						"UpdateModulePge"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Module For Fill DropDown",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzU1OTg5ODYsImV4cCI6MTY3NTgxNDk4NiwiaWF0IjoxNjc1NTk4OTg2LCJpc3MiOiJBY2NvdW50RVJQIn0.LMMJPfwNf05f8dz6hZvZBkkUseAq2_LzMYO6AKQnb1o",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageModule/GetAllModuleForDropDown",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageModule",
+						"GetAllModuleForDropDown"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Country",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzU5MzQ5NTgsImV4cCI6MTY3NjE1MDk1OCwiaWF0IjoxNjc1OTM0OTU4LCJpc3MiOiJBY2NvdW50RVJQIn0.ktMqYLlR0GM1eiJ7KZ_v8NavNkXI-Zkexhwp13EzCJQ",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageCountry/GetAll",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageCountry",
+						"GetAll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Country By ID",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzU5MzQ5NTgsImV4cCI6MTY3NjE1MDk1OCwiaWF0IjoxNjc1OTM0OTU4LCJpc3MiOiJBY2NvdW50RVJQIn0.ktMqYLlR0GM1eiJ7KZ_v8NavNkXI-Zkexhwp13EzCJQ",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44375/api/ManageCountry/GetCountryByID/3",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageCountry",
+						"GetCountryByID",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Country",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzU5MzQ5NTgsImV4cCI6MTY3NjE1MDk1OCwiaWF0IjoxNjc1OTM0OTU4LCJpc3MiOiJBY2NvdW50RVJQIn0.ktMqYLlR0GM1eiJ7KZ_v8NavNkXI-Zkexhwp13EzCJQ",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"CountryCode\":\"PK1\",\r\n\"CountryName\":\"Pakistan2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageCountry/AddCountry",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageCountry",
+						"AddCountry"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Country",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzU5MzQ5NTgsImV4cCI6MTY3NjE1MDk1OCwiaWF0IjoxNjc1OTM0OTU4LCJpc3MiOiJBY2NvdW50RVJQIn0.ktMqYLlR0GM1eiJ7KZ_v8NavNkXI-Zkexhwp13EzCJQ",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"CountryID\":2,\r\n\"CountryCode\":\"PK1\",\r\n\"CountryName\":\"Pakistan12\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageCountry/UpdateCountry",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageCountry",
+						"UpdateCountry"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All State",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzU5MzQ5NTgsImV4cCI6MTY3NjE1MDk1OCwiaWF0IjoxNjc1OTM0OTU4LCJpc3MiOiJBY2NvdW50RVJQIn0.ktMqYLlR0GM1eiJ7KZ_v8NavNkXI-Zkexhwp13EzCJQ",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageState/GetAll",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageState",
+						"GetAll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get State By ID",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzU5MzQ5NTgsImV4cCI6MTY3NjE1MDk1OCwiaWF0IjoxNjc1OTM0OTU4LCJpc3MiOiJBY2NvdW50RVJQIn0.ktMqYLlR0GM1eiJ7KZ_v8NavNkXI-Zkexhwp13EzCJQ",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageState/GetStateByID\\3",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageState",
+						"GetStateByID",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add State",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzU5MzQ5NTgsImV4cCI6MTY3NjE1MDk1OCwiaWF0IjoxNjc1OTM0OTU4LCJpc3MiOiJBY2NvdW50RVJQIn0.ktMqYLlR0GM1eiJ7KZ_v8NavNkXI-Zkexhwp13EzCJQ",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"CountryID\":1,\r\n\"StateCode\":\"PJB\",\r\n\"StateName\":\"Sindh1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageState/AddState",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageState",
+						"AddState"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update State",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzU5MzQ5NTgsImV4cCI6MTY3NjE1MDk1OCwiaWF0IjoxNjc1OTM0OTU4LCJpc3MiOiJBY2NvdW50RVJQIn0.ktMqYLlR0GM1eiJ7KZ_v8NavNkXI-Zkexhwp13EzCJQ",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"StateID\":1,\r\n\"CountryID\":1,\r\n\"StateCode\":\"PJB\",\r\n\"StateName\":\"Sindh2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageState/UpdateState",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageState",
+						"UpdateState"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All City",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzU5MzQ5NTgsImV4cCI6MTY3NjE1MDk1OCwiaWF0IjoxNjc1OTM0OTU4LCJpc3MiOiJBY2NvdW50RVJQIn0.ktMqYLlR0GM1eiJ7KZ_v8NavNkXI-Zkexhwp13EzCJQ",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44375/api/ManageCity/GetAll",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageCity",
+						"GetAll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get City By ID",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzU5MzQ5NTgsImV4cCI6MTY3NjE1MDk1OCwiaWF0IjoxNjc1OTM0OTU4LCJpc3MiOiJBY2NvdW50RVJQIn0.ktMqYLlR0GM1eiJ7KZ_v8NavNkXI-Zkexhwp13EzCJQ",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageCity/GetCityByID/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageCity",
+						"GetCityByID",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add City",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzU5MzQ5NTgsImV4cCI6MTY3NjE1MDk1OCwiaWF0IjoxNjc1OTM0OTU4LCJpc3MiOiJBY2NvdW50RVJQIn0.ktMqYLlR0GM1eiJ7KZ_v8NavNkXI-Zkexhwp13EzCJQ",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"StateID\":1,\r\n\"CityName\":\"karachi\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageCity/AddCity",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageCity",
+						"AddCity"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update City",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzU5MzQ5NTgsImV4cCI6MTY3NjE1MDk1OCwiaWF0IjoxNjc1OTM0OTU4LCJpc3MiOiJBY2NvdW50RVJQIn0.ktMqYLlR0GM1eiJ7KZ_v8NavNkXI-Zkexhwp13EzCJQ",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"CityID\":1,\r\n\"StateID\":1,\r\n\"CityName\":\"karachi1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageCity/UpdateCity",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageCity",
+						"UpdateCity"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Business Type",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzYwOTY5NDEsImV4cCI6MTY3NjMxMjk0MSwiaWF0IjoxNjc2MDk2OTQxLCJpc3MiOiJBY2NvdW50RVJQIn0.VGtorzawPn1MSZwUsQDnRLtGZ5idTQoJbDd8wvqxGnM",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageBusinessType/GetAll",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageBusinessType",
+						"GetAll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Business Type",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzYwOTY5NDEsImV4cCI6MTY3NjMxMjk0MSwiaWF0IjoxNjc2MDk2OTQxLCJpc3MiOiJBY2NvdW50RVJQIn0.VGtorzawPn1MSZwUsQDnRLtGZ5idTQoJbDd8wvqxGnM",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"BusinessTypeName\":\"wretw\",\r\n    \"IsActive\":0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageBusinessType/AddBusinessType",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageBusinessType",
+						"AddBusinessType"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Business Type",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzYwOTY5NDEsImV4cCI6MTY3NjMxMjk0MSwiaWF0IjoxNjc2MDk2OTQxLCJpc3MiOiJBY2NvdW50RVJQIn0.VGtorzawPn1MSZwUsQDnRLtGZ5idTQoJbDd8wvqxGnM",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"BusinessTypeID\":2,\r\n    \"BusinessTypeName\":\"abcd\",\r\n    \"IsActive\":0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageBusinessType/UpdateBusinessType",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageBusinessType",
+						"UpdateBusinessType"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Business Type By ID",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzYwOTY5NDEsImV4cCI6MTY3NjMxMjk0MSwiaWF0IjoxNjc2MDk2OTQxLCJpc3MiOiJBY2NvdW50RVJQIn0.VGtorzawPn1MSZwUsQDnRLtGZ5idTQoJbDd8wvqxGnM",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44375/api/ManageBusinessType/GetBusinessTypeByID/2",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageBusinessType",
+						"GetBusinessTypeByID",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Role",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzYwOTY5NDEsImV4cCI6MTY3NjMxMjk0MSwiaWF0IjoxNjc2MDk2OTQxLCJpc3MiOiJBY2NvdW50RVJQIn0.VGtorzawPn1MSZwUsQDnRLtGZ5idTQoJbDd8wvqxGnM",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44375/api/ManageRole/GetAll",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageRole",
+						"GetAll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Role By ID",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzYwOTY5NDEsImV4cCI6MTY3NjMxMjk0MSwiaWF0IjoxNjc2MDk2OTQxLCJpc3MiOiJBY2NvdW50RVJQIn0.VGtorzawPn1MSZwUsQDnRLtGZ5idTQoJbDd8wvqxGnM",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44375/api/ManageRole/GetRoleByID/3",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageRole",
+						"GetRoleByID",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Role",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzYwOTY5NDEsImV4cCI6MTY3NjMxMjk0MSwiaWF0IjoxNjc2MDk2OTQxLCJpc3MiOiJBY2NvdW50RVJQIn0.VGtorzawPn1MSZwUsQDnRLtGZ5idTQoJbDd8wvqxGnM",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"RoleName\":\"Super Admin\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageRole/AddRole",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageRole",
+						"AddRole"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Role",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzYwOTY5NDEsImV4cCI6MTY3NjMxMjk0MSwiaWF0IjoxNjc2MDk2OTQxLCJpc3MiOiJBY2NvdW50RVJQIn0.VGtorzawPn1MSZwUsQDnRLtGZ5idTQoJbDd8wvqxGnM",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"RoleID\":5,\r\n    \"RoleName\":\"Officer\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageRole/UpdateRole",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageRole",
+						"UpdateRole"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Time Zone",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzYwOTY5NDEsImV4cCI6MTY3NjMxMjk0MSwiaWF0IjoxNjc2MDk2OTQxLCJpc3MiOiJBY2NvdW50RVJQIn0.VGtorzawPn1MSZwUsQDnRLtGZ5idTQoJbDd8wvqxGnM",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44375/api/ManageTimeZones/GetAll",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageTimeZones",
+						"GetAll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Time Zone By ID",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzYwOTY5NDEsImV4cCI6MTY3NjMxMjk0MSwiaWF0IjoxNjc2MDk2OTQxLCJpc3MiOiJBY2NvdW50RVJQIn0.VGtorzawPn1MSZwUsQDnRLtGZ5idTQoJbDd8wvqxGnM",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44375/api/ManageTimeZones/GetTimeZonesByID/2",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageTimeZones",
+						"GetTimeZonesByID",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Time Zone",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzYwOTY5NDEsImV4cCI6MTY3NjMxMjk0MSwiaWF0IjoxNjc2MDk2OTQxLCJpc3MiOiJBY2NvdW50RVJQIn0.VGtorzawPn1MSZwUsQDnRLtGZ5idTQoJbDd8wvqxGnM",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"TimeZoneName\":\"ter\",\r\n    \"Description\":\"zxvc zv zxv xv cxvxzvzxcv\",\r\n    \"RelativeToGMT\":\"twertwert\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageTimeZones/AddTimeZones",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageTimeZones",
+						"AddTimeZones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Time Zone",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzYwOTY5NDEsImV4cCI6MTY3NjMxMjk0MSwiaWF0IjoxNjc2MDk2OTQxLCJpc3MiOiJBY2NvdW50RVJQIn0.VGtorzawPn1MSZwUsQDnRLtGZ5idTQoJbDd8wvqxGnM",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"TimeZoneID\":2,\r\n    \"TimeZoneName\":\"jkljl\",\r\n    \"Description\":\"zxvc zv zxv xv cxvxzvzxcv\",\r\n    \"RelativeToGMT\":\"twertwert\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageTimeZones/UpdateTimeZones",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageTimeZones",
+						"UpdateTimeZones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Site Config",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzYwOTY5NDEsImV4cCI6MTY3NjMxMjk0MSwiaWF0IjoxNjc2MDk2OTQxLCJpc3MiOiJBY2NvdW50RVJQIn0.VGtorzawPn1MSZwUsQDnRLtGZ5idTQoJbDd8wvqxGnM",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44375/api/ManageSiteConfig/GetAll",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageSiteConfig",
+						"GetAll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Active Site Config",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzYwOTY5NDEsImV4cCI6MTY3NjMxMjk0MSwiaWF0IjoxNjc2MDk2OTQxLCJpc3MiOiJBY2NvdW50RVJQIn0.VGtorzawPn1MSZwUsQDnRLtGZ5idTQoJbDd8wvqxGnM",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44375/api/ManageSiteConfig/GetAllActive",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageSiteConfig",
+						"GetAllActive"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Site Config By ID",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzYwOTY5NDEsImV4cCI6MTY3NjMxMjk0MSwiaWF0IjoxNjc2MDk2OTQxLCJpc3MiOiJBY2NvdW50RVJQIn0.VGtorzawPn1MSZwUsQDnRLtGZ5idTQoJbDd8wvqxGnM",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44375/api/ManageSiteConfig/GetSiteConfigByID/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageSiteConfig",
+						"GetSiteConfigByID",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Site Config",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzYwOTY5NDEsImV4cCI6MTY3NjMxMjk0MSwiaWF0IjoxNjc2MDk2OTQxLCJpc3MiOiJBY2NvdW50RVJQIn0.VGtorzawPn1MSZwUsQDnRLtGZ5idTQoJbDd8wvqxGnM",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "03d4ca97978d-2021082717070806.png"
+						},
+						{
+							"key": "PoweredBy",
+							"value": "Testing Service",
+							"type": "default"
+						},
+						{
+							"key": "IsActive",
+							"value": "1",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageSiteConfig/AddSiteConfig",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageSiteConfig",
+						"AddSiteConfig"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Site Config",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzYwOTY5NDEsImV4cCI6MTY3NjMxMjk0MSwiaWF0IjoxNjc2MDk2OTQxLCJpc3MiOiJBY2NvdW50RVJQIn0.VGtorzawPn1MSZwUsQDnRLtGZ5idTQoJbDd8wvqxGnM",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": []
+						},
+						{
+							"key": "PoweredBy",
+							"value": "fsadf asdf",
+							"type": "default"
+						},
+						{
+							"key": "IsActive",
+							"value": "1",
+							"type": "default"
+						},
+						{
+							"key": "ConfigurationID",
+							"value": "1",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageSiteConfig/UpdateSiteConfig",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageSiteConfig",
+						"UpdateSiteConfig"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

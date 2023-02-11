@@ -1,0 +1,126 @@
+﻿.maincontent {
+    margin: 0 auto;
+    width: 98%;
+    margin-top: 10px;
+}
+
+    .maincontent .card-header {
+        text-align: left !important;
+        font-size: 16pt;
+    }
+
+
+    .maincontent .card {
+        border-radius: 0.25rem !important;
+    }
+
+        .maincontent .card .form-row .active {
+            background: none;
+        }
+
+        .maincontent .card .form-group .active {
+            background: none;
+        }
+
+.btn-primary1 {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+    .btn-primary1:hover {
+        color: #fff;
+        background-color: #0069d9;
+        border-color: #0062cc;
+    }
+
+    .btn-primary1:not(:disabled):not(.disabled).active, .btn-primary1:not(:disabled):not(.disabled):active, .show > .btn-primary1.dropdown-toggle {
+        color: #fff;
+        background-color: #0062cc;
+        border-color: #005cbf;
+    }
+
+.btn-secondary1 {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+    .btn-secondary1:hover {
+        color: #fff;
+        background-color: #5a6268;
+        border-color: #545b62;
+    }
+
+    .btn-secondary1:not(:disabled):not(.disabled).active, .btn-secondary1:not(:disabled):not(.disabled):active, .show > .btn-secondary1.dropdown-toggle {
+        color: #fff;
+        background-color: #545b62;
+        border-color: #4e555b;
+    }
+
+.btn-success1 {
+    color: #fff;
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.btn-success1:hover {
+    color: #fff;
+    background-color: #218838;
+    border-color: #1e7e34;
+}
+
+.btn-success1:not(:disabled):not(.disabled).active, .btn-success1:not(:disabled):not(.disabled):active, .show > .btn-success1.dropdown-toggle {
+    color: #fff;
+    background-color: #1e7e34;
+    border-color: #1c7430;
+}
+
+
+
+
+
+
+
+
+
+.btnsection {
+    text-align: right;
+}
+
+#dataTableFilter {
+    outline-offset: 0px !important;
+}
+
+    #dataTableFilter:focus {
+        outline: 0 !important;
+        border-color: #3b71ca !important;
+        box-shadow: inset 0 0 0 1px #3b71ca !important;
+    }
+
+.dataTables_length select[name="example_length"]:focus {
+    outline: 0 !important;
+    border-color: #3b71ca !important;
+    box-shadow: inset 0 0 0 1px #3b71ca !important;
+}
+
+#dvDataTable table {
+    table-layout: fixed;
+}
+
+.text-center{
+    text-align:center !important;
+}
+
+.text-left {
+    text-align: left !important;
+}
+
+.text-right {
+    text-align: right !important;
+}
+
+.btn-light:hover {
+    background-color: white !important;
+    border-color: white !important;
+}

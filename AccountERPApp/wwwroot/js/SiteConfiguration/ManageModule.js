@@ -97,7 +97,7 @@ function GetAllModule() {
         "pageLength": 10,
         "orderClasses": false,
         "aaSorting": [
-            [10, 'desc']
+            [0, 'desc']
         ],
         //"initComplete": function (settings, json) {
         //    HideKeys();
@@ -352,7 +352,7 @@ function SaveModuleData() {
 
 function ClearAllField() {
     $(btnSave).prop("disabled", false);
-    $("#ModuleID").val(0);
+    $(hdnModuleID).val(0);
     $(txtModuleName).val("");
     $(txtModuleNameasID).val("");
     $(txtModuleIcon).val("");

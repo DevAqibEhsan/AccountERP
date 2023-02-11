@@ -56,14 +56,7 @@ $(document).ready(function () {
     });
 
 
-
-
-
-
-
-
-
-
+    $('[data-toggle="tooltip"]').tooltip();
 
     //Nav Bar Menu Start
     $(".dashboard-nav-dropdown-toggle").click(function () {
