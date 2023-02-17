@@ -5,10 +5,8 @@ using AccountERPClassLibraries.DTOLibraries;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
-using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -16,23 +14,18 @@ namespace AccountERPApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ManageSiteConfigController : ControllerBase
+    public class ManageProductCategoryController : ControllerBase
     {
-        private readonly IConfiguration _configuration;
-        private ISiteConfigService _siteConfigService;
+        private IProductCategoryService _productCategoryService;
 
         private readonly IHubContext<SignalrServer> _signalrHub;
 
-        private string SiteConfigMediaURL = string.Empty;
-        public ManageSiteConfigController(IConfiguration configuration,ISiteConfigService siteConfigService, IHubContext<SignalrServer> signalrHub)
+        public ManageProductCategoryController(IProductCategoryService productCategoryService, IHubContext<SignalrServer> signalrHub)
         {
-            _siteConfigService = siteConfigService;
+            _productCategoryService = productCategoryService;
             _signalrHub = signalrHub;
-            _configuration = configuration;
-
-            SiteConfigMediaURL = _configuration.GetSection("UrlSetting").GetSection("SiteConfigMediaURL").Value;
-
         }
+
         [HttpPost("GetAll")]
         public Response GetAll()
         {
@@ -55,7 +48,7 @@ namespace AccountERPApi.Controllers
 
                     if (HasPermission)
                     {
-                        var Data = _siteConfigService.GetAll().ToList();
+                        var Data = _productCategoryService.GetAll().ToList();
 
                         response.Status = 200;
                         response.Token = TokenManager.GenerateToken(claimDTO);
@@ -86,8 +79,8 @@ namespace AccountERPApi.Controllers
             return response;
         }
 
-        [HttpPost("GetAllActive")]
-        public Response GetAllActive()
+        [HttpPost("AddProductCategory")]
+        public Response AddProductCategory(ProductCategory obj)
         {
             Response response = new Response();
             ClaimDTO claimDTO = new ClaimDTO();
@@ -108,90 +101,14 @@ namespace AccountERPApi.Controllers
 
                     if (HasPermission)
                     {
-                        var Data = _siteConfigService.GetAllActive().ToList();
+                        var Data = _productCategoryService.GetAll().ToList();
 
-                        response.Status = 200;
-                        response.Token = TokenManager.GenerateToken(claimDTO);
-                        response.Data = Data;
-                    }
-                    else
-                    {
-                        response.Status = 403;
-                        response.ResponseMsg = "You don’t have permission to this action.";
-                        response.Token = null;
-                        response.Data = null;
-                    }
-                }
-                else
-                {
-                    response.Status = 401;
-                    response.ResponseMsg = "unauthorized";
-                    response.Token = null;
-                    response.Data = null;
-                }
-            }
-            catch (Exception ex)
-            {
-                response.Status = ExceptionStatusCode.GetExceptionCode(ex);
-                response.ResponseMsg = ex.Message;
-            }
+                        var CheckProductCategoryName = Data.Where(x => x.ProductCategoryName.ToLower() == obj.ProductCategoryName.ToLower()).Count();
 
-            return response;
-        }
-
-        [HttpPost("AddSiteConfig")]
-        public Response AddSiteConfig()
-        {
-            SiteConfig obj;
-            Response response = new Response();
-            ClaimDTO claimDTO = new ClaimDTO();
-
-            string fileName = string.Empty;
-            string filePath = string.Empty;
-
-            try
-            {
-                claimDTO = TokenManager.GetValidateToken(Request);
-
-                if (claimDTO != null)
-                {
-                    bool HasPermission = true;
-
-                    if (claimDTO.RoleID != 1)
-                    {
-                        HasPermission = false;
-                        // Here We Check Permission and than Set True
-                    }
-
-                    if (HasPermission)
-                    {
-                        var Data = _siteConfigService.GetAll().ToList();
-
-                        obj = new SiteConfig();
-
-                        if (Request.Form.Files.Count > 0)
-                        {
-                            var file = HttpContext.Request.Form.Files[0];
-                            fileName = Guid.NewGuid().ToString("N").Substring(0, 12);
-                            var fileExtensionArray = file.FileName.Split('.');
-                            fileName = "SiteConfig_" + fileName + "_" + DateTime.Now.ToString("yyyyMMddHHmmssFFF") + "." + fileExtensionArray[fileExtensionArray.Length - 1];
-                            filePath = Path.Combine(SiteConfigMediaURL, fileName);
-                            using (var fileStream = new FileStream(filePath, FileMode.Create))
-                            {
-                                file.CopyTo(fileStream);
-                            }
-                        }
-
-                        obj.Logo = fileName;
-                        obj.PoweredBy = Convert.ToString(Request.Form["PoweredBy"]);
-                        obj.IsActive = Convert.ToInt32(Request.Form["IsActive"]);
-
-                        var CheckActiveSiteConfig = Data.Where(x => x.IsActive == 1).Count();
-
-                        if (CheckActiveSiteConfig > 0 && obj.IsActive == 1)
+                        if (CheckProductCategoryName > 0)
                         {
                             response.Status = 0;
-                            response.ResponseMsg = "1 Configuration allow for Active.";
+                            response.ResponseMsg = "The Product Category Name Is " + obj.ProductCategoryName + " Already exists.";
                             response.Token = TokenManager.GenerateToken(claimDTO);
                             response.Data = null;
                         }
@@ -202,21 +119,20 @@ namespace AccountERPApi.Controllers
                             obj.CreatedOn = TimeZoneManager.GetDateTimeByTimeZone(TimeZonesStarndard.PakistanTimeZone);
                             obj.CreatedByIP = Request.HttpContext.Connection.RemoteIpAddress.ToString();
 
-                            var res = _siteConfigService.AddSiteConfig(obj);
-                            _signalrHub.Clients.All.SendAsync("LoadSiteConfig");
+                            var res = _productCategoryService.AddProductCategory(obj);
+                            _signalrHub.Clients.All.SendAsync("LoadProductCategory");
 
-                            if (!string.IsNullOrEmpty(res.Logo))
+                            if (!string.IsNullOrEmpty(res.ProductCategoryName))
                             {
                                 response.Status = 200;
-                                response.ResponseMsg = "Configuration Is Successfully Added.";
+                                response.ResponseMsg = "The Product Category Name " + obj.ProductCategoryName + " Is Successfully Added.";
                                 response.Token = TokenManager.GenerateToken(claimDTO);
                                 response.Data = res;
                             }
                             else
                             {
-                                DeleteFile(filePath);
                                 response.Status = 0;
-                                response.ResponseMsg = "This Configuration Data is not Added.";
+                                response.ResponseMsg = "This Product Category Name " + obj.ProductCategoryName + " Data is not Added.";
                                 response.Token = TokenManager.GenerateToken(claimDTO);
                                 response.Data = null;
                             }
@@ -240,7 +156,6 @@ namespace AccountERPApi.Controllers
             }
             catch (Exception ex)
             {
-                DeleteFile(filePath);
                 response.Status = ExceptionStatusCode.GetExceptionCode(ex);
                 response.ResponseMsg = ex.Message;
             }
@@ -248,15 +163,11 @@ namespace AccountERPApi.Controllers
             return response;
         }
 
-        [HttpPost("UpdateSiteConfig")]
-        public Response UpdateSiteConfig()
+        [HttpPost("UpdateProductCategory")]
+        public Response UpdateProductCategory(ProductCategory obj)
         {
-            SiteConfig obj;
             Response response = new Response();
             ClaimDTO claimDTO = new ClaimDTO();
-
-            string fileName = string.Empty;
-            string filePath = string.Empty;
 
             try
             {
@@ -274,34 +185,14 @@ namespace AccountERPApi.Controllers
 
                     if (HasPermission)
                     {
-                        var Data = _siteConfigService.GetAll().ToList();
+                        var Data = _productCategoryService.GetAll().ToList();
 
-                        obj = new SiteConfig();
+                        var CheckProductCategoryName = Data.Where(x => x.ProductCategoryName.ToLower() == obj.ProductCategoryName.ToLower()).Count();
 
-                        if (Request.Form.Files.Count > 0)
-                        {
-                            var file = HttpContext.Request.Form.Files[0];
-                            fileName = Guid.NewGuid().ToString("N").Substring(0, 12);
-                            var fileExtensionArray = file.FileName.Split('.');
-                            fileName = "SiteConfig_" + fileName + "_" + DateTime.Now.ToString("yyyyMMddHHmmssFFF") + "." + fileExtensionArray[fileExtensionArray.Length - 1];
-                            filePath = Path.Combine(SiteConfigMediaURL, fileName);
-                            using (var fileStream = new FileStream(filePath, FileMode.Create))
-                            {
-                                file.CopyTo(fileStream);
-                            }
-                        }
-
-                        obj.ConfigurationID = Convert.ToInt32(Request.Form["ConfigurationID"]);
-                        obj.Logo = fileName;
-                        obj.PoweredBy = Convert.ToString(Request.Form["PoweredBy"]);
-                        obj.IsActive = Convert.ToInt32(Request.Form["IsActive"]);
-
-                        var CheckActiveSiteConfig = Data.Where(x => x.ConfigurationID != obj.ConfigurationID && x.IsActive == 1).Count();
-
-                        if (CheckActiveSiteConfig > 0 && obj.IsActive ==1)
+                        if (CheckProductCategoryName > 0)
                         {
                             response.Status = 0;
-                            response.ResponseMsg = "1 Configuration allow for Active.";
+                            response.ResponseMsg = "The Product Category Is " + obj.ProductCategoryName + " Already exists.";
                             response.Token = TokenManager.GenerateToken(claimDTO);
                             response.Data = null;
                         }
@@ -311,24 +202,21 @@ namespace AccountERPApi.Controllers
                             obj.ModifiedOn = TimeZoneManager.GetDateTimeByTimeZone(TimeZonesStarndard.PakistanTimeZone);
                             obj.ModifiedByIP = Request.HttpContext.Connection.RemoteIpAddress.ToString();
 
-                            var Pre_res = _siteConfigService.GetSiteConfigByID(obj.ConfigurationID);
-                            var res = _siteConfigService.UpdateSiteConfig(obj);
+                            var res = _productCategoryService.UpdateProductCategory(obj);
 
-                            _signalrHub.Clients.All.SendAsync("LoadSiteConfig");
+                            _signalrHub.Clients.All.SendAsync("LoadProductCategory");
 
-                            if (!string.IsNullOrEmpty(res.Logo))
+                            if (!string.IsNullOrEmpty(res.ProductCategoryName))
                             {
-                                DeletePreviousFile(Pre_res);
                                 response.Status = 200;
-                                response.ResponseMsg = "Configuration Is Successfully Updated.";
+                                response.ResponseMsg = "The Product Category " + obj.ProductCategoryName + " Is Successfully Updated.";
                                 response.Token = TokenManager.GenerateToken(claimDTO);
                                 response.Data = res;
                             }
                             else
                             {
-                                DeleteFile(filePath);
                                 response.Status = 0;
-                                response.ResponseMsg = "This Configuration Data is not Updated.";
+                                response.ResponseMsg = "This Product Category " + obj.ProductCategoryID + " Data is not Updated.";
                                 response.Token = TokenManager.GenerateToken(claimDTO);
                                 response.Data = null;
                             }
@@ -352,7 +240,6 @@ namespace AccountERPApi.Controllers
             }
             catch (Exception ex)
             {
-                DeleteFile(filePath);
                 response.Status = ExceptionStatusCode.GetExceptionCode(ex);
                 response.ResponseMsg = ex.Message;
             }
@@ -360,8 +247,8 @@ namespace AccountERPApi.Controllers
             return response;
         }
 
-        [HttpPost("GetSiteConfigByID/{id}")]
-        public Response GetSiteConfigByID(int id)
+        [HttpPost("GetProductCategoryByID/{id}")]
+        public Response GetProductCategoryByID(int id)
         {
             Response response = new Response();
             ClaimDTO claimDTO = new ClaimDTO();
@@ -382,7 +269,7 @@ namespace AccountERPApi.Controllers
 
                     if (HasPermission)
                     {
-                        var Data = _siteConfigService.GetSiteConfigByID(id);
+                        var Data = _productCategoryService.GetProductCategoryByID(id);
                         if (Data != null)
                         {
                             response.Status = 200;
@@ -413,25 +300,6 @@ namespace AccountERPApi.Controllers
             }
 
             return response;
-        }
-
-        public void DeleteFile(string FileNameWithPath)
-        {
-            if (!string.IsNullOrEmpty(FileNameWithPath))
-            {
-                FileInfo file = new FileInfo(FileNameWithPath);
-                if (file.Exists)//check file exsit or not  
-                {
-                    file.Delete();
-                }
-            }
-        }
-
-        public void DeletePreviousFile(SiteConfig var)
-        {
-            string FilePath = Path.Combine(SiteConfigMediaURL, var.Logo);
-
-            DeleteFile(FilePath);
         }
     }
 }

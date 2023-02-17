@@ -16,23 +16,24 @@ namespace AccountERPApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ManageSiteConfigController : ControllerBase
+    public class ManageProductController : ControllerBase
     {
-        private readonly IConfiguration _configuration;
-        private ISiteConfigService _siteConfigService;
+        private IProductService _productService;
+        private IConfiguration _configuration;
 
         private readonly IHubContext<SignalrServer> _signalrHub;
 
-        private string SiteConfigMediaURL = string.Empty;
-        public ManageSiteConfigController(IConfiguration configuration,ISiteConfigService siteConfigService, IHubContext<SignalrServer> signalrHub)
+        private string ProductMediaURL = string.Empty;
+
+        public ManageProductController(IConfiguration configuration,IProductService productService, IHubContext<SignalrServer> signalrHub)
         {
-            _siteConfigService = siteConfigService;
+            _productService = productService;
             _signalrHub = signalrHub;
             _configuration = configuration;
 
-            SiteConfigMediaURL = _configuration.GetSection("UrlSetting").GetSection("SiteConfigMediaURL").Value;
-
+            ProductMediaURL = _configuration.GetSection("UrlSetting").GetSection("ProductMediaURL").Value;
         }
+
         [HttpPost("GetAll")]
         public Response GetAll()
         {
@@ -55,7 +56,7 @@ namespace AccountERPApi.Controllers
 
                     if (HasPermission)
                     {
-                        var Data = _siteConfigService.GetAll().ToList();
+                        var Data = _productService.GetAll().ToList();
 
                         response.Status = 200;
                         response.Token = TokenManager.GenerateToken(claimDTO);
@@ -108,7 +109,7 @@ namespace AccountERPApi.Controllers
 
                     if (HasPermission)
                     {
-                        var Data = _siteConfigService.GetAllActive().ToList();
+                        var Data = _productService.GetAllActive().ToList();
 
                         response.Status = 200;
                         response.Token = TokenManager.GenerateToken(claimDTO);
@@ -139,10 +140,10 @@ namespace AccountERPApi.Controllers
             return response;
         }
 
-        [HttpPost("AddSiteConfig")]
-        public Response AddSiteConfig()
+        [HttpPost("AddProduct")]
+        public Response AddProduct()
         {
-            SiteConfig obj;
+            Product obj;
             Response response = new Response();
             ClaimDTO claimDTO = new ClaimDTO();
 
@@ -151,6 +152,27 @@ namespace AccountERPApi.Controllers
 
             try
             {
+                obj = new Product();
+
+                obj.ProductName = Request.Form["ProductName"];
+                obj.ProductAttributeID = Convert.ToInt32(Request.Form["ProductAttributeID"]);
+                obj.ProductBrandID = Convert.ToInt32(Request.Form["ProductBrandID"]);
+                obj.ProductCategoryID = Convert.ToInt32(Request.Form["ProductCategoryID"]);
+                obj.ProductTypeID = Convert.ToInt32(Request.Form["ProductTypeID"]);
+                obj.CompanyID = Convert.ToInt32(Request.Form["CompanyID"]);
+                obj.Description = Request.Form["Description"];
+                obj.MinStock = Convert.ToInt32(Request.Form["MinStock"]);
+                obj.MaxStock = Convert.ToInt32(Request.Form["MaxStock"]);
+                obj.ReOrderLevel = Convert.ToInt32(Request.Form["ReOrderLevel"]);
+                obj.ManageStock = Convert.ToInt32(Request.Form["ManageStock"]);
+                obj.CostPrice = Convert.ToDecimal(Request.Form["CostPrice"]);
+                obj.UserDefinedCostPrice = Convert.ToDecimal(Request.Form["UserDefinedCostPrice"]);
+                obj.PurchasePrice = Convert.ToDecimal(Request.Form["PurchasePrice"]);
+                obj.RetailPrice = Convert.ToDecimal(Request.Form["RetailPrice"]);
+                obj.ProfitMarginPercentage = Convert.ToInt32(Request.Form["ProfitMarginPercentage"]);
+                obj.ProfitMarginAmount = Convert.ToDecimal(Request.Form["ProfitMarginAmount"]);
+                obj.IsActive = Convert.ToInt32(Request.Form["IsActive"]);
+
                 claimDTO = TokenManager.GetValidateToken(Request);
 
                 if (claimDTO != null)
@@ -165,50 +187,51 @@ namespace AccountERPApi.Controllers
 
                     if (HasPermission)
                     {
-                        var Data = _siteConfigService.GetAll().ToList();
+                        var Data = _productService.GetAll().ToList();
 
-                        obj = new SiteConfig();
+                        var CheckProductName = Data.Where(x => x.ProductName.ToLower() == obj.ProductName.ToLower() && x.ProductAttributeID == obj.ProductAttributeID && x.ProductBrandID == obj.ProductBrandID && x.ProductCategoryID == obj.ProductCategoryID && x.ProductTypeID == obj.ProductTypeID && x.CompanyID == obj.CompanyID).Count();
 
-                        if (Request.Form.Files.Count > 0)
-                        {
-                            var file = HttpContext.Request.Form.Files[0];
-                            fileName = Guid.NewGuid().ToString("N").Substring(0, 12);
-                            var fileExtensionArray = file.FileName.Split('.');
-                            fileName = "SiteConfig_" + fileName + "_" + DateTime.Now.ToString("yyyyMMddHHmmssFFF") + "." + fileExtensionArray[fileExtensionArray.Length - 1];
-                            filePath = Path.Combine(SiteConfigMediaURL, fileName);
-                            using (var fileStream = new FileStream(filePath, FileMode.Create))
-                            {
-                                file.CopyTo(fileStream);
-                            }
-                        }
-
-                        obj.Logo = fileName;
-                        obj.PoweredBy = Convert.ToString(Request.Form["PoweredBy"]);
-                        obj.IsActive = Convert.ToInt32(Request.Form["IsActive"]);
-
-                        var CheckActiveSiteConfig = Data.Where(x => x.IsActive == 1).Count();
-
-                        if (CheckActiveSiteConfig > 0 && obj.IsActive == 1)
+                        if (CheckProductName > 0)
                         {
                             response.Status = 0;
-                            response.ResponseMsg = "1 Configuration allow for Active.";
+                            response.ResponseMsg = "The Product " + obj.ProductName + " Already exists.";
                             response.Token = TokenManager.GenerateToken(claimDTO);
                             response.Data = null;
                         }
 
                         else
                         {
+                            if (Request.Form.Files.Count > 0)
+                            {
+                                string path = Path.Combine(ProductMediaURL, "CompanyID_"+obj.CompanyID);
+                                if (!Directory.Exists(path))
+                                {
+                                    Directory.CreateDirectory(path);
+                                }
+
+                                var file = HttpContext.Request.Form.Files[0];
+                                fileName = Guid.NewGuid().ToString("N").Substring(0, 12);
+                                var fileExtensionArray = file.FileName.Split('.');
+                                fileName = "Product_" + fileName + "_" + DateTime.Now.ToString("yyyyMMddHHmmssFFF") + "." + fileExtensionArray[fileExtensionArray.Length - 1];
+                                filePath = Path.Combine(path, fileName);
+                                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                                {
+                                    file.CopyTo(fileStream);
+                                }
+                            }
+
+                            obj.ProductImage = fileName;
                             obj.CreatedBy = claimDTO.UserID;
                             obj.CreatedOn = TimeZoneManager.GetDateTimeByTimeZone(TimeZonesStarndard.PakistanTimeZone);
                             obj.CreatedByIP = Request.HttpContext.Connection.RemoteIpAddress.ToString();
 
-                            var res = _siteConfigService.AddSiteConfig(obj);
-                            _signalrHub.Clients.All.SendAsync("LoadSiteConfig");
+                            var res = _productService.AddProduct(obj);
+                            _signalrHub.Clients.All.SendAsync("LoadProduct");
 
-                            if (!string.IsNullOrEmpty(res.Logo))
+                            if (!string.IsNullOrEmpty(res.ProductName))
                             {
                                 response.Status = 200;
-                                response.ResponseMsg = "Configuration Is Successfully Added.";
+                                response.ResponseMsg = "The Product " + obj.ProductName + " Is Successfully Added.";
                                 response.Token = TokenManager.GenerateToken(claimDTO);
                                 response.Data = res;
                             }
@@ -216,7 +239,7 @@ namespace AccountERPApi.Controllers
                             {
                                 DeleteFile(filePath);
                                 response.Status = 0;
-                                response.ResponseMsg = "This Configuration Data is not Added.";
+                                response.ResponseMsg = "This Product " + obj.ProductName + " Data is not Added.";
                                 response.Token = TokenManager.GenerateToken(claimDTO);
                                 response.Data = null;
                             }
@@ -248,10 +271,10 @@ namespace AccountERPApi.Controllers
             return response;
         }
 
-        [HttpPost("UpdateSiteConfig")]
-        public Response UpdateSiteConfig()
+        [HttpPost("UpdateProduct")]
+        public Response UpdateProduct()
         {
-            SiteConfig obj;
+            Product obj;
             Response response = new Response();
             ClaimDTO claimDTO = new ClaimDTO();
 
@@ -260,6 +283,28 @@ namespace AccountERPApi.Controllers
 
             try
             {
+                obj = new Product();
+
+                obj.ProductName = Request.Form["ProductName"];
+                obj.ProductAttributeID = Convert.ToInt32(Request.Form["ProductAttributeID"]);
+                obj.ProductBrandID = Convert.ToInt32(Request.Form["ProductBrandID"]);
+                obj.ProductCategoryID = Convert.ToInt32(Request.Form["ProductCategoryID"]);
+                obj.ProductTypeID = Convert.ToInt32(Request.Form["ProductTypeID"]);
+                obj.CompanyID = Convert.ToInt32(Request.Form["CompanyID"]);
+                obj.ProductID = Convert.ToInt32(Request.Form["ProductID"]);
+                obj.Description = Request.Form["Description"];
+                obj.MinStock = Convert.ToInt32(Request.Form["MinStock"]);
+                obj.MaxStock = Convert.ToInt32(Request.Form["MaxStock"]);
+                obj.ReOrderLevel = Convert.ToInt32(Request.Form["ReOrderLevel"]);
+                obj.ManageStock = Convert.ToInt32(Request.Form["ManageStock"]);
+                obj.CostPrice = Convert.ToDecimal(Request.Form["CostPrice"]);
+                obj.UserDefinedCostPrice = Convert.ToDecimal(Request.Form["UserDefinedCostPrice"]);
+                obj.PurchasePrice = Convert.ToDecimal(Request.Form["PurchasePrice"]);
+                obj.RetailPrice = Convert.ToDecimal(Request.Form["RetailPrice"]);
+                obj.ProfitMarginPercentage = Convert.ToInt32(Request.Form["ProfitMarginPercentage"]);
+                obj.ProfitMarginAmount = Convert.ToDecimal(Request.Form["ProfitMarginAmount"]);
+                obj.IsActive = Convert.ToInt32(Request.Form["IsActive"]);
+
                 claimDTO = TokenManager.GetValidateToken(Request);
 
                 if (claimDTO != null)
@@ -274,61 +319,60 @@ namespace AccountERPApi.Controllers
 
                     if (HasPermission)
                     {
-                        var Data = _siteConfigService.GetAll().ToList();
+                        var Data = _productService.GetAll().ToList();
 
-                        obj = new SiteConfig();
+                        var CheckProductName = Data.Where(x => x.ProductID != obj.ProductID && x.ProductName.ToLower() == obj.ProductName.ToLower() && x.ProductAttributeID == obj.ProductAttributeID && x.ProductBrandID == obj.ProductBrandID && x.ProductCategoryID == obj.ProductCategoryID && x.ProductTypeID == obj.ProductTypeID).Count();
 
-                        if (Request.Form.Files.Count > 0)
-                        {
-                            var file = HttpContext.Request.Form.Files[0];
-                            fileName = Guid.NewGuid().ToString("N").Substring(0, 12);
-                            var fileExtensionArray = file.FileName.Split('.');
-                            fileName = "SiteConfig_" + fileName + "_" + DateTime.Now.ToString("yyyyMMddHHmmssFFF") + "." + fileExtensionArray[fileExtensionArray.Length - 1];
-                            filePath = Path.Combine(SiteConfigMediaURL, fileName);
-                            using (var fileStream = new FileStream(filePath, FileMode.Create))
-                            {
-                                file.CopyTo(fileStream);
-                            }
-                        }
-
-                        obj.ConfigurationID = Convert.ToInt32(Request.Form["ConfigurationID"]);
-                        obj.Logo = fileName;
-                        obj.PoweredBy = Convert.ToString(Request.Form["PoweredBy"]);
-                        obj.IsActive = Convert.ToInt32(Request.Form["IsActive"]);
-
-                        var CheckActiveSiteConfig = Data.Where(x => x.ConfigurationID != obj.ConfigurationID && x.IsActive == 1).Count();
-
-                        if (CheckActiveSiteConfig > 0 && obj.IsActive ==1)
+                        if (CheckProductName > 0)
                         {
                             response.Status = 0;
-                            response.ResponseMsg = "1 Configuration allow for Active.";
+                            response.ResponseMsg = "The Product " + obj.ProductName + " Already exists.";
                             response.Token = TokenManager.GenerateToken(claimDTO);
                             response.Data = null;
                         }
                         else
                         {
+                            if (Request.Form.Files.Count > 0)
+                            {
+                                string path = Path.Combine(ProductMediaURL, "CompanyID_" + obj.CompanyID);
+                                if (!Directory.Exists(path))
+                                {
+                                    Directory.CreateDirectory(path);
+                                }
+
+                                var file = HttpContext.Request.Form.Files[0];
+                                fileName = Guid.NewGuid().ToString("N").Substring(0, 12);
+                                var fileExtensionArray = file.FileName.Split('.');
+                                fileName = "Product_" + fileName + "_" + DateTime.Now.ToString("yyyyMMddHHmmssFFF") + "." + fileExtensionArray[fileExtensionArray.Length - 1];
+                                filePath = Path.Combine(path, fileName);
+                                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                                {
+                                    file.CopyTo(fileStream);
+                                }
+                            }
+
+                            obj.ProductImage = fileName;
                             obj.ModifiedBy = claimDTO.UserID;
                             obj.ModifiedOn = TimeZoneManager.GetDateTimeByTimeZone(TimeZonesStarndard.PakistanTimeZone);
                             obj.ModifiedByIP = Request.HttpContext.Connection.RemoteIpAddress.ToString();
 
-                            var Pre_res = _siteConfigService.GetSiteConfigByID(obj.ConfigurationID);
-                            var res = _siteConfigService.UpdateSiteConfig(obj);
+                            var Pre_res = _productService.GetProductByID(obj.ProductID);
+                            var res = _productService.UpdateProduct(obj);
 
-                            _signalrHub.Clients.All.SendAsync("LoadSiteConfig");
+                            _signalrHub.Clients.All.SendAsync("LoadProduct");
 
-                            if (!string.IsNullOrEmpty(res.Logo))
+                            if (!string.IsNullOrEmpty(res.ProductName))
                             {
                                 DeletePreviousFile(Pre_res);
                                 response.Status = 200;
-                                response.ResponseMsg = "Configuration Is Successfully Updated.";
+                                response.ResponseMsg = "The Product " + obj.ProductName + " Is Successfully Updated.";
                                 response.Token = TokenManager.GenerateToken(claimDTO);
                                 response.Data = res;
                             }
                             else
                             {
-                                DeleteFile(filePath);
                                 response.Status = 0;
-                                response.ResponseMsg = "This Configuration Data is not Updated.";
+                                response.ResponseMsg = "This Product " + obj.ProductID + " Data is not Updated.";
                                 response.Token = TokenManager.GenerateToken(claimDTO);
                                 response.Data = null;
                             }
@@ -352,7 +396,6 @@ namespace AccountERPApi.Controllers
             }
             catch (Exception ex)
             {
-                DeleteFile(filePath);
                 response.Status = ExceptionStatusCode.GetExceptionCode(ex);
                 response.ResponseMsg = ex.Message;
             }
@@ -360,8 +403,8 @@ namespace AccountERPApi.Controllers
             return response;
         }
 
-        [HttpPost("GetSiteConfigByID/{id}")]
-        public Response GetSiteConfigByID(int id)
+        [HttpPost("GetProductByID/{id}")]
+        public Response GetProductByID(int id)
         {
             Response response = new Response();
             ClaimDTO claimDTO = new ClaimDTO();
@@ -382,7 +425,7 @@ namespace AccountERPApi.Controllers
 
                     if (HasPermission)
                     {
-                        var Data = _siteConfigService.GetSiteConfigByID(id);
+                        var Data = _productService.GetProductByID(id);
                         if (Data != null)
                         {
                             response.Status = 200;
@@ -427,9 +470,9 @@ namespace AccountERPApi.Controllers
             }
         }
 
-        public void DeletePreviousFile(SiteConfig var)
+        public void DeletePreviousFile(Product var)
         {
-            string FilePath = Path.Combine(SiteConfigMediaURL, var.Logo);
+            string FilePath = Path.Combine(ProductMediaURL, "CompanyID_" + var.CompanyID,var.ProductImage);
 
             DeleteFile(FilePath);
         }

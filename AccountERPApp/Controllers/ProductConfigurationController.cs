@@ -8,7 +8,27 @@ namespace AccountERPApp.Controllers
 {
     public class ProductConfigurationController : Controller
     {
-        public IActionResult Index()
+        public IActionResult ManageProduct()
+        {
+            return View();
+        }
+         
+        public IActionResult ManageProductAttribute()
+        {
+            return View();
+        }
+
+        public IActionResult ManageProductBrand()
+        {
+            return View();
+        }
+
+        public IActionResult ManageProductCategory()
+        {
+            return View();
+        }
+
+        public IActionResult ManageProductType()
         {
             return View();
         }

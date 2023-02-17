@@ -44,6 +44,12 @@ namespace AccountERPApi
             services.AddTransient<ISiteConfigRepository, SiteConfigRepository>();
             services.AddTransient<IRoleRepository, RoleRepository>();
             services.AddTransient<ITimeZonesRepository, TimeZonesRepository>();
+            services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddTransient<IProductAttributeRepository, ProductAttributeRepository>();
+            services.AddTransient<IProductBrandRepository, ProductBrandRepository>();
+            services.AddTransient<IProductCategoryRepository, ProductCategoryRepository>();
+            services.AddTransient<IProductTypeRepository, ProductTypeRepository>();
+
 
             //Services
             services.AddTransient<IAuthenticationService, AuthenticationService>();
@@ -56,6 +62,11 @@ namespace AccountERPApi
             services.AddTransient<ISiteConfigService, SiteConfigService>();
             services.AddTransient<IRoleService, RoleService>();
             services.AddTransient<ITimeZonesService, TimeZonesService>();
+            services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<IProductAttributeService, ProductAttributeService>();
+            services.AddTransient<IProductBrandService, ProductBrandService>();
+            services.AddTransient<IProductCategoryService, ProductCategoryService>();
+            services.AddTransient<IProductTypeService, ProductTypeService>();
 
             services.AddCors(o => o.AddPolicy("MyCorePloicy", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
             services.AddControllers().AddJsonOptions(opts => opts.JsonSerializerOptions.PropertyNamingPolicy = null);

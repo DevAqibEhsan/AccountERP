@@ -1348,6 +1348,855 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Get All Product Attribute",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzY1NDAyMjIsImV4cCI6MTY3Njc1NjIyMiwiaWF0IjoxNjc2NTQwMjIyLCJpc3MiOiJBY2NvdW50RVJQIn0.BOrmfAdGFs5Q8eeO1Y_0EK1s_iGmBwvTuN4EmNp-DA8",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44375/api/ManageProductAttribute/GetAll",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageProductAttribute",
+						"GetAll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Product Attribute By ID",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzY1NDAyMjIsImV4cCI6MTY3Njc1NjIyMiwiaWF0IjoxNjc2NTQwMjIyLCJpc3MiOiJBY2NvdW50RVJQIn0.BOrmfAdGFs5Q8eeO1Y_0EK1s_iGmBwvTuN4EmNp-DA8",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44375/api/ManageProductAttribute/GetProductAttributeByID/2",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageProductAttribute",
+						"GetProductAttributeByID",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Product Attribute",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzY1NDAyMjIsImV4cCI6MTY3Njc1NjIyMiwiaWF0IjoxNjc2NTQwMjIyLCJpc3MiOiJBY2NvdW50RVJQIn0.BOrmfAdGFs5Q8eeO1Y_0EK1s_iGmBwvTuN4EmNp-DA8",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ProductAttributeName\":\"testing\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageProductAttribute/AddProductAttribute",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageProductAttribute",
+						"AddProductAttribute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Product Attribute",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzY1NDAyMjIsImV4cCI6MTY3Njc1NjIyMiwiaWF0IjoxNjc2NTQwMjIyLCJpc3MiOiJBY2NvdW50RVJQIn0.BOrmfAdGFs5Q8eeO1Y_0EK1s_iGmBwvTuN4EmNp-DA8",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ProductAttributeID\":2,\r\n    \"ProductAttributeName\":\"aqib\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageProductAttribute/UpdateProductAttribute",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageProductAttribute",
+						"UpdateProductAttribute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Product Brand",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzY1NDAyMjIsImV4cCI6MTY3Njc1NjIyMiwiaWF0IjoxNjc2NTQwMjIyLCJpc3MiOiJBY2NvdW50RVJQIn0.BOrmfAdGFs5Q8eeO1Y_0EK1s_iGmBwvTuN4EmNp-DA8",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44375/api/ManageProductBrand/GetAll",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageProductBrand",
+						"GetAll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Product Brand By ID",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzY1NDAyMjIsImV4cCI6MTY3Njc1NjIyMiwiaWF0IjoxNjc2NTQwMjIyLCJpc3MiOiJBY2NvdW50RVJQIn0.BOrmfAdGFs5Q8eeO1Y_0EK1s_iGmBwvTuN4EmNp-DA8",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44375/api/ManageProductBrand/GetProductBrandByID/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageProductBrand",
+						"GetProductBrandByID",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Product Brand",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzY1NDAyMjIsImV4cCI6MTY3Njc1NjIyMiwiaWF0IjoxNjc2NTQwMjIyLCJpc3MiOiJBY2NvdW50RVJQIn0.BOrmfAdGFs5Q8eeO1Y_0EK1s_iGmBwvTuN4EmNp-DA8",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ProductBrandName\":\"TCPIP\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageProductBrand/AddProductBrand",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageProductBrand",
+						"AddProductBrand"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Product Brand",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzY1NDAyMjIsImV4cCI6MTY3Njc1NjIyMiwiaWF0IjoxNjc2NTQwMjIyLCJpc3MiOiJBY2NvdW50RVJQIn0.BOrmfAdGFs5Q8eeO1Y_0EK1s_iGmBwvTuN4EmNp-DA8",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ProductBrandID\":2,\r\n    \"ProductBrandName\":\"sadfs fasdf\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageProductBrand/UpdateProductBrand",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageProductBrand",
+						"UpdateProductBrand"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Product Category",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzY1NDAyMjIsImV4cCI6MTY3Njc1NjIyMiwiaWF0IjoxNjc2NTQwMjIyLCJpc3MiOiJBY2NvdW50RVJQIn0.BOrmfAdGFs5Q8eeO1Y_0EK1s_iGmBwvTuN4EmNp-DA8",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44375/api/ManageProductCategory/GetAll",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageProductCategory",
+						"GetAll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Product Category By ID",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzY1NDAyMjIsImV4cCI6MTY3Njc1NjIyMiwiaWF0IjoxNjc2NTQwMjIyLCJpc3MiOiJBY2NvdW50RVJQIn0.BOrmfAdGFs5Q8eeO1Y_0EK1s_iGmBwvTuN4EmNp-DA8",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44375/api/ManageProductCategory/GetProductCategoryByID/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageProductCategory",
+						"GetProductCategoryByID",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Product Category",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzY1NDAyMjIsImV4cCI6MTY3Njc1NjIyMiwiaWF0IjoxNjc2NTQwMjIyLCJpc3MiOiJBY2NvdW50RVJQIn0.BOrmfAdGFs5Q8eeO1Y_0EK1s_iGmBwvTuN4EmNp-DA8",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ProductCategoryName\":\"product Category\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageProductCategory/AddProductCategory",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageProductCategory",
+						"AddProductCategory"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Product Category",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzY1NDAyMjIsImV4cCI6MTY3Njc1NjIyMiwiaWF0IjoxNjc2NTQwMjIyLCJpc3MiOiJBY2NvdW50RVJQIn0.BOrmfAdGFs5Q8eeO1Y_0EK1s_iGmBwvTuN4EmNp-DA8",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ProductCategoryID\":1,\r\n    \"ProductCategoryName\":\"product category aqib\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageProductCategory/UpdateProductCategory",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageProductCategory",
+						"UpdateProductCategory"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Product Type",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzY1NDAyMjIsImV4cCI6MTY3Njc1NjIyMiwiaWF0IjoxNjc2NTQwMjIyLCJpc3MiOiJBY2NvdW50RVJQIn0.BOrmfAdGFs5Q8eeO1Y_0EK1s_iGmBwvTuN4EmNp-DA8",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44375/api/ManageProductType/GetAll",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageProductType",
+						"GetAll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Product Type By ID",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzY1NDAyMjIsImV4cCI6MTY3Njc1NjIyMiwiaWF0IjoxNjc2NTQwMjIyLCJpc3MiOiJBY2NvdW50RVJQIn0.BOrmfAdGFs5Q8eeO1Y_0EK1s_iGmBwvTuN4EmNp-DA8",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44375/api/ManageProductType/GetProductTypeByID/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageProductType",
+						"GetProductTypeByID",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Product Type",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzY1NDAyMjIsImV4cCI6MTY3Njc1NjIyMiwiaWF0IjoxNjc2NTQwMjIyLCJpc3MiOiJBY2NvdW50RVJQIn0.BOrmfAdGFs5Q8eeO1Y_0EK1s_iGmBwvTuN4EmNp-DA8",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ProductTypeName\":\"product type name\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageProductType/AddProductType",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageProductType",
+						"AddProductType"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Product Type",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzY1NDAyMjIsImV4cCI6MTY3Njc1NjIyMiwiaWF0IjoxNjc2NTQwMjIyLCJpc3MiOiJBY2NvdW50RVJQIn0.BOrmfAdGFs5Q8eeO1Y_0EK1s_iGmBwvTuN4EmNp-DA8",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ProductTypeID\":1,\r\n    \"ProductTypeName\":\"product type aqib\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageProductType/UpdateProductType",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageProductType",
+						"UpdateProductType"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Product",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzY1NDAyMjIsImV4cCI6MTY3Njc1NjIyMiwiaWF0IjoxNjc2NTQwMjIyLCJpc3MiOiJBY2NvdW50RVJQIn0.BOrmfAdGFs5Q8eeO1Y_0EK1s_iGmBwvTuN4EmNp-DA8",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44375/api/ManageProduct/GetAll",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageProduct",
+						"GetAll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Active Product",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzY1NDAyMjIsImV4cCI6MTY3Njc1NjIyMiwiaWF0IjoxNjc2NTQwMjIyLCJpc3MiOiJBY2NvdW50RVJQIn0.BOrmfAdGFs5Q8eeO1Y_0EK1s_iGmBwvTuN4EmNp-DA8",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44375/api/ManageProduct/GetAllActive",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageProduct",
+						"GetAllActive"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Product By ID",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzY1NDAyMjIsImV4cCI6MTY3Njc1NjIyMiwiaWF0IjoxNjc2NTQwMjIyLCJpc3MiOiJBY2NvdW50RVJQIn0.BOrmfAdGFs5Q8eeO1Y_0EK1s_iGmBwvTuN4EmNp-DA8",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44375/api/ManageProduct/GetProductByID/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageProduct",
+						"GetProductByID",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Product",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzY1NDAyMjIsImV4cCI6MTY3Njc1NjIyMiwiaWF0IjoxNjc2NTQwMjIyLCJpc3MiOiJBY2NvdW50RVJQIn0.BOrmfAdGFs5Q8eeO1Y_0EK1s_iGmBwvTuN4EmNp-DA8",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "ProductName",
+							"value": "test prodct",
+							"type": "default"
+						},
+						{
+							"key": "Description",
+							"value": "sadfsad fsf sadf",
+							"type": "default"
+						},
+						{
+							"key": "ProductAttributeID",
+							"value": "1",
+							"type": "default"
+						},
+						{
+							"key": "ProductBrandID",
+							"value": "1",
+							"type": "default"
+						},
+						{
+							"key": "ProductTypeID",
+							"value": "1",
+							"type": "default"
+						},
+						{
+							"key": "ProductCategoryID",
+							"value": "1",
+							"type": "default"
+						},
+						{
+							"key": "file",
+							"type": "file",
+							"src": "03d4ca97978d-2021082717070806.png"
+						},
+						{
+							"key": "MinStock",
+							"value": "1",
+							"type": "default"
+						},
+						{
+							"key": "MaxStock",
+							"value": "12",
+							"type": "default"
+						},
+						{
+							"key": "ReOrderLevel",
+							"value": "1",
+							"type": "default"
+						},
+						{
+							"key": "ManageStock",
+							"value": "1",
+							"type": "default"
+						},
+						{
+							"key": "CostPrice",
+							"value": "12.23",
+							"type": "default"
+						},
+						{
+							"key": "UserDefinedCostPrice",
+							"value": "11.11",
+							"type": "default"
+						},
+						{
+							"key": "PurchasePrice",
+							"value": "12.21",
+							"type": "default"
+						},
+						{
+							"key": "RetailPrice",
+							"value": "10.87",
+							"type": "default"
+						},
+						{
+							"key": "ProfitMarginPercentage",
+							"value": "2",
+							"type": "default"
+						},
+						{
+							"key": "ProfitMarginAmount",
+							"value": "10.89",
+							"type": "default"
+						},
+						{
+							"key": "IsActive",
+							"value": "1",
+							"type": "default"
+						},
+						{
+							"key": "CompanyID",
+							"value": "1",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageProduct/AddProduct",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageProduct",
+						"AddProduct"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Product",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzY1NDAyMjIsImV4cCI6MTY3Njc1NjIyMiwiaWF0IjoxNjc2NTQwMjIyLCJpc3MiOiJBY2NvdW50RVJQIn0.BOrmfAdGFs5Q8eeO1Y_0EK1s_iGmBwvTuN4EmNp-DA8",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "ProductID",
+							"value": "4",
+							"type": "default"
+						},
+						{
+							"key": "ProductName",
+							"value": "test prodct",
+							"type": "default"
+						},
+						{
+							"key": "Description",
+							"value": "sdfs f",
+							"type": "default"
+						},
+						{
+							"key": "ProductAttributeID",
+							"value": "1",
+							"type": "default"
+						},
+						{
+							"key": "ProductBrandID",
+							"value": "1",
+							"type": "default"
+						},
+						{
+							"key": "ProductTypeID",
+							"value": "1",
+							"type": "default"
+						},
+						{
+							"key": "ProductCategoryID",
+							"value": "1",
+							"type": "default"
+						},
+						{
+							"key": "MinStock",
+							"value": "1",
+							"type": "default"
+						},
+						{
+							"key": "MaxStock",
+							"value": "1",
+							"type": "default"
+						},
+						{
+							"key": "ReOrderLevel",
+							"value": "1",
+							"type": "default"
+						},
+						{
+							"key": "ManageStock",
+							"value": "1",
+							"type": "default"
+						},
+						{
+							"key": "CostPrice",
+							"value": "12.89",
+							"type": "default"
+						},
+						{
+							"key": "UserDefinedCostPrice",
+							"value": "21.65",
+							"type": "default"
+						},
+						{
+							"key": "PurchasePrice",
+							"value": "13.54",
+							"type": "default"
+						},
+						{
+							"key": "RetailPrice",
+							"value": "15.34",
+							"type": "default"
+						},
+						{
+							"key": "ProfitMarginPercentage",
+							"value": "2",
+							"type": "default"
+						},
+						{
+							"key": "ProfitMarginAmount",
+							"value": "31.12",
+							"type": "default"
+						},
+						{
+							"key": "IsActive",
+							"value": "1",
+							"type": "default"
+						},
+						{
+							"key": "CompanyID",
+							"value": "1",
+							"type": "default"
+						},
+						{
+							"key": "file",
+							"type": "file",
+							"src": "1e6884bc3d78-20210827172029221.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageProduct/UpdateProduct",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageProduct",
+						"UpdateProduct"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
