@@ -17,5 +17,7 @@ namespace AccountERPApi.IServices
         Product UpdateProduct(Product obj);
 
         Product GetProductByID(int id);
+
+        object GetAllProduct_Attribute_Brand_Category_Type_Data();
     }
 }

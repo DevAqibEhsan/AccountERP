@@ -40,5 +40,10 @@ namespace AccountERPApi.Services
         {
             return _repository.UpdateProduct(obj);
         }
+
+        public object GetAllProduct_Attribute_Brand_Category_Type_Data()
+        {
+            return _repository.GetAllProduct_Attribute_Brand_Category_Type_Data();
+        }
     }
 }

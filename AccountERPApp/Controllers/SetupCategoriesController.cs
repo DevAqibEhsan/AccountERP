@@ -8,11 +8,6 @@ namespace AccountERPApp.Controllers
 {
     public class SetupCategoriesController : Controller
     {
-        public IActionResult Brands()
-        {
-            return View();
-        }
-
         public IActionResult Customer()
         {
             return View();
@@ -29,11 +24,6 @@ namespace AccountERPApp.Controllers
         }
 
         public IActionResult OtherContact()
-        {
-            return View();
-        }
-
-        public IActionResult Product()
         {
             return View();
         }

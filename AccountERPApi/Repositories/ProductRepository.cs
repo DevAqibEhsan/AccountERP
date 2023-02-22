@@ -101,5 +101,61 @@ namespace AccountERPApi.Repositories
 
             return _dapper.Get<Product>(@"usp_Product_Update", parameters);
         }
+
+        public object GetAllProduct_Attribute_Brand_Category_Type_Data()
+        {
+            DynamicParameters parameters = new DynamicParameters();
+
+            var tupple = _dapper.GetMultipleObjects(@"usp_Product_Attribute_Brand_Category_Type_GetAll", parameters,gr=> gr.Read<ProductAttribute>(),gr=> gr.Read<ProductBrand>(),gr=> gr.Read<ProductCategory>(),gr=> gr.Read<ProductType>());
+
+            List<ProductAttribute> list_productAttributes = new List<ProductAttribute>();
+            foreach (var item in tupple.Item1)
+            {
+                ProductAttribute obj_productAttribute = new ProductAttribute();
+                obj_productAttribute.ProductAttributeID = item.ProductAttributeID;
+                obj_productAttribute.ProductAttributeName = item.ProductAttributeName;
+
+                list_productAttributes.Add(obj_productAttribute);
+            }
+
+            List<ProductBrand> list_productBrands = new List<ProductBrand>();
+            foreach (var item in tupple.Item2)
+            {
+                ProductBrand obj_productBrand = new ProductBrand();
+                obj_productBrand.ProductBrandID = item.ProductBrandID;
+                obj_productBrand.ProductBrandName = item.ProductBrandName;
+
+                list_productBrands.Add(obj_productBrand);
+            }
+
+            List<ProductCategory> list_productCategories = new List<ProductCategory>();
+            foreach (var item in tupple.Item3)
+            {
+                ProductCategory obj_productCategory = new ProductCategory();
+                obj_productCategory.ProductCategoryID = item.ProductCategoryID;
+                obj_productCategory.ProductCategoryName = item.ProductCategoryName;
+
+                list_productCategories.Add(obj_productCategory);
+            }
+
+            List<ProductType> list_productTypes = new List<ProductType>();
+            foreach (var item in tupple.Item4)
+            {
+                ProductType obj_productType = new ProductType();
+                obj_productType.ProductTypeID = item.ProductTypeID;
+                obj_productType.ProductTypeName = item.ProductTypeName;
+
+                list_productTypes.Add(obj_productType);
+            }
+
+            return new
+            {
+                ProductAttribute = list_productAttributes,
+                ProductBrand = list_productBrands,
+                ProductCategory = list_productCategories,
+                ProductType = list_productTypes
+            };
+        }
+
     }
 }

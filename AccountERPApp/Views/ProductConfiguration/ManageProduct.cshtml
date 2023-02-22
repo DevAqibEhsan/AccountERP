@@ -3,5 +3,265 @@
     ViewData["Title"] = "Manage Product";
 }
 
-<h1>ManageProduct</h1>
+<link href="~/css/CommonStyle.css" rel="stylesheet" />
+<script src="~/js/Common.js"></script>
+<script src="~/js/ProductConfiguration/ManageProduct.js"></script>
 
+<style>
+
+    #form {
+        display: none;
+    }
+
+    .card-header .btnsection {
+        display: inline-block;
+        float: right;
+    }
+</style>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#btnAddProduct").click(function () { FormShow() });
+
+        $("#btnCancel").click(function () { CancelButtonAction(); });
+
+        RemoveSortingClass('tblAction');
+
+    });
+
+</script>
+
+<div class="maincontent">
+
+    @*Grid / Data Table Start*@
+    <div id="grid" class="card">
+        <div class="card-header">
+            @ViewData["Title"]
+            <div class="btnsection">
+                <button type="button" id="btnAddProduct" class="btn btn-success1"><i class="fa fa-plus" style="margin-right: 10px;"></i> Add</button>
+            </div>
+        </div>
+        <div class="card-body">
+            <div id="dvDataTable">
+                <table id="dataTableProduct" class="display" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th class="text-center">S.No</th>
+                            <th class="text-center">Company Name</th>
+                            <th class="text-center">Product Name</th>
+                            <th class="text-center">Product Description</th>
+                            <th class="text-center">Attribute Name</th>
+                            <th class="text-center">Brand Name</th>
+                            <th class="text-center">Category Name</th>
+                            <th class="text-center">Type Name</th>
+                            <th class="text-center">Manage Stock</th>
+                            <th class="text-center">Max Stock</th>
+                            <th class="text-center">Min Stock</th>
+                            <th class="text-center">Product Image</th>
+                            <th class="text-center">Re-Order Level</th>
+                            <th class="text-center">Cost Price</th>
+                            <th class="text-center">User Defind Cost Price</th>
+                            <th class="text-center">Purchase Price</th>
+                            <th class="text-center">Retail Price</th>
+                            <th class="text-center">Profit Margin Percentage</th>
+                            <th class="text-center">Profit Margin Amount</th>
+                            <th class="text-center">Is Product Active</th>
+                            <th class="text-center">Created User</th>
+                            <th class="text-center">Created On</th>
+                            <th class="text-center">Created User IP</th>
+                            <th class="text-center">Last User</th>
+                            <th class="text-center">Last Modified</th>
+                            <th class="text-center">Last User IP</th>
+                            <th class="text-center" id="tblAction">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dataRow">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    @*Grid / Data Table End*@
+
+    @*Add/Edit Form Section Start*@
+    <div id="form" class="card">
+        <div class="card-header">
+            @ViewData["Title"]
+        </div>
+        <div class="card-body">
+            <form id="ManageProductForm">
+                <input type="hidden" name="hdnProductID" id="hdnProductID" value="0" />
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="ddlCompanyID">Company Name</label>
+                        <select id="ddlCompanyID" class="form-control">
+                            <option value="1">ABC</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="txtProductName">Product Name</label>
+                        <input type="text" class="form-control" id="txtProductName" placeholder="Product Product Name">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="txtProductDescription">Product Description</label>
+                        <input type="text" class="form-control" id="txtProductDescription" placeholder="Product Product Description">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="ddlProductAttributeID">Product Attribute Name</label>
+                        <select id="ddlProductAttributeID" class="form-control">
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="ddlProductBrandID">Product Brand Name</label>
+                        <select id="ddlProductBrandID" class="form-control">
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="ddlProductCategoryID">Product Category Name</label>
+                        <select id="ddlProductCategoryID" class="form-control">
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="ddlProductTypeID">Product Type Name</label>
+                        <select id="ddlProductTypeID" class="form-control">
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="txtProductImage">Upload Image</label>
+                        <input type="file" class="form-control" id="txtProductImage" placeholder="Upload Image">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="ddlManageStock">Manage Stock</label>
+                        <select id="ddlManageStock" class="form-control">
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="dvProductImage" class="form-group" style="display:none;">
+                    <div class="form-group col-md-6">
+                        <label for="">Uploaded Product Image</label>
+                        <img id="imgProductImage" src="..." class="img-thumbnail" alt="Product Image">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="txtMaxStock">Max Stock</label>
+                        <input type="text" class="form-control" id="txtMaxStock" placeholder="Max Stock">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="txtMinStock">Min Stock</label>
+                        <input type="text" class="form-control" id="txtMinStock" placeholder="Min Stock">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="txtReOrderLevel">Re-Order Level</label>
+                        <input type="text" class="form-control" id="txtReOrderLevel" placeholder="Re Order Level">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="txtCostPrice">Cost Price</label>
+                        <input type="text" class="form-control" id="txtCostPrice" placeholder="Cost Price">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="txtUserDefinedCostPrice">User Defined Cost Price</label>
+                        <input type="text" class="form-control" id="txtUserDefinedCostPrice" placeholder="User Defind Cost Price">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="txtPurchasePrice">Purchase Price</label>
+                        <input type="text" class="form-control" id="txtPurchasePrice" placeholder="Purchase Price">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="txtRetailPrice">Retail Price</label>
+                        <input type="text" class="form-control" id="txtRetailPrice" placeholder="Retail Price">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="txtProfitMarginPercentage">Profit Margin Percentage</label>
+                        <input type="text" class="form-control" id="txtProfitMarginPercentage" placeholder="Profit Margin Percentage">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="txtProfitMarginAmount">Profit Margin Amount</label>
+                        <input type="text" class="form-control" id="txtProfitMarginAmount" placeholder="Profit Margin Amount">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="chkProductIsActive">
+                        <label class="form-check-label" for="chkProductIsActive">Is Active Product</label>
+                    </div>
+                </div>
+
+                <div class="btnsection">
+                    <button type="button" class="btn btn-primary1" id="btnSave">Save</button>
+                    <button type="button" id="btnCancel" class="btn btn-secondary1"><i class="fa fa-close" style="margin-right: 10px;"></i>Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    @*Add/Edit Form Section End*@
+
+</div>
+
+<script type="text/x-handlebars" id="temp_ddlCompanyID">
+
+    {{#each this}}
+    <option value="{{CompanyID}}">{{CompanyName}}</option>
+    {{/each}}
+
+</script>
+
+<script type="text/x-handlebars" id="temp_ddlProductAttributeID">
+
+    {{#each this}}
+    <option value="{{ProductAttributeID}}">{{ProductAttributeName}}</option>
+    {{/each}}
+
+</script>
+
+<script type="text/x-handlebars" id="temp_ddlProductBrandID">
+
+    {{#each this}}
+    <option value="{{ProductBrandID}}">{{ProductBrandName}}</option>
+    {{/each}}
+
+</script>
+
+<script type="text/x-handlebars" id="temp_ddlProductCategoryID">
+
+    {{#each this}}
+    <option value="{{ProductCategoryID}}">{{ProductCategoryName}}</option>
+    {{/each}}
+
+</script>
+
+<script type="text/x-handlebars" id="temp_ddlProductTypeID">
+
+    {{#each this}}
+    <option value="{{ProductTypeID}}">{{ProductTypeName}}</option>
+    {{/each}}
+
+</script>
