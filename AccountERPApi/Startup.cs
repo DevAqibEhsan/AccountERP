@@ -49,6 +49,13 @@ namespace AccountERPApi
             services.AddTransient<IProductBrandRepository, ProductBrandRepository>();
             services.AddTransient<IProductCategoryRepository, ProductCategoryRepository>();
             services.AddTransient<IProductTypeRepository, ProductTypeRepository>();
+            services.AddTransient<IAssignedPermissionRepository, AssignedPermissionRepository>();
+            services.AddTransient<IBranchRepository, BranchRepository>();
+            services.AddTransient<ICompanyRepository, CompanyRepository>();
+            services.AddTransient<ICustomerRepository, CustomerRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IVendorRepository, VendorRepository>();
+            services.AddTransient<IWareHouseRepository, WareHouseRepository>();
 
 
             //Services
@@ -67,6 +74,13 @@ namespace AccountERPApi
             services.AddTransient<IProductBrandService, ProductBrandService>();
             services.AddTransient<IProductCategoryService, ProductCategoryService>();
             services.AddTransient<IProductTypeService, ProductTypeService>();
+            services.AddTransient<IAssignedPermissionService, AssignedPermissionService>();
+            services.AddTransient<IBranchService, BranchService>();
+            services.AddTransient<ICompanyService, CompanyService>();
+            services.AddTransient<ICustomerService, CustomerService>();
+            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IVendorService, VendorService>();
+            services.AddTransient<IWareHouseService, WareHouseService>();
 
             services.AddCors(o => o.AddPolicy("MyCorePloicy", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
             services.AddControllers().AddJsonOptions(opts => opts.JsonSerializerOptions.PropertyNamingPolicy = null);

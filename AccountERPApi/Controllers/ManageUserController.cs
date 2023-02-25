@@ -5,10 +5,8 @@ using AccountERPClassLibraries.DTOLibraries;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
-using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -16,23 +14,16 @@ namespace AccountERPApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ManageSiteConfigController : ControllerBase
+    public class ManageUserController : ControllerBase
     {
-        private readonly IConfiguration _configuration;
-        private ISiteConfigService _siteConfigService;
-
+        private readonly IUserService _userService;
         private readonly IHubContext<SignalrServer> _signalrHub;
-
-        private string SiteConfigMediaURL = string.Empty;
-        public ManageSiteConfigController(IConfiguration configuration,ISiteConfigService siteConfigService, IHubContext<SignalrServer> signalrHub)
+        public ManageUserController(IUserService userService,IHubContext<SignalrServer> signalrHub)
         {
-            _siteConfigService = siteConfigService;
+            _userService = userService;
             _signalrHub = signalrHub;
-            _configuration = configuration;
-
-            SiteConfigMediaURL = _configuration.GetSection("UrlSetting").GetSection("SiteConfigMediaURL").Value;
-
         }
+
         [HttpPost("GetAll")]
         public Response GetAll()
         {
@@ -55,7 +46,7 @@ namespace AccountERPApi.Controllers
 
                     if (HasPermission)
                     {
-                        var Data = _siteConfigService.GetAll().ToList();
+                        var Data = _userService.GetAll().ToList();
 
                         response.Status = 200;
                         response.Token = TokenManager.GenerateToken(claimDTO);
@@ -108,7 +99,7 @@ namespace AccountERPApi.Controllers
 
                     if (HasPermission)
                     {
-                        var Data = _siteConfigService.GetAllActive().ToList();
+                        var Data = _userService.GetAllActive().ToList();
 
                         response.Status = 200;
                         response.Token = TokenManager.GenerateToken(claimDTO);
@@ -139,15 +130,11 @@ namespace AccountERPApi.Controllers
             return response;
         }
 
-        [HttpPost("AddSiteConfig")]
-        public Response AddSiteConfig()
+        [HttpPost("AddUser")]
+        public Response AddUser(User obj)
         {
-            SiteConfig obj;
             Response response = new Response();
             ClaimDTO claimDTO = new ClaimDTO();
-
-            string fileName = string.Empty;
-            string filePath = string.Empty;
 
             try
             {
@@ -165,33 +152,14 @@ namespace AccountERPApi.Controllers
 
                     if (HasPermission)
                     {
-                        var Data = _siteConfigService.GetAll().ToList();
+                        var Data = _userService.GetAll().ToList();
 
-                        obj = new SiteConfig();
+                        var CHeckUserName = Data.Where(x => x.UserName.ToLower() == obj.UserName.ToLower()).Count();
 
-                        if (Request.Form.Files.Count > 0)
-                        {
-                            var file = HttpContext.Request.Form.Files[0];
-                            fileName = Guid.NewGuid().ToString("N").Substring(0, 12);
-                            var fileExtensionArray = file.FileName.Split('.');
-                            fileName = "SiteConfig_" + fileName + "_" + DateTime.Now.ToString("yyyyMMddHHmmssFFF") + "." + fileExtensionArray[fileExtensionArray.Length - 1];
-                            filePath = Path.Combine(SiteConfigMediaURL, fileName);
-                            using (var fileStream = new FileStream(filePath, FileMode.Create))
-                            {
-                                file.CopyTo(fileStream);
-                            }
-                        }
-
-                        obj.Logo = fileName;
-                        obj.PoweredBy = Convert.ToString(Request.Form["PoweredBy"]);
-                        obj.IsActive = Convert.ToInt32(Request.Form["IsActive"]);
-
-                        var CheckActiveSiteConfig = Data.Where(x => x.IsActive == 1).Count();
-
-                        if (CheckActiveSiteConfig > 0 && obj.IsActive == 1)
+                        if (CHeckUserName > 0)
                         {
                             response.Status = 0;
-                            response.ResponseMsg = "1 Configuration allow for Active.";
+                            response.ResponseMsg = "The User " + obj.UserName + " Already exists.";
                             response.Token = TokenManager.GenerateToken(claimDTO);
                             response.Data = null;
                         }
@@ -202,21 +170,20 @@ namespace AccountERPApi.Controllers
                             obj.CreatedOn = TimeZoneManager.GetDateTimeByTimeZone(TimeZonesStarndard.PakistanTimeZone);
                             obj.CreatedByIP = Request.HttpContext.Connection.RemoteIpAddress.ToString();
 
-                            var res = _siteConfigService.AddSiteConfig(obj);
-                            _signalrHub.Clients.All.SendAsync("LoadSiteConfig");
+                            var res = _userService.AddUser(obj);
+                            _signalrHub.Clients.All.SendAsync("LoadUser");
 
-                            if (!string.IsNullOrEmpty(res.Logo))
+                            if (!string.IsNullOrEmpty(res.UserName))
                             {
                                 response.Status = 200;
-                                response.ResponseMsg = "Configuration Is Successfully Added.";
+                                response.ResponseMsg = "The User " + obj.UserName + " Is Successfully Added.";
                                 response.Token = TokenManager.GenerateToken(claimDTO);
                                 response.Data = res;
                             }
                             else
                             {
-                                DeleteFile(filePath);
                                 response.Status = 0;
-                                response.ResponseMsg = "This Configuration Data is not Added.";
+                                response.ResponseMsg = "This User " + obj.UserName + " Data is not Added.";
                                 response.Token = TokenManager.GenerateToken(claimDTO);
                                 response.Data = null;
                             }
@@ -240,7 +207,6 @@ namespace AccountERPApi.Controllers
             }
             catch (Exception ex)
             {
-                DeleteFile(filePath);
                 response.Status = ExceptionStatusCode.GetExceptionCode(ex);
                 response.ResponseMsg = ex.Message;
             }
@@ -248,15 +214,11 @@ namespace AccountERPApi.Controllers
             return response;
         }
 
-        [HttpPost("UpdateSiteConfig")]
-        public Response UpdateSiteConfig()
+        [HttpPost("UpdateUser")]
+        public Response UpdateUser(User obj)
         {
-            SiteConfig obj;
             Response response = new Response();
             ClaimDTO claimDTO = new ClaimDTO();
-
-            string fileName = string.Empty;
-            string filePath = string.Empty;
 
             try
             {
@@ -274,34 +236,14 @@ namespace AccountERPApi.Controllers
 
                     if (HasPermission)
                     {
-                        var Data = _siteConfigService.GetAll().ToList();
+                        var Data = _userService.GetAll().ToList();
 
-                        obj = new SiteConfig();
+                        var CheckUserName = Data.Where(x => x.UserID != obj.UserID && x.UserName.ToLower() == obj.UserName.ToLower()).Count();
 
-                        if (Request.Form.Files.Count > 0)
-                        {
-                            var file = HttpContext.Request.Form.Files[0];
-                            fileName = Guid.NewGuid().ToString("N").Substring(0, 12);
-                            var fileExtensionArray = file.FileName.Split('.');
-                            fileName = "SiteConfig_" + fileName + "_" + DateTime.Now.ToString("yyyyMMddHHmmssFFF") + "." + fileExtensionArray[fileExtensionArray.Length - 1];
-                            filePath = Path.Combine(SiteConfigMediaURL, fileName);
-                            using (var fileStream = new FileStream(filePath, FileMode.Create))
-                            {
-                                file.CopyTo(fileStream);
-                            }
-                        }
-
-                        obj.ConfigurationID = Convert.ToInt32(Request.Form["ConfigurationID"]);
-                        obj.Logo = fileName;
-                        obj.PoweredBy = Convert.ToString(Request.Form["PoweredBy"]);
-                        obj.IsActive = Convert.ToInt32(Request.Form["IsActive"]);
-
-                        var CheckActiveSiteConfig = Data.Where(x => x.ConfigurationID != obj.ConfigurationID && x.IsActive == 1).Count();
-
-                        if (CheckActiveSiteConfig > 0 && obj.IsActive ==1)
+                        if (CheckUserName > 0)
                         {
                             response.Status = 0;
-                            response.ResponseMsg = "1 Configuration allow for Active.";
+                            response.ResponseMsg = "The User " + obj.UserName + " Already exists.";
                             response.Token = TokenManager.GenerateToken(claimDTO);
                             response.Data = null;
                         }
@@ -311,28 +253,21 @@ namespace AccountERPApi.Controllers
                             obj.ModifiedOn = TimeZoneManager.GetDateTimeByTimeZone(TimeZonesStarndard.PakistanTimeZone);
                             obj.ModifiedByIP = Request.HttpContext.Connection.RemoteIpAddress.ToString();
 
-                            var Pre_res = _siteConfigService.GetSiteConfigByID(obj.ConfigurationID);
-                            var res = _siteConfigService.UpdateSiteConfig(obj);
+                            var res = _userService.UpdateUser(obj);
 
-                            _signalrHub.Clients.All.SendAsync("LoadSiteConfig");
+                            _signalrHub.Clients.All.SendAsync("LoadUser");
 
-                            if (!string.IsNullOrEmpty(res.Logo))
+                            if (!string.IsNullOrEmpty(res.UserName))
                             {
-                                if (Pre_res.Logo != res.Logo)
-                                {
-                                    DeletePreviousFile(Pre_res);
-                                }
-
                                 response.Status = 200;
-                                response.ResponseMsg = "Configuration Is Successfully Updated.";
+                                response.ResponseMsg = "The User " + obj.UserName + " Is Successfully Updated.";
                                 response.Token = TokenManager.GenerateToken(claimDTO);
                                 response.Data = res;
                             }
                             else
                             {
-                                DeleteFile(filePath);
                                 response.Status = 0;
-                                response.ResponseMsg = "This Configuration Data is not Updated.";
+                                response.ResponseMsg = "This User " + obj.UserName + " Data is not Updated.";
                                 response.Token = TokenManager.GenerateToken(claimDTO);
                                 response.Data = null;
                             }
@@ -356,7 +291,6 @@ namespace AccountERPApi.Controllers
             }
             catch (Exception ex)
             {
-                DeleteFile(filePath);
                 response.Status = ExceptionStatusCode.GetExceptionCode(ex);
                 response.ResponseMsg = ex.Message;
             }
@@ -364,8 +298,8 @@ namespace AccountERPApi.Controllers
             return response;
         }
 
-        [HttpPost("GetSiteConfigByID/{id}")]
-        public Response GetSiteConfigByID(int id)
+        [HttpPost("GetUserByID/{id}")]
+        public Response GetUserByID(int id)
         {
             Response response = new Response();
             ClaimDTO claimDTO = new ClaimDTO();
@@ -386,7 +320,7 @@ namespace AccountERPApi.Controllers
 
                     if (HasPermission)
                     {
-                        var Data = _siteConfigService.GetSiteConfigByID(id);
+                        var Data = _userService.GetUserByID(id);
                         if (Data != null)
                         {
                             response.Status = 200;
@@ -417,25 +351,6 @@ namespace AccountERPApi.Controllers
             }
 
             return response;
-        }
-
-        public void DeleteFile(string FileNameWithPath)
-        {
-            if (!string.IsNullOrEmpty(FileNameWithPath))
-            {
-                FileInfo file = new FileInfo(FileNameWithPath);
-                if (file.Exists)//check file exsit or not  
-                {
-                    file.Delete();
-                }
-            }
-        }
-
-        public void DeletePreviousFile(SiteConfig var)
-        {
-            string FilePath = Path.Combine(SiteConfigMediaURL, var.Logo);
-
-            DeleteFile(FilePath);
         }
     }
 }
