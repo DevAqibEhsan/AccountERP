@@ -154,7 +154,7 @@ namespace AccountERPApi.Controllers
                     {
                         var Data = _customerService.GetAll().ToList();
 
-                        var CHeckCustomerName = Data.Where(x => x.CustomerName.ToLower() == obj.CustomerName.ToLower()).Count();
+                        var CHeckCustomerName = Data.Where(x => x.CompanyID == obj.CompanyID && x.BranchID == obj.BranchID && x.CustomerName.ToLower() == obj.CustomerName.ToLower()).Count();
 
                         if (CHeckCustomerName > 0)
                         {
@@ -238,7 +238,7 @@ namespace AccountERPApi.Controllers
                     {
                         var Data = _customerService.GetAll().ToList();
 
-                        var CheckCustomerName = Data.Where(x => x.CustomerID != obj.CustomerID && x.CustomerName.ToLower() == obj.CustomerName.ToLower()).Count();
+                        var CheckCustomerName = Data.Where(x => x.CustomerID != obj.CustomerID && x.CompanyID == obj.CompanyID && x.BranchID == obj.BranchID && x.CustomerName.ToLower() == obj.CustomerName.ToLower()).Count();
 
                         if (CheckCustomerName > 0)
                         {

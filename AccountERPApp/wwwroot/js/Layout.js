@@ -92,7 +92,13 @@ $(document).ready(function () {
 
 
 function MomentDateTimeFormat(inputdate) {
-    return moment(inputdate.replace(/\Z$/, '')).format('DD/MM/YYYY hh:mm:ss a')
+    if (inputdate != null) {
+        return moment(inputdate.replace(/\Z$/, '')).format('DD/MM/YYYY hh:mm:ss a')
+    }
+    else {
+        return "-";
+    }
+    
 }
 
 

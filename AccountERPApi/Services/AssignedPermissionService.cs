@@ -26,6 +26,11 @@ namespace AccountERPApi.Services
             return _repository.GetAll();
         }
 
+        public object GetAllRole_Module_ModulePageAction_Data()
+        {
+            return _repository.GetAllRole_Module_ModulePageAction_Data();
+        }
+
         public AssignedPermission UpdateAssignedPermission(AssignedPermission obj)
         {
             return _repository.UpdateAssignedPermission(obj);

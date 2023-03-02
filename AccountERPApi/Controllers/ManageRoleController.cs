@@ -49,6 +49,11 @@ namespace AccountERPApi.Controllers
                     {
                         var Data = _roleService.GetAll().ToList();
 
+                        if (claimDTO.RoleID != 1)
+                        {
+                            Data = Data.Where(x => x.RoleID != 1).ToList(); ;
+                        }
+
                         response.Status = 200;
                         response.Token = TokenManager.GenerateToken(claimDTO);
                         response.Data = Data;

@@ -11,5 +11,6 @@ namespace AccountERPApi.IServices
         public List<AssignedPermission> GetAll();
         AssignedPermission AddAssignedPermission(AssignedPermission obj);
         AssignedPermission UpdateAssignedPermission(AssignedPermission obj);
+        object GetAllRole_Module_ModulePageAction_Data();
     }
 }

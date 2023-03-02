@@ -3,5 +3,332 @@
     ViewData["Title"] = "Manage Company";
 }
 
-<h1>Manage Company</h1>
+<link href="~/css/CommonStyle.css" rel="stylesheet" />
+<script src="~/js/Common.js"></script>
+<script src="~/js/SystemManagement/ManageCompany.js"></script>
+
+<style>
+
+    #form {
+        display: none;
+    }
+
+    .card-header .btnsection {
+        display: inline-block;
+        float: right;
+    }
+</style>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#btnAddCompany").click(function () { FormShow() });
+
+        $("#btnCancel").click(function () { CancelButtonAction(); });
+
+        RemoveSortingClass('tblAction');
+
+    });
+
+</script>
+
+<div class="maincontent">
+
+    @*Grid / Data Table Start*@
+    <div id="grid" class="card">
+        <div class="card-header">
+            @ViewData["Title"]
+            <div class="btnsection">
+                <button type="button" id="btnAddCompany" class="btn btn-success1"><i class="fa fa-plus" style="margin-right: 10px;"></i> Add</button>
+            </div>
+        </div>
+        <div class="card-body">
+            <div id="dvDataTable">
+                <table id="dataTableCompany" class="display" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th class="text-center">S.No</th>
+                            <th class="text-center">Company Name</th>
+                            <th class="text-center">Business Type </th>
+                            <th class="text-center">TimeZone </th>
+                            <th class="text-center">Postal Address 1</th>
+                            <th class="text-center">Postal Address 2</th>
+                            <th class="text-center">Postal Phone</th>
+                            <th class="text-center">Postal Country</th>
+                            <th class="text-center">Postal State</th>
+                            <th class="text-center">Postal City</th>
+                            <th class="text-center">Postal ZipCode</th>
+                            <th class="text-center">Billing Address 1</th>
+                            <th class="text-center">Billing Address 2</th>
+                            <th class="text-center">Billing Phone</th>
+                            <th class="text-center">Billing Country</th>
+                            <th class="text-center">Billing State</th>
+                            <th class="text-center">Billing City</th>
+                            <th class="text-center">Billing ZipCode</th>
+                            <th class="text-center">Company Logo</th>
+                            <th class="text-center">NTN</th>
+                            <th class="text-center">STN</th>
+                            <th class="text-center">Website URL</th>
+                            <th class="text-center">POSID</th>
+                            <th class="text-center">No. Of Users Allowed</th>
+                            <th class="text-center">Is Allow Power By</th>
+                            <th class="text-center">Powered By</th>
+                            <th class="text-center">Created User</th>
+                            <th class="text-center">Created On</th>
+                            <th class="text-center">Created User IP</th>
+                            <th class="text-center">Last User</th>
+                            <th class="text-center">Last Modified</th>
+                            <th class="text-center">Last User IP</th>
+                            <th class="text-center" id="tblAction">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dataRow">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    @*Grid / Data Table End*@
+
+    @*Add/Edit Form Section Start*@
+    <div id="form" class="card">
+        <div class="card-header">
+            @ViewData["Title"]
+        </div>
+        <div class="card-body">
+            <form id="ManageCompanyForm">
+                <input type="hidden" name="hdnCompanyID" id="hdnCompanyID" value="0" />
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="txtCompanyName">Company Name</label>
+                        <input type="text" class="form-control" id="txtCompanyName" placeholder="Company Name">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="ddlBusinessTypeID">Business Type</label>
+                        <select id="ddlBusinessTypeID" class="form-control">
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="ddlTimeZoneID">Time Zone</label>
+                        <select id="ddlTimeZoneID" class="form-control">
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="txtNoOfUsers">No. Of Users Allow</label>
+                        <input type="text" class="form-control" id="txtNoOfUsers" placeholder="No. Of Users Allow">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="txtPostalAddress1">Postal Address 1</label>
+                        <input type="text" class="form-control" id="txtPostalAddress1" placeholder="Postal Address 1">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="txtPostalAddress2">Postal Address 2</label>
+                        <input type="text" class="form-control" id="txtPostalAddress2" placeholder="Postal Address 2">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="txtPostalPhone">Postal Phone</label>
+                        <input type="text" class="form-control" id="txtPostalPhone" placeholder="Postal Phone">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="ddlPostalCountryID">Postal Country</label>
+                        <select id="ddlPostalCountryID" class="form-control">
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="ddlPostalStateID">Postal State</label>
+                        <select id="ddlPostalStateID" class="form-control">
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="ddlPostalCityID">Postal City</label>
+                        <select id="ddlPostalCityID" class="form-control">
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="txtBillingAddress1">Billing Address 1</label>
+                        <input type="text" class="form-control" id="txtBillingAddress1" placeholder="Billing Address 1">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="txtBillingAddress2">Billing Address 2</label>
+                        <input type="text" class="form-control" id="txtBillingAddress2" placeholder="Billing Address 2">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="txtBillingPhone">Billing Phone</label>
+                        <input type="text" class="form-control" id="txtBillingPhone" placeholder="Billing Phone">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="ddlBillingCountryID">Billing Country</label>
+                        <select id="ddlBillingCountryID" class="form-control">
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="ddlBillingStateID">Billing State</label>
+                        <select id="ddlBillingStateID" class="form-control">
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="ddlBillingCityID">Billing City</label>
+                        <select id="ddlBillingCityID" class="form-control">
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="txtPostalZipCode">Postal ZipCode</label>
+                        <input type="text" class="form-control" id="txtPostalZipCode" placeholder="Postal ZipCode">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="txtBillingZipCode">Billing ZipCode</label>
+                        <input type="text" class="form-control" id="txtBillingZipCode" placeholder="Billing ZipCode">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="txtCompanyLogo">Company Logo</label>
+                        <input type="file" class="form-control" id="txtCompanyLogo" placeholder="Company Logo">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="txtNTN">NTN</label>
+                        <input type="text" class="form-control" id="txtNTN" placeholder="NTN">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="txtSTN">STN</label>
+                        <input type="text" class="form-control" id="txtSTN" placeholder="STN">
+                    </div>
+                </div>
+
+                <div id="dvLogo" class="form-group" style="display:none;">
+                    <div class="form-group col-md-6">
+                        <label for="txtCompanyUploadedLogo">Uploaded Logo</label>
+                        <img id="imgLogo" src="..." class="img-thumbnail" alt="Company Logo">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="txtWebsiteURL">Website URL</label>
+                        <input type="text" class="form-control" id="txtWebsiteURL" placeholder="Website URL">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="txtPOSID">POSID</label>
+                        <input type="text" class="form-control" id="txtPOSID" placeholder="POSID">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="ddlIsAllowPowerBy">Is Allow Power By</label>
+                        <select id="ddlIsAllowPowerBy" class="form-control">
+                            <option value="">Please Select</option>
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="txtPoweredBy">Powered By</label>
+                        <input type="text" class="form-control" id="txtPoweredBy" placeholder="Powered By">
+                    </div>
+                </div>
+                <div class="btnsection">
+                    <button type="button" class="btn btn-primary1" id="btnSave">Save</button>
+                    <button type="button" id="btnCancel" class="btn btn-secondary1"><i class="fa fa-close" style="margin-right: 10px;"></i>Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    @*Add/Edit Form Section End*@
+
+</div>
+
+<script type="text/x-handlebars" id="temp_ddlBusinessTypeID">
+
+    <option value="">Please Select</option>
+    {{#each this}}
+    <option value="{{BusinessTypeID}}">{{BusinessTypeName}}</option>
+    {{/each}}
+
+</script>
+
+<script type="text/x-handlebars" id="temp_ddlTimeZoneID">
+
+    <option value="">Please Select</option>
+    {{#each this}}
+    <option value="{{TimeZoneID}}">{{TimeZoneName}}</option>
+    {{/each}}
+
+</script>
+
+<script type="text/x-handlebars" id="temp_ddlPostalCountryID">
+
+    <option value="">Please Select</option>
+    {{#each this}}
+    <option value="{{CountryID}}">{{CountryName}}</option>
+    {{/each}}
+
+</script>
+
+<script type="text/x-handlebars" id="temp_ddlPostalStateID">
+
+    <option value="">Please Select</option>
+    {{#each this}}
+    <option value="{{StateID}}">{{StateName}}</option>
+    {{/each}}
+
+</script>
+
+<script type="text/x-handlebars" id="temp_ddlPostalCityID">
+
+    <option value="">Please Select</option>
+    {{#each this}}
+    <option value="{{CityID}}">{{CityName}}</option>
+    {{/each}}
+
+</script>
+
+<script type="text/x-handlebars" id="temp_ddlBillingCountryID">
+
+    <option value="">Please Select</option>
+    {{#each this}}
+    <option value="{{CountryID}}">{{CountryName}}</option>
+    {{/each}}
+
+</script>
+
+<script type="text/x-handlebars" id="temp_ddlBillingStateID">
+
+    <option value="">Please Select</option>
+    {{#each this}}
+    <option value="{{StateID}}">{{StateName}}</option>
+    {{/each}}
+
+</script>
+
+<script type="text/x-handlebars" id="temp_ddlBillingCityID">
+
+    <option value="">Please Select</option>
+    {{#each this}}
+    <option value="{{CityID}}">{{CityName}}</option>
+    {{/each}}
+
+</script>
+
+
 

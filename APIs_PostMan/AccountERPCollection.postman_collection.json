@@ -1538,13 +1538,13 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzY1NDAyMjIsImV4cCI6MTY3Njc1NjIyMiwiaWF0IjoxNjc2NTQwMjIyLCJpc3MiOiJBY2NvdW50RVJQIn0.BOrmfAdGFs5Q8eeO1Y_0EK1s_iGmBwvTuN4EmNp-DA8",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzY4NzAyNTEsImV4cCI6MTY3NzA4NjI1MSwiaWF0IjoxNjc2ODcwMjUxLCJpc3MiOiJBY2NvdW50RVJQIn0.RC6cyy72TybbR-zvvmlwCob9c-ESIAvy0W7ignpNRac",
 						"type": "default"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"ProductBrandName\":\"TCPIP\"\r\n}",
+					"raw": "{\r\n    \"ProductBrandName\":\"iyutrtyr\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -2039,12 +2039,12 @@
 							"type": "default"
 						},
 						{
-							"key": "IsActive",
+							"key": "CompanyID",
 							"value": "1",
 							"type": "default"
 						},
 						{
-							"key": "CompanyID",
+							"key": "IsActive",
 							"value": "1",
 							"type": "default"
 						}
@@ -2193,6 +2193,1249 @@
 						"api",
 						"ManageProduct",
 						"UpdateProduct"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Product Attribute Brand Category Type",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzY4NzAyNTEsImV4cCI6MTY3NzA4NjI1MSwiaWF0IjoxNjc2ODcwMjUxLCJpc3MiOiJBY2NvdW50RVJQIn0.RC6cyy72TybbR-zvvmlwCob9c-ESIAvy0W7ignpNRac",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44375/api/ManageProduct/GetAllProduct_Attribute_Brand_Category_Type_DataForDropDown",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageProduct",
+						"GetAllProduct_Attribute_Brand_Category_Type_DataForDropDown"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Assigned Permission",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzcyMzg5OTgsImV4cCI6MTY3NzQ1NDk5OCwiaWF0IjoxNjc3MjM4OTk4LCJpc3MiOiJBY2NvdW50RVJQIn0.7YoeCdgt6PLiKqlbbxN16luA6jj_sJAMPCCxNPVIJoM",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44375/api/ManageAssignedPermission/GetAll",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageAssignedPermission",
+						"GetAll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Assigned Permission",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzcyMzg5OTgsImV4cCI6MTY3NzQ1NDk5OCwiaWF0IjoxNjc3MjM4OTk4LCJpc3MiOiJBY2NvdW50RVJQIn0.7YoeCdgt6PLiKqlbbxN16luA6jj_sJAMPCCxNPVIJoM",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"RoleID\":2,\r\n\"ModulePageActionIDs\":\"1,2,3\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageAssignedPermission/AddAssignedPermission",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageAssignedPermission",
+						"AddAssignedPermission"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Assigned Permission",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzcyMzg5OTgsImV4cCI6MTY3NzQ1NDk5OCwiaWF0IjoxNjc3MjM4OTk4LCJpc3MiOiJBY2NvdW50RVJQIn0.7YoeCdgt6PLiKqlbbxN16luA6jj_sJAMPCCxNPVIJoM",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"RoleID\":2,\r\n\"ModulePageActionIDs\":\"1,2,3,4\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageAssignedPermission/UpdateAssignedPermission",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageAssignedPermission",
+						"UpdateAssignedPermission"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Branch",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzcyMzg5OTgsImV4cCI6MTY3NzQ1NDk5OCwiaWF0IjoxNjc3MjM4OTk4LCJpc3MiOiJBY2NvdW50RVJQIn0.7YoeCdgt6PLiKqlbbxN16luA6jj_sJAMPCCxNPVIJoM",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44375/api/ManageBranch/GetAll",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageBranch",
+						"GetAll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Branch",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzcyMzg5OTgsImV4cCI6MTY3NzQ1NDk5OCwiaWF0IjoxNjc3MjM4OTk4LCJpc3MiOiJBY2NvdW50RVJQIn0.7YoeCdgt6PLiKqlbbxN16luA6jj_sJAMPCCxNPVIJoM",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"CompanyID\":1,\r\n    \"BranchName\":\"abc\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageBranch/AddBranch",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageBranch",
+						"AddBranch"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Branch",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzcyMzg5OTgsImV4cCI6MTY3NzQ1NDk5OCwiaWF0IjoxNjc3MjM4OTk4LCJpc3MiOiJBY2NvdW50RVJQIn0.7YoeCdgt6PLiKqlbbxN16luA6jj_sJAMPCCxNPVIJoM",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"BranchID\":2,\r\n    \"CompanyID\":1,\r\n    \"BranchName\":\"asdfasdf asf\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageBranch/UpdateBranch",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageBranch",
+						"UpdateBranch"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Branch By ID",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2Nzc2NTAxMjgsImV4cCI6MTY3Nzg2NjEyOCwiaWF0IjoxNjc3NjUwMTI4LCJpc3MiOiJBY2NvdW50RVJQIn0.fJG6DP1NBaAzf8sAoot43ipmf-ks0ViKtk3_2LmnJkE",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44375/api/ManageBranch/GetBranchByID/2",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageBranch",
+						"GetBranchByID",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Company",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzczMjkwMDUsImV4cCI6MTY3NzU0NTAwNCwiaWF0IjoxNjc3MzI5MDA1LCJpc3MiOiJBY2NvdW50RVJQIn0.IsF9Cr5D0wklhk41Txp7-RuRXwqfdjeUfnH5ao_73UU",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44375/api/ManageCompany/GetAll",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageCompany",
+						"GetAll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Company By ID",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzczMjkwMDUsImV4cCI6MTY3NzU0NTAwNCwiaWF0IjoxNjc3MzI5MDA1LCJpc3MiOiJBY2NvdW50RVJQIn0.IsF9Cr5D0wklhk41Txp7-RuRXwqfdjeUfnH5ao_73UU",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44375/api/ManageCompany/GetCompanyByID/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageCompany",
+						"GetCompanyByID",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Company",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzczMjkwMDUsImV4cCI6MTY3NzU0NTAwNCwiaWF0IjoxNjc3MzI5MDA1LCJpc3MiOiJBY2NvdW50RVJQIn0.IsF9Cr5D0wklhk41Txp7-RuRXwqfdjeUfnH5ao_73UU",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "CompanyName",
+							"value": "sadfasdf",
+							"type": "default"
+						},
+						{
+							"key": "PostalPhone",
+							"value": "dsfdasf",
+							"type": "default"
+						},
+						{
+							"key": "PostalAddress1",
+							"value": "sadfsadf",
+							"type": "default"
+						},
+						{
+							"key": "PostalAddress2",
+							"value": "sadfsadf",
+							"type": "default"
+						},
+						{
+							"key": "PostalCityID",
+							"value": "1",
+							"type": "default"
+						},
+						{
+							"key": "PostalStateID",
+							"value": "1",
+							"type": "default"
+						},
+						{
+							"key": "PostalZipCode",
+							"value": "sfdsdf",
+							"type": "default"
+						},
+						{
+							"key": "PostalCountryID",
+							"value": "1",
+							"type": "default"
+						},
+						{
+							"key": "BillingPhone",
+							"value": "fasfda",
+							"type": "default"
+						},
+						{
+							"key": "BillingAddress1",
+							"value": "sadf",
+							"type": "default"
+						},
+						{
+							"key": "BillingAddress2",
+							"value": "sadf",
+							"type": "default"
+						},
+						{
+							"key": "BillingCityID",
+							"value": "1",
+							"type": "default"
+						},
+						{
+							"key": "BillingStateID",
+							"value": "1",
+							"type": "default"
+						},
+						{
+							"key": "BillingZipCode",
+							"value": "asdfasdf",
+							"type": "default"
+						},
+						{
+							"key": "BillingCountryID",
+							"value": "1",
+							"type": "default"
+						},
+						{
+							"key": "file",
+							"type": "file",
+							"src": "03d4ca97978d-2021082717070806.png"
+						},
+						{
+							"key": "NTN",
+							"value": "fsdf",
+							"type": "default"
+						},
+						{
+							"key": "STN",
+							"value": "sdfsdf",
+							"type": "default"
+						},
+						{
+							"key": "WebsiteURL",
+							"value": "sadf",
+							"type": "default"
+						},
+						{
+							"key": "POSID",
+							"value": "asdf",
+							"type": "default"
+						},
+						{
+							"key": "BusinessTypeID",
+							"value": "1",
+							"type": "default"
+						},
+						{
+							"key": "TimeZoneID",
+							"value": "1",
+							"type": "default"
+						},
+						{
+							"key": "NoOfUsers",
+							"value": "2",
+							"type": "default"
+						},
+						{
+							"key": "IsAllowPowerBy",
+							"value": "1",
+							"type": "default"
+						},
+						{
+							"key": "PoweredBy",
+							"value": "twertqrwrasf sda fa fasf",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageCompany/AddCompany",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageCompany",
+						"AddCompany"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Company",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzczMjkwMDUsImV4cCI6MTY3NzU0NTAwNCwiaWF0IjoxNjc3MzI5MDA1LCJpc3MiOiJBY2NvdW50RVJQIn0.IsF9Cr5D0wklhk41Txp7-RuRXwqfdjeUfnH5ao_73UU",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "CompanyID",
+							"value": "2",
+							"type": "default"
+						},
+						{
+							"key": "CompanyName",
+							"value": "fasdf",
+							"type": "default"
+						},
+						{
+							"key": "PostalPhone",
+							"value": "asdf",
+							"type": "default"
+						},
+						{
+							"key": "PostalAddress1",
+							"value": "asdf",
+							"type": "default"
+						},
+						{
+							"key": "PostalAddress2",
+							"value": "retwert",
+							"type": "default"
+						},
+						{
+							"key": "PostalCityID",
+							"value": "2",
+							"type": "default"
+						},
+						{
+							"key": "PostalStateID",
+							"value": "2",
+							"type": "default"
+						},
+						{
+							"key": "PostalZipCode",
+							"value": "twrtwet",
+							"type": "default"
+						},
+						{
+							"key": "PostalCountryID",
+							"value": "2",
+							"type": "default"
+						},
+						{
+							"key": "BillingPhone",
+							"value": "gsdfgretwert ",
+							"type": "default"
+						},
+						{
+							"key": "BillingAddress1",
+							"value": "daasdf asdf ",
+							"type": "default"
+						},
+						{
+							"key": "BillingAddress2",
+							"value": "asdf asf",
+							"type": "default"
+						},
+						{
+							"key": "BillingCityID",
+							"value": "2",
+							"type": "default"
+						},
+						{
+							"key": "BillingStateID",
+							"value": "2",
+							"type": "default"
+						},
+						{
+							"key": "BillingZipCode",
+							"value": "sadf asfd",
+							"type": "default"
+						},
+						{
+							"key": "BillingCountryID",
+							"value": "2",
+							"type": "default"
+						},
+						{
+							"key": "file",
+							"type": "file",
+							"src": []
+						},
+						{
+							"key": "NTN",
+							"value": "dfg",
+							"type": "default"
+						},
+						{
+							"key": "STN",
+							"value": "sdf",
+							"type": "default"
+						},
+						{
+							"key": "WebsiteURL",
+							"value": "adfgadf afas df",
+							"type": "default"
+						},
+						{
+							"key": "POSID",
+							"value": "as fasf ",
+							"type": "default"
+						},
+						{
+							"key": "BusinessTypeID",
+							"value": "2",
+							"type": "default"
+						},
+						{
+							"key": "TimeZoneID",
+							"value": "1",
+							"type": "default"
+						},
+						{
+							"key": "NoOfUsers",
+							"value": "3",
+							"type": "default"
+						},
+						{
+							"key": "IsAllowPowerBy",
+							"value": "1",
+							"type": "default"
+						},
+						{
+							"key": "PoweredBy",
+							"value": "gsdfadf agsdfg sfg sdfg sfg",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageCompany/UpdateCompany",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageCompany",
+						"UpdateCompany"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Customer",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2Nzc0NzE3NjYsImV4cCI6MTY3NzY4Nzc2NSwiaWF0IjoxNjc3NDcxNzY2LCJpc3MiOiJBY2NvdW50RVJQIn0.YCvlt1XNsQlYWjornCSEod8A3xwXNW_Ok0ltkEkbuxI",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44375/api/ManageCustomer/GetAll",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageCustomer",
+						"GetAll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Active Customer",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2Nzc0NzE3NjYsImV4cCI6MTY3NzY4Nzc2NSwiaWF0IjoxNjc3NDcxNzY2LCJpc3MiOiJBY2NvdW50RVJQIn0.YCvlt1XNsQlYWjornCSEod8A3xwXNW_Ok0ltkEkbuxI",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44375/api/ManageCustomer/GetAllActive",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageCustomer",
+						"GetAllActive"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Customer By ID",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2Nzc0NzE3NjYsImV4cCI6MTY3NzY4Nzc2NSwiaWF0IjoxNjc3NDcxNzY2LCJpc3MiOiJBY2NvdW50RVJQIn0.YCvlt1XNsQlYWjornCSEod8A3xwXNW_Ok0ltkEkbuxI",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44375/api/ManageCustomer/GetCustomerByID/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageCustomer",
+						"GetCustomerByID",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Customer",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2Nzc0NzE3NjYsImV4cCI6MTY3NzY4Nzc2NSwiaWF0IjoxNjc3NDcxNzY2LCJpc3MiOiJBY2NvdW50RVJQIn0.YCvlt1XNsQlYWjornCSEod8A3xwXNW_Ok0ltkEkbuxI",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"CustomerName\":\"asdfas\",\r\n\"PostalPhone\":\"asdf\",\r\n\"PostalAddress1\":\"asdf\",\r\n\"PostalAddress2\":\"asdfasdf\",\r\n\"PostalCityID\":1,\r\n\"PostalStateID\":1,\r\n\"PostalZipCode\":\"wrerw\",\r\n\"PostalCountryID\":1,\r\n\"BillingPhone\":\"jkghjktyot\",\r\n\"BillingAddress1\":\"vxcvxxcv\",\r\n\"BillingAddress2\":\"mvkkyi\",\r\n\"BillingCityID\":1,\r\n\"BillingStateID\":1,\r\n\"BillingZipCode\":\"ljkluiouiou\",\r\n\"BillingCountryID\":1,\r\n\"IsActive\":1,\r\n\"CompanyID\":1,\r\n\"BranchID\":1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageCustomer/AddCustomer",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageCustomer",
+						"AddCustomer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Customer",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2Nzc0NzE3NjYsImV4cCI6MTY3NzY4Nzc2NSwiaWF0IjoxNjc3NDcxNzY2LCJpc3MiOiJBY2NvdW50RVJQIn0.YCvlt1XNsQlYWjornCSEod8A3xwXNW_Ok0ltkEkbuxI",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"CustomerID\":1,\r\n\"CustomerName\":\"asdfaswrer\",\r\n\"PostalPhone\":\"asdf\",\r\n\"PostalAddress1\":\"asdf\",\r\n\"PostalAddress2\":\"asdfasdf\",\r\n\"PostalCityID\":1,\r\n\"PostalStateID\":1,\r\n\"PostalZipCode\":\"wrerw\",\r\n\"PostalCountryID\":1,\r\n\"BillingPhone\":\"jkghjktyot\",\r\n\"BillingAddress1\":\"vxcvxxcv\",\r\n\"BillingAddress2\":\"mvkkyi\",\r\n\"BillingCityID\":1,\r\n\"BillingStateID\":1,\r\n\"BillingZipCode\":\"ljkluiouiou\",\r\n\"BillingCountryID\":1,\r\n\"IsActive\":1,\r\n\"CompanyID\":1,\r\n\"BranchID\":1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageCustomer/UpdateCustomer",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageCustomer",
+						"UpdateCustomer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All User",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2Nzc0NzE3NjYsImV4cCI6MTY3NzY4Nzc2NSwiaWF0IjoxNjc3NDcxNzY2LCJpc3MiOiJBY2NvdW50RVJQIn0.YCvlt1XNsQlYWjornCSEod8A3xwXNW_Ok0ltkEkbuxI",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44375/api/ManageUser/GetAll",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageUser",
+						"GetAll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Active User",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2Nzc0NzE3NjYsImV4cCI6MTY3NzY4Nzc2NSwiaWF0IjoxNjc3NDcxNzY2LCJpc3MiOiJBY2NvdW50RVJQIn0.YCvlt1XNsQlYWjornCSEod8A3xwXNW_Ok0ltkEkbuxI",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44375/api/ManageUser/GetAllActive",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageUser",
+						"GetAllActive"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User By ID",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2Nzc0NzE3NjYsImV4cCI6MTY3NzY4Nzc2NSwiaWF0IjoxNjc3NDcxNzY2LCJpc3MiOiJBY2NvdW50RVJQIn0.YCvlt1XNsQlYWjornCSEod8A3xwXNW_Ok0ltkEkbuxI",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44375/api/ManageUser/GetUserByID/2",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageUser",
+						"GetUserByID",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add User",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2Nzc0NzE3NjYsImV4cCI6MTY3NzY4Nzc2NSwiaWF0IjoxNjc3NDcxNzY2LCJpc3MiOiJBY2NvdW50RVJQIn0.YCvlt1XNsQlYWjornCSEod8A3xwXNW_Ok0ltkEkbuxI",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"RoleID\":2,\r\n\"FirstName\":\"vzxadfasdf\",\r\n\"LastName\":\"asdfs df as\",\r\n\"Email\":\"asdf@yahoo.com\",\r\n\"Password\":\"asdf sdfa\",\r\n\"Phone\":\"asdf asdfasd\",\r\n\"Address1\":\"asdf sd f\",\r\n\"Address2\":\"trwetwt yu uetyuetyu\",\r\n\"CityID\":1,\r\n\"StateID\":1,\r\n\"ZipCode\":\"zcvvdf\",\r\n\"CountryID\":1,\r\n\"Gender\":\"Male\",\r\n\"DOB\":\"2023-01-12\",\r\n\"IsActive\":1,\r\n\"CompanyIDs\":\"1,2\",\r\n\"BranchIDs\":\"1,2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageUser/AddUser",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageUser",
+						"AddUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2Nzc0NzE3NjYsImV4cCI6MTY3NzY4Nzc2NSwiaWF0IjoxNjc3NDcxNzY2LCJpc3MiOiJBY2NvdW50RVJQIn0.YCvlt1XNsQlYWjornCSEod8A3xwXNW_Ok0ltkEkbuxI",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"UserID\":3,\r\n\"RoleID\":2,\r\n\"FirstName\":\"rtertwetwt\",\r\n\"LastName\":\"asdfs df as\",\r\n\"Email\":\"asdf@yahoo.com\",\r\n\"Password\":\"asdf sdfa\",\r\n\"Phone\":\"asdf asdfasd\",\r\n\"Address1\":\"asdf sd f\",\r\n\"Address2\":\"trwetwt yu uetyuetyu\",\r\n\"CityID\":1,\r\n\"StateID\":1,\r\n\"ZipCode\":\"zcvvdf\",\r\n\"CountryID\":1,\r\n\"Gender\":\"Male\",\r\n\"DOB\":\"2023-01-12\",\r\n\"IsActive\":1,\r\n\"CompanyIDs\":\"1,2\",\r\n\"BranchIDs\":\"1,2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageUser/UpdateUser",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageUser",
+						"UpdateUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Vendor",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2Nzc0NzE3NjYsImV4cCI6MTY3NzY4Nzc2NSwiaWF0IjoxNjc3NDcxNzY2LCJpc3MiOiJBY2NvdW50RVJQIn0.YCvlt1XNsQlYWjornCSEod8A3xwXNW_Ok0ltkEkbuxI",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44375/api/ManageVendor/GetAll",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageVendor",
+						"GetAll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Vendor By ID",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2Nzc0NzE3NjYsImV4cCI6MTY3NzY4Nzc2NSwiaWF0IjoxNjc3NDcxNzY2LCJpc3MiOiJBY2NvdW50RVJQIn0.YCvlt1XNsQlYWjornCSEod8A3xwXNW_Ok0ltkEkbuxI",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44375/api/ManageVendor/GetVendorByID/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageVendor",
+						"GetVendorByID",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Vendor",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2Nzc0NzE3NjYsImV4cCI6MTY3NzY4Nzc2NSwiaWF0IjoxNjc3NDcxNzY2LCJpc3MiOiJBY2NvdW50RVJQIn0.YCvlt1XNsQlYWjornCSEod8A3xwXNW_Ok0ltkEkbuxI",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"VendorName\":\"asfdf\",\r\n\"PostalPhone\":\"asdfasdf\",\r\n\"PostalAddress1\":\"asdfsadf\",\r\n\"PostalAddress2\":\"asdfasdf\",\r\n\"PostalCityID\":1,\r\n\"PostalStateID\":1,\r\n\"PostalZipCode\":\"tqtwertwet\",\r\n\"PostalCountryID\":1,\r\n\"BillingPhone\":\"ewrtadfadf\",\r\n\"BillingAddress1\":\"dafdfvvcz\",\r\n\"BillingAddress2\":\"zcbfasdfat\",\r\n\"BillingCityID\":1,\r\n\"BillingStateID\":1,\r\n\"BillingZipCode\":\"asdfasfs fasd\",\r\n\"BillingCountryID\":1,\r\n\"IsActive\":1,\r\n\"CompanyID\":1,\r\n\"BranchID\":1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageVendor/AddVendor",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageVendor",
+						"AddVendor"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Vendor",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2Nzc0NzE3NjYsImV4cCI6MTY3NzY4Nzc2NSwiaWF0IjoxNjc3NDcxNzY2LCJpc3MiOiJBY2NvdW50RVJQIn0.YCvlt1XNsQlYWjornCSEod8A3xwXNW_Ok0ltkEkbuxI",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"VendorID\":2,\r\n\"VendorName\":\"oyjhlhklhjkll hklhjklh\",\r\n\"PostalPhone\":\"asdfasdf\",\r\n\"PostalAddress1\":\"asdfsadf\",\r\n\"PostalAddress2\":\"asdfasdf\",\r\n\"PostalCityID\":1,\r\n\"PostalStateID\":1,\r\n\"PostalZipCode\":\"tqtwertwet\",\r\n\"PostalCountryID\":1,\r\n\"BillingPhone\":\"ewrtadfadf\",\r\n\"BillingAddress1\":\"dafdfvvcz\",\r\n\"BillingAddress2\":\"zcbfasdfat\",\r\n\"BillingCityID\":1,\r\n\"BillingStateID\":1,\r\n\"BillingZipCode\":\"asdfasfs fasd\",\r\n\"BillingCountryID\":1,\r\n\"IsActive\":1,\r\n\"CompanyID\":1,\r\n\"BranchID\":1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageVendor/UpdateVendor",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageVendor",
+						"UpdateVendor"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All WareHouse",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2Nzc0NzE3NjYsImV4cCI6MTY3NzY4Nzc2NSwiaWF0IjoxNjc3NDcxNzY2LCJpc3MiOiJBY2NvdW50RVJQIn0.YCvlt1XNsQlYWjornCSEod8A3xwXNW_Ok0ltkEkbuxI",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44375/api/ManageWareHouse/GetAll",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageWareHouse",
+						"GetAll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get WareHouse By ID",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2Nzc0NzE3NjYsImV4cCI6MTY3NzY4Nzc2NSwiaWF0IjoxNjc3NDcxNzY2LCJpc3MiOiJBY2NvdW50RVJQIn0.YCvlt1XNsQlYWjornCSEod8A3xwXNW_Ok0ltkEkbuxI",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44375/api/ManageWareHouse/GetWareHouseByID/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageWareHouse",
+						"GetWareHouseByID",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add WareHouse",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2Nzc0NzE3NjYsImV4cCI6MTY3NzY4Nzc2NSwiaWF0IjoxNjc3NDcxNzY2LCJpc3MiOiJBY2NvdW50RVJQIn0.YCvlt1XNsQlYWjornCSEod8A3xwXNW_Ok0ltkEkbuxI",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"CompanyID\":1,\r\n\"BranchID\":1,\r\n\"WareHouseName\":\"ertweraadsf\",\r\n\"Phone\":\"asdf sa\",\r\n\"Address1\":\"asdf as\",\r\n\"Address2\":\"tqtasfda\",\r\n\"CityID\":1,\r\n\"StateID\":1,\r\n\"ZipCode\":\"twertwet\",\r\n\"CountryID\":1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageWareHouse/AddWareHouse",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageWareHouse",
+						"AddWareHouse"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update WareHouse",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2Nzc0NzE3NjYsImV4cCI6MTY3NzY4Nzc2NSwiaWF0IjoxNjc3NDcxNzY2LCJpc3MiOiJBY2NvdW50RVJQIn0.YCvlt1XNsQlYWjornCSEod8A3xwXNW_Ok0ltkEkbuxI",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"WareHouseID\":2,\r\n\"CompanyID\":1,\r\n\"BranchID\":1,\r\n\"WareHouseName\":\"iopip\",\r\n\"Phone\":\"asdf sa\",\r\n\"Address1\":\"asdf as\",\r\n\"Address2\":\"tqtasfda\",\r\n\"CityID\":1,\r\n\"StateID\":1,\r\n\"ZipCode\":\"twertwet\",\r\n\"CountryID\":1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageWareHouse/UpdateWareHouse",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageWareHouse",
+						"UpdateWareHouse"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Business Type, TimeZone, Country, State, City for Drowdown",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2Nzc2NTAxMjgsImV4cCI6MTY3Nzg2NjEyOCwiaWF0IjoxNjc3NjUwMTI4LCJpc3MiOiJBY2NvdW50RVJQIn0.fJG6DP1NBaAzf8sAoot43ipmf-ks0ViKtk3_2LmnJkE",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44375/api/ManageCompany/GetAllBusinessType_TimeZone_Country_State_City_Data",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageCompany",
+						"GetAllBusinessType_TimeZone_Country_State_City_Data"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ge All Company, Branch for Dropdown",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IlN1cGVyIiwiTGFzdE5hbWUiOiJBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2Nzc2NTAxMjgsImV4cCI6MTY3Nzg2NjEyOCwiaWF0IjoxNjc3NjUwMTI4LCJpc3MiOiJBY2NvdW50RVJQIn0.fJG6DP1NBaAzf8sAoot43ipmf-ks0ViKtk3_2LmnJkE",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44375/api/ManageBranch/GetAllCompany_Branch_Data",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageBranch",
+						"GetAllCompany_Branch_Data"
 					]
 				}
 			},

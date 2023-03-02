@@ -101,7 +101,7 @@ namespace AccountERPApi.Controllers
                     {
                         var Data = _vendorService.GetAll().ToList();
 
-                        var CHeckVendorName = Data.Where(x => x.VendorName.ToLower() == obj.VendorName.ToLower()).Count();
+                        var CHeckVendorName = Data.Where(x => x.CompanyID == obj.CompanyID && x.BranchID == obj.BranchID && x.VendorName.ToLower() == obj.VendorName.ToLower()).Count();
 
                         if (CHeckVendorName > 0)
                         {
@@ -185,7 +185,7 @@ namespace AccountERPApi.Controllers
                     {
                         var Data = _vendorService.GetAll().ToList();
 
-                        var CheckVendorName = Data.Where(x => x.VendorID != obj.VendorID && x.VendorName.ToLower() == obj.VendorName.ToLower()).Count();
+                        var CheckVendorName = Data.Where(x => x.VendorID != obj.VendorID && x.CompanyID == obj.CompanyID && x.BranchID == obj.BranchID && x.VendorName.ToLower() == obj.VendorName.ToLower()).Count();
 
                         if (CheckVendorName > 0)
                         {

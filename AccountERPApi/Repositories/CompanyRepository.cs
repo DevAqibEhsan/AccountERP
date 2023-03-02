@@ -58,6 +58,74 @@ namespace AccountERPApi.Repositories
             return _dapper.GetAll<Company>(@"usp_Company_GetAll", parameters);
         }
 
+        public object GetAllBusinessType_TimeZone_Country_State_City_Data()
+        {
+            DynamicParameters parameters = new DynamicParameters();
+
+            var tupple = _dapper.GetMultipleObjects(@"usp_BusinessType_TimeZone_Country_State_City_GetAll", parameters, gr => gr.Read<BusinessType>(), gr => gr.Read<TimeZones>(), gr => gr.Read<Country>(), gr => gr.Read<State>(), gr => gr.Read<City>());
+
+            List<BusinessType> list_businessType = new List<BusinessType>();
+            foreach (var item in tupple.Item1)
+            {
+                BusinessType obj_businessType = new BusinessType();
+                obj_businessType.BusinessTypeID = item.BusinessTypeID;
+                obj_businessType.BusinessTypeName = item.BusinessTypeName;
+
+                list_businessType.Add(obj_businessType);
+            }
+
+            List<TimeZones> list_timeZones = new List<TimeZones>();
+            foreach (var item in tupple.Item2)
+            {
+                TimeZones obj_timeZones = new TimeZones();
+                obj_timeZones.TimeZoneID = item.TimeZoneID;
+                obj_timeZones.TimeZoneName = item.TimeZoneName;
+
+                list_timeZones.Add(obj_timeZones);
+            }
+
+            List<Country> list_country = new List<Country>();
+            foreach (var item in tupple.Item3)
+            {
+                Country obj_country = new Country();
+                obj_country.CountryID = item.CountryID;
+                obj_country.CountryName = item.CountryName;
+
+                list_country.Add(obj_country);
+            }
+
+            List<State> list_State = new List<State>();
+            foreach (var item in tupple.Item4)
+            {
+                State obj_State = new State();
+                obj_State.StateID = item.StateID;
+                obj_State.CountryID = item.CountryID;
+                obj_State.StateName = item.StateName;
+
+                list_State.Add(obj_State);
+            }
+
+            List<City> list_city = new List<City>();
+            foreach (var item in tupple.Item5)
+            {
+                City obj_citye = new City();
+                obj_citye.CityID = item.CityID;
+                obj_citye.StateID = item.StateID;
+                obj_citye.CityName = item.CityName;
+
+                list_city.Add(obj_citye);
+            }
+
+            return new
+            {
+                BusinessType = list_businessType,
+                TimeZones = list_timeZones,
+                Country = list_country,
+                State = list_State,
+                City = list_city
+            };
+        }
+
         public Company GetCompanyByID(int id)
         {
             DynamicParameters parameters = new DynamicParameters();

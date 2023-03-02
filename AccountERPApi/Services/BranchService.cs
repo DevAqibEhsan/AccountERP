@@ -26,6 +26,11 @@ namespace AccountERPApi.Services
             return _repository.GetAll();
         }
 
+        public object GetAllCompany_Branch_Data()
+        {
+            return _repository.GetAllCompany_Branch_Data();
+        }
+
         public Branch GetBranchByID(int id)
         {
             return _repository.GetBranchByID(id);

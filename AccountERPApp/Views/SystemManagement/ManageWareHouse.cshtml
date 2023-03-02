@@ -3,5 +3,203 @@
     ViewData["Title"] = "Manage WareHouse";
 }
 
-<h1>Manage WareHouse</h1>
+<link href="~/css/CommonStyle.css" rel="stylesheet" />
+<script src="~/js/Common.js"></script>
+<script src="~/js/SystemManagement/ManageWareHouse.js"></script>
 
+<style>
+
+    #form {
+        display: none;
+    }
+
+    .card-header .btnsection {
+        display: inline-block;
+        float: right;
+    }
+</style>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#btnAddWareHouse").click(function () { FormShow() });
+
+        $("#btnCancel").click(function () { CancelButtonAction(); });
+
+        RemoveSortingClass('tblAction');
+
+    });
+
+</script>
+
+<div class="maincontent">
+
+    @*Grid / Data Table Start*@
+    <div id="grid" class="card">
+        <div class="card-header">
+            @ViewData["Title"]
+            <div class="btnsection">
+                <button type="button" id="btnAddWareHouse" class="btn btn-success1"><i class="fa fa-plus" style="margin-right: 10px;"></i> Add</button>
+            </div>
+        </div>
+        <div class="card-body">
+            <div id="dvDataTable">
+                <table id="dataTableWareHouse" class="display" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th class="text-center">S.No</th>
+                            <th class="text-center">Warehosue Name</th>
+                            <th class="text-center">Company Name</th>
+                            <th class="text-center">Branch Name</th>
+                            <th class="text-center">Address 1</th>
+                            <th class="text-center">Address 2</th>
+                            <th class="text-center">Phone</th>
+                            <th class="text-center">Country Name</th>
+                            <th class="text-center">State Name</th>
+                            <th class="text-center">City Name</th>
+                            <th class="text-center">Zip Code</th>
+                            <th class="text-center">Created User</th>
+                            <th class="text-center">Created On</th>
+                            <th class="text-center">Created User IP</th>
+                            <th class="text-center">Last User</th>
+                            <th class="text-center">Last Modified</th>
+                            <th class="text-center">Last User IP</th>
+                            <th class="text-center" id="tblAction">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dataRow">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    @*Grid / Data Table End*@
+
+    @*Add/Edit Form Section Start*@
+    <div id="form" class="card">
+        <div class="card-header">
+            @ViewData["Title"]
+        </div>
+        <div class="card-body">
+            <form id="ManageWareHouseForm">
+                <input type="hidden" name="hdnWareHouseID" id="hdnWareHouseID" value="0" />
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="txtWareHouseName">Warehouse Name</label>
+                        <input type="text" class="form-control" id="txtWareHouseName" placeholder="Warehouse Name">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="ddlCompanyID">Company</label>
+                        <select id="ddlCompanyID" class="form-control">
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="ddlBranchID">Branch</label>
+                        <select id="ddlBranchID" class="form-control">
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="txtAddress1">Address 1</label>
+                        <input type="text" class="form-control" id="txtAddress1" placeholder="Address 1">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="txtAddress2">Address 2</label>
+                        <input type="text" class="form-control" id="txtAddress2" placeholder="Address 2">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="txtPhone">Phone</label>
+                        <input type="text" class="form-control" id="txtPhone" placeholder="Phone">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="ddlCountryID">Country</label>
+                        <select id="ddlCountryID" class="form-control">
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="ddlStateID">State</label>
+                        <select id="ddlStateID" class="form-control">
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="ddlCityID">City</label>
+                        <select id="ddlCityID" class="form-control">
+                            s
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="txtZipCode">ZipCode</label>
+                        <input type="text" class="form-control" id="txtZipCode" placeholder="ZipCode">
+                    </div>
+                    <div class="form-group col-md-4">
+
+                    </div>
+                    <div class="form-group col-md-4">
+
+                    </div>
+                </div>
+
+                <div class="btnsection">
+                    <button type="button" class="btn btn-primary1" id="btnSave">Save</button>
+                    <button type="button" id="btnCancel" class="btn btn-secondary1"><i class="fa fa-close" style="margin-right: 10px;"></i>Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    @*Add/Edit Form Section End*@
+
+</div>
+
+<script type="text/x-handlebars" id="temp_ddlCompanyID">
+
+    <option value="">Please Select</option>
+    {{#each this}}
+    <option value="{{CompanyID}}">{{CompanyName}}</option>
+    {{/each}}
+
+</script>
+
+<script type="text/x-handlebars" id="temp_ddlBranchID">
+
+    <option value="">Please Select</option>
+    {{#each this}}
+    <option value="{{BranchID}}">{{BranchName}}</option>
+    {{/each}}
+
+</script>
+
+<script type="text/x-handlebars" id="temp_ddlCountryID">
+
+    <option value="">Please Select</option>
+    {{#each this}}
+    <option value="{{CountryID}}">{{CountryName}}</option>
+    {{/each}}
+
+</script>
+
+<script type="text/x-handlebars" id="temp_ddlStateID">
+
+    <option value="">Please Select</option>
+    {{#each this}}
+    <option value="{{StateID}}">{{StateName}}</option>
+    {{/each}}
+
+</script>
+
+<script type="text/x-handlebars" id="temp_ddlCityID">
+
+    <option value="">Please Select</option>
+    {{#each this}}
+    <option value="{{CityID}}">{{CityName}}</option>
+    {{/each}}
+
+</script>

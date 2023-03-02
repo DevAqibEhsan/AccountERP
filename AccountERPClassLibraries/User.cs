@@ -21,11 +21,11 @@ namespace AccountERPClassLibraries
 		public string CityName { get; set; }
 		public int StateID { get; set; }
 		public string StateName { get; set; }
-		public int ZipCode { get; set; }
+		public string ZipCode { get; set; }
 		public int CountryID { get; set; }
 		public string CountryName { get; set; }
 		public string Gender { get; set; }
-		public DateTime DOB { get; set; }
+		public string DOB { get; set; }
 		public int IsActive { get; set; }
 		public int CreatedBy { get; set; }
         public string CreatedByIP { get; set; }

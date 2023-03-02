@@ -154,12 +154,12 @@ namespace AccountERPApi.Controllers
                     {
                         var Data = _userService.GetAll().ToList();
 
-                        var CHeckUserName = Data.Where(x => x.UserName.ToLower() == obj.UserName.ToLower()).Count();
+                        var CHeckUserName = Data.Where(x => x.RoleID == obj.RoleID && x.FirstName.ToLower() == obj.FirstName.ToLower() && x.LastName.ToLower() == obj.LastName.ToLower()).Count();
 
                         if (CHeckUserName > 0)
                         {
                             response.Status = 0;
-                            response.ResponseMsg = "The User " + obj.UserName + " Already exists.";
+                            response.ResponseMsg = "The User " + obj.FirstName + " " + obj.LastName + " Already exists.";
                             response.Token = TokenManager.GenerateToken(claimDTO);
                             response.Data = null;
                         }
@@ -176,14 +176,14 @@ namespace AccountERPApi.Controllers
                             if (!string.IsNullOrEmpty(res.UserName))
                             {
                                 response.Status = 200;
-                                response.ResponseMsg = "The User " + obj.UserName + " Is Successfully Added.";
+                                response.ResponseMsg = "The User " + res.UserName + " Is Successfully Added.";
                                 response.Token = TokenManager.GenerateToken(claimDTO);
                                 response.Data = res;
                             }
                             else
                             {
                                 response.Status = 0;
-                                response.ResponseMsg = "This User " + obj.UserName + " Data is not Added.";
+                                response.ResponseMsg = "This User " + obj.FirstName+" "+obj.LastName + " Data is not Added.";
                                 response.Token = TokenManager.GenerateToken(claimDTO);
                                 response.Data = null;
                             }
@@ -238,12 +238,12 @@ namespace AccountERPApi.Controllers
                     {
                         var Data = _userService.GetAll().ToList();
 
-                        var CheckUserName = Data.Where(x => x.UserID != obj.UserID && x.UserName.ToLower() == obj.UserName.ToLower()).Count();
+                        var CheckUserName = Data.Where(x => x.UserID != obj.UserID && x.RoleID == obj.RoleID && x.FirstName.ToLower() == obj.FirstName.ToLower() && x.LastName.ToLower() == obj.LastName.ToLower()).Count();
 
                         if (CheckUserName > 0)
                         {
                             response.Status = 0;
-                            response.ResponseMsg = "The User " + obj.UserName + " Already exists.";
+                            response.ResponseMsg = "The User " + obj.FirstName + " " + obj.LastName + " Already exists.";
                             response.Token = TokenManager.GenerateToken(claimDTO);
                             response.Data = null;
                         }
@@ -260,14 +260,14 @@ namespace AccountERPApi.Controllers
                             if (!string.IsNullOrEmpty(res.UserName))
                             {
                                 response.Status = 200;
-                                response.ResponseMsg = "The User " + obj.UserName + " Is Successfully Updated.";
+                                response.ResponseMsg = "The User " + res.UserName + " Is Successfully Updated.";
                                 response.Token = TokenManager.GenerateToken(claimDTO);
                                 response.Data = res;
                             }
                             else
                             {
                                 response.Status = 0;
-                                response.ResponseMsg = "This User " + obj.UserName + " Data is not Updated.";
+                                response.ResponseMsg = "This User " + obj.FirstName + " " + obj.LastName + " Data is not Updated.";
                                 response.Token = TokenManager.GenerateToken(claimDTO);
                                 response.Data = null;
                             }

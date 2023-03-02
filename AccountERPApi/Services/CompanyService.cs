@@ -26,6 +26,11 @@ namespace AccountERPApi.Services
             return _repository.GetAll();
         }
 
+        public object GetAllBusinessType_TimeZone_Country_State_City_Data()
+        {
+            return _repository.GetAllBusinessType_TimeZone_Country_State_City_Data();
+        }
+
         public Company GetCompanyByID(int id)
         {
             return _repository.GetCompanyByID(id);

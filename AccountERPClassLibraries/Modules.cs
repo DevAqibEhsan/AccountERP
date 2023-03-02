@@ -21,4 +21,11 @@ namespace AccountERPClassLibraries
         public string CreatedByUserName { get; set; }
         public string ModifiedByUserName { get; set; }
     }
+
+    public class ModulePageAction
+    {
+        public int ModulePageActionID { get; set; }
+        public int ModulePageID { get; set; }
+        public string ModulePageActionName { get; set; }
+    }
 }

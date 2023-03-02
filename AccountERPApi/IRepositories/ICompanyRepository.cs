@@ -12,5 +12,6 @@ namespace AccountERPApi.IRepositories
         Company AddCompany(Company obj);
         Company UpdateCompany(Company obj);
         Company GetCompanyByID(int id);
+        object GetAllBusinessType_TimeZone_Country_State_City_Data();
     }
 }

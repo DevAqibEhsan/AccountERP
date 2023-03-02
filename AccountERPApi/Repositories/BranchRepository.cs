@@ -35,6 +35,40 @@ namespace AccountERPApi.Repositories
             return _dapper.GetAll<Branch>(@"usp_Branch_GetAll", parameters);
         }
 
+        public object GetAllCompany_Branch_Data()
+        {
+            DynamicParameters parameters = new DynamicParameters();
+
+            var tupple = _dapper.GetMultipleObjects(@"usp_Company_Branch_GetAll", parameters, gr => gr.Read<Company>(), gr => gr.Read<Branch>());
+
+            List<Company> list_company = new List<Company>();
+            foreach (var item in tupple.Item1)
+            {
+                Company obj_company = new Company();
+                obj_company.CompanyID = item.CompanyID;
+                obj_company.CompanyName = item.CompanyName;
+
+                list_company.Add(obj_company);
+            }
+
+            List<Branch> list_branch = new List<Branch>();
+            foreach (var item in tupple.Item2)
+            {
+                Branch obj_branch = new Branch();
+                obj_branch.BranchID = item.BranchID;
+                obj_branch.CompanyID = item.CompanyID;
+                obj_branch.BranchName = item.BranchName;
+
+                list_branch.Add(obj_branch);
+            }
+
+            return new
+            {
+                Company = list_company,
+                Branch = list_branch,
+            };
+        }
+
         public Branch GetBranchByID(int id)
         {
             DynamicParameters parameters = new DynamicParameters();
