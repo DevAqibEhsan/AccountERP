@@ -23,4 +23,13 @@ namespace AccountERPClassLibraries
         public string CreatedByUserName { get; set; }
         public string ModifiedByUserName { get; set; }
     }
+
+    public class AssignedPermissionV2
+    {
+        public int AssignedPermissionID { get; set; }
+        public int RoleID { get; set; }
+        public int ModuleID { get; set; }
+        public int ModulePageID { get; set; }
+        public int ModulePageActionID { get; set; }
+    }
 }

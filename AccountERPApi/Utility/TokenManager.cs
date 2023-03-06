@@ -29,18 +29,15 @@ namespace AccountERPApi.Utility
                     new Claim("RoleID",Convert.ToString(obj.RoleID)),
                     new Claim("FirstName",Convert.ToString(obj.FirstName)),
                     new Claim("LastName", Convert.ToString(obj.LastName)),
-                    new Claim("Email", Convert.ToString(obj.Email==null ? "" : obj.Email))
-                    
-                    //new Claim("FirstName", Convert.ToString(obj.FirstName)),
-                    //new Claim("LastName", Convert.ToString(obj.LastName)),
+                    new Claim("Email", Convert.ToString(obj.Email==null ? "" : obj.Email)),
+                    new Claim("Companies", string.Join(',',obj.Companies)),
+                    new Claim("Branches", string.Join(',',obj.Branches)),
+                    new Claim("Permissions", obj.Permissions),
+
                     //new Claim("ImagePath", Convert.ToString(obj.ImagePath)),
-                    //new Claim("RoleId", Convert.ToString(obj.RoleId)),
                     //new Claim("DesignationId",string.Join(',',obj.DesignationId)),
                     //new Claim("DynamicMenu", obj.DynamicMenu),
-                    //new Claim("Permissions", obj.Permissions),
                     //new Claim("MaxDiscountApproval", Convert.ToString(obj.MaxDiscountApproval)),
-                    //new Claim("Companies", string.Join(',',obj.Companies)),
-                    //new Claim("Branches", string.Join(',',obj.Branches)),
                     //new Claim("Factories", string.Join(',',obj.Factories)),
                     //new Claim("Teams", string.Join(',',obj.Teams)),
                     //new Claim("EmployeeLevelID", string.Join(',',obj.EmployeeLevelID)),
@@ -117,17 +114,14 @@ namespace AccountERPApi.Utility
             Claim FirstName = identity.FindFirst("FirstName");
             Claim LastName = identity.FindFirst("LastName");
             Claim Email = identity.FindFirst("Email");
-            
-            //Claim firstName = identity.FindFirst("FirstName");
-            //Claim lastName = identity.FindFirst("LastName");
+            Claim Companies = identity.FindFirst("Companies");
+            Claim Branches = identity.FindFirst("Branches");
+            Claim Permissions = identity.FindFirst("Permissions");
+
             //Claim imagePath = identity.FindFirst("ImagePath");
-            //Claim roleId = identity.FindFirst("RoleId");
             //Claim designationId = identity.FindFirst("DesignationId");
             //Claim dynamicMenu = identity.FindFirst("DynamicMenu");
-            //Claim permissions = identity.FindFirst("Permissions");
             //Claim maxDiscountApproval = identity.FindFirst("MaxDiscountApproval");
-            //Claim companies = identity.FindFirst("Companies");
-            //Claim branches = identity.FindFirst("Branches");
             //Claim factories = identity.FindFirst("Factories");
             //Claim teams = identity.FindFirst("Teams");
             //Claim EmployeeLevelID = identity.FindFirst("EmployeeLevelID");
@@ -137,12 +131,33 @@ namespace AccountERPApi.Utility
             obj.FirstName = FirstName.Value;
             obj.LastName = LastName.Value;
             obj.Email = Email.Value;
+            obj.Permissions = Permissions.Value;
+
+            List<int> CompaniesList = new List<int>();
+            if (Companies.Value != null && Companies.Value != "")
+            {
+                CompaniesList = Companies.Value.Split(',').Select(x => int.Parse(x.Trim())).ToList();
+                obj.Companies = CompaniesList;
+            }
+            else
+            {
+                obj.Companies = CompaniesList;
+            }
+
+            List<int> BranchesList = new List<int>();
+            if (Branches.Value != null && Branches.Value != "")
+            {
+                BranchesList = Branches.Value.Split(',').Select(x => int.Parse(x.Trim())).ToList();
+                obj.Branches = BranchesList;
+            }
+            else
+            {
+                obj.Branches = BranchesList;
+            }
+
 
             //obj.LoginId = Convert.ToInt32(loginId.Value);
-            //obj.FirstName = firstName.Value;
-            //obj.LastName = lastName.Value;
             //obj.ImagePath = imagePath.Value;
-            //obj.RoleId = Convert.ToInt32(roleId.Value);
             //obj.MaxDiscountApproval = Convert.ToInt32(maxDiscountApproval.Value);
             //obj.EmployeeLevelID = Convert.ToInt32(EmployeeLevelID.Value);
             //if (designationId.Value != null && designationId.Value != "")
@@ -154,7 +169,6 @@ namespace AccountERPApi.Utility
             //    obj.DesignationId = new List<int>();
             //}
             //obj.DynamicMenu = dynamicMenu.Value;
-            //obj.Permissions = permissions.Value;
             //obj.MaxApprovalAmount = Convert.ToDecimal(maxApprovalAmount.Value);
             //obj.MinApprovalAmount = Convert.ToDecimal(minApprovalAmount.Value);
             //obj.GeoLocation = Convert.ToInt32(geoLocation.Value);
@@ -166,28 +180,6 @@ namespace AccountERPApi.Utility
             //    obj.MaxApprovalAmount = maxApproveAmount;
             //}
 
-            //List<int> companiesList = new List<int>();
-            //if (companies.Value != null && companies.Value != "")
-            //{
-            //    companiesList = companies.Value.Split(',').Select(x => int.Parse(x.Trim())).ToList();
-            //    obj.Companies = companiesList;
-            //}
-            //else
-            //{
-
-            //    obj.Companies = companiesList;
-            //}
-            //List<int> branchesList = new List<int>();
-            //if (branches.Value != null && branches.Value != "")
-            //{
-            //    branchesList = branches.Value.Split(',').Select(x => int.Parse(x.Trim())).ToList();
-            //    obj.Branches = branchesList;
-            //}
-            //else
-            //{
-
-            //    obj.Branches = branchesList;
-            //}
             //List<int> factoriesList = new List<int>();
             //if (factories.Value != null && factories.Value != "")
             //{

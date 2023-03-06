@@ -122,19 +122,21 @@ function GetAllModule() {
                     window.location.href = baseWebUrl + "Account/Login";
                 }
                 else if (data.Status == 403) {
-                    ErrorAlert(res.ResponseMsg);
+                    ShowWhiteSpaceWithAssignedPermissionError(data.ResponseMsg);
+
+                    ErrorAlert(data.ResponseMsg);                    
                 }
                 else if (data.statusCode == 404) {
-                    ErrorAlert(res.reasonPhrase);
+                    ErrorAlert(data.reasonPhrase);
                 }
                 else if (data.Status == 320) {
-                    ErrorAlert(res.ResponseMsg);
+                    ErrorAlert(data.ResponseMsg);
                 }
                 else if (data.Status == 500) {
-                    ErrorAlert(res.ResponseMsg);
+                    ErrorAlert(data.ResponseMsg);
                 }
                 else if (data.Status == 600) {
-                    ErrorAlert(res.ResponseMsg);
+                    ErrorAlert(data.ResponseMsg);
                 }
                 else {
                     ErrorAlert(data.ResponseMsg);

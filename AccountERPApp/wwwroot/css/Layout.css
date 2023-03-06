@@ -431,6 +431,15 @@ h1, .h1 {
     background-color: rgba(236, 238, 239, 0.3);
 }
 
+.footer {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    white-space: nowrap;
+    background-color: white;
+}
+
+
 @media (min-width: 992px) {
     .dashboard-app {
         margin-left: 238px;

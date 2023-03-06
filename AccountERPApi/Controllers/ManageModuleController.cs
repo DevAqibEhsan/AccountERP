@@ -5,6 +5,7 @@ using AccountERPClassLibraries.DTOLibraries;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,8 +44,13 @@ namespace AccountERPApi.Controllers
 
                     if (claimDTO.RoleID != 1)
                     {
-                        HasPermission = false;
-                        // Here We Check Permission and than Set True
+                        //var Permissions = JsonConvert.DeserializeObject<List<string>>(claimDTO.Permissions);
+
+                        HasPermission = CheckPermission.IsPermissionAllow(claimDTO);
+                        //if (Permissions != null && Permissions.Count > 0 && Permissions.Contains(PermissionEnum.ViewModule.ToString()))
+                        //{
+                        //    HasPermission = true;
+                        //}
                     }
                         
                     if (HasPermission)
@@ -59,7 +65,7 @@ namespace AccountERPApi.Controllers
                     {
                         response.Status = 403;
                         response.ResponseMsg = "You don’t have permission to this action.";
-                        response.Token = null;
+                        response.Token = TokenManager.GenerateToken(claimDTO);
                         response.Data = null;
                     }
                 }

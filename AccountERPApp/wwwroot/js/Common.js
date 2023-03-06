@@ -103,6 +103,11 @@ function ErrorAlert(Message) {
     }
 }
 
+function ShowWhiteSpaceWithAssignedPermissionError(Message) {
+    $(".btnsection").html("");
+    $(".card-body").text(Message);
+}
+
 function MaterialActiveClass_Add_In_Textbox(thisid) {
     if ($("#"+thisid.attributes[1].value).hasClass("Active")) {
 

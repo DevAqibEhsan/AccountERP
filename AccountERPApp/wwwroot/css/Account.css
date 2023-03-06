@@ -5,4 +5,22 @@
     border:0px !important;
 }
 
+.footer {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    white-space: nowrap;
+    background-color: white;
+}
 
+.LoginUser.pb-4 {
+    padding-bottom: 4.1rem !important;
+}
+
+.RegisterUser.pb-4 {
+    padding-bottom: 1.5rem !important;
+}
+
+.ForgotPassword.pb-4 {
+    padding-bottom: 22.6rem !important;
+}

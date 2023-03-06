@@ -21,12 +21,14 @@ namespace AccountERPApi.Controllers
         private readonly IAuthenticationService _authenticationService;
         private readonly IModulesService _modulesService;
         private readonly IModulePagesService _modulePagesService;
+        private readonly IAssignedPermissionService _assignedPermissionService;
 
-        public AuthenticationController(IAuthenticationService authenticationService,IModulesService modulesService,IModulePagesService modulePagesService)
+        public AuthenticationController(IAuthenticationService authenticationService,IModulesService modulesService,IModulePagesService modulePagesService, IAssignedPermissionService assignedPermissionService)
         {
             _authenticationService = authenticationService;
             _modulesService = modulesService;
             _modulePagesService = modulePagesService;
+            _assignedPermissionService = assignedPermissionService;
         }
 
         [HttpPost("Authenticate")]
@@ -105,12 +107,62 @@ namespace AccountERPApi.Controllers
                         #region Other Admin Section
                         else // Other User
                         {
+                            List<DynamicMenu> dynamicMenuList = new List<DynamicMenu>();
 
+                            var AssignedPermission = _assignedPermissionService.GetAll().Where(ap => ap.RoleID == user.RoleID).ToList();
+                           var AssignedPermissionV2 = _assignedPermissionService.GetAllV2().Where(ap => ap.RoleID == user.RoleID).ToList();
+
+                            var Modules = _modulesService.GetAllActive().Where(m => AssignedPermissionV2.Any(x=> x.ModuleID == m.ModuleID)).ToList();
+                            var ModulePages = _modulePagesService.GetAllActive().Where(mp=> Modules.Any(x=> x.ModuleID == mp.ModuleID) && AssignedPermissionV2.Any(y=> y.ModulePageID == mp.ModulePageID)).ToList();
+
+                            if (Modules.Count > 0)
+                            {
+                                if (ModulePages.Count > 0)
+                                {
+                                    for (int i = 0; i < Modules.Count; i++)
+                                    {
+                                        var ModuleName = Modules[i].ModuleName;
+                                        DynamicMenu dynamicMenu = new DynamicMenu();
+                                        dynamicMenu.ModuleName = ModuleName == null ? "No Module" : ModuleName;
+                                        dynamicMenu.NameAsModuleID = Modules[i].NameAsModuleID;
+                                        dynamicMenu.Icon = Modules[i].Icon;
+                                        dynamicMenu.OrderN = Modules[i].OrderN;
+                                        dynamicMenu.DynamicSubMenues = new List<DynamicSubMenu>();
+                                        var Pages = ModulePages.Where(x => x.ModuleID == Modules[i].ModuleID).ToList();
+
+                                        for (int j = 0; j < Pages.Count; j++)
+                                        {
+                                            DynamicSubMenu dynamicSubMenu = new DynamicSubMenu();
+
+                                            dynamicSubMenu.ModulePageName = Pages[j].ModulePageName;
+                                            dynamicSubMenu.ControllerURL = Pages[j].ControllerURL;
+                                            dynamicSubMenu.ActionURL = Pages[j].ActionURL;
+                                            dynamicSubMenu.OrderN = Pages[j].OrderN;
+                                            dynamicMenu.DynamicSubMenues.Add(dynamicSubMenu);
+                                        }
+
+                                        dynamicMenuList.Add(dynamicMenu);
+                                    }
+                                }
+                            }
+
+                            if (dynamicMenuList != null && dynamicMenuList.Count > 0)
+                            {
+                                for (int i = 0; i < dynamicMenuList.Count; i++)
+                                {
+                                    dynamicMenuList[i].DynamicSubMenues = dynamicMenuList[i].DynamicSubMenues.OrderBy(o => o.OrderN).ToList();
+                                }
+
+                            }
+
+                            dynamicMenuList = dynamicMenuList.OrderBy(O => O.OrderN).ToList();
+                            user.DynamicMenu = JsonConvert.SerializeObject(dynamicMenuList);
+                            user.Permissions = JsonConvert.SerializeObject(AssignedPermission.Select(x=> x.ModulePageActionName));
                         }
                         #endregion
 
                         var menu = JsonConvert.DeserializeObject<List<DynamicMenu>>(user.DynamicMenu);
-
+                        user.DynamicMenu = "";
                         response = CustomStatusResponse.GetResponse(200);
                         response.Token = TokenManager.GenerateToken(user);
                         response.Data = new

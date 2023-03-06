@@ -90,5 +90,11 @@ namespace AccountERPApi.Repositories
                 ModulePageAction = list_modulePageAction
             };
         }
+
+        public List<AssignedPermissionV2> GetAllV2()
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            return _dapper.GetAll<AssignedPermissionV2>(@"usp_AssignedPermission_GetAllV2", parameters);
+        }
     }
 }

@@ -49,6 +49,18 @@ namespace AccountERPApp.Controllers
         }
 
         [HttpPost]
+        public Task<object> RegisterUser([FromBody] RegisterUser obj)
+        {
+            string content = JsonConvert.SerializeObject(obj);
+            var buffer = System.Text.Encoding.UTF8.GetBytes(content);
+            var byteContent = new ByteArrayContent(buffer);
+            //string a=HttpContext.Session.GetString("authorization");
+            //return HttpUtility.CustomHttp(ApiBaseURL, "api/Authentication/Authenticate", content, HttpContext);
+            return HttpUtility.CustomHttp(ApiBaseURL, "api/RegisterUser/RegisterUser", content, HttpContext);
+
+        }
+
+        [HttpPost]
         public Task<object> Logout()
         {
             string content = "";
