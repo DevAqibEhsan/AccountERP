@@ -238,15 +238,7 @@ function SaveBusinessTypeData() {
         postRequest(BaseUrl + "/SiteConfiguration/UpdateBusinessType", obj, function (res) {
             if (res.Status == 200) {
                 if (res.Data != null) {
-                    Swal.fire({
-                        title: 'Saved',
-                        icon: 'success',
-                        html: res.ResponseMsg
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            CancelButtonAction();
-                        }
-                    });
+                    SuccessAlertWithConfirmAndCancelButtonActionFuncExecute(res.ResponseMsg);
                 }
             }
             else if (res.Status == 401) {
@@ -279,15 +271,7 @@ function SaveBusinessTypeData() {
         postRequest(BaseUrl + "/SiteConfiguration/AddBusinessType", obj, function (res) {
             if (res.Status == 200) {
                 if (res.Data != null) {
-                    Swal.fire({
-                        title: 'Saved',
-                        icon: 'success',
-                        html: res.ResponseMsg
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            CancelButtonAction();
-                        }
-                    });
+                    SuccessAlertWithConfirmAndCancelButtonActionFuncExecute(res.ResponseMsg);
                 }
             }
             else if (res.Status == 401) {

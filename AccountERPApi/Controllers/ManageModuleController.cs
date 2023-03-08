@@ -44,13 +44,7 @@ namespace AccountERPApi.Controllers
 
                     if (claimDTO.RoleID != 1)
                     {
-                        //var Permissions = JsonConvert.DeserializeObject<List<string>>(claimDTO.Permissions);
-
-                        HasPermission = CheckPermission.IsPermissionAllow(claimDTO);
-                        //if (Permissions != null && Permissions.Count > 0 && Permissions.Contains(PermissionEnum.ViewModule.ToString()))
-                        //{
-                        //    HasPermission = true;
-                        //}
+                        HasPermission = CheckPermission.IsPermissionAllow(claimDTO, PermissionEnum.ViewModule.ToString());
                     }
                         
                     if (HasPermission)

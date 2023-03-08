@@ -15,6 +15,23 @@ $(document).ready(function () {
     baseApiUrl = $("#baseApiUrl").val();
     baseWebUrl = $("#baseWebUrl").val();
 
+    SiteConfigurationLoad(BaseUrl);
+
+    var remember = $.cookie('rememberMe');
+    if (remember == 'true') {
+        $('#remember').prop('checked', true);
+
+        var UserName = $.cookie('UserName');
+        var password = $.cookie('password');
+
+        $(txtUserName).attr("value", UserName);
+
+        $(txtPassword).attr("value", password);
+
+        MaterialActiveClass_Add_In_Textbox(txtUserName);
+        MaterialActiveClass_Remove_In_Textbox(txtPassword);
+    }
+
     $(btnLogin).click(function () {
         Login();
     });
@@ -24,6 +41,23 @@ $(document).ready(function () {
 function Login() {
 
     $(btnLogin).buttonLoader('start');
+
+    var rememberMe = $('#remember').prop('checked');
+    if (rememberMe) {
+        var UserName = $(txtUserName).val();
+        var Password = $(txtPassword).val();
+        // Encrypt
+        //var UserNameEncrypt = CryptoJS.AES.encrypt(Username, PsswordKey);
+        //var PasswordEncrypt = CryptoJS.AES.encrypt(Password, PsswordKey);
+        $.cookie('UserName', UserName, { expires: 365 });
+        $.cookie('password', Password, { expires: 365 });
+        $.cookie('rememberMe', true, { expires: 365 });
+    }
+    else {
+        $.cookie('UserName', null);
+        $.cookie('password', null);
+        $.cookie('rememberMe', null);
+    }
 
     let data = {
         Email: $(txtUserName).val(),
@@ -85,4 +119,6 @@ function Login() {
         }
     });
 }
+
+
 

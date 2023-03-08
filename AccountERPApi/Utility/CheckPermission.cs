@@ -11,12 +11,12 @@ namespace AccountERPApi.Utility
     public class CheckPermission
     {
         
-        public static bool IsPermissionAllow(ClaimDTO claimDTO)
+        public static bool IsPermissionAllow(ClaimDTO claimDTO,string ActionPermission)
         {
             bool HasPermission = false;
             var Permissions = JsonConvert.DeserializeObject<List<string>>(claimDTO.Permissions);
 
-            if (Permissions != null && Permissions.Count > 0 && Permissions.Contains(PermissionEnum.ViewModule.ToString()))
+            if (Permissions != null && Permissions.Count > 0 && Permissions.Contains(ActionPermission))
             {
                 HasPermission = true;
             }

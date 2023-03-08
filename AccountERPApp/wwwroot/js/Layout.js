@@ -12,11 +12,34 @@ $(document).ready(function () {
     let menuData = JSON.parse(localStorage.getItem("Menu"));
     let userData = JSON.parse(localStorage.getItem("userData"));
 
+    LoadSiteConfigAndMediaThing(userData);
+    //$("#imgAdminSiteLogo").attr("src", userData.SiteLogo);
+    //$("#AdminFooterContainer").html(userData.PoweredByText);
+    //$("#SiteURL").attr('href', userData.SiteURL);
+
     $(menuData).each(function (i, e) {
         $(e.DynamicModulePagesMenus).each(function (i1, e1) {
             e1["baseUrlForMVCAction"] = BaseUrl;
         });
     });
+
+    $("#dvLoginUserInfo").click(function () {
+        if ($("#dvLoginUserInfoMenuDropdown").hasClass("show")) {
+            $("#dvLoginUserInfoMenuDropdown").removeClass("show");
+        }
+        else {
+            $("#dvLoginUserInfoMenuDropdown").addClass("show");
+        }
+    });
+
+    //document.addEventListener('click', function() {
+    //    if ($("#dvLoginUserInfoMenuDropdown").hasClass("show")) {
+    //        $("#dvLoginUserInfoMenuDropdown").removeClass("show");
+    //    }
+    //    else {
+    //        $("#dvLoginUserInfoMenuDropdown").addClass("show");
+    //    }
+    //});
 
     fillData(menuData, "#temp_navMenuList", "#navMenuList", false);
     GetURLAndSetMenuSelected();
@@ -91,6 +114,7 @@ $(document).ready(function () {
 });
 
 
+
 function MomentDateTimeFormat(inputdate) {
     if (inputdate != null) {
         return moment(inputdate.replace(/\Z$/, '')).format('DD/MM/YYYY hh:mm:ss a')
@@ -99,6 +123,13 @@ function MomentDateTimeFormat(inputdate) {
         return "-";
     }
     
+}
+
+function LoadSiteConfigAndMediaThing(userData) {
+    $("#imgAdminSiteLogo").attr("src", userData.SiteLogo);
+    $("#AdminFooterContainer").html(userData.PoweredByText);
+    $("#SiteURL").attr('href', userData.SiteURL);
+    $("#spLoginUserInfo_Name").text(userData.FirstName + " " + userData.LastName);
 }
 
 

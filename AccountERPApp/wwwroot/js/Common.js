@@ -1,7 +1,7 @@
 ﻿
-$(document).ready(function () {
-    $('#example').DataTable();
-});
+//$(document).ready(function () {
+//    $('#example').DataTable();
+//});
 
 function FormShow() {
     $("#grid").hide();
@@ -103,27 +103,89 @@ function ErrorAlert(Message) {
     }
 }
 
+function SuccessAlertWithConfirmAndOpenURL(Message,URL) {
+    if (Message != "" && Message != null) {
+        Swal.fire({
+            title: 'Saved',
+            icon: 'success',
+            html: Message
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = URL;
+            }
+        });
+    }
+}
+
+function SuccessAlertWithConfirmAndCancelButtonActionFuncExecute(Message) {
+    if (Message != "" && Message != null) {
+        Swal.fire({
+            title: 'Saved',
+            icon: 'success',
+            html: Message
+        }).then((result) => {
+            if (result.isConfirmed) {
+                CancelButtonAction();
+            }
+        });
+    }
+}
+
+function ErrorAlertWithConfirmAndOpenURL(Message, URL) {
+    if (Message != "" && Message != null) {
+        Swal.fire({
+            title: 'Error',
+            icon: 'error',
+            html: res.ResponseMsg
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                window.location.href = URL;
+            }
+        });
+    }
+}
+
 function ShowWhiteSpaceWithAssignedPermissionError(Message) {
     $(".btnsection").html("");
     $(".card-body").text(Message);
 }
 
 function MaterialActiveClass_Add_In_Textbox(thisid) {
-    if ($("#"+thisid.attributes[1].value).hasClass("Active")) {
 
+    if (thisid.attributes == undefined) {
+        if ($(thisid).hasClass("Active")) {
+        }
+        else {
+            $(thisid).addClass("Active");
+        }
     }
     else {
-        $("#" + thisid.attributes[1].value).addClass("Active");
+        if ($("#" + thisid.attributes[1].value).hasClass("Active")) {
+        }
+        else {
+            $("#" + thisid.attributes[1].value).addClass("Active");
+        }
     }
-
 }
 
 function MaterialActiveClass_Remove_In_Textbox(thisid) {
-    if ($("#" + thisid.attributes[1].value).val().length <= 0) {
-        $("#" + thisid.attributes[1].value).removeClass("Active");
+
+    if (thisid.attributes == undefined) {
+        if ($(thisid).val().length <= 0) {
+            $(thisid).removeClass("Active");
+        }
+        else {
+            MaterialActiveClass_Add_In_Textbox(thisid);
+        }
     }
     else {
-        MaterialActiveClass_Add_In_Textbox(thisid);
+        if ($("#" + thisid.attributes[1].value).val().length <= 0) {
+            $("#" + thisid.attributes[1].value).removeClass("Active");
+        }
+        else {
+            MaterialActiveClass_Add_In_Textbox(thisid);
+        }
     }
 }
 
@@ -149,6 +211,46 @@ function CheckboxIsChecked(ElementID) {
     }
 
     return IsCheckedVal;
+}
+
+function SiteConfigurationLoad(url) {
+    postRequest(url + "/Account/SiteConfigurationLoad", null, function (res) {
+        if (res.Status == 200) {
+
+            $("#imgSiteLogo").attr("src", "./../SiteConfigMedia/" + res.Data[0].Logo);
+
+            $("#footerContainer").html(res.Data[0].PoweredBy);
+        }
+        else if (res.Status == 304) {
+            ErrorAlert(res.ResponseMsg);
+
+            ErrorAlert(res.ResponseMsg);
+        }
+        else if (res.Status == 305) {
+            ErrorAlert(res.ResponseMsg);
+        }
+        else if (res.Status == 401) {
+            ErrorAlert(res.ResponseMsg);
+        }
+        else if (res.Status == 403) {
+            ErrorAlert(res.ResponseMsg);
+        }
+        else if (res.statusCode == 404) {
+            ErrorAlert(res.reasonPhrase);
+        }
+        else if (res.Status == 320) {
+            ErrorAlert(res.ResponseMsg);
+        }
+        else if (res.Status == 500) {
+            ErrorAlert(res.ResponseMsg);
+        }
+        else if (res.Status == 600) {
+            ErrorAlert(res.ResponseMsg);
+        }
+        else {
+            ErrorAlert(res.ResponseMsg);
+        }
+    });
 }
 
 //$().buttonLoader("start") / $().buttonLoader("stop") function Start

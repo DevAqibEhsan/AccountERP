@@ -497,30 +497,11 @@ function SaveCompanyData() {
         postRequestFormData(baseApiUrl + "api/ManageCompany/UpdateCompany", formData, function (res) {
             if (res.Status == 200) {
                 if (res.Data != null) {
-                    Swal.fire({
-                        title: 'Saved',
-                        icon: 'success',
-                        html: res.ResponseMsg
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            CancelButtonAction();
-                        }
-                    });
+                    SuccessAlertWithConfirmAndCancelButtonActionFuncExecute(res.ResponseMsg);
                 }
             }
             else if (res.Status == 401) {
-                Swal.fire({
-                    title: 'Error',
-                    icon: 'error',
-                    html: res.ResponseMsg
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        localStorage.removeItem("userData");
-                        localStorage.removeItem("Menu");
-
-                        window.location.href = baseWebUrl + "Account/Login";
-                    }
-                });
+                ErrorAlertWithConfirmAndOpenURL(res.ResponseMsg, baseWebUrl + "Account/Login");
             }
             else if (res.Status == 403) {
                 ErrorAlert(res.ResponseMsg);
@@ -546,15 +527,7 @@ function SaveCompanyData() {
         postRequestFormData(baseApiUrl + "api/ManageCompany/AddCompany", formData, function (res) {
             if (res.Status == 200) {
                 if (res.Data != null) {
-                    Swal.fire({
-                        title: 'Saved',
-                        icon: 'success',
-                        html: res.ResponseMsg
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            CancelButtonAction();
-                        }
-                    });
+                    SuccessAlertWithConfirmAndCancelButtonActionFuncExecute(res.ResponseMsg);
                 }
             }
             else if (res.Status == 401) {

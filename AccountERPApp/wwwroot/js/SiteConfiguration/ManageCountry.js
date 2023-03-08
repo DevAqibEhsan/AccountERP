@@ -230,18 +230,7 @@ function SaveCountryData() {
         postRequest(BaseUrl + "/SiteConfiguration/UpdateCountry", obj, function (res) {
             if (res.Status == 200) {
                 if (res.Data != null) {
-                    Swal.fire({
-                        title: 'Saved',
-                        icon: 'success',
-                        html: res.ResponseMsg
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            ClearAllField();
-                            $(DataTable).DataTable().destroy();
-                            GetAllCountry();
-                            GridShow();
-                        }
-                    });
+                    SuccessAlertWithConfirmAndCancelButtonActionFuncExecute(res.ResponseMsg);
                 }
             }
             else if (res.Status == 401) {
@@ -274,18 +263,7 @@ function SaveCountryData() {
         postRequest(BaseUrl + "/SiteConfiguration/AddCountry", obj, function (res) {
             if (res.Status == 200) {
                 if (res.Data != null) {
-                    Swal.fire({
-                        title: 'Saved',
-                        icon: 'success',
-                        html: res.ResponseMsg
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            ClearAllField();
-                            $(DataTable).DataTable().destroy();
-                            GetAllCountry();
-                            GridShow();
-                        }
-                    });
+                    SuccessAlertWithConfirmAndCancelButtonActionFuncExecute(res.ResponseMsg);
                 }
             }
             else if (res.Status == 401) {
@@ -322,4 +300,11 @@ function ClearAllField() {
     $(hdnCountryID).val(0);
     $(txtCountryCode).val("");
     $(txtCountryName).val("");
+}
+
+function CancelButtonAction() {
+    ClearAllField();
+    $(DataTable).DataTable().destroy();
+    GetAllCountry();
+    GridShow();
 }

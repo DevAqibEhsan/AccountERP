@@ -240,15 +240,7 @@ function SaveStateData() {
         postRequest(BaseUrl + "/SiteConfiguration/UpdateState", obj, function (res) {
             if (res.Status == 200) {
                 if (res.Data != null) {
-                    Swal.fire({
-                        title: 'Saved',
-                        icon: 'success',
-                        html: res.ResponseMsg
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            CancelButtonAction();
-                        }
-                    });
+                    SuccessAlertWithConfirmAndCancelButtonActionFuncExecute(res.ResponseMsg);
                 }
             }
             else if (res.Status == 401) {
@@ -281,15 +273,7 @@ function SaveStateData() {
         postRequest(BaseUrl + "/SiteConfiguration/AddState", obj, function (res) {
             if (res.Status == 200) {
                 if (res.Data != null) {
-                    Swal.fire({
-                        title: 'Saved',
-                        icon: 'success',
-                        html: res.ResponseMsg
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            CancelButtonAction();
-                        }
-                    });
+                    SuccessAlertWithConfirmAndCancelButtonActionFuncExecute(res.ResponseMsg);
                 }
             }
             else if (res.Status == 401) {

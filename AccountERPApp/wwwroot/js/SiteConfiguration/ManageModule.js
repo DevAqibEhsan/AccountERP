@@ -265,18 +265,7 @@ function SaveModuleData() {
         postRequest(BaseUrl + "/SiteConfiguration/UpdateModule", obj, function (res) {
             if (res.Status == 200) {
                 if (res.Data != null) {
-                    Swal.fire({
-                        title: 'Saved',
-                        icon: 'success',
-                        html: res.ResponseMsg
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            ClearAllField();
-                            $(DataTable).DataTable().destroy();
-                            GetAllModule();
-                            GridShow();
-                        }
-                    });
+                    SuccessAlertWithConfirmAndCancelButtonActionFuncExecute(res.ResponseMsg);
                 }
             }
             else if (res.Status == 401) {
@@ -309,18 +298,7 @@ function SaveModuleData() {
         postRequest(BaseUrl + "/SiteConfiguration/AddModule", obj, function (res) {
             if (res.Status == 200) {
                 if (res.Data != null) {
-                    Swal.fire({
-                        title: 'Saved',
-                        icon: 'success',
-                        html: res.ResponseMsg
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            ClearAllField();
-                            $(DataTable).DataTable().destroy();
-                            GetAllModule();
-                            GridShow();
-                        }
-                    });
+                    SuccessAlertWithConfirmAndCancelButtonActionFuncExecute(res.ResponseMsg);
                 }
             }
             else if (res.Status == 401) {
@@ -360,4 +338,11 @@ function ClearAllField() {
     $(txtModuleIcon).val("");
     $(txtModuleOrderNo).val("");
     $("#chkModuleIsActive").prop("checked", false);
+}
+
+function CancelButtonAction() {
+    ClearAllField();
+    $(DataTable).DataTable().destroy();
+    GetAllModule();
+    GridShow();
 }

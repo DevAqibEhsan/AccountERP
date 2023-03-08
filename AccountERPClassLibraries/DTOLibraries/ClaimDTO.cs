@@ -10,11 +10,15 @@ namespace AccountERPClassLibraries.DTOLibraries
         public int RoleID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string RoleName { get; set; }
         public string Email { get; set; }
         public string DynamicMenu { get; set; }
         public List<int> Companies { get; set; }
         public List<int> Branches { get; set; }
         public string Permissions { get; set; }
+        public string SiteLogo { get; set; }
+        public string PoweredByText { get; set; }
+        public string SiteURL { get; set; }
     }
 
     public class ClaimDTOInherit : ClaimDTO

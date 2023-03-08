@@ -71,8 +71,9 @@
                 <a href="#!" class="menu-toggle">
                     <i class="fas fa-bars"></i>
                 </a>
-                <a href="#" class="brand-logo">
-                    <i class="fas fa-anchor"></i> <span>BRAND</span>
+                <a id="SiteURL" href="#" class="brand-logo">
+                    @*<img id="imgAdminSiteLogo" src="~/SiteConfigMedia/SiteConfigLogo.jpg" alt="Logo" />*@
+                    <img id="imgAdminSiteLogo" src="" alt="Logo" />
                 </a>
             </header>
             <nav class="dashboard-nav-list">
@@ -82,8 +83,8 @@
 
                     @*<div class='dashboard-nav-dropdown show'>*@
                     <!--<div id="dvSales" class='dashboard-nav-dropdown'>
-                        <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-photo-video"></i> Sales</a>
-                        <div class='dashboard-nav-dropdown-menu'>-->
+                    <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-photo-video"></i> Sales</a>
+                    <div class='dashboard-nav-dropdown-menu'>-->
                     @*<a href="#" class="dashboard-nav-dropdown-item active">Images</a>*@
                     <!--<a href="@Url.Action("Quotation","Sales")" id="mSalesQuotation" class="dashboard-nav-dropdown-item">Quotation</a>
                             <a href="@Url.Action("Order","Sales")" id="mSalesOrder" class="dashboard-nav-dropdown-item">Order</a>
@@ -201,28 +202,47 @@
         </div>
 
         <div class='dashboard-app'>
-            <header class='dashboard-toolbar'><a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a></header>
+            <header class='dashboard-toolbar'>
+                <a href="#!" class="menu-toggle">
+                <i class="fas fa-bars"></i>
+                </a>
+                <div id="dvLoginUserInfo">
+                    <span id="spLoginUserInfo_Name" class="">Aqib Ehsan</span>
+                    <img id="imgLoginUserInfo_Image" class="img-profile rounded-circle" src="~/UserMedia/UserIcon.svg" />
+                    <div id="dvLoginUserInfoMenuDropdown" class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                        <a class="dropdown-item" href="#">
+                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Profile
+                        </a>
+                        
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" id="btnLogout" href="#" data-toggle="modal" data-target="#logoutModal">
+                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Logout
+                        </a>
+                    </div>
+                </div>
+            </header>
             @RenderBody()
             @*<div class='dashboard-content'>
-                    <div class='container'>
-                        <div class='card'>
-                            <div class='card-header'>
-                                <h1>Welcome back Jim</h1>
-                            </div>
-                            <div class='card-body'>
-                                <p>Your account type is: Administrator</p>
-                            </div>
-                        </div>
+            <div class='container'>
+                <div class='card'>
+                    <div class='card-header'>
+                        <h1>Welcome back Jim</h1>
                     </div>
-                </div>*@
+                    <div class='card-body'>
+                        <p>Your account type is: Administrator</p>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+            <footer class="LayoutFooter">
+                <div id="AdminFooterContainer" class="container">
+                    © 2022 - AccountERPApp - <a href="/Home/Privacy">Privacy</a>
+                </div>
+            </footer>
         </div>
     </div>
-
-    <footer class="footer">
-        <div class="container">
-            © 2022 - AccountERPApp - <a href="/Home/Privacy">Privacy</a>
-        </div>
-    </footer>
 
     @*<header>
             <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
@@ -274,5 +294,6 @@
         </div>
         {{/each}}
     </script>
+   
 </body>
 </html>

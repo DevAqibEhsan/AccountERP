@@ -10,6 +10,7 @@ Add Multiselect dropdown
 Add Calender in Textbox
 Add Validation
 Check Match Password in Register page
+Add TextEditor
 
 
 

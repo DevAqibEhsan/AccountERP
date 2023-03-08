@@ -18,6 +18,34 @@ nav {
     display: block;
 }
 
+#imgAdminSiteLogo {
+    width: 182px;
+    height: 177px;
+}
+
+#dvLoginUserInfo {
+    text-align: right;
+    width: 100%;
+    cursor:pointer;
+}
+
+#spLoginUserInfo_Name {
+    font-size: 85%;
+    font-weight: 400;
+    color: #858796 !important;
+}
+
+#imgLoginUserInfo_Image {
+    height: 2rem;
+    width: 2rem;
+}
+
+#dvLoginUserInfoMenuDropdown {
+    width: 10% !important;
+    left: auto !important;
+    margin-top: 3px !important;
+}
+
 body {
     margin: 0;
     font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -431,12 +459,12 @@ h1, .h1 {
     background-color: rgba(236, 238, 239, 0.3);
 }
 
-.footer {
-    position: absolute;
-    width: 100%;
-    text-align: center;
-    white-space: nowrap;
-    background-color: white;
+.LayoutFooter {
+    background-color: #e9edf4;
+    margin: 10px 10px 10px 10px;
+    padding: 10px 0 10px 0;
+    border-top: 1px solid #dfdfdf;
+    border-bottom: 1px solid #dfdfdf;
 }
 
 

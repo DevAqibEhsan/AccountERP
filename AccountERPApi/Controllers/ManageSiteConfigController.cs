@@ -437,5 +437,26 @@ namespace AccountERPApi.Controllers
 
             DeleteFile(FilePath);
         }
+
+        [HttpPost("GetActiveSiteConfiguration")]
+        public Response GetActiveSiteConfiguration()
+        {
+            Response response = new Response();
+
+            try
+            {
+                var Data = _siteConfigService.GetAllActive().ToList();
+
+                response.Status = 200;
+                response.Data = Data;
+            }
+            catch (Exception ex)
+            {
+                response.Status = ExceptionStatusCode.GetExceptionCode(ex);
+                response.ResponseMsg = ex.Message;
+            }
+
+            return response;
+        }
     }
 }

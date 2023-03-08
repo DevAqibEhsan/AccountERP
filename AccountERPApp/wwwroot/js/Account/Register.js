@@ -18,6 +18,7 @@ $(document).ready(function () {
     baseApiUrl = $("#baseApiUrl").val();
     baseWebUrl = $("#baseWebUrl").val();
 
+    SiteConfigurationLoad(BaseUrl);
 
     $(btnRegister).click(function () {
         RegisterUser();
@@ -37,15 +38,8 @@ function RegisterUser() {
 
     postRequest(BaseUrl + "/Account/RegisterUser", data, function (res) {
         if (res.Status == 200) {
-            Swal.fire({
-                title: 'Saved',
-                icon: 'success',
-                html: res.ResponseMsg
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = baseWebUrl + "Account/Login";
-                }
-            });
+            SuccessAlertWithConfirmAndOpenURL(res.ResponseMsg, baseWebUrl + "Account/Login");
+
             $(btnRegister).buttonLoader('stop');
         }
         else if (res.Status == 304) {

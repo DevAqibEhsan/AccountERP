@@ -22,13 +22,17 @@ namespace AccountERPApi.Controllers
         private readonly IModulesService _modulesService;
         private readonly IModulePagesService _modulePagesService;
         private readonly IAssignedPermissionService _assignedPermissionService;
+        private readonly ISiteConfigService _siteConfigService;
+        private readonly ICompanyService _companyService;
 
-        public AuthenticationController(IAuthenticationService authenticationService,IModulesService modulesService,IModulePagesService modulePagesService, IAssignedPermissionService assignedPermissionService)
+        public AuthenticationController(IAuthenticationService authenticationService,IModulesService modulesService,IModulePagesService modulePagesService, IAssignedPermissionService assignedPermissionService, ISiteConfigService siteConfigService, ICompanyService companyService)
         {
             _authenticationService = authenticationService;
             _modulesService = modulesService;
             _modulePagesService = modulePagesService;
             _assignedPermissionService = assignedPermissionService;
+            _siteConfigService = siteConfigService;
+            _companyService = companyService;
         }
 
         [HttpPost("Authenticate")]
@@ -53,6 +57,7 @@ namespace AccountERPApi.Controllers
                         #region Super Admin Section
                         if (user.RoleID == 1) // Super Admin
                         {
+                            #region Dynamic Menu Start
                             List<DynamicMenu> dynamicMenuList = new List<DynamicMenu>();
 
                             var Modules = _modulesService.GetAllActive().ToList();
@@ -99,7 +104,20 @@ namespace AccountERPApi.Controllers
                             }
 
                             dynamicMenuList = dynamicMenuList.OrderBy(O => O.OrderN).ToList();
+
+                            #endregion
+
+                            #region Site Configuration Start
+
+                            var AdminSiteConfig = _siteConfigService.GetAllActive();
+                            
+                            #endregion
+
                             user.DynamicMenu = JsonConvert.SerializeObject(dynamicMenuList);
+                            user.Permissions = "";
+                            user.SiteLogo = "./../SiteConfigMedia/" + AdminSiteConfig[0].Logo;
+                            user.PoweredByText = TokenReplacement.StringTokenReplacement(AdminSiteConfig[0].PoweredBy);
+                            user.SiteURL = StringUtility.JavaScriptVoid;
                         }
 
                         #endregion
@@ -107,6 +125,8 @@ namespace AccountERPApi.Controllers
                         #region Other Admin Section
                         else // Other User
                         {
+                            #region Dynamic Menu Start
+
                             List<DynamicMenu> dynamicMenuList = new List<DynamicMenu>();
 
                             var AssignedPermission = _assignedPermissionService.GetAll().Where(ap => ap.RoleID == user.RoleID).ToList();
@@ -156,8 +176,23 @@ namespace AccountERPApi.Controllers
                             }
 
                             dynamicMenuList = dynamicMenuList.OrderBy(O => O.OrderN).ToList();
+
+                            #endregion
+
+                            #region Site Configuration Start
+
+                            var SiteConfig = _companyService.GetCompanyByID(user.Companies[0]);
+                            var OtherUserSiteConfig = _siteConfigService.GetAllActive();
+
+                            user.PoweredByText = SiteConfig.IsAllowPowerBy == 1 ? !string.IsNullOrEmpty(SiteConfig.PoweredBy) ? TokenReplacement.StringTokenReplacement(SiteConfig.PoweredBy) : TokenReplacement.StringTokenReplacement(OtherUserSiteConfig[0].PoweredBy) : TokenReplacement.StringTokenReplacement(OtherUserSiteConfig[0].PoweredBy);
+                            user.SiteLogo = !string.IsNullOrEmpty(SiteConfig.CompanyLogo) ? "./../CompanyMedia/" + SiteConfig.CompanyLogo : "./../SiteConfigMedia/" + OtherUserSiteConfig[0].Logo;
+                            user.SiteURL = !string.IsNullOrEmpty(SiteConfig.WebsiteURL) ? SiteConfig.WebsiteURL : StringUtility.JavaScriptVoid;
+
+                            #endregion
+
                             user.DynamicMenu = JsonConvert.SerializeObject(dynamicMenuList);
                             user.Permissions = JsonConvert.SerializeObject(AssignedPermission.Select(x=> x.ModulePageActionName));
+
                         }
                         #endregion
 

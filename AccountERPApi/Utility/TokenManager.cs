@@ -29,10 +29,14 @@ namespace AccountERPApi.Utility
                     new Claim("RoleID",Convert.ToString(obj.RoleID)),
                     new Claim("FirstName",Convert.ToString(obj.FirstName)),
                     new Claim("LastName", Convert.ToString(obj.LastName)),
+                    new Claim("RoleName",obj.RoleName),
                     new Claim("Email", Convert.ToString(obj.Email==null ? "" : obj.Email)),
                     new Claim("Companies", string.Join(',',obj.Companies)),
                     new Claim("Branches", string.Join(',',obj.Branches)),
                     new Claim("Permissions", obj.Permissions),
+                    new Claim("SiteLogo", obj.SiteLogo),
+                    new Claim("PoweredByText", obj.PoweredByText),
+                    new Claim("SiteURL", obj.SiteURL),
 
                     //new Claim("ImagePath", Convert.ToString(obj.ImagePath)),
                     //new Claim("DesignationId",string.Join(',',obj.DesignationId)),
@@ -113,10 +117,15 @@ namespace AccountERPApi.Utility
             Claim RoleID = identity.FindFirst("RoleID");
             Claim FirstName = identity.FindFirst("FirstName");
             Claim LastName = identity.FindFirst("LastName");
+            Claim RoleName = identity.FindFirst("RoleName");
             Claim Email = identity.FindFirst("Email");
             Claim Companies = identity.FindFirst("Companies");
             Claim Branches = identity.FindFirst("Branches");
             Claim Permissions = identity.FindFirst("Permissions");
+            Claim SiteLogo = identity.FindFirst("SiteLogo");
+            Claim PoweredByText = identity.FindFirst("PoweredByText");
+            Claim SiteURL = identity.FindFirst("SiteURL");
+            
 
             //Claim imagePath = identity.FindFirst("ImagePath");
             //Claim designationId = identity.FindFirst("DesignationId");
@@ -132,6 +141,12 @@ namespace AccountERPApi.Utility
             obj.LastName = LastName.Value;
             obj.Email = Email.Value;
             obj.Permissions = Permissions.Value;
+            obj.SiteLogo = SiteLogo.Value;
+            obj.PoweredByText = PoweredByText.Value;
+            obj.SiteURL = SiteURL.Value;
+            obj.RoleName = RoleName.Value;
+
+
 
             List<int> CompaniesList = new List<int>();
             if (Companies.Value != null && Companies.Value != "")

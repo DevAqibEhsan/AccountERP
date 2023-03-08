@@ -22,5 +22,12 @@
 }
 
 .ForgotPassword.pb-4 {
-    padding-bottom: 22.6rem !important;
+    padding-bottom: 10.8rem !important;
+}
+
+#imgSiteLogo {
+    margin: auto;
+    display: block;
+    width: 50%;
+    height: 185px;
 }
