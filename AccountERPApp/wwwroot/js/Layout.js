@@ -13,9 +13,6 @@ $(document).ready(function () {
     let userData = JSON.parse(localStorage.getItem("userData"));
 
     LoadSiteConfigAndMediaThing(userData);
-    //$("#imgAdminSiteLogo").attr("src", userData.SiteLogo);
-    //$("#AdminFooterContainer").html(userData.PoweredByText);
-    //$("#SiteURL").attr('href', userData.SiteURL);
 
     $(menuData).each(function (i, e) {
         $(e.DynamicModulePagesMenus).each(function (i1, e1) {
@@ -23,59 +20,32 @@ $(document).ready(function () {
         });
     });
 
-    $("#dvLoginUserInfo").click(function () {
-        if ($("#dvLoginUserInfoMenuDropdown").hasClass("show")) {
-            $("#dvLoginUserInfoMenuDropdown").removeClass("show");
+    $("body").click(function (e) {
+        if (e.target.id == "dvLoginUserInfo" || e.target.id == "spLoginUserInfo_Name")
+        {
+            if ($("#dvLoginUserInfoMenuDropdown").hasClass("show")) {
+                $("#dvLoginUserInfoMenuDropdown").removeClass("show");
+            }
+            else {
+                $("#dvLoginUserInfoMenuDropdown").addClass("show");
+            }
         }
         else {
-            $("#dvLoginUserInfoMenuDropdown").addClass("show");
+            if (e.target.id != "btnLogout") {
+                $("#dvLoginUserInfoMenuDropdown").removeClass("show");
+            }
+            else if (e.target.id == "btnLogout") {
+                LogoutClick();
+            }
         }
     });
-
-    //document.addEventListener('click', function() {
-    //    if ($("#dvLoginUserInfoMenuDropdown").hasClass("show")) {
-    //        $("#dvLoginUserInfoMenuDropdown").removeClass("show");
-    //    }
-    //    else {
-    //        $("#dvLoginUserInfoMenuDropdown").addClass("show");
-    //    }
-    //});
 
     fillData(menuData, "#temp_navMenuList", "#navMenuList", false);
     GetURLAndSetMenuSelected();
 
 
     $('#btnLogout').click(function () {
-        localStorage.removeItem("userData");
-        localStorage.removeItem("Menu");
-
-        postRequest(baseWebUrl + "Account/Logout", null, function (res) {
-
-            if (res.Status == 200) {
-                window.location.href = baseWebUrl + "Account/Login";
-            }
-            if (res.Status == 401) {
-                window.location.href = baseWebUrl + "Account/Login";
-
-            }
-            if (res.Status == 403) {
-                window.location.href = baseWebUrl + "Account/Login";
-            }
-            if (res.Status == 404) {
-                window.location.href = baseWebUrl + "Account/Login";
-            }
-            if (res.Status == 500) {
-                window.location.href = baseWebUrl + "Account/Login";
-            }
-
-            if (res.Status == 420) {
-                window.location.href = baseWebUrl + "Account/Login";
-            }
-
-            if (res.Status == 600) {
-                window.location.href = baseWebUrl + "Account/Login";
-            }
-        });
+        LogoutClick();
     });
 
 
@@ -113,8 +83,6 @@ $(document).ready(function () {
 
 });
 
-
-
 function MomentDateTimeFormat(inputdate) {
     if (inputdate != null) {
         return moment(inputdate.replace(/\Z$/, '')).format('DD/MM/YYYY hh:mm:ss a')
@@ -122,7 +90,6 @@ function MomentDateTimeFormat(inputdate) {
     else {
         return "-";
     }
-    
 }
 
 function LoadSiteConfigAndMediaThing(userData) {
@@ -132,7 +99,38 @@ function LoadSiteConfigAndMediaThing(userData) {
     $("#spLoginUserInfo_Name").text(userData.FirstName + " " + userData.LastName);
 }
 
+function LogoutClick() {
+    localStorage.removeItem("userData");
+    localStorage.removeItem("Menu");
 
+    postRequest(baseWebUrl + "Account/Logout", null, function (res) {
+
+        if (res.Status == 200) {
+            window.location.href = baseWebUrl + "Account/Login";
+        }
+        if (res.Status == 401) {
+            window.location.href = baseWebUrl + "Account/Login";
+
+        }
+        if (res.Status == 403) {
+            window.location.href = baseWebUrl + "Account/Login";
+        }
+        if (res.Status == 404) {
+            window.location.href = baseWebUrl + "Account/Login";
+        }
+        if (res.Status == 500) {
+            window.location.href = baseWebUrl + "Account/Login";
+        }
+
+        if (res.Status == 420) {
+            window.location.href = baseWebUrl + "Account/Login";
+        }
+
+        if (res.Status == 600) {
+            window.location.href = baseWebUrl + "Account/Login";
+        }
+    });
+}
 
 
 

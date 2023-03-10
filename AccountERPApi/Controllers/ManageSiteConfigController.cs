@@ -447,8 +447,13 @@ namespace AccountERPApi.Controllers
             {
                 var Data = _siteConfigService.GetAllActive().ToList();
 
+               
+
                 response.Status = 200;
-                response.Data = Data;
+                response.Data = new {
+                    PoweredByText = TokenReplacement.StringTokenReplacement(Data[0].PoweredBy),
+                    SiteLogo=Data[0].Logo
+                };
             }
             catch (Exception ex)
             {

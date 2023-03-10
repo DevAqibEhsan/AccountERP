@@ -103,6 +103,16 @@ function ErrorAlert(Message) {
     }
 }
 
+function SuccessAlert(Message) {
+    if (Message != "" && Message != null) {
+        Swal.fire({
+            title: 'Saved',
+            icon: 'success',
+            html: Message
+        });
+    }
+}
+
 function SuccessAlertWithConfirmAndOpenURL(Message,URL) {
     if (Message != "" && Message != null) {
         Swal.fire({
@@ -217,9 +227,9 @@ function SiteConfigurationLoad(url) {
     postRequest(url + "/Account/SiteConfigurationLoad", null, function (res) {
         if (res.Status == 200) {
 
-            $("#imgSiteLogo").attr("src", "./../SiteConfigMedia/" + res.Data[0].Logo);
+            $(".imgSiteLogo").attr("src", "./../SiteConfigMedia/" + res.Data.SiteLogo);
 
-            $("#footerContainer").html(res.Data[0].PoweredBy);
+            $("#footerContainer").html(res.Data.PoweredByText);
         }
         else if (res.Status == 304) {
             ErrorAlert(res.ResponseMsg);
@@ -252,6 +262,7 @@ function SiteConfigurationLoad(url) {
         }
     });
 }
+
 
 //$().buttonLoader("start") / $().buttonLoader("stop") function Start
 (function ($) {

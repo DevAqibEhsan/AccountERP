@@ -89,5 +89,28 @@ namespace AccountERPApi.Repositories
             parameters.Add("BranchIDs", obj.BranchIDs, DbType.String, ParameterDirection.Input);
             return _dapper.Get<User>(@"usp_User_Update", parameters);
         }
+
+        public User UpdateUserProfile(User obj)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("UserID", obj.UserID, DbType.Int32, ParameterDirection.Input);
+            parameters.Add("FirstName", obj.FirstName, DbType.String, ParameterDirection.Input);
+            parameters.Add("LastName", obj.LastName, DbType.String, ParameterDirection.Input);
+            parameters.Add("Email", obj.Email, DbType.String, ParameterDirection.Input);
+            parameters.Add("Phone", obj.Phone, DbType.String, ParameterDirection.Input);
+            parameters.Add("Address1", obj.Address1, DbType.String, ParameterDirection.Input);
+            parameters.Add("Address2", obj.Address2, DbType.String, ParameterDirection.Input);
+            parameters.Add("CityID", obj.CityID, DbType.Int32, ParameterDirection.Input);
+            parameters.Add("StateID", obj.StateID, DbType.Int32, ParameterDirection.Input);
+            parameters.Add("ZipCode", obj.ZipCode, DbType.String, ParameterDirection.Input);
+            parameters.Add("CountryID", obj.CountryID, DbType.Int32, ParameterDirection.Input);
+            parameters.Add("Gender", obj.Gender, DbType.String, ParameterDirection.Input);
+            parameters.Add("DOB", obj.DOB, DbType.Date, ParameterDirection.Input);
+            parameters.Add("IsActive", obj.IsActive, DbType.Int32, ParameterDirection.Input);
+            parameters.Add("ModifiedBy", obj.ModifiedBy, DbType.Int32, ParameterDirection.Input);
+            parameters.Add("ModifiedOn", obj.ModifiedOn, DbType.DateTime, ParameterDirection.Input);
+            parameters.Add("ModifiedByIP", obj.ModifiedByIP, DbType.String, ParameterDirection.Input);
+            return _dapper.Get<User>(@"usp_User_UpdateProfile", parameters);
+        }
     }
 }

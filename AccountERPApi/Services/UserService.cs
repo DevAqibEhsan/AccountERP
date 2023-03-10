@@ -40,5 +40,10 @@ namespace AccountERPApi.Services
         {
             return _repository.UpdateUser(obj);
         }
+
+        public User UpdateUserProfile(User obj)
+        {
+            return _repository.UpdateUserProfile(obj);
+        }
     }
 }

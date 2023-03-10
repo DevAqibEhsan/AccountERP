@@ -16,6 +16,8 @@ namespace AccountERPApi.IRepositories
 
         User UpdateUser(User obj);
 
+        User UpdateUserProfile(User obj);
+
         User GetUserByID(int id);
     }
 }

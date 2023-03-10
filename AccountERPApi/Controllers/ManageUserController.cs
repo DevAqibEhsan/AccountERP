@@ -298,6 +298,73 @@ namespace AccountERPApi.Controllers
             return response;
         }
 
+        [HttpPost("UpdateUserProfile")]
+        public Response UpdateUserProfile(User obj)
+        {
+            Response response = new Response();
+            ClaimDTO claimDTO = new ClaimDTO();
+
+            try
+            {
+                claimDTO = TokenManager.GetValidateToken(Request);
+
+                if (claimDTO != null)
+                {
+                    var Data = _userService.GetAll().ToList();
+
+                    var CheckUserName = Data.Where(x => x.UserID != obj.UserID && x.FirstName.ToLower() == obj.FirstName.ToLower() && x.LastName.ToLower() == obj.LastName.ToLower()).Count();
+
+                    if (CheckUserName > 0)
+                    {
+                        response.Status = 0;
+                        response.ResponseMsg = "The User " + obj.FirstName + " " + obj.LastName + " Already exists.";
+                        response.Token = TokenManager.GenerateToken(claimDTO);
+                        response.Data = null;
+                    }
+                    else
+                    {
+                        obj.ModifiedBy = claimDTO.UserID;
+                        obj.ModifiedOn = TimeZoneManager.GetDateTimeByTimeZone(TimeZonesStarndard.PakistanTimeZone);
+                        obj.ModifiedByIP = Request.HttpContext.Connection.RemoteIpAddress.ToString();
+
+                        var res = _userService.UpdateUserProfile(obj);
+
+                        _signalrHub.Clients.All.SendAsync("LoadUser");
+
+                        if (!string.IsNullOrEmpty(res.UserName))
+                        {
+                            response.Status = 200;
+                            response.ResponseMsg = "The User " + res.UserName + " Is Successfully Updated.";
+                            response.Token = TokenManager.GenerateToken(claimDTO);
+                            response.Data = res;
+                        }
+                        else
+                        {
+                            response.Status = 0;
+                            response.ResponseMsg = "This User " + obj.FirstName + " " + obj.LastName + " Data is not Updated.";
+                            response.Token = TokenManager.GenerateToken(claimDTO);
+                            response.Data = null;
+                        }
+                    }
+                }
+                else
+                {
+                    response.Status = 401;
+                    response.ResponseMsg = "unauthorized";
+                    response.Token = null;
+                    response.Data = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                response.Status = ExceptionStatusCode.GetExceptionCode(ex);
+                response.ResponseMsg = ex.Message;
+                response.Token = TokenManager.GenerateToken(claimDTO);
+            }
+
+            return response;
+        }
+
         [HttpPost("GetUserByID/{id}")]
         public Response GetUserByID(int id)
         {
@@ -352,5 +419,62 @@ namespace AccountERPApi.Controllers
 
             return response;
         }
+
+        [HttpPost("GetUserProfile")]
+        public Response GetUserProfile(int id)
+        {
+            Response response = new Response();
+            ClaimDTO claimDTO = new ClaimDTO();
+
+            try
+            {
+                claimDTO = TokenManager.GetValidateToken(Request);
+
+                if (claimDTO != null)
+                {
+                    bool HasPermission = true;
+
+                    if (claimDTO.RoleID != 1)
+                    {
+                        HasPermission = false;
+                        // Here We Check Permission and than Set True
+                    }
+
+                    if (HasPermission)
+                    {
+                        var Data = _userService.GetUserByID(claimDTO.UserID);
+                        if (Data != null)
+                        {
+                            response.Status = 200;
+                            response.Token = TokenManager.GenerateToken(claimDTO);
+                            response.Data = Data;
+                        }
+                    }
+                    else
+                    {
+                        response.Status = 403;
+                        response.ResponseMsg = "You don’t have permission to this action.";
+                        response.Token = null;
+                        response.Data = null;
+                    }
+                }
+                else
+                {
+                    response.Status = 401;
+                    response.ResponseMsg = "unauthorized";
+                    response.Token = null;
+                    response.Data = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                response.Status = ExceptionStatusCode.GetExceptionCode(ex);
+                response.ResponseMsg = ex.Message;
+            }
+
+            return response;
+        }
+
+
     }
 }

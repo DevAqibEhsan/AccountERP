@@ -117,7 +117,9 @@ function GetUserByID(id) {
                 $(txtAddress2).val(res.Data.Address2);
                 $(txtPhone).val(res.Data.Phone);
                 $(ddlCountryID).val(res.Data.CountryID);
+                GetAllState(res.Data.CountryID);
                 $(ddlStateID).val(res.Data.StateID);
+                GetAllCity(res.Data.StateID);
                 $(ddlCityID).val(res.Data.CityID);
                 $(txtZipCode).val(res.Data.ZipCode);
                 $(ddlGender).val(res.Data.Gender);

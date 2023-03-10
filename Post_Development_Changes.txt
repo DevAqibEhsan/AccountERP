@@ -11,12 +11,15 @@ Add Calender in Textbox
 Add Validation
 Check Match Password in Register page
 Add TextEditor
+Admin Panel Color, Text Color, and size change will dynamic
+Create Dynamic Report and Customize Report
+
+
+
+
 
 
 
 data-live-search="true" data-size="3" title="Module" data-actions-box="true"
-
-
-
 
 sp_rename 'table_name.old_column_name', 'new_column_name' , 'COLUMN';

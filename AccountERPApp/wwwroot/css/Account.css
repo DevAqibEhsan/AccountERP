@@ -1,4 +1,15 @@
-﻿body {
+﻿
+:root {
+    --btn-navlink-color: #0000008c;
+    --btn-navlink-bg-color: #f7f7f7;
+    --btn-navlink-active-color: #285192;
+    --btn-navlink-active-bg-color: #e3ebf7;
+    --btn-action-color: #fff;
+    --btn-action-bg-color: #3b71ca;
+}
+
+
+body {
 }
 
 .border {
@@ -9,7 +20,7 @@
     position: absolute;
     width: 100%;
     text-align: center;
-    white-space: nowrap;
+    white-space: nowrap;    
     background-color: white;
 }
 
@@ -25,9 +36,24 @@
     padding-bottom: 10.8rem !important;
 }
 
-#imgSiteLogo {
+.imgSiteLogo {
     margin: auto;
     display: block;
-    width: 50%;
-    height: 185px;
+    width: 10rem;
+    height: 10rem;
+}
+
+.btn-navlink {
+    color:var(--btn-navlink-color) !important;
+   background-color:var(--btn-navlink-bg-color) !important;
+}
+
+.btn-navlink.active {
+    color: var(--btn-navlink-active-color) !important;
+    background-color: var(--btn-navlink-active-bg-color) !important;
+}
+
+.btn-action {
+    color: var(--btn-action-color) !important;
+    background-color: var(--btn-action-bg-color) !important;
 }

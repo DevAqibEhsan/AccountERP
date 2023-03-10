@@ -50,6 +50,11 @@ namespace AccountERPApp.Controllers
             return View();
         }
 
+        public IActionResult ManageUserProfile()
+        {
+            return View();
+        }
+
         public IActionResult ManageCustomer()
         {
             return View();
@@ -273,6 +278,17 @@ namespace AccountERPApp.Controllers
         }
 
         [HttpPost]
+        public Task<object> GetUserProfile()
+        {
+            string content = "";
+            //var buffer = System.Text.Encoding.UTF8.GetBytes(content);
+            //var byteContent = new ByteArrayContent(buffer);
+            //string a=HttpContext.Session.GetString("authorization");
+            return HttpUtility.CustomHttp(ApiBaseURL, "api/ManageUser/GetUserProfile", content, HttpContext);
+
+        }
+
+        [HttpPost]
         public Task<object> AddUser([FromBody] User obj)
         {
             string content = JsonConvert.SerializeObject(obj);
@@ -293,6 +309,18 @@ namespace AccountERPApp.Controllers
             return HttpUtility.CustomHttp(ApiBaseURL, "api/ManageUser/UpdateUser", content, HttpContext);
 
         }
+
+        [HttpPost]
+        public Task<object> UpdateUserProfile([FromBody] User obj)
+        {
+            string content = JsonConvert.SerializeObject(obj);
+            var buffer = System.Text.Encoding.UTF8.GetBytes(content);
+            var byteContent = new ByteArrayContent(buffer);
+            //string a=HttpContext.Session.GetString("authorization");
+            return HttpUtility.CustomHttp(ApiBaseURL, "api/ManageUser/UpdateUserProfile", content, HttpContext);
+
+        }
+        
 
         #endregion
 
