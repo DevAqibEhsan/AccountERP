@@ -148,8 +148,8 @@ function GetAllBranch() {
             {
                 "data": "BranchID",
                 "name": "BranchID",
-                "width": "50px",
-                "render": function (data) { return '<a href="javascript:;" onclick="GetBranchByID(' + data + ')" data-id="' + data + '">' + data + '</a>' }
+                "width": "110px",
+                "render": function (data, type, full, meta) { return '<a href="javascript:;" onclick="GetBranchByID(' + full.BranchID + ')" data-id="' + full.BranchID + '">' + full.BranchCode + '</a>' }
             },
             {
                 "data": "CompanyName",

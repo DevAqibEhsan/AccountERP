@@ -144,8 +144,8 @@ function GetAllProductBrand() {
             {
                 "data": "ProductBrandID",
                 "name": "ProductBrandID",
-                "width": "50px",
-                "render": function (data) { return '<a href="javascript:;" onclick="GetProductBrandByID(' + data + ')" data-id="' + data + '">' + data + '</a>' }
+                "width": "110px",
+                "render": function (data, type, full, meta) { return '<a href="javascript:;" onclick="GetProductBrandByID(' + full.ProductBrandID + ')" data-id="' + full.ProductBrandID + '">' + full.ProductBrandCode + '</a>' }
             },
             {
                 "data": "ProductBrandName",

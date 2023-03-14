@@ -12,6 +12,7 @@ namespace AccountERPClassLibraries
     {
         public int CountryID { get; set; }
         public string CountryCode { get; set; }
+        public string Country_Code { get; set; }
         public string CountryName { get; set; }
         public int CreatedBy { get; set; }
         public DateTime CreatedOn { get; set; }
@@ -28,6 +29,7 @@ namespace AccountERPClassLibraries
         public int StateID { get; set; }
         public int CountryID { get; set; }
         public string StateCode { get; set; }
+        public string State_Code { get; set; }
         public string StateName { get; set; }
         public string CountryName { get; set; }
         public int CreatedBy { get; set; }
@@ -44,6 +46,7 @@ namespace AccountERPClassLibraries
     {
         public int CityID { get; set; }
         public int StateID { get; set; }
+        public string CityCode { get; set; }
         public string CityName { get; set; }
         public string StateName { get; set; }
         public string CountryName { get; set; }

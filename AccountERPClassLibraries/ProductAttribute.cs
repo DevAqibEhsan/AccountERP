@@ -7,6 +7,7 @@ namespace AccountERPClassLibraries
     public class ProductAttribute
     {
         public int ProductAttributeID { get; set; }
+        public string ProductAttributeCode { get; set; }
         public string ProductAttributeName { get; set; }
         public int CreatedBy { get; set; }
         public DateTime CreatedOn { get; set; }

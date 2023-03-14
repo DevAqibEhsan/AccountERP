@@ -239,8 +239,8 @@ function GetAllUser() {
             {
                 "data": "UserID",
                 "name": "UserID",
-                "width": "50px",
-                "render": function (data) { return '<a href="javascript:;" onclick="GetUserByID(' + data + ')" data-id="' + data + '">' + data + '</a>' }
+                "width": "110px",
+                "render": function (data, type, full, meta) { return '<a href="javascript:;" onclick="GetUserByID(' + full.UserID + ')" data-id="' + full.UserID + '">' + full.UserCode + '</a>' }
             },
             {
                 "data": "UserName",

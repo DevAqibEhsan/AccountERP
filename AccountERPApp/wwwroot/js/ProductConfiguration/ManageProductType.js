@@ -144,8 +144,8 @@ function GetAllProductType() {
             {
                 "data": "ProductTypeID",
                 "name": "ProductTypeID",
-                "width": "50px",
-                "render": function (data) { return '<a href="javascript:;" onclick="GetProductTypeByID(' + data + ')" data-id="' + data + '">' + data + '</a>' }
+                "width": "110px",
+                "render": function (data, type, full, meta) { return '<a href="javascript:;" onclick="GetProductTypeByID(' + full.ProductTypeID + ')" data-id="' + full.ProductTypeID + '">' + full.ProductTypeCode + '</a>' }
             },
             {
                 "data": "ProductTypeName",

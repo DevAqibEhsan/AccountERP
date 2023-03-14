@@ -146,8 +146,8 @@ function GetAllCountry() {
             {
                 "data": "CountryID",
                 "name": "CountryID",
-                "width": "50px",
-                "render": function (data) { return '<a href="javascript:;" onclick="GetCountryByID(' + data + ')" data-id="' + data + '">' + data + '</a>' }
+                "width": "110px",
+                "render": function (data, type, full, meta) { return '<a href="javascript:;" onclick="GetCountryByID(' + full.CountryID + ')" data-id="' + full.CountryID + '">' + full.Country_Code + '</a>' }
             },
             {
                 "data": "CountryCode",

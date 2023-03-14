@@ -148,8 +148,8 @@ function GetAllCity() {
             {
                 "data": "CityID",
                 "name": "CityID",
-                "width": "50px",
-                "render": function (data) { return '<a href="javascript:;" onclick="GetCityByID(' + data + ')" data-id="' + data + '">' + data + '</a>' }
+                "width": "110px",
+                "render": function (data, type, full, meta) { return '<a href="javascript:;" onclick="GetCityByID(' + full.CityID + ')" data-id="' + full.CityID + '">' + full.CityCode + '</a>' }
             },
             {
                 "data": "CityName",

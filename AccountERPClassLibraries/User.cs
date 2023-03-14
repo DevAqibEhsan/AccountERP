@@ -9,6 +9,7 @@ namespace AccountERPClassLibraries
 		public int UserID { get; set; }
 		public int RoleID { get; set; }
 		public string RoleName { get; set; }
+		public string UserCode { get; set; }
 		public string FirstName { get; set; }
 		public string LastName { get; set; }
 		public string UserName { get; set; }

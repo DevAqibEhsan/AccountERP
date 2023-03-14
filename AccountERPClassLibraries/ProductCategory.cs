@@ -7,6 +7,7 @@ namespace AccountERPClassLibraries
    public class ProductCategory
     {
         public int ProductCategoryID { get; set; }
+        public string ProductCategoryCode { get; set; }
         public string ProductCategoryName { get; set; }
         public int CreatedBy { get; set; }
         public DateTime CreatedOn { get; set; }

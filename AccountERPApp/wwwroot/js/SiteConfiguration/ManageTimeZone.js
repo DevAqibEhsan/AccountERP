@@ -147,8 +147,8 @@ function GetAllTimeZone() {
             {
                 "data": "TimeZoneID",
                 "name": "TimeZoneID",
-                "width": "50px",
-                "render": function (data) { return '<a href="javascript:;" onclick="GetTimeZoneByID(' + data + ')" data-id="' + data + '">' + data + '</a>' }
+                "width": "110px",
+                "render": function (data, type, full, meta) { return '<a href="javascript:;" onclick="GetTimeZoneByID(' + full.TimeZoneID + ')" data-id="' + full.TimeZoneID + '">' + full.TimeZoneCode + '</a>' }
             },
             {
                 "data": "TimeZoneName",

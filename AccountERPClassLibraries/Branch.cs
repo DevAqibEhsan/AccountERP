@@ -9,6 +9,7 @@ namespace AccountERPClassLibraries
         public int BranchID { get; set; }
         public int CompanyID { get; set; }
         public string CompanyName { get; set; }
+        public string BranchCode { get; set; }
         public string BranchName { get; set; }
         public int CreatedBy { get; set; }
         public string CreatedByIP { get; set; }

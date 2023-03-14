@@ -144,8 +144,8 @@ function GetAllProductCategory() {
             {
                 "data": "ProductCategoryID",
                 "name": "ProductCategoryID",
-                "width": "50px",
-                "render": function (data) { return '<a href="javascript:;" onclick="GetProductCategoryByID(' + data + ')" data-id="' + data + '">' + data + '</a>' }
+                "width": "110px",
+                "render": function (data, type, full, meta) { return '<a href="javascript:;" onclick="GetProductCategoryByID(' + full.ProductCategoryID + ')" data-id="' + full.ProductCategoryID + '">' + full.ProductCategoryCode + '</a>' }
             },
             {
                 "data": "ProductCategoryName",

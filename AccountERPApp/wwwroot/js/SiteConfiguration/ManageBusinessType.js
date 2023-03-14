@@ -150,8 +150,8 @@ function GetAllBusinessType() {
             {
                 "data": "BusinessTypeID",
                 "name": "BusinessTypeID",
-                "width": "50px",
-                "render": function (data) { return '<a href="javascript:;" onclick="GetBusinessTypeByID(' + data + ')" data-id="' + data + '">' + data + '</a>' }
+                "width": "110px",
+                "render": function (data, type, full, meta) { return '<a href="javascript:;" onclick="GetBusinessTypeByID(' + full.BusinessTypeID + ')" data-id="' + full.BusinessTypeID + '">' + full.BusinessTypeCode + '</a>' }
             },
             {
                 "data": "BusinessTypeName",

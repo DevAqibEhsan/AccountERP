@@ -275,8 +275,8 @@ function GetAllCustomer() {
             {
                 "data": "CustomerID",
                 "name": "CustomerID",
-                "width": "50px",
-                "render": function (data) { return '<a href="javascript:;" onclick="GetCustomerByID(' + data + ')" data-id="' + data + '">' + data + '</a>' }
+                "width": "110px",
+                "render": function (data, type, full, meta) { return '<a href="javascript:;" onclick="GetCustomerByID(' + full.CustomerID + ')" data-id="' + full.CustomerID + '">' + full.CustomerCode + '</a>' }
             },
             {
                 "data": "CustomerName",

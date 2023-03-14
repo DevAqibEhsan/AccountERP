@@ -7,6 +7,7 @@ namespace AccountERPClassLibraries
     public class BusinessType
     {
         public int BusinessTypeID { get; set; }
+        public string BusinessTypeCode { get; set; }
         public string BusinessTypeName { get; set; }
         public int CreatedBy { get; set; }
         public string CreatedByIP { get; set; }

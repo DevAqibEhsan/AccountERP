@@ -7,6 +7,7 @@ namespace AccountERPClassLibraries
    public class Vendor
     {
 		public int VendorID { get; set; }
+		public string VendorCode { get; set; }
 		public string VendorName { get; set; }
 		public string PostalPhone { get; set; }
 		public string PostalAddress2 { get; set; }

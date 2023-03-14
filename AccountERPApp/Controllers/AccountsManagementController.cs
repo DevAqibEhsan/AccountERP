@@ -8,6 +8,11 @@ namespace AccountERPApp.Controllers
 {
     public class AccountsManagementController : Controller
     {
+        public IActionResult DefaultAccount()
+        {
+            return View();
+        }
+
         public IActionResult BankAccount()
         {
             return View();

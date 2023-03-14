@@ -7,6 +7,7 @@ namespace AccountERPClassLibraries
     public class Company
     {
 		public int CompanyID { get; set; }
+		public string CompanyCode { get; set; }
 		public string CompanyName { get; set; }
 		public string PostalPhone { get; set; }
 		public string PostalAddress1 { get; set; }

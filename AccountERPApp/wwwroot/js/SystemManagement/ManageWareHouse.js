@@ -291,8 +291,8 @@ function GetAllWareHouse() {
             {
                 "data": "WareHouseID",
                 "name": "WareHouseID",
-                "width": "50px",
-                "render": function (data) { return '<a href="javascript:;" onclick="GetWareHouseByID(' + data + ')" data-id="' + data + '">' + data + '</a>' }
+                "width": "110px",
+                "render": function (data, type, full, meta) { return '<a href="javascript:;" onclick="GetWareHouseByID(' + full.WareHouseID + ')" data-id="' + full.WareHouseID + '">' + full.WareHouseCode + '</a>' }
             },
             {
                 "data": "WareHouseName",

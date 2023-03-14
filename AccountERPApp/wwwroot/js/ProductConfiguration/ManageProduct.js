@@ -189,8 +189,8 @@ function GetAllProduct() {
             {
                 "data": "ProductID",
                 "name": "ProductID",
-                "width": "50px",
-                "render": function (data) { return '<a href="javascript:;" onclick="GetProductByID(' + data + ')" data-id="' + data + '">' + data + '</a>' }
+                "width": "110px",
+                "render": function (data, type, full, meta) { return '<a href="javascript:;" onclick="GetProductByID(' + full.ProductID + ')" data-id="' + full.ProductID + '">' + full.ProductCode + '</a>' }
             },
             {
                 "data": "CompanyName",

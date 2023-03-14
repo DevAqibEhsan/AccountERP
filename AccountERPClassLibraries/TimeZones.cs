@@ -7,6 +7,7 @@ namespace AccountERPClassLibraries
     public class TimeZones
     {
         public int TimeZoneID { get; set; }
+        public string TimeZoneCode { get; set; }
         public string TimeZoneName { get; set; }
         public string Description { get; set; }
         public string RelativeToGMT { get; set; }

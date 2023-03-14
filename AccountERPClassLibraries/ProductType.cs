@@ -7,6 +7,7 @@ namespace AccountERPClassLibraries
     public class ProductType
     {
         public int ProductTypeID { get; set; }
+        public string ProductTypeCode { get; set; }
         public string ProductTypeName { get; set; }
         public int CreatedBy { get; set; }
         public DateTime CreatedOn { get; set; }

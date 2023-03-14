@@ -274,8 +274,8 @@ function GetAllVendor() {
             {
                 "data": "VendorID",
                 "name": "VendorID",
-                "width": "50px",
-                "render": function (data) { return '<a href="javascript:;" onclick="GetVendorByID(' + data + ')" data-id="' + data + '">' + data + '</a>' }
+                "width": "110px",
+                "render": function (data, type, full, meta) { return '<a href="javascript:;" onclick="GetVendorByID(' + full.VendorID + ')" data-id="' + full.VendorID + '">' + full.VendorCode + '</a>' }
             },
             {
                 "data": "VendorName",

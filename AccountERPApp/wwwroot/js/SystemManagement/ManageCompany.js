@@ -267,8 +267,8 @@ function GetAllCompany() {
             {
                 "data": "CompanyID",
                 "name": "CompanyID",
-                "width": "50px",
-                "render": function (data) { return '<a href="javascript:;" onclick="GetCompanyByID(' + data + ')" data-id="' + data + '">' + data + '</a>' }
+                "width": "110px",
+                "render": function (data, type, full, meta) { return '<a href="javascript:;" onclick="GetCompanyByID(' + full.CompanyID + ')" data-id="' + full.CompanyID + '">' + full.CompanyCode + '</a>' }
             },
             {
                 "data": "CompanyName",

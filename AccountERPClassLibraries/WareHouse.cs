@@ -11,6 +11,7 @@ namespace AccountERPClassLibraries
 		public string CompanyName { get; set; }
 		public int BranchID { get; set; }
 		public string BranchName { get; set; }
+		public string WareHouseCode { get; set; }
 		public string WareHouseName { get; set; }
 		public string Phone { get; set; }
 		public string Address1 { get; set; }

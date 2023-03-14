@@ -144,8 +144,8 @@ function GetAllProductAttribute() {
             {
                 "data": "ProductAttributeID",
                 "name": "ProductAttributeID",
-                "width": "50px",
-                "render": function (data) { return '<a href="javascript:;" onclick="GetProductAttributeByID(' + data + ')" data-id="' + data + '">' + data + '</a>' }
+                "width": "110px",
+                "render": function (data, type, full, meta) { return '<a href="javascript:void(0);" onclick="GetProductAttributeByID(' + full.ProductAttributeID + ')" data-id="' + full.ProductAttributeID + '">' + full.ProductAttributeCode + '</a>' }
             },
             {
                 "data": "ProductAttributeName",
