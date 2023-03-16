@@ -71,5 +71,38 @@ namespace AccountERPApi.Repositories
             
             return _dapper.Get<Modules>(@"usp_Module_GetModuleByID", parameters);
         }
+
+        public object GetAll_Modules_ModulePages_Data()
+        {
+            DynamicParameters parameters = new DynamicParameters();
+
+            var tupple =  _dapper.GetMultipleObjects(@"usp_Modules_ModulePages_GetAll", parameters,gr=> gr.Read<Modules>(),gr=> gr.Read<ModulePages>());
+
+            List<Modules> list_modules = new List<Modules>();
+            foreach (var item in tupple.Item1)
+            {
+                Modules obj_modles = new Modules();
+                obj_modles.ModuleID = item.ModuleID;
+                obj_modles.ModuleName = item.ModuleName;
+
+                list_modules.Add(obj_modles);
+            }
+
+            List<ModulePages> list_modulePages = new List<ModulePages>();
+            foreach (var item in tupple.Item2)
+            {
+                ModulePages obj_modulePages = new ModulePages();
+                obj_modulePages.ModuleID = item.ModuleID;
+                obj_modulePages.ControllerURL = item.ControllerURL;
+
+                list_modulePages.Add(obj_modulePages);
+            }
+
+            return new
+            {
+                Modules = list_modules,
+                ModulePages = list_modulePages
+            };
+        }
     }
 }

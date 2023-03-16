@@ -41,5 +41,10 @@ namespace AccountERPApi.Services
         {
             return _repository.GetModuleByID(id);
         }
+
+        public object GetAll_Modules_ModulePages_Data()
+        {
+            return _repository.GetAll_Modules_ModulePages_Data();
+        }
     }
 }

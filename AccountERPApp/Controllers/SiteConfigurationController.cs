@@ -19,6 +19,12 @@ namespace AccountERPApp.Controllers
             ApiBaseURL = configuration.GetSection("UrlSetting").GetSection("baseApiUrl").Value;
         }
 
+
+        public IActionResult ManageCodePrefix()
+        {
+            return View();
+        }
+
         public IActionResult ManageCountry()
         {
             return View();
@@ -130,6 +136,16 @@ namespace AccountERPApp.Controllers
             //var byteContent = new ByteArrayContent(buffer);
             //string a=HttpContext.Session.GetString("authorization");
             return HttpUtility.CustomHttp(ApiBaseURL, "api/ManageModule/GetAllModuleForDropDown", content, HttpContext);
+        }
+
+        [HttpPost]
+        public Task<object> GetAll_Modules_ModulePages_Data()
+        {
+            string content = ""; //JsonConvert.SerializeObject(obj);
+            //var buffer = System.Text.Encoding.UTF8.GetBytes(content);
+            //var byteContent = new ByteArrayContent(buffer);
+            //string a=HttpContext.Session.GetString("authorization");
+            return HttpUtility.CustomHttp(ApiBaseURL, "api/ManageModule/GetAll_Modules_ModulePages_Data", content, HttpContext);
         }
 
         [HttpPost]

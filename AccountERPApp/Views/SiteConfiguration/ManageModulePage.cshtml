@@ -95,7 +95,9 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="txtControllerURL">Controller URL</label>
-                        <input type="text" class="form-control" id="txtControllerURL" placeholder="Controller URL">
+                        <select id="txtControllerURL" class="form-control">
+                        </select>
+                        @*<input type="text" class="form-control" id="txtControllerURL" placeholder="Controller URL">*@
                     </div>
                     <div class="form-group col-md-6">
                         <label for="txtActionURL">Action URL</label>
@@ -129,9 +131,17 @@
 </div>
 
 <script type="text/x-handlebars" id="temp_ddlModuleID">
-
+    <option value="">Plesae Select</option>
     {{#each this}}
     <option value="{{ModuleID}}">{{ModuleName}}</option>
+    {{/each}}
+
+</script>
+
+<script type="text/x-handlebars" id="temp_txtControllerURL">
+    <option value="">Plesae Select</option>
+    {{#each this}}
+    <option value="{{ControllerURL}}">{{ControllerURL}}</option>
     {{/each}}
 
 </script>

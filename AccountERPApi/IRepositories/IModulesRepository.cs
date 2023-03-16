@@ -17,5 +17,7 @@ namespace AccountERPApi.IRepositories
         Modules UpdateModule(Modules obj);
 
         Modules GetModuleByID(int id);
+
+        object GetAll_Modules_ModulePages_Data();
     }
 }

@@ -3,5 +3,134 @@
     ViewData["Title"] = "Default Account";
 }
 
-<h1>Default Account</h1>
+<link href="~/css/CommonStyle.css" rel="stylesheet" />
+<script src="~/js/Common.js"></script>
+<script src="~/js/AccountsManagement/DefaultAccount.js"></script>
+
+<style>
+
+    #form {
+        display: none;
+    }
+
+    .card-header .btnsection {
+        display: inline-block;
+        float: right;
+    }
+</style>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#btnAddDefaultAccount").click(function () { FormShow() });
+
+        $("#btnCancel").click(function () { CancelButtonAction(); });
+
+        RemoveSortingClass('tblAction');
+
+    });
+
+</script>
+
+<div class="maincontent">
+
+    @*Grid / Data Table Start*@
+    <div id="grid" class="card">
+        <div class="card-header">
+            <div class="dvPageHeading">@ViewData["Title"]</div>
+            <div class="btnsection">
+                <button type="button" id="btnAddDefaultAccount" class="btn btn-success1"><i class="fa fa-plus" style="margin-right: 10px;"></i> Add</button>
+            </div>
+        </div>
+        <div class="card-body">
+            <div id="dvDataTable">
+                <table id="dataTableDefaultAccount" class="display" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th class="text-center">S.No</th>
+                            <th class="text-center">Account Name</th>
+                            <th class="text-center">Sub Account Name</th>
+                            <th class="text-center">Description</th>
+                            <th class="text-center">Is Active</th>
+                            <th class="text-center">Is System Account</th>
+                            <th class="text-center">Created User</th>
+                            <th class="text-center">Created On</th>
+                            <th class="text-center">Created User IP</th>
+                            <th class="text-center">Last User</th>
+                            <th class="text-center">Last Modified</th>
+                            <th class="text-center">Last User IP</th>
+                            <th class="text-center" id="tblAction">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dataRow">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    @*Grid / Data Table End*@
+
+    @*Add/Edit Form Section Start*@
+    <div id="form" class="card">
+        <div class="card-header">
+            <div class="dvPageHeading">@ViewData["Title"]</div>
+        </div>
+        <div class="card-body">
+            <form id="ManageDefaultAccountForm">
+                <input type="hidden" name="hdnDefaultAccountID" id="hdnDefaultAccountID" value="0" />
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="txtDefaultAccountName">Account Name</label>
+                        <input type="text" class="form-control" id="txtDefaultAccountName" placeholder="Account Name">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="ddlSubAccountID">Sub Account Name</label>
+                        <select id="ddlSubAccountID" class="form-control">
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="txtDescription">Description</label>
+                        <input type="text" class="form-control" id="txtDescription" placeholder="Description">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="ddlIsActive">Is Active Account</label>
+                        <select id="ddlIsActive" class="form-control">
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="ddlIsSystemAccount">Is System Account</label>
+                        <select id="ddlIsSystemAccount" class="form-control">
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="btnsection">
+                    <button type="button" class="btn btn-primary1" id="btnSave">Save</button>
+                    <button type="button" id="btnCancel" class="btn btn-secondary1"><i class="fa fa-close" style="margin-right: 10px;"></i>Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    @*Add/Edit Form Section End*@
+
+</div>
+
+<script type="text/x-handlebars" id="temp_ddlSubAccountID">
+    <option value="0">Plesae Select</option>
+    {{#each this}}
+<option value="{{AccountID}}">{{AccountCode}}  {{AccountName}}</option>
+    {{/each}}
+
+</script>
 

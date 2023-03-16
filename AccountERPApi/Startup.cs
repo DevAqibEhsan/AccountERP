@@ -57,6 +57,9 @@ namespace AccountERPApi
             services.AddTransient<IVendorRepository, VendorRepository>();
             services.AddTransient<IWareHouseRepository, WareHouseRepository>();
             services.AddTransient<IRegisterUserRepository, RegisterUserRepository>();
+            services.AddTransient<IChartAccountRepository, ChartAccountRepository>();
+            services.AddTransient<ICodePrefixRepository, CodePrefixRepository>();
+            services.AddTransient<IDefaultAccountRepository, DefaultAccountRepository>();
 
 
             //Services
@@ -83,6 +86,9 @@ namespace AccountERPApi
             services.AddTransient<IVendorService, VendorService>();
             services.AddTransient<IWareHouseService, WareHouseService>();
             services.AddTransient<IRegisterUserService, RegisterUserService>();
+            services.AddTransient<IChartAccountService, ChartAccountService>();
+            services.AddTransient<ICodePrefixService, CodePrefixService>();
+            services.AddTransient<IDefaultAccountService, DefaultAccountService>();
 
             services.AddCors(o => o.AddPolicy("MyCorePloicy", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
             services.AddControllers().AddJsonOptions(opts => opts.JsonSerializerOptions.PropertyNamingPolicy = null);

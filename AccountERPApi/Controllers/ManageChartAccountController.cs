@@ -14,13 +14,13 @@ namespace AccountERPApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ManageDefaultAccountController : ControllerBase
+    public class ManageChartAccountController : ControllerBase
     {
-        private readonly IDefaultAccountService _defaultAccountService;
+        private readonly IChartAccountService _chartAccountService;
         private readonly IHubContext<SignalrServer> _signalrHub;
-        public ManageDefaultAccountController(IDefaultAccountService defaultAccountService, IHubContext<SignalrServer> signalrHub)
+        public ManageChartAccountController(IChartAccountService chartAccountService, IHubContext<SignalrServer> signalrHub)
         {
-            _defaultAccountService = defaultAccountService;
+            _chartAccountService = chartAccountService;
             _signalrHub = signalrHub;
         }
 
@@ -46,7 +46,7 @@ namespace AccountERPApi.Controllers
 
                     if (HasPermission)
                     {
-                        var Data = _defaultAccountService.GetAll().ToList();
+                        var Data = _chartAccountService.GetAll().ToList();
 
                         response.Status = 200;
                         response.Token = TokenManager.GenerateToken(claimDTO);
@@ -99,7 +99,7 @@ namespace AccountERPApi.Controllers
 
                     if (HasPermission)
                     {
-                        var Data = _defaultAccountService.GetAllActive().ToList();
+                        var Data = _chartAccountService.GetAllActive().ToList();
 
                         response.Status = 200;
                         response.Token = TokenManager.GenerateToken(claimDTO);
@@ -130,8 +130,8 @@ namespace AccountERPApi.Controllers
             return response;
         }
 
-        [HttpPost("AddDefaultAccount")]
-        public Response AddDefaultAccount(DefaultAccount obj)
+        [HttpPost("AddChartAccount")]
+        public Response AddChartAccount(ChartAccount obj)
         {
             Response response = new Response();
             ClaimDTO claimDTO = new ClaimDTO();
@@ -152,14 +152,14 @@ namespace AccountERPApi.Controllers
 
                     if (HasPermission)
                     {
-                        var Data = _defaultAccountService.GetAll().ToList();
+                        var Data = _chartAccountService.GetAll().ToList();
 
-                        var CHeckDefaultAccountName = Data.Where(x => x.AccountName.ToLower() == obj.AccountName.ToLower()).Count();
+                        var CHeckChartAccountName = Data.Where(x => x.AccountByCompanyBranchName.ToLower() == obj.AccountByCompanyBranchName.ToLower()).Count();
 
-                        if (CHeckDefaultAccountName > 0)
+                        if (CHeckChartAccountName > 0)
                         {
                             response.Status = 0;
-                            response.ResponseMsg = "The Default Account " + obj.AccountName + " Already exists.";
+                            response.ResponseMsg = "The Chart Account " + obj.AccountByCompanyBranchName + " Already exists.";
                             response.Token = TokenManager.GenerateToken(claimDTO);
                             response.Data = null;
                         }
@@ -170,20 +170,20 @@ namespace AccountERPApi.Controllers
                             obj.CreatedOn = TimeZoneManager.GetDateTimeByTimeZone(TimeZonesStarndard.PakistanTimeZone);
                             obj.CreatedByIP = Request.HttpContext.Connection.RemoteIpAddress.ToString();
 
-                            var res = _defaultAccountService.AddDefaultAccount(obj);
-                            _signalrHub.Clients.All.SendAsync("LoadDefaultAccount");
+                            var res = _chartAccountService.AddChartAccount(obj);
+                            _signalrHub.Clients.All.SendAsync("LoadChartAccount");
 
-                            if (!string.IsNullOrEmpty(res.AccountName))
+                            if (!string.IsNullOrEmpty(res.AccountByCompanyBranchName))
                             {
                                 response.Status = 200;
-                                response.ResponseMsg = "The Default Account " + res.AccountName + " Is Successfully Added.";
+                                response.ResponseMsg = "The Chart Account " + res.AccountByCompanyBranchName + " Is Successfully Added.";
                                 response.Token = TokenManager.GenerateToken(claimDTO);
                                 response.Data = res;
                             }
                             else
                             {
                                 response.Status = 0;
-                                response.ResponseMsg = "This Default Account " + obj.AccountName + " Data is not Added.";
+                                response.ResponseMsg = "This Chart Account " + obj.AccountByCompanyBranchName + " Data is not Added.";
                                 response.Token = TokenManager.GenerateToken(claimDTO);
                                 response.Data = null;
                             }
@@ -214,8 +214,8 @@ namespace AccountERPApi.Controllers
             return response;
         }
 
-        [HttpPost("UpdateDefaultAccount")]
-        public Response UpdateDefaultAccount(DefaultAccount obj)
+        [HttpPost("UpdateChartAccount")]
+        public Response UpdateChartAccount(ChartAccount obj)
         {
             Response response = new Response();
             ClaimDTO claimDTO = new ClaimDTO();
@@ -236,14 +236,14 @@ namespace AccountERPApi.Controllers
 
                     if (HasPermission)
                     {
-                        var Data = _defaultAccountService.GetAll().ToList();
+                        var Data = _chartAccountService.GetAll().ToList();
 
-                        var CheckDefaultAccountName = Data.Where(x => x.AccountID != obj.AccountID && x.AccountName.ToLower() == obj.AccountName.ToLower()).Count();
+                        var CheckChartAccountName = Data.Where(x => x.AccountByCompanyBranchID != obj.AccountByCompanyBranchID && x.AccountByCompanyBranchName.ToLower() == obj.AccountByCompanyBranchName.ToLower()).Count();
 
-                        if (CheckDefaultAccountName > 0)
+                        if (CheckChartAccountName > 0)
                         {
                             response.Status = 0;
-                            response.ResponseMsg = "The Default Account " + obj.AccountName + " Already exists.";
+                            response.ResponseMsg = "The Chart Account " + obj.AccountByCompanyBranchName + " Already exists.";
                             response.Token = TokenManager.GenerateToken(claimDTO);
                             response.Data = null;
                         }
@@ -253,21 +253,21 @@ namespace AccountERPApi.Controllers
                             obj.ModifiedOn = TimeZoneManager.GetDateTimeByTimeZone(TimeZonesStarndard.PakistanTimeZone);
                             obj.ModifiedByIP = Request.HttpContext.Connection.RemoteIpAddress.ToString();
 
-                            var res = _defaultAccountService.UpdateDefaultAccount(obj);
+                            var res = _chartAccountService.UpdateChartAccount(obj);
 
-                            _signalrHub.Clients.All.SendAsync("LoadDefaultAccount");
+                            _signalrHub.Clients.All.SendAsync("LoadChartAccount");
 
-                            if (!string.IsNullOrEmpty(res.AccountName))
+                            if (!string.IsNullOrEmpty(res.AccountByCompanyBranchName))
                             {
                                 response.Status = 200;
-                                response.ResponseMsg = "The Default Account " + res.AccountName + " Is Successfully Updated.";
+                                response.ResponseMsg = "The Chart Account " + res.AccountByCompanyBranchName + " Is Successfully Updated.";
                                 response.Token = TokenManager.GenerateToken(claimDTO);
                                 response.Data = res;
                             }
                             else
                             {
                                 response.Status = 0;
-                                response.ResponseMsg = "This DefaultAccount " + obj.AccountName + " Data is not Updated.";
+                                response.ResponseMsg = "This ChartAccount " + obj.AccountByCompanyBranchName + " Data is not Updated.";
                                 response.Token = TokenManager.GenerateToken(claimDTO);
                                 response.Data = null;
                             }
@@ -298,8 +298,8 @@ namespace AccountERPApi.Controllers
             return response;
         }
 
-        [HttpPost("GetDefaultAccountByID/{id}")]
-        public Response GetDefaultAccountByID(int id)
+        [HttpPost("GetChartAccountByID/{id}")]
+        public Response GetChartAccountByID(int id)
         {
             Response response = new Response();
             ClaimDTO claimDTO = new ClaimDTO();
@@ -320,7 +320,7 @@ namespace AccountERPApi.Controllers
 
                     if (HasPermission)
                     {
-                        var Data = _defaultAccountService.GetDefaultAccountByID(id);
+                        var Data = _chartAccountService.GetChartAccountByID(id);
                         if (Data != null)
                         {
                             response.Status = 200;

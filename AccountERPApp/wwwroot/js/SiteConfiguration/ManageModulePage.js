@@ -6,8 +6,8 @@ let txtControllerURL = "#txtControllerURL";
 let txtActionURL = "#txtActionURL";
 let hdnModulePageID = "#hdnModulePageID";
 let txtModulePageOrderNo = "#txtModulePageOrderNo";
-
 let DataTable = "#dataTableModulePage";
+let Controller_arr = [];
 
 var oTable;
 
@@ -35,11 +35,27 @@ $(document).ready(function () {
         SaveModulePageData();
     });
 
+    $(ddlModuleID).change(function (e) {
+
+        var ModuleID = Number($(ddlModuleID).val());
+        if (ModuleID != 0) {
+            GetControllerByModuleID(ModuleID);
+        }
+    });
+
 });
+
+function GetControllerByModuleID(ModuleID) {
+    let objController = Controller_arr.filter(function (e2) {
+        return e2.ModuleID == ModuleID;
+    });
+
+    fillData(objController, "#temp_txtControllerURL", txtControllerURL, false);
+}
 
 function GetAllModulePages() {
 
-    GetAllModuleForDropDown();
+    GetAll_Modules_ModulePages_Data();
 
     oTable = $(DataTable).DataTable({
 
@@ -335,11 +351,12 @@ function SaveModulePageData() {
     }
 }
 
-function GetAllModuleForDropDown() {
-    postRequest(BaseUrl + "/SiteConfiguration/GetAllModuleForDropDown", null, function (res) {
+function GetAll_Modules_ModulePages_Data() {
+    postRequest(BaseUrl + "/SiteConfiguration/GetAll_Modules_ModulePages_Data", null, function (res) {
         if (res.Status == 200) {
             if (res.Data != null) {
-                fillData(res.Data, "#temp_ddlModuleID", ddlModuleID, true);
+                fillData(res.Data.Modules, "#temp_ddlModuleID", ddlModuleID, false);
+                Controller_arr = res.Data.ModulePages;
             }
         }
         else if (res.Status == 401) {

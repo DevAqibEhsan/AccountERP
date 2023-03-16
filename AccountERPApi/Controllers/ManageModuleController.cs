@@ -432,5 +432,58 @@ namespace AccountERPApi.Controllers
             return response;
         }
 
+        [HttpPost("GetAll_Modules_ModulePages_Data")]
+        public Response GetAll_Modules_ModulePages_Data()
+        {
+            Response response = new Response();
+            ClaimDTO claimDTO = new ClaimDTO();
+
+            try
+            {
+                claimDTO = TokenManager.GetValidateToken(Request);
+
+                if (claimDTO != null)
+                {
+                    bool HasPermission = true;
+
+                    if (claimDTO.RoleID != 1)
+                    {
+                        HasPermission = false;
+                        // Here We Check Permission and than Set True
+                    }
+
+                    if (HasPermission)
+                    {
+                        var Data = _modulesService.GetAll_Modules_ModulePages_Data();
+
+                        response.Status = 200;
+                        response.Token = TokenManager.GenerateToken(claimDTO);
+                        response.Data = Data;
+                    }
+                    else
+                    {
+                        response.Status = 403;
+                        response.ResponseMsg = "You don’t have permission to this action.";
+                        response.Token = null;
+                        response.Data = null;
+                    }
+                }
+                else
+                {
+                    response.Status = 401;
+                    response.ResponseMsg = "unauthorized";
+                    response.Token = null;
+                    response.Data = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                response.Status = ExceptionStatusCode.GetExceptionCode(ex);
+                response.ResponseMsg = ex.Message;
+            }
+
+            return response;
+        }
+
     }
 }

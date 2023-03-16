@@ -14,13 +14,13 @@ namespace AccountERPApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ManageDefaultAccountController : ControllerBase
+    public class ManageCodePrefixController : ControllerBase
     {
-        private readonly IDefaultAccountService _defaultAccountService;
+        private readonly ICodePrefixService _codePrefixService;
         private readonly IHubContext<SignalrServer> _signalrHub;
-        public ManageDefaultAccountController(IDefaultAccountService defaultAccountService, IHubContext<SignalrServer> signalrHub)
+        public ManageCodePrefixController(ICodePrefixService codePrefixService, IHubContext<SignalrServer> signalrHub)
         {
-            _defaultAccountService = defaultAccountService;
+            _codePrefixService = codePrefixService;
             _signalrHub = signalrHub;
         }
 
@@ -46,7 +46,7 @@ namespace AccountERPApi.Controllers
 
                     if (HasPermission)
                     {
-                        var Data = _defaultAccountService.GetAll().ToList();
+                        var Data = _codePrefixService.GetAll().ToList();
 
                         response.Status = 200;
                         response.Token = TokenManager.GenerateToken(claimDTO);
@@ -77,8 +77,8 @@ namespace AccountERPApi.Controllers
             return response;
         }
 
-        [HttpPost("GetAllActive")]
-        public Response GetAllActive()
+        [HttpPost("AddCodePrefix")]
+        public Response AddCodePrefix(CodePrefix obj)
         {
             Response response = new Response();
             ClaimDTO claimDTO = new ClaimDTO();
@@ -99,178 +99,26 @@ namespace AccountERPApi.Controllers
 
                     if (HasPermission)
                     {
-                        var Data = _defaultAccountService.GetAllActive().ToList();
+                        obj.CreatedBy = claimDTO.UserID;
+                        obj.CreatedOn = TimeZoneManager.GetDateTimeByTimeZone(TimeZonesStarndard.PakistanTimeZone);
+                        obj.CreatedByIP = Request.HttpContext.Connection.RemoteIpAddress.ToString();
 
-                        response.Status = 200;
-                        response.Token = TokenManager.GenerateToken(claimDTO);
-                        response.Data = Data;
-                    }
-                    else
-                    {
-                        response.Status = 403;
-                        response.ResponseMsg = "You don’t have permission to this action.";
-                        response.Token = null;
-                        response.Data = null;
-                    }
-                }
-                else
-                {
-                    response.Status = 401;
-                    response.ResponseMsg = "unauthorized";
-                    response.Token = null;
-                    response.Data = null;
-                }
-            }
-            catch (Exception ex)
-            {
-                response.Status = ExceptionStatusCode.GetExceptionCode(ex);
-                response.ResponseMsg = ex.Message;
-            }
+                        var res = _codePrefixService.AddCodePrefix(obj);
+                        _signalrHub.Clients.All.SendAsync("LoadCodePrefix");
 
-            return response;
-        }
-
-        [HttpPost("AddDefaultAccount")]
-        public Response AddDefaultAccount(DefaultAccount obj)
-        {
-            Response response = new Response();
-            ClaimDTO claimDTO = new ClaimDTO();
-
-            try
-            {
-                claimDTO = TokenManager.GetValidateToken(Request);
-
-                if (claimDTO != null)
-                {
-                    bool HasPermission = true;
-
-                    if (claimDTO.RoleID != 1)
-                    {
-                        HasPermission = false;
-                        // Here We Check Permission and than Set True
-                    }
-
-                    if (HasPermission)
-                    {
-                        var Data = _defaultAccountService.GetAll().ToList();
-
-                        var CHeckDefaultAccountName = Data.Where(x => x.AccountName.ToLower() == obj.AccountName.ToLower()).Count();
-
-                        if (CHeckDefaultAccountName > 0)
+                        if (!string.IsNullOrEmpty(res.CodePrefixName))
                         {
-                            response.Status = 0;
-                            response.ResponseMsg = "The Default Account " + obj.AccountName + " Already exists.";
+                            response.Status = 200;
+                            response.ResponseMsg = "The Code Prefix " + res.CodePrefixName + " Is Successfully Added.";
                             response.Token = TokenManager.GenerateToken(claimDTO);
-                            response.Data = null;
-                        }
-
-                        else
-                        {
-                            obj.CreatedBy = claimDTO.UserID;
-                            obj.CreatedOn = TimeZoneManager.GetDateTimeByTimeZone(TimeZonesStarndard.PakistanTimeZone);
-                            obj.CreatedByIP = Request.HttpContext.Connection.RemoteIpAddress.ToString();
-
-                            var res = _defaultAccountService.AddDefaultAccount(obj);
-                            _signalrHub.Clients.All.SendAsync("LoadDefaultAccount");
-
-                            if (!string.IsNullOrEmpty(res.AccountName))
-                            {
-                                response.Status = 200;
-                                response.ResponseMsg = "The Default Account " + res.AccountName + " Is Successfully Added.";
-                                response.Token = TokenManager.GenerateToken(claimDTO);
-                                response.Data = res;
-                            }
-                            else
-                            {
-                                response.Status = 0;
-                                response.ResponseMsg = "This Default Account " + obj.AccountName + " Data is not Added.";
-                                response.Token = TokenManager.GenerateToken(claimDTO);
-                                response.Data = null;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        response.Status = 403;
-                        response.ResponseMsg = "You don’t have permission to this action.";
-                        response.Token = null;
-                        response.Data = null;
-                    }
-                }
-                else
-                {
-                    response.Status = 401;
-                    response.ResponseMsg = "unauthorized";
-                    response.Token = null;
-                    response.Data = null;
-                }
-            }
-            catch (Exception ex)
-            {
-                response.Status = ExceptionStatusCode.GetExceptionCode(ex);
-                response.ResponseMsg = ex.Message;
-            }
-
-            return response;
-        }
-
-        [HttpPost("UpdateDefaultAccount")]
-        public Response UpdateDefaultAccount(DefaultAccount obj)
-        {
-            Response response = new Response();
-            ClaimDTO claimDTO = new ClaimDTO();
-
-            try
-            {
-                claimDTO = TokenManager.GetValidateToken(Request);
-
-                if (claimDTO != null)
-                {
-                    bool HasPermission = true;
-
-                    if (claimDTO.RoleID != 1)
-                    {
-                        HasPermission = false;
-                        // Here We Check Permission and than Set True
-                    }
-
-                    if (HasPermission)
-                    {
-                        var Data = _defaultAccountService.GetAll().ToList();
-
-                        var CheckDefaultAccountName = Data.Where(x => x.AccountID != obj.AccountID && x.AccountName.ToLower() == obj.AccountName.ToLower()).Count();
-
-                        if (CheckDefaultAccountName > 0)
-                        {
-                            response.Status = 0;
-                            response.ResponseMsg = "The Default Account " + obj.AccountName + " Already exists.";
-                            response.Token = TokenManager.GenerateToken(claimDTO);
-                            response.Data = null;
+                            response.Data = res;
                         }
                         else
                         {
-                            obj.ModifiedBy = claimDTO.UserID;
-                            obj.ModifiedOn = TimeZoneManager.GetDateTimeByTimeZone(TimeZonesStarndard.PakistanTimeZone);
-                            obj.ModifiedByIP = Request.HttpContext.Connection.RemoteIpAddress.ToString();
-
-                            var res = _defaultAccountService.UpdateDefaultAccount(obj);
-
-                            _signalrHub.Clients.All.SendAsync("LoadDefaultAccount");
-
-                            if (!string.IsNullOrEmpty(res.AccountName))
-                            {
-                                response.Status = 200;
-                                response.ResponseMsg = "The Default Account " + res.AccountName + " Is Successfully Updated.";
-                                response.Token = TokenManager.GenerateToken(claimDTO);
-                                response.Data = res;
-                            }
-                            else
-                            {
-                                response.Status = 0;
-                                response.ResponseMsg = "This DefaultAccount " + obj.AccountName + " Data is not Updated.";
-                                response.Token = TokenManager.GenerateToken(claimDTO);
-                                response.Data = null;
-                            }
+                            response.Status = 0;
+                            response.ResponseMsg = "This Code Prefix " + obj.CodePrefixName + " Data is not Added.";
+                            response.Token = TokenManager.GenerateToken(claimDTO);
+                            response.Data = null;
                         }
                     }
                     else
@@ -298,8 +146,8 @@ namespace AccountERPApi.Controllers
             return response;
         }
 
-        [HttpPost("GetDefaultAccountByID/{id}")]
-        public Response GetDefaultAccountByID(int id)
+        [HttpPost("UpdateCodePrefix")]
+        public Response UpdateCodePrefix(CodePrefix obj)
         {
             Response response = new Response();
             ClaimDTO claimDTO = new ClaimDTO();
@@ -320,7 +168,77 @@ namespace AccountERPApi.Controllers
 
                     if (HasPermission)
                     {
-                        var Data = _defaultAccountService.GetDefaultAccountByID(id);
+                        obj.ModifiedBy = claimDTO.UserID;
+                        obj.ModifiedOn = TimeZoneManager.GetDateTimeByTimeZone(TimeZonesStarndard.PakistanTimeZone);
+                        obj.ModifiedByIP = Request.HttpContext.Connection.RemoteIpAddress.ToString();
+
+                        var res = _codePrefixService.UpdateCodePrefix(obj);
+
+                        _signalrHub.Clients.All.SendAsync("LoadCodePrefix");
+
+                        if (!string.IsNullOrEmpty(res.CodePrefixName))
+                        {
+                            response.Status = 200;
+                            response.ResponseMsg = "The Code Prefix " + res.CodePrefixName + " Is Successfully Updated.";
+                            response.Token = TokenManager.GenerateToken(claimDTO);
+                            response.Data = res;
+                        }
+                        else
+                        {
+                            response.Status = 0;
+                            response.ResponseMsg = "This Code Prefix " + obj.CodePrefixName + " Data is not Updated.";
+                            response.Token = TokenManager.GenerateToken(claimDTO);
+                            response.Data = null;
+                        }
+                    }
+                    else
+                    {
+                        response.Status = 403;
+                        response.ResponseMsg = "You don’t have permission to this action.";
+                        response.Token = null;
+                        response.Data = null;
+                    }
+                }
+                else
+                {
+                    response.Status = 401;
+                    response.ResponseMsg = "unauthorized";
+                    response.Token = null;
+                    response.Data = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                response.Status = ExceptionStatusCode.GetExceptionCode(ex);
+                response.ResponseMsg = ex.Message;
+            }
+
+            return response;
+        }
+
+        [HttpPost("GetCodePrefixByID/{id}")]
+        public Response GetCodePrefixByID(int id)
+        {
+            Response response = new Response();
+            ClaimDTO claimDTO = new ClaimDTO();
+
+            try
+            {
+                claimDTO = TokenManager.GetValidateToken(Request);
+
+                if (claimDTO != null)
+                {
+                    bool HasPermission = true;
+
+                    if (claimDTO.RoleID != 1)
+                    {
+                        HasPermission = false;
+                        // Here We Check Permission and than Set True
+                    }
+
+                    if (HasPermission)
+                    {
+                        var Data = _codePrefixService.GetCodePrefixByID(id);
                         if (Data != null)
                         {
                             response.Status = 200;

@@ -3440,6 +3440,471 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Register User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"FirstName\":\"asdf\",\r\n    \"LastName\":\"asdf\",\r\n    \"CompanyName\":\"asdf\",\r\n    \"Email\":\"asdf@yahoo.com\",\r\n    \"Password\":\"asdf123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/RegisterUser/RegisterUser",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"RegisterUser",
+						"RegisterUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Chart Account",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IkFxaWIiLCJMYXN0TmFtZSI6IkVoc2FuIiwiUm9sZU5hbWUiOiJTdXBlciBBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJDb21wYW5pZXMiOiIiLCJCcmFuY2hlcyI6IiIsIlBlcm1pc3Npb25zIjoiIiwiU2l0ZUxvZ28iOiIuLy4uL1NpdGVDb25maWdNZWRpYS9TaXRlQ29uZmlnTG9nby5qcGciLCJQb3dlcmVkQnlUZXh0IjoiQ29weXJpZ2h0IMKpIDIwMjMgRGVzaWduZWQgYnkgQXFpYiBFaHNhbiIsIlNpdGVVUkwiOiJqYXZhc2NyaXB0OnZvaWQoMCkiLCJuYmYiOjE2Nzg4ODA4NjIsImV4cCI6MTY3OTA5Njg2MiwiaWF0IjoxNjc4ODgwODYyLCJpc3MiOiJBY2NvdW50RVJQIn0.ZuAKRaXTR1NrMj9hH3VI6szZ-R-Xe0XfHvbNht6fvH4",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44375/api/ManageChartAccount/GetAll",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageChartAccount",
+						"GetAll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Active Chart Account",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IkFxaWIiLCJMYXN0TmFtZSI6IkVoc2FuIiwiUm9sZU5hbWUiOiJTdXBlciBBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJDb21wYW5pZXMiOiIiLCJCcmFuY2hlcyI6IiIsIlBlcm1pc3Npb25zIjoiIiwiU2l0ZUxvZ28iOiIuLy4uL1NpdGVDb25maWdNZWRpYS9TaXRlQ29uZmlnTG9nby5qcGciLCJQb3dlcmVkQnlUZXh0IjoiQ29weXJpZ2h0IMKpIDIwMjMgRGVzaWduZWQgYnkgQXFpYiBFaHNhbiIsIlNpdGVVUkwiOiJqYXZhc2NyaXB0OnZvaWQoMCkiLCJuYmYiOjE2Nzg4ODA4NjIsImV4cCI6MTY3OTA5Njg2MiwiaWF0IjoxNjc4ODgwODYyLCJpc3MiOiJBY2NvdW50RVJQIn0.ZuAKRaXTR1NrMj9hH3VI6szZ-R-Xe0XfHvbNht6fvH4",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44375/api/ManageChartAccount/GetAllActive",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageChartAccount",
+						"GetAllActive"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Chart Account",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IkFxaWIiLCJMYXN0TmFtZSI6IkVoc2FuIiwiUm9sZU5hbWUiOiJTdXBlciBBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJDb21wYW5pZXMiOiIiLCJCcmFuY2hlcyI6IiIsIlBlcm1pc3Npb25zIjoiIiwiU2l0ZUxvZ28iOiIuLy4uL1NpdGVDb25maWdNZWRpYS9TaXRlQ29uZmlnTG9nby5qcGciLCJQb3dlcmVkQnlUZXh0IjoiQ29weXJpZ2h0IMKpIDIwMjMgRGVzaWduZWQgYnkgQXFpYiBFaHNhbiIsIlNpdGVVUkwiOiJqYXZhc2NyaXB0OnZvaWQoMCkiLCJuYmYiOjE2Nzg4ODA4NjIsImV4cCI6MTY3OTA5Njg2MiwiaWF0IjoxNjc4ODgwODYyLCJpc3MiOiJBY2NvdW50RVJQIn0.ZuAKRaXTR1NrMj9hH3VI6szZ-R-Xe0XfHvbNht6fvH4",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"AccountByCompanyBranchName\":\"aqib Test\",\r\n\"IsSubAccountOf\":1,\r\n\"Description\":\"sadfasdf\",\r\n\"IsActive\":1,\r\n\"CompanyID\":1,\r\n\"BranchID\":1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageChartAccount/AddChartAccount",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageChartAccount",
+						"AddChartAccount"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Chart Account",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IkFxaWIiLCJMYXN0TmFtZSI6IkVoc2FuIiwiUm9sZU5hbWUiOiJTdXBlciBBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJDb21wYW5pZXMiOiIiLCJCcmFuY2hlcyI6IiIsIlBlcm1pc3Npb25zIjoiIiwiU2l0ZUxvZ28iOiIuLy4uL1NpdGVDb25maWdNZWRpYS9TaXRlQ29uZmlnTG9nby5qcGciLCJQb3dlcmVkQnlUZXh0IjoiQ29weXJpZ2h0IMKpIDIwMjMgRGVzaWduZWQgYnkgQXFpYiBFaHNhbiIsIlNpdGVVUkwiOiJqYXZhc2NyaXB0OnZvaWQoMCkiLCJuYmYiOjE2Nzg4ODA4NjIsImV4cCI6MTY3OTA5Njg2MiwiaWF0IjoxNjc4ODgwODYyLCJpc3MiOiJBY2NvdW50RVJQIn0.ZuAKRaXTR1NrMj9hH3VI6szZ-R-Xe0XfHvbNht6fvH4",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"AccountByCompanyBranchID\":12,\r\n\"AccountByCompanyBranchName\":\"testing\",\r\n\"IsSubAccountOf\":2,\r\n\"Description\":\"aqib\",\r\n\"IsActive\":0,\r\n\"CompanyID\":1,\r\n\"BranchID\":2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageChartAccount/UpdateChartAccount",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageChartAccount",
+						"UpdateChartAccount"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Chart Account By ID",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IkFxaWIiLCJMYXN0TmFtZSI6IkVoc2FuIiwiUm9sZU5hbWUiOiJTdXBlciBBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJDb21wYW5pZXMiOiIiLCJCcmFuY2hlcyI6IiIsIlBlcm1pc3Npb25zIjoiIiwiU2l0ZUxvZ28iOiIuLy4uL1NpdGVDb25maWdNZWRpYS9TaXRlQ29uZmlnTG9nby5qcGciLCJQb3dlcmVkQnlUZXh0IjoiQ29weXJpZ2h0IMKpIDIwMjMgRGVzaWduZWQgYnkgQXFpYiBFaHNhbiIsIlNpdGVVUkwiOiJqYXZhc2NyaXB0OnZvaWQoMCkiLCJuYmYiOjE2Nzg4ODA4NjIsImV4cCI6MTY3OTA5Njg2MiwiaWF0IjoxNjc4ODgwODYyLCJpc3MiOiJBY2NvdW50RVJQIn0.ZuAKRaXTR1NrMj9hH3VI6szZ-R-Xe0XfHvbNht6fvH4",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44375/api/ManageChartAccount/GetChartAccountByID/12",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageChartAccount",
+						"GetChartAccountByID",
+						"12"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Default Account",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IkFxaWIiLCJMYXN0TmFtZSI6IkVoc2FuIiwiUm9sZU5hbWUiOiJTdXBlciBBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJDb21wYW5pZXMiOiIiLCJCcmFuY2hlcyI6IiIsIlBlcm1pc3Npb25zIjoiIiwiU2l0ZUxvZ28iOiIuLy4uL1NpdGVDb25maWdNZWRpYS9TaXRlQ29uZmlnTG9nby5qcGciLCJQb3dlcmVkQnlUZXh0IjoiQ29weXJpZ2h0IMKpIDIwMjMgRGVzaWduZWQgYnkgQXFpYiBFaHNhbiIsIlNpdGVVUkwiOiJqYXZhc2NyaXB0OnZvaWQoMCkiLCJuYmYiOjE2Nzg5NDMwODIsImV4cCI6MTY3OTE1OTA4MiwiaWF0IjoxNjc4OTQzMDgyLCJpc3MiOiJBY2NvdW50RVJQIn0.u6mmanHwHvrjC721Bg72Ge9XRx5qwRJbhDXUNPvibI8",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44375/api/ManageDefaultAccount/GetAll",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageDefaultAccount",
+						"GetAll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Active Default Account",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IkFxaWIiLCJMYXN0TmFtZSI6IkVoc2FuIiwiUm9sZU5hbWUiOiJTdXBlciBBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJDb21wYW5pZXMiOiIiLCJCcmFuY2hlcyI6IiIsIlBlcm1pc3Npb25zIjoiIiwiU2l0ZUxvZ28iOiIuLy4uL1NpdGVDb25maWdNZWRpYS9TaXRlQ29uZmlnTG9nby5qcGciLCJQb3dlcmVkQnlUZXh0IjoiQ29weXJpZ2h0IMKpIDIwMjMgRGVzaWduZWQgYnkgQXFpYiBFaHNhbiIsIlNpdGVVUkwiOiJqYXZhc2NyaXB0OnZvaWQoMCkiLCJuYmYiOjE2Nzg5NDMwODIsImV4cCI6MTY3OTE1OTA4MiwiaWF0IjoxNjc4OTQzMDgyLCJpc3MiOiJBY2NvdW50RVJQIn0.u6mmanHwHvrjC721Bg72Ge9XRx5qwRJbhDXUNPvibI8",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44375/api/ManageDefaultAccount/GetAllActive",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageDefaultAccount",
+						"GetAllActive"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Default Account",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IkFxaWIiLCJMYXN0TmFtZSI6IkVoc2FuIiwiUm9sZU5hbWUiOiJTdXBlciBBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJDb21wYW5pZXMiOiIiLCJCcmFuY2hlcyI6IiIsIlBlcm1pc3Npb25zIjoiIiwiU2l0ZUxvZ28iOiIuLy4uL1NpdGVDb25maWdNZWRpYS9TaXRlQ29uZmlnTG9nby5qcGciLCJQb3dlcmVkQnlUZXh0IjoiQ29weXJpZ2h0IMKpIDIwMjMgRGVzaWduZWQgYnkgQXFpYiBFaHNhbiIsIlNpdGVVUkwiOiJqYXZhc2NyaXB0OnZvaWQoMCkiLCJuYmYiOjE2Nzg5NDMwODIsImV4cCI6MTY3OTE1OTA4MiwiaWF0IjoxNjc4OTQzMDgyLCJpc3MiOiJBY2NvdW50RVJQIn0.u6mmanHwHvrjC721Bg72Ge9XRx5qwRJbhDXUNPvibI8",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"AccountName\":\"test account\",\r\n\"IsSubAccountOf\":3,\r\n\"Description\":\"sadfasf f as\",\r\n\"IsActive\":1,\r\n\"IsSystemAccount\":1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageDefaultAccount/AddDefaultAccount",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageDefaultAccount",
+						"AddDefaultAccount"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Default Account",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IkFxaWIiLCJMYXN0TmFtZSI6IkVoc2FuIiwiUm9sZU5hbWUiOiJTdXBlciBBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJDb21wYW5pZXMiOiIiLCJCcmFuY2hlcyI6IiIsIlBlcm1pc3Npb25zIjoiIiwiU2l0ZUxvZ28iOiIuLy4uL1NpdGVDb25maWdNZWRpYS9TaXRlQ29uZmlnTG9nby5qcGciLCJQb3dlcmVkQnlUZXh0IjoiQ29weXJpZ2h0IMKpIDIwMjMgRGVzaWduZWQgYnkgQXFpYiBFaHNhbiIsIlNpdGVVUkwiOiJqYXZhc2NyaXB0OnZvaWQoMCkiLCJuYmYiOjE2Nzg5NDMwODIsImV4cCI6MTY3OTE1OTA4MiwiaWF0IjoxNjc4OTQzMDgyLCJpc3MiOiJBY2NvdW50RVJQIn0.u6mmanHwHvrjC721Bg72Ge9XRx5qwRJbhDXUNPvibI8",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"AccountID\":10,\r\n\"AccountName\":\"test account asdfasdf\",\r\n\"IsSubAccountOf\":3,\r\n\"Description\":\"test description\",\r\n\"IsActive\":1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageDefaultAccount/UpdateDefaultAccount",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageDefaultAccount",
+						"UpdateDefaultAccount"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Default Account By ID",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IkFxaWIiLCJMYXN0TmFtZSI6IkVoc2FuIiwiUm9sZU5hbWUiOiJTdXBlciBBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJDb21wYW5pZXMiOiIiLCJCcmFuY2hlcyI6IiIsIlBlcm1pc3Npb25zIjoiIiwiU2l0ZUxvZ28iOiIuLy4uL1NpdGVDb25maWdNZWRpYS9TaXRlQ29uZmlnTG9nby5qcGciLCJQb3dlcmVkQnlUZXh0IjoiQ29weXJpZ2h0IMKpIDIwMjMgRGVzaWduZWQgYnkgQXFpYiBFaHNhbiIsIlNpdGVVUkwiOiJqYXZhc2NyaXB0OnZvaWQoMCkiLCJuYmYiOjE2Nzg5NDMwODIsImV4cCI6MTY3OTE1OTA4MiwiaWF0IjoxNjc4OTQzMDgyLCJpc3MiOiJBY2NvdW50RVJQIn0.u6mmanHwHvrjC721Bg72Ge9XRx5qwRJbhDXUNPvibI8",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44375/api/ManageDefaultAccount/GetDefaultAccountByID/10",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageDefaultAccount",
+						"GetDefaultAccountByID",
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Code Prefix",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IkFxaWIiLCJMYXN0TmFtZSI6IkVoc2FuIiwiUm9sZU5hbWUiOiJTdXBlciBBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJDb21wYW5pZXMiOiIiLCJCcmFuY2hlcyI6IiIsIlBlcm1pc3Npb25zIjoiIiwiU2l0ZUxvZ28iOiIuLy4uL1NpdGVDb25maWdNZWRpYS9TaXRlQ29uZmlnTG9nby5qcGciLCJQb3dlcmVkQnlUZXh0IjoiQ29weXJpZ2h0IMKpIDIwMjMgRGVzaWduZWQgYnkgQXFpYiBFaHNhbiIsIlNpdGVVUkwiOiJqYXZhc2NyaXB0OnZvaWQoMCkiLCJuYmYiOjE2Nzg5NDMwODIsImV4cCI6MTY3OTE1OTA4MiwiaWF0IjoxNjc4OTQzMDgyLCJpc3MiOiJBY2NvdW50RVJQIn0.u6mmanHwHvrjC721Bg72Ge9XRx5qwRJbhDXUNPvibI8",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44375/api/ManageCodePrefix/GetAll",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageCodePrefix",
+						"GetAll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Code Prefix",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IkFxaWIiLCJMYXN0TmFtZSI6IkVoc2FuIiwiUm9sZU5hbWUiOiJTdXBlciBBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJDb21wYW5pZXMiOiIiLCJCcmFuY2hlcyI6IiIsIlBlcm1pc3Npb25zIjoiIiwiU2l0ZUxvZ28iOiIuLy4uL1NpdGVDb25maWdNZWRpYS9TaXRlQ29uZmlnTG9nby5qcGciLCJQb3dlcmVkQnlUZXh0IjoiQ29weXJpZ2h0IMKpIDIwMjMgRGVzaWduZWQgYnkgQXFpYiBFaHNhbiIsIlNpdGVVUkwiOiJqYXZhc2NyaXB0OnZvaWQoMCkiLCJuYmYiOjE2Nzg5NDMwODIsImV4cCI6MTY3OTE1OTA4MiwiaWF0IjoxNjc4OTQzMDgyLCJpc3MiOiJBY2NvdW50RVJQIn0.u6mmanHwHvrjC721Bg72Ge9XRx5qwRJbhDXUNPvibI8",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"CodePrefixName\":\"asdf\",\r\n    \"CodePrefixKey\":\"asdf\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageCodePrefix/AddCodePrefix",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageCodePrefix",
+						"AddCodePrefix"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Code Prefix",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IkFxaWIiLCJMYXN0TmFtZSI6IkVoc2FuIiwiUm9sZU5hbWUiOiJTdXBlciBBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJDb21wYW5pZXMiOiIiLCJCcmFuY2hlcyI6IiIsIlBlcm1pc3Npb25zIjoiIiwiU2l0ZUxvZ28iOiIuLy4uL1NpdGVDb25maWdNZWRpYS9TaXRlQ29uZmlnTG9nby5qcGciLCJQb3dlcmVkQnlUZXh0IjoiQ29weXJpZ2h0IMKpIDIwMjMgRGVzaWduZWQgYnkgQXFpYiBFaHNhbiIsIlNpdGVVUkwiOiJqYXZhc2NyaXB0OnZvaWQoMCkiLCJuYmYiOjE2Nzg5NDMwODIsImV4cCI6MTY3OTE1OTA4MiwiaWF0IjoxNjc4OTQzMDgyLCJpc3MiOiJBY2NvdW50RVJQIn0.u6mmanHwHvrjC721Bg72Ge9XRx5qwRJbhDXUNPvibI8",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"CodePrefixeID\":15,\r\n\"CodePrefixName\":\"asdf\",\r\n    \"CodePrefixKey\":\"aqwerqwt\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44375/api/ManageCodePrefix/UpdateCodePrefix",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageCodePrefix",
+						"UpdateCodePrefix"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Code Prefix By ID",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiIxIiwiUm9sZUlEIjoiMSIsIkZpcnN0TmFtZSI6IkFxaWIiLCJMYXN0TmFtZSI6IkVoc2FuIiwiUm9sZU5hbWUiOiJTdXBlciBBZG1pbiIsIkVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJDb21wYW5pZXMiOiIiLCJCcmFuY2hlcyI6IiIsIlBlcm1pc3Npb25zIjoiIiwiU2l0ZUxvZ28iOiIuLy4uL1NpdGVDb25maWdNZWRpYS9TaXRlQ29uZmlnTG9nby5qcGciLCJQb3dlcmVkQnlUZXh0IjoiQ29weXJpZ2h0IMKpIDIwMjMgRGVzaWduZWQgYnkgQXFpYiBFaHNhbiIsIlNpdGVVUkwiOiJqYXZhc2NyaXB0OnZvaWQoMCkiLCJuYmYiOjE2Nzg5NDMwODIsImV4cCI6MTY3OTE1OTA4MiwiaWF0IjoxNjc4OTQzMDgyLCJpc3MiOiJBY2NvdW50RVJQIn0.u6mmanHwHvrjC721Bg72Ge9XRx5qwRJbhDXUNPvibI8",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44375/api/ManageCodePrefix/GetCodePrefixByID/10",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44375",
+					"path": [
+						"api",
+						"ManageCodePrefix",
+						"GetCodePrefixByID",
+						"10"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
