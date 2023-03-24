@@ -42,7 +42,7 @@ namespace AccountERPApi.Repositories
         {
             DynamicParameters parameters = new DynamicParameters();
 
-            parameters.Add("CodePrefixeID", id, DbType.Int32, ParameterDirection.Input);
+            parameters.Add("CodePrefixID", id, DbType.Int32, ParameterDirection.Input);
 
             return _dapper.Get<CodePrefix>(@"usp_CodePrefixes_GetCodePrefixByID", parameters);
         }
@@ -51,7 +51,7 @@ namespace AccountERPApi.Repositories
         {
             DynamicParameters parameters = new DynamicParameters();
 
-            parameters.Add("CodePrefixeID", obj.CodePrefixeID, DbType.Int32, ParameterDirection.Input);
+            parameters.Add("CodePrefixID", obj.CodePrefixID, DbType.Int32, ParameterDirection.Input);
             parameters.Add("CodePrefixName", obj.CodePrefixName, DbType.String, ParameterDirection.Input);
             parameters.Add("CodePrefixKey", obj.CodePrefixKey, DbType.String, ParameterDirection.Input);
             parameters.Add("ModifiedBy", obj.ModifiedBy, DbType.Int32, ParameterDirection.Input);

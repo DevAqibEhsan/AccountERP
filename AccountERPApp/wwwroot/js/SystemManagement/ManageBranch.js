@@ -113,7 +113,7 @@ function GetAllBranch() {
                     window.location.href = baseWebUrl + "Account/Login";
                 }
                 else if (data.Status == 403) {
-                    ErrorAlert(res.ResponseMsg);
+                    ShowWhiteSpaceWithAssignedPermissionError(data.ResponseMsg);
                 }
                 else if (data.statusCode == 404) {
                     ErrorAlert(res.reasonPhrase);
@@ -295,41 +295,6 @@ function SaveBranchData() {
         });
     }
     $(btnSave).prop("disabled", false);
-}
-
-function GetAllCompany_Branch_Data() {
-    postRequest(BaseUrl + "/SystemManagement/GetAllCompany_Branch_Data", null, function (res) {
-        if (res.Status == 200) {
-            if (res.Data != null) {
-
-                fillData(res.Data.Company, "#temp_ddlCompanyID", ddlCompanyID, false);
-            }
-        }
-        else if (res.Status == 401) {
-            localStorage.removeItem("userData");
-            localStorage.removeItem("Menu");
-
-            window.location.href = baseWebUrl + "Account/Login";
-        }
-        else if (res.Status == 403) {
-            ErrorAlert(res.ResponseMsg);
-        }
-        else if (res.statusCode == 404) {
-            ErrorAlert(res.reasonPhrase);
-        }
-        else if (res.Status == 320) {
-            ErrorAlert(res.ResponseMsg);
-        }
-        else if (res.Status == 500) {
-            ErrorAlert(res.ResponseMsg);
-        }
-        else if (res.Status == 600) {
-            ErrorAlert(res.ResponseMsg);
-        }
-        else {
-            ErrorAlert(res.ResponseMsg);
-        }
-    });
 }
 
 function ClearAllField() {

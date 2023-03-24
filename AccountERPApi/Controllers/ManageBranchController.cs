@@ -56,7 +56,7 @@ namespace AccountERPApi.Controllers
                     {
                         response.Status = 403;
                         response.ResponseMsg = "You don’t have permission to this action.";
-                        response.Token = null;
+                        response.Token = TokenManager.GenerateToken(claimDTO);
                         response.Data = null;
                     }
                 }
@@ -316,8 +316,7 @@ namespace AccountERPApi.Controllers
 
                     if (claimDTO.RoleID != 1)
                     {
-                        HasPermission = false;
-                        // Here We Check Permission and than Set True
+                        HasPermission = CheckPermission.IsPermissionAllow(claimDTO, PermissionEnum.ViewBranch.ToString());
                     }
 
                     if (HasPermission)

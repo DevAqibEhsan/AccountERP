@@ -96,8 +96,7 @@ namespace AccountERPApi.Controllers
 
                     if (claimDTO.RoleID != 1)
                     {
-                        HasPermission = false;
-                        // Here We Check Permission and than Set True
+                        HasPermission = CheckPermission.IsPermissionAllow(claimDTO, PermissionEnum.ViewModule.ToString());
                     }
 
                     if (HasPermission)
@@ -150,7 +149,6 @@ namespace AccountERPApi.Controllers
                     if (claimDTO.RoleID != 1)
                     {
                         HasPermission = false;
-                        // Here We Check Permission and than Set True
                     }
 
                     if(HasPermission)
@@ -244,7 +242,6 @@ namespace AccountERPApi.Controllers
                     if (claimDTO.RoleID != 1)
                     {
                         HasPermission = false;
-                        // Here We Check Permission and than Set True
                     }
 
                     if (HasPermission)

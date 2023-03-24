@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewData["Title"] = "ChartAccount";
+    ViewData["Title"] = "Chart Account";
 }
 
 <link href="~/css/CommonStyle.css" rel="stylesheet" />
@@ -50,10 +50,11 @@
                         <tr>
                             <th class="text-center">S.No</th>
                             <th class="text-center">Account Name</th>
+                            <th class="text-center">Company Name</th>
+                            <th class="text-center">Branch Name</th>
                             <th class="text-center">Sub Account Name</th>
                             <th class="text-center">Description</th>
                             <th class="text-center">Is Active</th>
-                            <th class="text-center">Is System Account</th>
                             <th class="text-center">Created User</th>
                             <th class="text-center">Created On</th>
                             <th class="text-center">Created User IP</th>
@@ -92,26 +93,29 @@
                 </div>
 
                 <div class="form-row">
-                    <div class="form-group col-md-12">
-                        <label for="txtDescription">Description</label>
-                        <input type="text" class="form-control" id="txtDescription" placeholder="Description">
+                    <div class="form-group col-md-4">
+                        <label for="ddlCompanyID">Company</label>
+                        <select id="ddlCompanyID" class="form-control">
+                        </select>
                     </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-4">
+                        <label for="ddlBranchID">Branch</label>
+                        <select id="ddlBranchID" class="form-control">
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
                         <label for="ddlIsActive">Is Active Account</label>
                         <select id="ddlIsActive" class="form-control">
                             <option value="1">Yes</option>
                             <option value="0">No</option>
                         </select>
                     </div>
-                    <div class="form-group col-md-6">
-                        <label for="ddlIsSystemAccount">Is System Account</label>
-                        <select id="ddlIsSystemAccount" class="form-control">
-                            <option value="1">Yes</option>
-                            <option value="0">No</option>
-                        </select>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="txtDescription">Description</label>
+                        <input type="text" class="form-control" id="txtDescription" placeholder="Description">
                     </div>
                 </div>
 
@@ -129,7 +133,25 @@
 <script type="text/x-handlebars" id="temp_ddlSubAccountID">
     <option value="0">Plesae Select</option>
     {{#each this}}
-<option value="{{AccountID}}">{{AccountCode}}  {{AccountName}}</option>
+<option value="{{AccountID}}">{{AccountCode}}  {{AccountByCompanyBranchName}}</option>
+    {{/each}}
+
+</script>
+
+<script type="text/x-handlebars" id="temp_ddlCompanyID">
+
+    <option value="">Please Select</option>
+    {{#each this}}
+    <option value="{{CompanyID}}">{{CompanyName}}</option>
+    {{/each}}
+
+</script>
+
+<script type="text/x-handlebars" id="temp_ddlBranchID">
+
+    <option value="">Please Select</option>
+    {{#each this}}
+    <option value="{{BranchID}}">{{BranchName}}</option>
     {{/each}}
 
 </script>

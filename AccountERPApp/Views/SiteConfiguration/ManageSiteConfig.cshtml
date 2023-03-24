@@ -9,11 +9,26 @@
 <script src="~/js/Common.js"></script>
 <script src="~/js/SiteConfiguration/ManageSiteConfig.js"></script>
 
+<script src="~/lib/jquery-ui/dist/js/jquery-ui.js"></script>
+<script src="~/lib/jquery/dist/jquery-migrate.min.js"></script>
+<link href="~/lib/jquery-ui/dist/css/jquery-ui.css"  rel="stylesheet" type="text/css"/>
+
+<link href="~/lib/jquery-colorpicker/dist/css/jquery.colorpicker.css" rel="stylesheet" />
+<script src="~/lib/jquery-colorpicker/dist/js/jquery.colorpicker.js"></script>
+
+
 <style>
 
     #form {
         display: none;
+        float:left;
     }
+
+    #iFrameSection, #iFrameSection2 {
+        display: none;
+    }
+
+    
 
     .card-header .btnsection {
         display: inline-block;
@@ -25,9 +40,9 @@
 
     $(document).ready(function () {
 
-        $("#btnAddSiteConfig").click(function () { FormShow(); $("#dvLogo").hide(); $('#imgLogo').attr('src', ""); });
+        $("#btnAddSiteConfig").click(function () { FormShow(); $("#dvLogo").hide(); $('#imgLogo').attr('src', ""); $("#iFrameSection").show(); $("#iFrameSection2").show(); });
 
-        $("#btnCancel").click(function () { CancelButtonAction(); });
+        $("#btnCancel").click(function () { CancelButtonAction(); $("#iFrameSection").hide(); $("#iFrameSection2").hide(); });
 
         RemoveSortingClass('tblAction');
 
@@ -104,6 +119,256 @@
                     </div>
                 </div>
 
+                <div class="form-row">
+                    <div class="cp1 form-group col-md-12">
+                        <hr />
+                    </div>
+
+                    <div class="cp1 form-group col-md-12">
+                        <h5>Login Section</h5>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="cp1 form-group col-md-6">
+                        <label for="btn-navlink-color">btn navlink color</label>
+                        <input type="text" class="form-control" id="btn-navlink-color" value="0000008c" onchange="LoginColorTextboxChange(this)">
+                    </div>
+                    <div class="cp1 form-group col-md-6">
+                        <label for="btn-navlink-bg-color">btn navlink bg color</label>
+                        <input type="text" class="form-control" id="btn-navlink-bg-color" value="f7f7f7" onchange="LoginColorTextboxChange(this)">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="cp1 form-group col-md-6">
+                        <label for="btn-navlink-active-color">btn navlink active color</label>
+                        <input type="text" class="form-control" id="btn-navlink-active-color" value="285192" onchange="LoginColorTextboxChange(this)">
+                    </div>
+                    <div class="cp1 form-group col-md-6">
+                        <label for="btn-navlink-active-bg-color">btn navlink active bg color</label>
+                        <input type="text" class="form-control" id="btn-navlink-active-bg-color" value="e3ebf7" onchange="LoginColorTextboxChange(this)">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="cp1 form-group col-md-6">
+                        <label for="btn-action-color">btn action color</label>
+                        <input type="text" class="form-control" id="btn-action-color" value="fff" onchange="LoginColorTextboxChange(this)">
+                    </div>
+                    <div class="cp1 form-group col-md-6">
+                        <label for="btn-action-bg-color">btn action bg color</label>
+                        <input type="text" class="form-control" id="btn-action-bg-color" value="3b71ca" onchange="LoginColorTextboxChange(this)">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="cp1 form-group col-md-12">
+                        <hr />
+                    </div>
+                    <div class="cp1 form-group col-md-12">
+                        <h5>Admin Grid Section</h5>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="cp1 form-group col-md-6">
+                        <label for="table-header-bg-color">table header bg color</label>
+                        <input type="text" class="form-control" id="table-header-bg-color" value="3b5585" onchange="AdminGridColorTextboxChange(this)">
+                    </div>
+                    <div class="cp1 form-group col-md-6">
+                        <label for="table-header-text-color">table header text color</label>
+                        <input type="text" class="form-control" id="table-header-text-color" value="FFFFFF" onchange="AdminGridColorTextboxChange(this)">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="cp1 form-group col-md-6">
+                        <label for="pagination-button-bg-color">pagination button bg color</label>
+                        <input type="text" class="form-control" id="pagination-button-bg-color" value="3b5585" onchange="AdminGridColorTextboxChange(this)">
+                    </div>
+                    <div class="cp1 form-group col-md-6">
+                        <label for="pagination-button-text-color">pagination button text color</label>
+                        <input type="text" class="form-control" id="pagination-button-text-color" value="FFFFFF" onchange="AdminGridColorTextboxChange(this)">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="cp1 form-group col-md-6">
+                        <label for="pagination-button-bg-color-hover">pagination button bg color hover</label>
+                        <input type="text" class="form-control" id="pagination-button-bg-color-hover" value="3b71ca" onchange="AdminGridColorTextboxChange(this)">
+                    </div>
+                    <div class="cp1 form-group col-md-6">
+                        <label for="pagination-button-text-color-hover">pagination button text color hover</label>
+                        <input type="text" class="form-control" id="pagination-button-text-color-hover" value="FFFFFF" onchange="AdminGridColorTextboxChange(this)">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="cp1 form-group col-md-6">
+                        <label for="pagination-button-next-bg-color-hover">pgnation button next bg color hover</label>
+                        <input type="text" class="form-control" id="pagination-button-next-bg-color-hover" value="3b71ca" onchange="AdminGridColorTextboxChange(this)">
+                    </div>
+                    <div class="cp1 form-group col-md-6">
+                        <label for="no-of-entries-text-color">no of entries text color</label>
+                        <input type="text" class="form-control" id="no-of-entries-text-color" value="696969" onchange="AdminGridColorTextboxChange(this)">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="cp1 form-group col-md-6">
+                        <label for="page-heading-color">page heading color</label>
+                        <input type="text" class="form-control" id="page-heading-color" value="646161" onchange="AdminGridColorTextboxChange(this)">
+                    </div>
+                    <div class="cp1 form-group col-md-6">
+                        <label for="btn-success-color">btn success color</label>
+                        <input type="text" class="form-control" id="btn-success-color" value="fff" onchange="AdminGridColorTextboxChange(this)">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="cp1 form-group col-md-6">
+                        <label for="btn-success-border-color">btn success border color</label>
+                        <input type="text" class="form-control" id="btn-success-border-color" value="28a745" onchange="AdminGridColorTextboxChange(this)">
+                    </div>
+                    <div class="cp1 form-group col-md-6">
+                        <label for="btn-success-bg-color">btn success bg color</label>
+                        <input type="text" class="form-control" id="btn-success-bg-color" value="28a745" onchange="AdminGridColorTextboxChange(this)">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="cp1 form-group col-md-6">
+                        <label for="btn-success-color-hover">btn success color hover</label>
+                        <input type="text" class="form-control" id="btn-success-color-hover" value="fff" onchange="AdminGridColorTextboxChange(this)">
+                    </div>
+                    <div class="cp1 form-group col-md-6">
+                        <label for="btn-success-border-color-hover">btn success border color hover</label>
+                        <input type="text" class="form-control" id="btn-success-border-color-hover" value="1e7e34" onchange="AdminGridColorTextboxChange(this)">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="cp1 form-group col-md-6">
+                        <label for="btn-success-bg-color-hover">btn success bg color hover</label>
+                        <input type="text" class="form-control" id="btn-success-bg-color-hover" value="218838" onchange="AdminGridColorTextboxChange(this)">
+                    </div>
+                    <div class="cp1 form-group col-md-6">
+                        <label for="btn-success-disable-color">btn success disable color</label>
+                        <input type="text" class="form-control" id="btn-success-disable-color" value="fff" onchange="AdminGridColorTextboxChange(this)">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="cp1 form-group col-md-6">
+                        <label for="btn-success-disable-bg-color">btn success disable bg color</label>
+                        <input type="text" class="form-control" id="btn-success-disable-bg-color" value="1e7e34" onchange="AdminGridColorTextboxChange(this)">
+                    </div>
+                    <div class="cp1 form-group col-md-6">
+                        <label for="btn-success-disable-border-color">btn success disable border color</label>
+                        <input type="text" class="form-control" id="btn-success-disable-border-color" value="1c7430" onchange="AdminGridColorTextboxChange(this)">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="cp1 form-group col-md-6">
+                        <label for="btn-primary-color">btn primary color</label>
+                        <input type="text" class="form-control" id="btn-primary-color" value="fff" onchange="AdminGridColorTextboxChange(this)">
+                    </div>
+                    <div class="cp1 form-group col-md-6">
+                        <label for="btn-primary-border-color">btn primary border color</label>
+                        <input type="text" class="form-control" id="btn-primary-border-color" value="007bff" onchange="AdminGridColorTextboxChange(this)">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="cp1 form-group col-md-6">
+                        <label for="btn-primary-bg-color">btn primary bg color</label>
+                        <input type="text" class="form-control" id="btn-primary-bg-color" value="007bff" onchange="AdminGridColorTextboxChange(this)">
+                    </div>
+                    <div class="cp1 form-group col-md-6">
+                        <label for="btn-primary-color-hover">btn primary color hover</label>
+                        <input type="text" class="form-control" id="btn-primary-color-hover" value="fff" onchange="AdminGridColorTextboxChange(this)">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="cp1 form-group col-md-6">
+                        <label for="btn-primary-border-color-hover">btn primary border color hover</label>
+                        <input type="text" class="form-control" id="btn-primary-border-color-hover" value="0062cc" onchange="AdminGridColorTextboxChange(this)">
+                    </div>
+                    <div class="cp1 form-group col-md-6">
+                        <label for="btn-primary-bg-color-hover">btn primary bg color hover</label>
+                        <input type="text" class="form-control" id="btn-primary-bg-color-hover" value="0069d9" onchange="AdminGridColorTextboxChange(this)">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="cp1 form-group col-md-6">
+                        <label for="btn-primary-disable-color">btn primary disable color</label>
+                        <input type="text" class="form-control" id="btn-primary-disable-color" value="fff" onchange="AdminGridColorTextboxChange(this)">
+                    </div>
+                    <div class="cp1 form-group col-md-6">
+                        <label for="btn-primary-disable-bg-color">btn primary disable bg color</label>
+                        <input type="text" class="form-control" id="btn-primary-disable-bg-color" value="0062cc" onchange="AdminGridColorTextboxChange(this)">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="cp1 form-group col-md-6">
+                        <label for="btn-primary-disable-border-color">btn primary disable border color</label>
+                        <input type="text" class="form-control" id="btn-primary-disable-border-color" value="005cbf" onchange="AdminGridColorTextboxChange(this)">
+                    </div>
+                    <div class="cp1 form-group col-md-6">
+                        <label for="btn-secondary-color">btn secondary color</label>
+                        <input type="text" class="form-control" id="btn-secondary-color" value="fff" onchange="AdminGridColorTextboxChange(this)">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="cp1 form-group col-md-6">
+                        <label for="btn-secondary-border-color">btn secondary border color</label>
+                        <input type="text" class="form-control" id="btn-secondary-border-color" value="6c757d" onchange="AdminGridColorTextboxChange(this)">
+                    </div>
+                    <div class="cp1 form-group col-md-6">
+                        <label for="btn-secondary-bg-color">btn secondary bg color</label>
+                        <input type="text" class="form-control" id="btn-secondary-bg-color" value="6c757d" onchange="AdminGridColorTextboxChange(this)">
+                    </div>
+                </div>
+                  
+                <div class="form-row">
+                    <div class="cp1 form-group col-md-6">
+                        <label for="btn-secondary-color-hover">btn secondary color hover</label>
+                        <input type="text" class="form-control" id="btn-secondary-color-hover" value="fff" onchange="AdminGridColorTextboxChange(this)">
+                    </div>
+                    <div class="cp1 form-group col-md-6">
+                        <label for="btn-secondary-border-color-hover">btn secondary border color hover</label>
+                        <input type="text" class="form-control" id="btn-secondary-border-color-hover" value="545b62" onchange="AdminGridColorTextboxChange(this)">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="cp1 form-group col-md-6">
+                        <label for="btn-secondary-bg-color-hover">btn secondary bg color hover</label>
+                        <input type="text" class="form-control" id="btn-secondary-bg-color-hover" value="5a6268" onchange="AdminGridColorTextboxChange(this)">
+                    </div>
+                    <div class="cp1 form-group col-md-6">
+                        <label for="btn-secondary-disable-color">btn secondary disable color</label>
+                        <input type="text" class="form-control" id="btn-secondary-disable-color" value="fff" onchange="AdminGridColorTextboxChange(this)">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="cp1 form-group col-md-6">
+                        <label for="btn-secondary-disable-bg-color">btn secondary disable bg color</label>
+                        <input type="text" class="form-control" id="btn-secondary-disable-bg-color" value="545b62" onchange="AdminGridColorTextboxChange(this)">
+                    </div>
+                    <div class="cp1 form-group col-md-6">
+                        <label for="btn-secondary-disable-border-color">btn secondary disable border color</label>
+                        <input type="text" class="form-control" id="btn-secondary-disable-border-color" value="4e555b" onchange="AdminGridColorTextboxChange(this)">
+                    </div>
+                </div>
+
                 <div class="btnsection">
                     <button type="button" class="btn btn-primary1" id="btnSave">Save</button>
                     <button type="button" id="btnCancel" class="btn btn-secondary1"><i class="fa fa-close" style="margin-right: 10px;"></i>Cancel</button>
@@ -112,6 +377,14 @@
         </div>
     </div>
     @*Add/Edit Form Section End*@
+
+    <div id="iFrameSection">
+        <iframe id="logindemoframe" src="~/StaticFiles/LoginDemo.html" style="width:45%; height: 390px;"></iframe>
+    </div>
+
+    <div id="iFrameSection2">
+        <iframe id="admingriddemoframe" src="~/StaticFiles/AdminGridDemo.html" style="width:45%; height: 790px;"></iframe>
+    </div>
 
 </div>
 

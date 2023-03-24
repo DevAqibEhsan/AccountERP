@@ -70,6 +70,53 @@ namespace AccountERPApp.Controllers
             return View();
         }
 
+        #region Code Prefix Start
+
+        [HttpPost]
+        public Task<object> GetAllCodePrefix()
+        {
+            string content = ""; //JsonConvert.SerializeObject(obj);
+            //var buffer = System.Text.Encoding.UTF8.GetBytes(content);
+            //var byteContent = new ByteArrayContent(buffer);
+            //string a=HttpContext.Session.GetString("authorization");
+            return HttpUtility.CustomHttp(ApiBaseURL, "api/ManageCodePrefix/GetAll", content, HttpContext);
+        }
+
+        [HttpPost]
+        public Task<object> AddCodePrefix([FromBody] CodePrefix obj)
+        {
+            string content = JsonConvert.SerializeObject(obj);
+            var buffer = System.Text.Encoding.UTF8.GetBytes(content);
+            var byteContent = new ByteArrayContent(buffer);
+            //string a=HttpContext.Session.GetString("authorization");
+            return HttpUtility.CustomHttp(ApiBaseURL, "api/ManageCodePrefix/AddCodePrefix", content, HttpContext);
+
+        }
+
+        [HttpPost]
+        public Task<object> UpdateCodePrefix([FromBody] CodePrefix obj)
+        {
+            string content = JsonConvert.SerializeObject(obj);
+            var buffer = System.Text.Encoding.UTF8.GetBytes(content);
+            var byteContent = new ByteArrayContent(buffer);
+            //string a=HttpContext.Session.GetString("authorization");
+            return HttpUtility.CustomHttp(ApiBaseURL, "api/ManageCodePrefix/UpdateCodePrefix", content, HttpContext);
+
+        }
+
+        [HttpPost]
+        public Task<object> GetCodePrefixByID(int id)
+        {
+            string content = "";
+            //var buffer = System.Text.Encoding.UTF8.GetBytes(content);
+            //var byteContent = new ByteArrayContent(buffer);
+            //string a=HttpContext.Session.GetString("authorization");
+            return HttpUtility.CustomHttp(ApiBaseURL, "api/ManageCodePrefix/GetCodePrefixByID/" + id, content, HttpContext);
+
+        }
+
+        #endregion
+
         #region Modules Start
 
         [HttpPost]

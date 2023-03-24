@@ -31,6 +31,7 @@ namespace AccountERPClassLibraries
         public string AccountCode { get; set; }
         public string AccountByCompanyBranchName { get; set; }
         public int IsSubAccountOf { get; set; }
+        public string IsSubAccountOfName { get; set; }
         public string Description { get; set; }
         public int IsActive { get; set; }
         public int CompanyID { get; set; }

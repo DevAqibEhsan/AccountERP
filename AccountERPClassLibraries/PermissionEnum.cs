@@ -48,5 +48,17 @@ namespace AccountERPClassLibraries
     ,ViewProduct
     ,AddProduct
     ,EditProduct
+    ,ViewChartAccount
+    ,AddChartAccount
+    ,EditChartAccount
+    ,ViewDefaultAccount
+    ,AddDefaultAccount
+    ,EditDefaultAccount
+    ,ViewCodePreifx
+    ,AddCodePreifx
+    ,EditCodePreifx
+,ViewBranch
+,AddBranch
+,EditBranch
     }
 }

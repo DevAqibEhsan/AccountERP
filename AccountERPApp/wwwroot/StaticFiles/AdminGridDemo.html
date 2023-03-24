@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    <link rel="stylesheet" href=".././lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href=".././lib/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet" />
+    <link href=".././css/mdbootstrap4/core.min.css" rel="stylesheet" />
+    <link href=".././css/font_awesome/all.min.css" rel="stylesheet" />
+    <link href=".././css/Account.css" rel="stylesheet" />
+    <link href=".././css/LeftbarMenu.css" rel="stylesheet" />
+    <link href=".././css/Layout.css" rel="stylesheet" />
+    <link href=".././css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href=".././css/CommonStyle.css" rel="stylesheet" />
+
+    <script src=".././lib/jquery/dist/jquery.min.js"></script>
+    <script src=".././lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src=".././lib/bootstrap-select/js/bootstrap-select.min.js"></script>
+    <!--<script src=".././lib/sweetalert2@11/sweetalert2@11.js"></script>
+    <script src=".././lib/handlebars/handlebars.js"></script>-->
+    <script src=".././lib/scrollbar/compiled.min.js"></script>
+    <script src=".././lib/jquery/dist/jquery.dataTables.min.js"></script>
+
+    <!--<script src=".././lib/moment-js/moment.js"></script>
+    <script src=".././js/site.js" asp-append-version="true"></script>
+    <script src=".././microsoft/signalr/dist/browser/signalr.js"></script>
+    <script src=".././js/Layout.js"></script>
+    <script src=".././js/Common.js"></script>-->
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $("#dataTableCountry").DataTable();
+        });
+
+    </script>
+
+</head>
+<body>
+    <div class="dashboard" style=" width: 100%">
+        <div class='dashboard-app' style=" margin-top: 0px">
+            <div class="maincontent">
+                <div id="grid" class="card">
+                    <div class="card-header">
+                        <div class="dvPageHeading">Demo Page</div>
+                        <div class="btnsection">
+                            <button type="button" id="btnAddCountry" class="btn btn-success1"><i class="fa fa-plus" style="margin-right: 10px;"></i> Add</button>
+                            <button type="button" id="btnCancel" class="btn btn-secondary1"><i class="fa fa-close" style="margin-right: 10px;"></i>Cancel</button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div id="dvDataTable">
+                            <table id="dataTableCountry" class="display" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">S.No</th>
+                                        <th class="text-center">Country Code</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="dataRow">
+                                    <tr><td>1</td><td>ABC</td></tr>
+                                    <tr><td>2</td><td>DEF</td></tr>
+                                    <tr><td>3</td><td>GHI</td></tr>
+                                    <tr><td>3</td><td>GHI</td></tr>
+                                    <tr><td>3</td><td>GHI</td></tr>
+                                    <tr><td>3</td><td>GHI</td></tr>
+                                    <tr><td>3</td><td>GHI</td></tr>
+                                    <tr><td>3</td><td>GHI</td></tr>
+                                    <tr><td>3</td><td>GHI</td></tr>
+                                    <tr><td>3</td><td>GHI</td></tr>
+                                    <tr><td>3</td><td>GHI</td></tr>
+                                    <tr><td>3</td><td>GHI</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+</body>
+</html>

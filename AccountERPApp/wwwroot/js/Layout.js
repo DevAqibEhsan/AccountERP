@@ -5,6 +5,8 @@ let BaseUrl;
 const mobileScreen = window.matchMedia("(max-width: 990px )");
 $(document).ready(function () {
 
+    //ThemeSetting();
+
     BaseUrl = $("#baseUrlForMVCAction").val();
     baseApiUrl = $("#baseApiUrl").val();
     baseWebUrl = $("#baseWebUrl").val();
@@ -132,6 +134,18 @@ function LogoutClick() {
     });
 }
 
+function ThemeSetting() {
+    var root = document.querySelector(":root");
+    var rootStyles = getComputedStyle(root);
+    //var rootStyleVar = rootStyles.getPropertyValue("--table-header-bg-color");
+    root.style.setProperty("--table-header-bg-color","red");
+}
+
+function ColorPickerTopPositionSet(top) {
+    var root = document.querySelector(":root");
+    var rootStyles = getComputedStyle(root);
+    root.style.setProperty("--colorpiker-dialog-top-position", parseInt(top + 41)+"px");
+}
 
 
 

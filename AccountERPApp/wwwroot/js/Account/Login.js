@@ -17,6 +17,8 @@ let btnRegister = "#btnRegister";
 
 $(document).ready(function () {
 
+    //ThemeSetting();
+
     BaseUrl = $("#baseUrlForMVCAction").val();
     if (BaseUrl == "null") {
         BaseUrl = "";
@@ -242,6 +244,13 @@ function RegisterUser() {
             ErrorAlert(res.ResponseMsg);
         }
     });
+}
+
+function ThemeSetting() {
+    var root = document.querySelector(":root");
+    var rootStyles = getComputedStyle(root);
+    //var rootStyleVar = rootStyles.getPropertyValue("--btn-action-bg-color");
+    root.style.setProperty("--btn-action-bg-color", "red");
 }
 
 

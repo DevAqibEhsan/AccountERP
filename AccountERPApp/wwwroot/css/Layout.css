@@ -51,6 +51,9 @@
     --btn-secondary-disable-color: #fff;
     --btn-secondary-disable-bg-color: #545b62;
     --btn-secondary-disable-border-color: #4e555b;
+
+    /*Color Picker CSS Variable*/
+    --colorpiker-dialog-top-position:10px;
 }
 
 *, *::before, *::after {
@@ -537,6 +540,9 @@ h1, .h1 {
     border-bottom: 1px solid #dfdfdf;
 }
 
+.colorpiker-dialog-top-position {
+    top: var(--colorpiker-dialog-top-position) !important;
+}
 
 @media (min-width: 992px) {
     .dashboard-app {

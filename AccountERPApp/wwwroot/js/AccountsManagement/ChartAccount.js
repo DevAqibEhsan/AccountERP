@@ -7,6 +7,7 @@ let txtDescription = "#txtDescription";
 let ddlIsActive = "#ddlIsActive";
 let ddlIsSystemAccount = "#ddlIsSystemAccount";
 let DataTable = "#dataTableChartAccount";
+let Branch_arr = [];
 
 var oTable;
 
@@ -35,6 +36,14 @@ $(document).ready(function () {
         SaveChartAccountData();
     });
 
+    $(ddlCompanyID).change(function (e) {
+
+        var CompanyID = Number($(ddlCompanyID).val());
+        if (CompanyID != "") {
+            GetAllBranchByCompanyID(CompanyID);
+        }
+    });
+
 });
 
 function GetChartAccountByID(id) {
@@ -43,13 +52,15 @@ function GetChartAccountByID(id) {
         if (res.Status == 200) {
             if (res.Data != null) {
 
-                $(hdnChartAccountID).val(res.Data.AccountID);
-                $(txtChartAccountName).val(res.Data.AccountName);
+                $(hdnChartAccountID).val(res.Data.AccountByCompanyBranchID);
+                $(txtChartAccountName).val(res.Data.AccountByCompanyBranchName);
                 $(ddlSubAccountID).val(res.Data.IsSubAccountOf);
                 $(txtDescription).val(res.Data.Description);
                 $(ddlIsActive).val(res.Data.IsActive);
-                $(ddlIsSystemAccount).val(res.Data.IsSystemAccount);
-
+                $(ddlCompanyID).val(res.Data.CompanyID);
+                GetAllBranchByCompanyID(res.Data.CompanyID);
+                $(ddlBranchID).val(res.Data.BranchID);
+               
                 FormShow();
             }
         }
@@ -82,7 +93,9 @@ function GetChartAccountByID(id) {
 
 function GetAllChartAccount() {
 
-    GetAccountForSubAccountDropdown();
+    GetChartAccountForSubAccountDropdown();
+
+    GetAllCompany_Branch_Data();
 
     oTable = $(DataTable).DataTable({
 
@@ -119,7 +132,7 @@ function GetAllChartAccount() {
                     window.location.href = baseWebUrl + "Account/Login";
                 }
                 else if (data.Status == 403) {
-                    ErrorAlert(res.ResponseMsg);
+                    ShowWhiteSpaceWithAssignedPermissionError(data.ResponseMsg);
                 }
                 else if (data.statusCode == 404) {
                     ErrorAlert(res.reasonPhrase);
@@ -143,7 +156,7 @@ function GetAllChartAccount() {
 
         "columnDefs": [
             {
-                "targets": [11],
+                "targets": [12],
                 "visible": true,
                 "searchable": false,
                 "sortable": true
@@ -152,14 +165,24 @@ function GetAllChartAccount() {
 
         "columns": [
             {
-                "data": "ChartAccountID",
-                "name": "ChartAccountID",
+                "data": "AccountID",
+                "name": "AccountID",
                 "width": "110px",
                 "render": function (data, type, full, meta) { return '<a href="javascript:void(0);" onclick="GetChartAccountByID(' + full.AccountID + ')" data-id="' + full.AccountID + '">' + full.AccountCode + '</a>' }
             },
             {
-                "data": "AccountName",
-                "name": "AccountName",
+                "data": "AccountByCompanyBranchName",
+                "name": "AccountByCompanyBranchName",
+                "width": "200px"
+            },
+            {
+                "data": "CompanyName",
+                "name": "CompanyName",
+                "width": "200px"
+            },
+            {
+                "data": "BranchName",
+                "name": "BranchName",
                 "width": "200px"
             },
             {
@@ -175,14 +198,6 @@ function GetAllChartAccount() {
             {
                 "data": "IsActive",
                 "name": "IsActive",
-                "width": "200px",
-                "render": function (data) {
-                    return (data == 1 ? "True" : "False")
-                }
-            },
-            {
-                "data": "IsSystemAccount",
-                "name": "IsSystemAccount",
                 "width": "200px",
                 "render": function (data) {
                     return (data == 1 ? "True" : "False")
@@ -250,12 +265,13 @@ function SaveChartAccountData() {
     let ChartAccountID = Number($(hdnChartAccountID).val());
 
     let obj = {
-        AccountID: ChartAccountID,
-        AccountName: $(txtChartAccountName).val(),
+        AccountByCompanyBranchID: ChartAccountID,
+        AccountByCompanyBranchName: $(txtChartAccountName).val(),
         IsSubAccountOf: Number($(ddlSubAccountID).val()),
         Description: $(txtDescription).val(),
         IsActive: Number($(ddlIsActive).val()),
-        IsSystemAccount: Number($(ddlIsSystemAccount).val())
+        CompanyID: Number($(ddlCompanyID).val()),
+        BranchID: Number($(ddlBranchID).val())
     };
 
     if (ChartAccountID > 0) {
@@ -327,8 +343,8 @@ function SaveChartAccountData() {
     $(btnSave).prop("disabled", false);
 }
 
-function GetAccountForSubAccountDropdown() {
-    postRequest(BaseUrl + "/AccountsManagement/GetAccountForSubAccountDropdown", null, function (res) {
+function GetChartAccountForSubAccountDropdown() {
+    postRequest(BaseUrl + "/AccountsManagement/GetChartAccountForSubAccountDropdown", null, function (res) {
         if (res.Status == 200) {
             if (res.Data != null) {
 
@@ -366,10 +382,11 @@ function ClearAllField() {
     $(btnSave).prop("disabled", false);
     $(hdnChartAccountID).val(0);
     $(txtChartAccountName).val("");
-    $(ddlSubAccountID).val("");
+    $(ddlSubAccountID).val("0");
     $(txtDescription).val("");
     $(ddlIsActive).val("1");
-    $(ddlIsSystemAccount).val("1");
+    $(ddlCompanyID).val("");
+    $(ddlBranchID).val("");
 }
 
 function CancelButtonAction() {

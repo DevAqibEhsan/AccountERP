@@ -32,6 +32,10 @@ $(document).ready(function () {
         SaveSiteConfigData();
     });
 
+    LoginSectionColorPickerLoad();
+
+    AdminGridSectionColorPickerLoad();
+
 });
 
 function GetSiteConfigByID(id) {
@@ -313,6 +317,78 @@ function SaveSiteConfigData() {
         });
     }
     $(btnSave).prop("disabled", false);
+}
+
+function LoginSectionColorPickerLoad() {
+    $('#btn-navlink-color').colorpicker();
+    $('#btn-navlink-bg-color').colorpicker();
+    $('#btn-navlink-active-color').colorpicker();
+    $('#btn-navlink-active-bg-color').colorpicker();
+    $('#btn-action-color').colorpicker();
+    $('#btn-action-bg-color').colorpicker();
+}
+
+function LoginColorTextboxChange(id) {
+
+    var ElementID = id.id;
+
+    LoginFormThemeChange(ElementID, "#" + $("#" + ElementID).val());
+}
+
+function LoginFormThemeChange(cssvariablename, property) {
+
+    document.getElementById('logindemoframe').contentWindow.document.documentElement.style.setProperty('--' + cssvariablename, property);
+}
+
+function AdminGridSectionColorPickerLoad() {
+    $('#table-header-bg-color').colorpicker();
+    $('#table-header-text-color').colorpicker();
+    $('#pagination-button-bg-color').colorpicker();
+    $('#pagination-button-text-color').colorpicker();
+    $('#pagination-button-bg-color-hover').colorpicker();
+    $('#pagination-button-text-color-hover').colorpicker();
+    $('#pagination-button-next-bg-color-hover').colorpicker();
+    $('#no-of-entries-text-color').colorpicker();
+    $('#page-heading-color').colorpicker();
+    $('#btn-success-color').colorpicker();
+    $('#btn-success-border-color').colorpicker();
+    $('#btn-success-bg-color').colorpicker();
+    $('#btn-success-color-hover').colorpicker();
+    $('#btn-success-border-color-hover').colorpicker();
+    $('#btn-success-bg-color-hover').colorpicker();
+    $('#btn-success-disable-color').colorpicker();
+    $('#btn-success-disable-bg-color').colorpicker();
+    $('#btn-success-disable-border-color').colorpicker();
+    $('#btn-primary-color').colorpicker();
+    $('#btn-primary-border-color').colorpicker();
+    $('#btn-primary-bg-color').colorpicker();
+    $('#btn-primary-color-hover').colorpicker();
+    $('#btn-primary-border-color-hover').colorpicker();
+    $('#btn-primary-bg-color-hover').colorpicker();
+    $('#btn-primary-disable-color').colorpicker();
+    $('#btn-primary-disable-bg-color').colorpicker();
+    $('#btn-primary-disable-border-color').colorpicker();
+    $('#btn-secondary-color').colorpicker();
+    $('#btn-secondary-border-color').colorpicker();
+    $('#btn-secondary-bg-color').colorpicker();
+    $('#btn-secondary-color-hover').colorpicker();
+    $('#btn-secondary-border-color-hover').colorpicker();
+    $('#btn-secondary-bg-color-hover').colorpicker();
+    $('#btn-secondary-disable-color').colorpicker();
+    $('#btn-secondary-disable-bg-color').colorpicker();
+    $('#btn-secondary-disable-border-color').colorpicker();
+}
+
+function AdminGridColorTextboxChange(id) {
+
+    var ElementID = id.id;
+
+    AdmiGridFormThemeChange(ElementID, "#" + $("#" + ElementID).val());
+}
+
+function AdmiGridFormThemeChange(cssvariablename, property) {
+
+    document.getElementById('admingriddemoframe').contentWindow.document.documentElement.style.setProperty('--' + cssvariablename, property);
 }
 
 function ClearAllField() {

@@ -40,17 +40,37 @@ namespace AccountERPApi.Controllers
 
                     if (claimDTO.RoleID != 1)
                     {
-                        HasPermission = false;
-                        // Here We Check Permission and than Set True
+                        HasPermission = CheckPermission.IsPermissionAllow(claimDTO, PermissionEnum.ViewChartAccount.ToString());
                     }
 
                     if (HasPermission)
                     {
-                        var Data = _chartAccountService.GetAll().ToList();
+                        #region Super Admin
 
-                        response.Status = 200;
-                        response.Token = TokenManager.GenerateToken(claimDTO);
-                        response.Data = Data;
+                        if (claimDTO.RoleID == 1)
+                        {
+                            var Data = _chartAccountService.GetAll().ToList();
+
+                            response.Status = 200;
+                            response.Token = TokenManager.GenerateToken(claimDTO);
+                            response.Data = Data;
+                        }
+
+                        #endregion
+
+                        #region Other User
+
+                        else
+                        {
+                            var Data = _chartAccountService.GetAll().Where(x=> claimDTO.Companies.Contains(x.CompanyID) && claimDTO.Branches.Contains(x.BranchID)).ToList();
+
+                            response.Status = 200;
+                            response.Token = TokenManager.GenerateToken(claimDTO);
+                            response.Data = Data;
+                        }
+
+                        #endregion
+
                     }
                     else
                     {
@@ -93,17 +113,36 @@ namespace AccountERPApi.Controllers
 
                     if (claimDTO.RoleID != 1)
                     {
-                        HasPermission = false;
-                        // Here We Check Permission and than Set True
+                        HasPermission = CheckPermission.IsPermissionAllow(claimDTO, PermissionEnum.ViewChartAccount.ToString());
                     }
 
                     if (HasPermission)
                     {
-                        var Data = _chartAccountService.GetAllActive().ToList();
+                        #region Super Admin
 
-                        response.Status = 200;
-                        response.Token = TokenManager.GenerateToken(claimDTO);
-                        response.Data = Data;
+                        if (claimDTO.RoleID == 1)
+                        {
+                            var Data = _chartAccountService.GetAllActive().ToList();
+
+                            response.Status = 200;
+                            response.Token = TokenManager.GenerateToken(claimDTO);
+                            response.Data = Data;
+                        }
+
+                        #endregion
+
+                        #region Other User
+
+                        else
+                        {
+                            var Data = _chartAccountService.GetAllActive().ToList();
+
+                            response.Status = 200;
+                            response.Token = TokenManager.GenerateToken(claimDTO);
+                            response.Data = Data;
+                        }
+
+                        #endregion
                     }
                     else
                     {
@@ -146,8 +185,7 @@ namespace AccountERPApi.Controllers
 
                     if (claimDTO.RoleID != 1)
                     {
-                        HasPermission = false;
-                        // Here We Check Permission and than Set True
+                        HasPermission = CheckPermission.IsPermissionAllow(claimDTO, PermissionEnum.AddChartAccount.ToString());
                     }
 
                     if (HasPermission)
@@ -230,8 +268,7 @@ namespace AccountERPApi.Controllers
 
                     if (claimDTO.RoleID != 1)
                     {
-                        HasPermission = false;
-                        // Here We Check Permission and than Set True
+                        HasPermission = CheckPermission.IsPermissionAllow(claimDTO, PermissionEnum.EditChartAccount.ToString());
                     }
 
                     if (HasPermission)
@@ -314,8 +351,7 @@ namespace AccountERPApi.Controllers
 
                     if (claimDTO.RoleID != 1)
                     {
-                        HasPermission = false;
-                        // Here We Check Permission and than Set True
+                        HasPermission = CheckPermission.IsPermissionAllow(claimDTO, PermissionEnum.ViewChartAccount.ToString());
                     }
 
                     if (HasPermission)
@@ -332,7 +368,7 @@ namespace AccountERPApi.Controllers
                     {
                         response.Status = 403;
                         response.ResponseMsg = "You don’t have permission to this action.";
-                        response.Token = null;
+                        response.Token = TokenManager.GenerateToken(claimDTO);
                         response.Data = null;
                     }
                 }

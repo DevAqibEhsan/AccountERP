@@ -6,7 +6,7 @@ namespace AccountERPClassLibraries
 {
    public class CodePrefix
     {
-        public int CodePrefixeID { get; set; }
+        public int CodePrefixID { get; set; }
         public string CodePrefixName { get; set; }
         public string CodePrefixKey { get; set; }
         public int CreatedBy { get; set; }
