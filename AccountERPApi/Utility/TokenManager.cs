@@ -1,6 +1,8 @@
 ﻿using AccountERPClassLibraries.DTOLibraries;
+using AccountERPClassLibraries;
 using Microsoft.AspNetCore.Http;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -37,6 +39,7 @@ namespace AccountERPApi.Utility
                     new Claim("SiteLogo", obj.SiteLogo),
                     new Claim("PoweredByText", obj.PoweredByText),
                     new Claim("SiteURL", obj.SiteURL),
+                    new Claim("SiteThemeSetting", JsonConvert.SerializeObject(obj.SiteThemeSetting)),
 
                     //new Claim("ImagePath", Convert.ToString(obj.ImagePath)),
                     //new Claim("DesignationId",string.Join(',',obj.DesignationId)),
@@ -125,7 +128,8 @@ namespace AccountERPApi.Utility
             Claim SiteLogo = identity.FindFirst("SiteLogo");
             Claim PoweredByText = identity.FindFirst("PoweredByText");
             Claim SiteURL = identity.FindFirst("SiteURL");
-            
+            Claim SiteThemeSetting = identity.FindFirst("SiteThemeSetting");
+
 
             //Claim imagePath = identity.FindFirst("ImagePath");
             //Claim designationId = identity.FindFirst("DesignationId");
@@ -145,7 +149,7 @@ namespace AccountERPApi.Utility
             obj.PoweredByText = PoweredByText.Value;
             obj.SiteURL = SiteURL.Value;
             obj.RoleName = RoleName.Value;
-
+            obj.SiteThemeSetting = JsonConvert.DeserializeObject<SiteThemeSetting>(SiteThemeSetting.Value);
 
 
             List<int> CompaniesList = new List<int>();

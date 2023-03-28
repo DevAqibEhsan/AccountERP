@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -185,6 +186,7 @@ namespace AccountERPApi.Controllers
                         obj.Logo = fileName;
                         obj.PoweredBy = Convert.ToString(Request.Form["PoweredBy"]);
                         obj.IsActive = Convert.ToInt32(Request.Form["IsActive"]);
+                        obj.SiteThemeSetting = Convert.ToString(Request.Form["SiteThemeSetting"]);
 
                         var CheckActiveSiteConfig = Data.Where(x => x.IsActive == 1).Count();
 
@@ -295,6 +297,7 @@ namespace AccountERPApi.Controllers
                         obj.Logo = fileName;
                         obj.PoweredBy = Convert.ToString(Request.Form["PoweredBy"]);
                         obj.IsActive = Convert.ToInt32(Request.Form["IsActive"]);
+                        obj.SiteThemeSetting = Convert.ToString(Request.Form["SiteThemeSetting"]);
 
                         var CheckActiveSiteConfig = Data.Where(x => x.ConfigurationID != obj.ConfigurationID && x.IsActive == 1).Count();
 
@@ -391,7 +394,14 @@ namespace AccountERPApi.Controllers
                         {
                             response.Status = 200;
                             response.Token = TokenManager.GenerateToken(claimDTO);
-                            response.Data = Data;
+                            response.Data = new
+                            {
+                                ConfigurationID = Data.ConfigurationID,
+                                PoweredBy = Data.PoweredBy,
+                                IsActive = Data.IsActive,
+                                Logo = Data.Logo,
+                                SiteThemeSetting = Data.SiteThemeSetting == null ? null : JsonConvert.DeserializeObject<SiteThemeSetting>(Data.SiteThemeSetting)
+                            };
                         }
                     }
                     else
@@ -446,13 +456,12 @@ namespace AccountERPApi.Controllers
             try
             {
                 var Data = _siteConfigService.GetAllActive().ToList();
-
-               
-
+                
                 response.Status = 200;
                 response.Data = new {
                     PoweredByText = TokenReplacement.StringTokenReplacement(Data[0].PoweredBy),
-                    SiteLogo=Data[0].Logo
+                    SiteLogo=Data[0].Logo,
+                    SiteThemeSetting = Data[0].SiteThemeSetting == null ? null : JsonConvert.DeserializeObject<SiteThemeSetting>(Data[0].SiteThemeSetting)
                 };
             }
             catch (Exception ex)

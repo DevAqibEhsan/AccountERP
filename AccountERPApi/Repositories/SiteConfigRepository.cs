@@ -22,6 +22,7 @@ namespace AccountERPApi.Repositories
         {
             DynamicParameters parameters = new DynamicParameters();
 
+            parameters.Add("SiteThemeSetting", obj.SiteThemeSetting, DbType.String, ParameterDirection.Input);
             parameters.Add("Logo", obj.Logo, DbType.String, ParameterDirection.Input);
             parameters.Add("PoweredBy", obj.PoweredBy, DbType.String, ParameterDirection.Input);
             parameters.Add("IsActive", obj.IsActive, DbType.Int32, ParameterDirection.Input);
@@ -54,6 +55,7 @@ namespace AccountERPApi.Repositories
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("ConfigurationID", obj.ConfigurationID, DbType.Int32, ParameterDirection.Input);
+            parameters.Add("SiteThemeSetting", obj.SiteThemeSetting, DbType.String, ParameterDirection.Input);
             parameters.Add("Logo", obj.Logo, DbType.String, ParameterDirection.Input);
             parameters.Add("PoweredBy", obj.PoweredBy, DbType.String, ParameterDirection.Input);
             parameters.Add("IsActive", obj.IsActive, DbType.Int32, ParameterDirection.Input);

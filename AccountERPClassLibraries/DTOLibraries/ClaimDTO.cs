@@ -19,6 +19,7 @@ namespace AccountERPClassLibraries.DTOLibraries
         public string SiteLogo { get; set; }
         public string PoweredByText { get; set; }
         public string SiteURL { get; set; }
+        public SiteThemeSetting SiteThemeSetting { get; set; }
     }
 
     public class ClaimDTOInherit : ClaimDTO

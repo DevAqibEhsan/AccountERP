@@ -118,6 +118,7 @@ namespace AccountERPApi.Controllers
                             user.SiteLogo = "./../SiteConfigMedia/" + AdminSiteConfig[0].Logo;
                             user.PoweredByText = TokenReplacement.StringTokenReplacement(AdminSiteConfig[0].PoweredBy);
                             user.SiteURL = StringUtility.JavaScriptVoid;
+                            user.SiteThemeSetting = (AdminSiteConfig[0].SiteThemeSetting == null || AdminSiteConfig[0].SiteThemeSetting == "null") ? null : JsonConvert.DeserializeObject<SiteThemeSetting>(AdminSiteConfig[0].SiteThemeSetting);
                         }
 
                         #endregion
@@ -187,6 +188,7 @@ namespace AccountERPApi.Controllers
                             user.PoweredByText = SiteConfig.IsAllowPowerBy == 1 ? !string.IsNullOrEmpty(SiteConfig.PoweredBy) ? TokenReplacement.StringTokenReplacement(SiteConfig.PoweredBy) : TokenReplacement.StringTokenReplacement(OtherUserSiteConfig[0].PoweredBy) : TokenReplacement.StringTokenReplacement(OtherUserSiteConfig[0].PoweredBy);
                             user.SiteLogo = !string.IsNullOrEmpty(SiteConfig.CompanyLogo) ? "./../CompanyMedia/" + SiteConfig.CompanyLogo : "./../SiteConfigMedia/" + OtherUserSiteConfig[0].Logo;
                             user.SiteURL = !string.IsNullOrEmpty(SiteConfig.WebsiteURL) ? SiteConfig.WebsiteURL : StringUtility.JavaScriptVoid;
+                            user.SiteThemeSetting = (SiteConfig.SiteThemeSetting == null || SiteConfig.SiteThemeSetting == "null") ? OtherUserSiteConfig[0].SiteThemeSetting == null ? null : JsonConvert.DeserializeObject<SiteThemeSetting>(OtherUserSiteConfig[0].SiteThemeSetting) : JsonConvert.DeserializeObject<SiteThemeSetting>(SiteConfig.SiteThemeSetting);
 
                             #endregion
 

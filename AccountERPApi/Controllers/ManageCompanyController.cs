@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -151,6 +152,7 @@ namespace AccountERPApi.Controllers
                         obj.NoOfUsers = Convert.ToInt32(Request.Form["NoOfUsers"]);
                         obj.IsAllowPowerBy = Convert.ToInt32(Request.Form["IsAllowPowerBy"]);
                         obj.PoweredBy = Convert.ToString(Request.Form["PoweredBy"]);
+                        obj.SiteThemeSetting = Convert.ToString(Request.Form["SiteThemeSetting"]);
 
                         var Data = _companyService.GetAll().ToList();
 
@@ -283,6 +285,7 @@ namespace AccountERPApi.Controllers
                         obj.NoOfUsers = Convert.ToInt32(Request.Form["NoOfUsers"]);
                         obj.IsAllowPowerBy = Convert.ToInt32(Request.Form["IsAllowPowerBy"]);
                         obj.PoweredBy = Convert.ToString(Request.Form["PoweredBy"]);
+                        obj.SiteThemeSetting = Convert.ToString(Request.Form["SiteThemeSetting"]);
 
                         var Data = _companyService.GetAll().ToList();
 
@@ -381,7 +384,38 @@ namespace AccountERPApi.Controllers
                         {
                             response.Status = 200;
                             response.Token = TokenManager.GenerateToken(claimDTO);
-                            response.Data = Data;
+                            //response.Data = Data;
+                            response.Data = new
+                            {
+                                CompanyID = Data.CompanyID,
+                                CompanyName = Data.CompanyName,
+                                BusinessTypeID = Data.BusinessTypeID,
+                                TimeZoneID = Data.TimeZoneID,
+                                NoOfUsers = Data.NoOfUsers,
+                                PostalAddress1 = Data.PostalAddress1,
+                                PostalAddress2 = Data.PostalAddress2,
+                                PostalPhone = Data.PostalPhone,
+                                PostalCountryID = Data.PostalCountryID,
+                                PostalStateID = Data.PostalStateID,
+                                PostalCityID = Data.PostalCityID,
+                                BillingAddress1 = Data.BillingAddress1,
+                                BillingAddress2 = Data.BillingAddress2,
+                                BillingPhone = Data.BillingPhone,
+                                BillingCountryID = Data.BillingCountryID,
+                                BillingStateID = Data.BillingStateID,
+                                BillingCityID = Data.BillingCityID,
+                                PostalZipCode = Data.PostalZipCode,
+                                BillingZipCode = Data.BillingZipCode,
+                                NTN = Data.NTN,
+                                STN = Data.STN,
+                                WebsiteURL = Data.WebsiteURL,
+                                POSID = Data.POSID,
+                                IsAllowPowerBy = Data.IsAllowPowerBy,
+                                PoweredBy = Data.PoweredBy,
+                                CompanyLogo = Data.CompanyLogo,
+                                SiteThemeSetting = Data.SiteThemeSetting == null ? null : JsonConvert.DeserializeObject<SiteThemeSetting>(Data.SiteThemeSetting)
+                            };
+
                         }
                     }
                     else

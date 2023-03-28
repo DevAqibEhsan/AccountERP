@@ -49,5 +49,6 @@ namespace AccountERPClassLibraries
         public string ModifiedByIP { get; set; }
         public string CreatedByUserName { get; set; }
         public string ModifiedByUserName { get; set; }
-    }
+		public string SiteThemeSetting { get; set; }
+	}
 }
