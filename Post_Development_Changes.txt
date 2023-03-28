@@ -11,9 +11,7 @@ Add Calender in Textbox
 Add Validation
 Check Match Password in Register page
 Add TextEditor
-Admin Panel Color, Text Color, and size change will dynamic
 Create Dynamic Report and Customize Report
-Need to Add Permission
 
 
 
