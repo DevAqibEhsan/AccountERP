@@ -73,6 +73,12 @@ $(document).ready(function () {
         }
     });
 
+    $(txtDOB).datetimepicker({
+        format: 'MM/DD/YYYY',
+        //keepOpen: true,
+        //debug: true
+    });
+
 });
 
 function GetAllState(CountryID) {
@@ -115,7 +121,7 @@ function GetUserByID(id) {
                 $(ddlCityID).val(res.Data.CityID);
                 $(txtZipCode).val(res.Data.ZipCode);
                 $(ddlGender).val(res.Data.Gender);
-                $(txtDOB).val(res.Data.DOB);
+                $(txtDOB).val(MomentDateFormat(res.Data.DOB));
                 if (res.Data.IsActive == 1) {
                     $("#chkUserIsActive").prop("checked", true);
                 }

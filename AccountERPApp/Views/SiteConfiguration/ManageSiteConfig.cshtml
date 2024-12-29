@@ -51,6 +51,7 @@
 </script>
 
 <div class="maincontent">
+
     @*Grid / Data Table Start*@
     <div id="grid" class="card">
         <div class="card-header">
@@ -105,17 +106,24 @@
                     </div>
                 </div>
 
-                <div id="dvLogo" class="form-group" style="display:none;">
+                <div id="dvLogo" class="form-row" style="display:none;">
                     <div class="form-group col-md-6">
-                        <label for="txtPoweredBy">Uploaded Logo</label>
-                        <img id="imgLogo" src="..." class="img-thumbnail" alt="Site Logo">
+                        <input type="hidden" id="hdnUploadedURL" />
+                        <button type="button" class="btn btn-primary1" id="lnkViewLogo">View Logo</button>
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group col-md-6">
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="chkSiteConfigIsActive">
                         <label class="form-check-label" for="chkSiteConfigIsActive">Is Active Site Config</label>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="chkIsDefaultThemeSetting">
+                        <label class="form-check-label" for="chkIsDefaultThemeSetting">Is Default Theme Setting Use</label>
                     </div>
                 </div>
 
@@ -335,7 +343,7 @@
                         <input type="text" class="form-control" id="btn-secondary-bg-color" value="6c757d" onchange="AdminGridColorTextboxChange(this)">
                     </div>
                 </div>
-                  
+
                 <div class="form-row">
                     <div class="cp1 form-group col-md-6">
                         <label for="btn-secondary-color-hover">btn secondary color hover</label>

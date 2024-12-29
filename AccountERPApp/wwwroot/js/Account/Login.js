@@ -17,8 +17,6 @@ let btnRegister = "#btnRegister";
 
 $(document).ready(function () {
 
-    //ThemeSetting();
-
     BaseUrl = $("#baseUrlForMVCAction").val();
     if (BaseUrl == "null") {
         BaseUrl = "";
@@ -246,11 +244,21 @@ function RegisterUser() {
     });
 }
 
-function ThemeSetting() {
+//function ThemeSetting() {
+//    var root = document.querySelector(":root");
+//    var rootStyles = getComputedStyle(root);
+//    //var rootStyleVar = rootStyles.getPropertyValue("--btn-action-bg-color");
+//    root.style.setProperty("--btn-action-bg-color", "red");
+//}
+
+function ThemeSetting(Data) {
     var root = document.querySelector(":root");
-    var rootStyles = getComputedStyle(root);
-    //var rootStyleVar = rootStyles.getPropertyValue("--btn-action-bg-color");
-    root.style.setProperty("--btn-action-bg-color", "red");
+    root.style.setProperty("--btn-action-bg-color", "#" + Data.btn_navlink_color);
+    root.style.setProperty("--btn-navlink-bg-color", "#" + Data.btn_navlink_bg_color);
+    root.style.setProperty("--btn-navlink-active-color", "#" + Data.btn_navlink_active_color);
+    root.style.setProperty("--btn-navlink-active-bg-color", "#" + Data.btn_navlink_active_bg_color);
+    root.style.setProperty("--btn-action-color", "#" + Data.btn_action_color);
+    root.style.setProperty("--btn-action-bg-color", "#" + Data.btn_action_bg_color);
 }
 
 

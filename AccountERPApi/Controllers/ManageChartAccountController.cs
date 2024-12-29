@@ -135,7 +135,7 @@ namespace AccountERPApi.Controllers
 
                         else
                         {
-                            var Data = _chartAccountService.GetAllActive().ToList();
+                            var Data = _chartAccountService.GetAllActive().ToList().Where(x => claimDTO.Companies.Contains(x.CompanyID) && claimDTO.Branches.Contains(x.BranchID)).ToList();
 
                             response.Status = 200;
                             response.Token = TokenManager.GenerateToken(claimDTO);

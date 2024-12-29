@@ -60,6 +60,7 @@ namespace AccountERPApi
             services.AddTransient<IChartAccountRepository, ChartAccountRepository>();
             services.AddTransient<ICodePrefixRepository, CodePrefixRepository>();
             services.AddTransient<IDefaultAccountRepository, DefaultAccountRepository>();
+            services.AddTransient<IJournalEntryRepository, JournalEntryRepository>();
 
 
             //Services
@@ -89,6 +90,7 @@ namespace AccountERPApi
             services.AddTransient<IChartAccountService, ChartAccountService>();
             services.AddTransient<ICodePrefixService, CodePrefixService>();
             services.AddTransient<IDefaultAccountService, DefaultAccountService>();
+            services.AddTransient<IJournalEntryService, JournalEntryService>();
 
             services.AddCors(o => o.AddPolicy("MyCorePloicy", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
             services.AddControllers().AddJsonOptions(opts => opts.JsonSerializerOptions.PropertyNamingPolicy = null);

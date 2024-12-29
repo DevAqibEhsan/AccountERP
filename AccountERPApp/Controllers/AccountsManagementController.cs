@@ -207,5 +207,31 @@ namespace AccountERPApp.Controllers
         }
 
         #endregion
+
+        #region Journal Entry
+
+        [HttpPost]
+        public Task<object> GetAllJournalEntry()
+        {
+            string content = ""; //JsonConvert.SerializeObject(obj);
+            //var buffer = System.Text.Encoding.UTF8.GetBytes(content);
+            //var byteContent = new ByteArrayContent(buffer);
+            //string a=HttpContext.Session.GetString("authorization");
+            return HttpUtility.CustomHttp(ApiBaseURL, "api/ManageJournalEntry/GetAll", content, HttpContext);
+        }
+
+        [HttpPost]
+        public Task<object> GetJournalEntryByID(int id)
+        {
+            string content = "";
+            //var buffer = System.Text.Encoding.UTF8.GetBytes(content);
+            //var byteContent = new ByteArrayContent(buffer);
+            //string a=HttpContext.Session.GetString("authorization");
+            return HttpUtility.CustomHttp(ApiBaseURL, "api/ManageJournalEntry/GetJournalEntryByID/" + id, content, HttpContext);
+
+        }
+
+
+        #endregion
     }
 }

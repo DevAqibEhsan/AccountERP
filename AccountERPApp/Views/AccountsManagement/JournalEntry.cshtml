@@ -1,7 +1,190 @@
 ﻿
 @{
-    ViewData["Title"] = "JournalEntry";
+    ViewData["Title"] = "Journal Entry";
 }
 
-<h1>JournalEntry</h1>
+<link href="~/css/CommonStyle.css" rel="stylesheet" />
+<script src="~/js/Common.js"></script>
+<script src="~/js/AccountsManagement/JournalEntry.js"></script>
+
+<style>
+
+    #form {
+        display: none;
+    }
+
+    .card-header .btnsection {
+        display: inline-block;
+        float: right;
+    }
+</style>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#btnAddJournalEntry").click(function () {
+            FormShow(); $('#dataTableJournalEntryDetail').dataTable({
+                "bSort": false
+            }); $("#dataTableJournalEntryDetail_length").hide(); $("#dataTableJournalEntryDetail_filter").hide(); $("#dataTableJournalEntryDetail_info").hide(); $("#dataTableJournalEntryDetail_paginate").hide(); });
+
+        $("#btnCancel").click(function () { CancelButtonAction(); });
+
+        RemoveSortingClass('tblAction');
+
+    });
+
+</script>
+
+<div class="maincontent">
+
+    @*Grid / Data Table Start*@
+    <div id="grid" class="card">
+        <div class="card-header">
+            <div class="dvPageHeading">@ViewData["Title"]</div>
+            <div class="btnsection">
+                <button type="button" id="btnAddJournalEntry" class="btn btn-success1"><i class="fa fa-plus" style="margin-right: 10px;"></i> Add</button>
+            </div>
+        </div>
+        <div class="card-body">
+            <div id="dvDataTable">
+                <table id="dataTableJournalEntry" class="display" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th class="text-center">S.No</th>
+                            <th class="text-center">Company Name</th>
+                            <th class="text-center">Debit</th>
+                            <th class="text-center">Credit</th>
+                            <th class="text-center">Memo</th>
+                            <th class="text-center">Attachment</th>
+                            <th class="text-center">Created User</th>
+                            <th class="text-center">Created On</th>
+                            <th class="text-center">Created User IP</th>
+                            <th class="text-center">Last User</th>
+                            <th class="text-center">Last Modified</th>
+                            <th class="text-center">Last User IP</th>
+                            <th class="text-center" id="tblAction">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dataRow">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    @*Grid / Data Table End*@
+
+    @*Add/Edit Form Section Start*@
+    <div id="form" class="card">
+        <div class="card-header">
+            <div class="dvPageHeading">@ViewData["Title"]</div>
+        </div>
+        <div class="card-body">
+            <form id="ManageJournalEntryForm">
+                <input type="hidden" name="hdnJournalEntryID" id="hdnJournalEntryID" value="0" />
+                <input type="hidden" name="hdnJournalEntryDetailCount" id="hdnJournalEntryDetailCount" value="1" />
+
+                <div id="dvDataTableJournalEntryDetail" style=" display: block; width: 100%; overflow-x: auto;">
+                    <table id="dataTableJournalEntryDetail" class="display" style="width: 100%; table-layout: fixed;">
+                        <thead>
+                            <tr>
+                                <th style=" width: 50px;" class="text-center">S.No</th>
+                                <th style="width: 222px;" class="text-center">Account Code</th>
+                                <th style="width: 200px;" class="text-center">Description</th>
+                                <th style="width: 108px;" class="text-center">Debit</th>
+                                <th style="width: 117px;" class="text-center">Credit</th>
+                                <th style="width: 152px;" class="text-center">Created User</th>
+                                <th style="width: 152px;" class="text-center">Created On</th>
+                                <th style="width: 152px;" class="text-center">Created User IP</th>
+                                <th style="width: 152px;" class="text-center">Last User</th>
+                                <th style="width: 152px;" class="text-center">Last Modified</th>
+                                <th style="width: 152px;" class="text-center">Last User IP</th>
+                                <th style="width: 152px;" class="text-center" id="tblAction">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="JournalEntryDetaildataRow">
+                            <tr class="clsRowJournalEntryDetail" id="JournalEntryRowCount_1">
+                                <td>1</td>
+                                <td><select id="ddlSubAccountID_1" class="form-control"></select></td>
+                                <td><input type="text" class="form-control" id="txtDescription_1" placeholder="Description"></td>
+                                <td><input type="text" class="form-control txtDebitField" id="txtDebit_1" placeholder="Debit Amount"></td>
+                                <td><input type="text" class="form-control txtCreditField" id="txtCredit_1" placeholder="Credit Amount"></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr id="JournalEntryDebitCreditRow">
+                                <td></td>
+                                <td>Total</td>
+                                <td></td>
+                                <td id="tdDebitTotal">0.00</td>
+                                <td id="tdCreditTotal">0.00</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr id="JournalEntryAddMoreRow">
+                                <td><button type="button" id="btnAddJournalEntryDetailAddMoreRow" class="btn btn-success1"><i class="fa fa-plus"></i></button></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <br />
+                <br />
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="txtMemo">Memo</label>
+                        <input type="text" class="form-control" id="txtMemo" placeholder="Journal Entry Memo">
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="txtAttachment">Attachment</label>
+                        <input type="file" class="form-control" id="txtAttachment" placeholder="Attachment">
+                    </div>
+                </div>
+
+                <div id="dvLogo" class="form-row" style="display:none;">
+                    <div class="form-group col-md-6">
+                        <input type="hidden" id="hdnUploadedURL" />
+                        <button type="button" class="btn btn-primary1" id="lnkViewLogo">View Logo</button>
+                    </div>
+                </div>
+
+                <div class="btnsection">
+                    <button type="button" class="btn btn-primary1" id="btnSave">Save</button>
+                    <button type="button" id="btnCancel" class="btn btn-secondary1"><i class="fa fa-close" style="margin-right: 10px;"></i>Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    @*Add/Edit Form Section End*@
+
+</div>
+
+<script type="text/x-handlebars" id="temp_ddlSubAccountID_1">
+    <option value="0">Plesae Select</option>
+    {{#each this}}
+<option value="{{AccountID}}">{{AccountCode}}  {{AccountByCompanyBranchName}}</option>
+    {{/each}}
+</script>
 

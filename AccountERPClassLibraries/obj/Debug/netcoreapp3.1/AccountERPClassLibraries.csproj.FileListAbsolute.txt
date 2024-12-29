@@ -1,0 +1,10 @@
+E:\AccountERP\AccountERPClassLibraries\bin\Debug\netcoreapp3.1\AccountERPClassLibraries.deps.json
+E:\AccountERP\AccountERPClassLibraries\bin\Debug\netcoreapp3.1\AccountERPClassLibraries.dll
+E:\AccountERP\AccountERPClassLibraries\bin\Debug\netcoreapp3.1\AccountERPClassLibraries.pdb
+E:\AccountERP\AccountERPClassLibraries\obj\Debug\netcoreapp3.1\AccountERPClassLibraries.csproj.AssemblyReference.cache
+E:\AccountERP\AccountERPClassLibraries\obj\Debug\netcoreapp3.1\AccountERPClassLibraries.GeneratedMSBuildEditorConfig.editorconfig
+E:\AccountERP\AccountERPClassLibraries\obj\Debug\netcoreapp3.1\AccountERPClassLibraries.AssemblyInfoInputs.cache
+E:\AccountERP\AccountERPClassLibraries\obj\Debug\netcoreapp3.1\AccountERPClassLibraries.AssemblyInfo.cs
+E:\AccountERP\AccountERPClassLibraries\obj\Debug\netcoreapp3.1\AccountERPClassLibraries.csproj.CoreCompileInputs.cache
+E:\AccountERP\AccountERPClassLibraries\obj\Debug\netcoreapp3.1\AccountERPClassLibraries.dll
+E:\AccountERP\AccountERPClassLibraries\obj\Debug\netcoreapp3.1\AccountERPClassLibraries.pdb

@@ -7,11 +7,12 @@ Super User Credentails
 "Password":"superadmin@1312023"
 
 Add Multiselect dropdown
-Add Calender in Textbox
 Add Validation
 Check Match Password in Register page
 Add TextEditor
 Create Dynamic Report and Customize Report
+Re populate datetimepicker calender with text box date
+
 
 
 

@@ -30,6 +30,43 @@ let DataTable = "#dataTableCompany";
 let State_arr = [];
 let City_arr = [];
 
+let table_header_bg_color = "#table-header-bg-color";
+let table_header_text_color = "#table-header-text-color";
+let pagination_button_bg_color = "#pagination-button-bg-color";
+let pagination_button_text_color = "#pagination-button-text-color";
+let pagination_button_bg_color_hover = "#pagination-button-bg-color-hover";
+let pagination_button_text_color_hover = "#pagination-button-text-color-hover";
+let pagination_button_next_bg_color_hover = "#pagination-button-next-bg-color-hover";
+let no_of_entries_text_color = "#no-of-entries-text-color";
+let page_heading_color = "#page-heading-color";
+let btn_success_color = "#btn-success-color";
+let btn_success_border_color = "#btn-success-border-color";
+let btn_success_bg_color = "#btn-success-bg-color";
+let btn_success_color_hover = "#btn-success-color-hover";
+let btn_success_border_color_hover = "#btn-success-border-color-hover";
+let btn_success_bg_color_hover = "#btn-success-bg-color-hover";
+let btn_success_disable_color = "#btn-success-disable-color";
+let btn_success_disable_bg_color = "#btn-success-disable-bg-color";
+let btn_success_disable_border_color = "#btn-success-disable-border-color";
+let btn_primary_color = "#btn-primary-color";
+let btn_primary_border_color = "#btn-primary-border-color";
+let btn_primary_bg_color = "#btn-primary-bg-color";
+let btn_primary_color_hover = "#btn-primary-color-hover";
+let btn_primary_border_color_hover = "#btn-primary-border-color-hover";
+let btn_primary_bg_color_hover = "#btn-primary-bg-color-hover";
+let btn_primary_disable_color = "#btn-primary-disable-color";
+let btn_primary_disable_bg_color = "#btn-primary-disable-bg-color";
+let btn_primary_disable_border_color = "#btn-primary-disable-border-color";
+let btn_secondary_color = "#btn-secondary-color";
+let btn_secondary_border_color = "#btn-secondary-border-color";
+let btn_secondary_bg_color = "#btn-secondary-bg-color";
+let btn_secondary_color_hover = "#btn-secondary-color-hover";
+let btn_secondary_border_color_hover = "#btn-secondary-border-color-hover";
+let btn_secondary_bg_color_hover = "#btn-secondary-bg-color-hover";
+let btn_secondary_disable_color = "#btn-secondary-disable-color";
+let btn_secondary_disable_bg_color = "#btn-secondary-disable-bg-color";
+let btn_secondary_disable_border_color = "#btn-secondary-disable-border-color";
+
 var oTable;
 
 $(document).ready(function () {
@@ -88,6 +125,12 @@ $(document).ready(function () {
             GetAllBillingCity(BillingStateID);
         }
     });
+
+    $(lnkViewLogo).click(function () {
+        ViewSiteLogo();
+    });
+
+    AdminGridSectionColorPickerLoad();
 
 });
 
@@ -160,9 +203,20 @@ function GetCompanyByID(id) {
                 $(ddlIsAllowPowerBy).val(res.Data.IsAllowPowerBy);
                 $(txtPoweredBy).val(res.Data.PoweredBy);
 
-                $('#imgLogo').attr('src', ".././CompanyMedia/" + res.Data.CompanyLogo);
-                $("#dvLogo").show();
-                                 
+                if (res.Data.CompanyLogo != null && res.Data.CompanyLogo != "") {
+                    $(hdnUploadedURL).val(".././CompanyMedia/" + res.Data.CompanyLogo);
+                    $("#dvLogo").show();
+                }
+               
+                if (res.Data.SiteThemeSetting != null) {
+                    AdminGridFilColorTextboxWithValue(res.Data.SiteThemeSetting);
+                }
+                else {
+                    $("#chkIsDefaultThemeSetting").prop("checked", true);
+                }
+
+                SetAdminGridIframeCSS();
+                $("#iFrameSection2").show();
                 FormShow();
             }
         }
@@ -462,7 +516,50 @@ function GetAllCompany() {
 function SaveCompanyData() {
     $(btnSave).prop("disabled", true);
 
+    let ThemeObj = {
+        table_header_bg_color: $(table_header_bg_color).val(),
+        table_header_text_color: $(table_header_text_color).val(),
+        pagination_button_bg_color: $(pagination_button_bg_color).val(),
+        pagination_button_text_color: $(pagination_button_text_color).val(),
+        pagination_button_bg_color_hover: $(pagination_button_bg_color_hover).val(),
+        pagination_button_text_color_hover: $(pagination_button_text_color_hover).val(),
+        pagination_button_next_bg_color_hover: $(pagination_button_next_bg_color_hover).val(),
+        no_of_entries_text_color: $(no_of_entries_text_color).val(),
+        page_heading_color: $(page_heading_color).val(),
+        btn_success_color: $(btn_success_color).val(),
+        btn_success_border_color: $(btn_success_border_color).val(),
+        btn_success_bg_color: $(btn_success_bg_color).val(),
+        btn_success_color_hover: $(btn_success_color_hover).val(),
+        btn_success_border_color_hover: $(btn_success_border_color_hover).val(),
+        btn_success_bg_color_hover: $(btn_success_bg_color_hover).val(),
+        btn_success_disable_color: $(btn_success_disable_color).val(),
+        btn_success_disable_bg_color: $(btn_success_disable_bg_color).val(),
+        btn_success_disable_border_color: $(btn_success_disable_border_color).val(),
+        btn_primary_color: $(btn_primary_color).val(),
+        btn_primary_border_color: $(btn_primary_border_color).val(),
+        btn_primary_bg_color: $(btn_primary_bg_color).val(),
+        btn_primary_color_hover: $(btn_primary_color_hover).val(),
+        btn_primary_border_color_hover: $(btn_primary_border_color_hover).val(),
+        btn_primary_bg_color_hover: $(btn_primary_bg_color_hover).val(),
+        btn_primary_disable_color: $(btn_primary_disable_color).val(),
+        btn_primary_disable_bg_color: $(btn_primary_disable_bg_color).val(),
+        btn_primary_disable_border_color: $(btn_primary_disable_border_color).val(),
+        btn_secondary_color: $(btn_secondary_color).val(),
+        btn_secondary_border_color: $(btn_secondary_border_color).val(),
+        btn_secondary_bg_color: $(btn_secondary_bg_color).val(),
+        btn_secondary_color_hover: $(btn_secondary_color_hover).val(),
+        btn_secondary_border_color_hover: $(btn_secondary_border_color_hover).val(),
+        btn_secondary_bg_color_hover: $(btn_secondary_bg_color_hover).val(),
+        btn_secondary_disable_color: $(btn_secondary_disable_color).val(),
+        btn_secondary_disable_bg_color: $(btn_secondary_disable_bg_color).val(),
+        btn_secondary_disable_border_color: $(btn_secondary_disable_border_color).val()
+    };
+
     let CompanyID = Number($(hdnCompanyID).val());
+
+    if (CheckboxIsChecked("chkIsDefaultThemeSetting") == 1) {
+        ThemeObj = null;
+    }
 
     var formData = new FormData();
 
@@ -492,6 +589,7 @@ function SaveCompanyData() {
     formData.append("POSID", $(txtPOSID).val());
     formData.append("IsAllowPowerBy", Number($(ddlIsAllowPowerBy).val()));
     formData.append("PoweredBy", $(txtPoweredBy).val());
+    formData.append("SiteThemeSetting", JSON.stringify(ThemeObj));
 
     if (CompanyID > 0) {
         postRequestFormData(baseApiUrl + "api/ManageCompany/UpdateCompany", formData, function (res) {
@@ -600,6 +698,12 @@ function GetAllBusinessType_TimeZone_Country_State_City_Data() {
     });
 }
 
+function SetAdminGridIframeCSS() {
+    let head = $("#admingriddemoframe").contents().find("head");
+    let css = "<style type='text/css'>.maincontent{width:100% !important;}</style>";
+    $(head).append(css);
+}
+
 function ClearAllField() {
     $(btnSave).prop("disabled", false);
     $(hdnCompanyID).val(0);
@@ -632,6 +736,7 @@ function ClearAllField() {
 
 function CancelButtonAction() {
     ClearAllField();
+    $("#iFrameSection2").hide();
     $(DataTable).DataTable().destroy();
     GetAllCompany();
     GridShow();

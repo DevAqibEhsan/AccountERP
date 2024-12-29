@@ -230,6 +230,10 @@ function SiteConfigurationLoad(url) {
             $(".imgSiteLogo").attr("src", "./../SiteConfigMedia/" + res.Data.SiteLogo);
 
             $("#footerContainer").html(res.Data.PoweredByText);
+
+            if (res.Data.SiteThemeSetting != null) {
+                ThemeSetting(res.Data.SiteThemeSetting);
+            }
         }
         else if (res.Status == 304) {
             ErrorAlert(res.ResponseMsg);
@@ -305,6 +309,148 @@ function GetAllBranchByCompanyID(CompanyID) {
     });
 
     fillData(objBranch, "#temp_ddlBranchID", ddlBranchID, false);
+}
+
+function ViewSiteLogo() {
+    Swal.fire({
+        imageUrl: $(hdnUploadedURL).val(),
+        imageWidth: 400,
+        imageHeight: 200,
+        imageAlt: 'Site Logo',
+    })
+}
+
+function AdminGridSectionColorPickerLoad() {
+    $('#table-header-bg-color').colorpicker();
+    $('#table-header-text-color').colorpicker();
+    $('#pagination-button-bg-color').colorpicker();
+    $('#pagination-button-text-color').colorpicker();
+    $('#pagination-button-bg-color-hover').colorpicker();
+    $('#pagination-button-text-color-hover').colorpicker();
+    $('#pagination-button-next-bg-color-hover').colorpicker();
+    $('#no-of-entries-text-color').colorpicker();
+    $('#page-heading-color').colorpicker();
+    $('#btn-success-color').colorpicker();
+    $('#btn-success-border-color').colorpicker();
+    $('#btn-success-bg-color').colorpicker();
+    $('#btn-success-color-hover').colorpicker();
+    $('#btn-success-border-color-hover').colorpicker();
+    $('#btn-success-bg-color-hover').colorpicker();
+    $('#btn-success-disable-color').colorpicker();
+    $('#btn-success-disable-bg-color').colorpicker();
+    $('#btn-success-disable-border-color').colorpicker();
+    $('#btn-primary-color').colorpicker();
+    $('#btn-primary-border-color').colorpicker();
+    $('#btn-primary-bg-color').colorpicker();
+    $('#btn-primary-color-hover').colorpicker();
+    $('#btn-primary-border-color-hover').colorpicker();
+    $('#btn-primary-bg-color-hover').colorpicker();
+    $('#btn-primary-disable-color').colorpicker();
+    $('#btn-primary-disable-bg-color').colorpicker();
+    $('#btn-primary-disable-border-color').colorpicker();
+    $('#btn-secondary-color').colorpicker();
+    $('#btn-secondary-border-color').colorpicker();
+    $('#btn-secondary-bg-color').colorpicker();
+    $('#btn-secondary-color-hover').colorpicker();
+    $('#btn-secondary-border-color-hover').colorpicker();
+    $('#btn-secondary-bg-color-hover').colorpicker();
+    $('#btn-secondary-disable-color').colorpicker();
+    $('#btn-secondary-disable-bg-color').colorpicker();
+    $('#btn-secondary-disable-border-color').colorpicker();
+}
+
+function AdminGridColorTextboxChange(id) {
+
+    var ElementID = id.id;
+
+    AdmiGridFormThemeChange(ElementID, "#" + $("#" + ElementID).val());
+}
+
+function AdmiGridFormThemeChange(cssvariablename, property) {
+
+    document.getElementById('admingriddemoframe').contentWindow.document.documentElement.style.setProperty('--' + cssvariablename, property);
+}
+
+function AdminGridFilColorTextboxWithValue(Data) {
+    $(table_header_bg_color).val(Data.table_header_bg_color);
+    $(table_header_text_color).val(Data.table_header_text_color);
+    $(pagination_button_bg_color).val(Data.pagination_button_bg_color);
+    $(pagination_button_text_color).val(Data.pagination_button_text_color);
+    $(pagination_button_bg_color_hover).val(Data.pagination_button_bg_color_hover);
+    $(pagination_button_text_color_hover).val(Data.pagination_button_text_color_hover);
+    $(pagination_button_next_bg_color_hover).val(Data.pagination_button_next_bg_color_hover);
+    $(no_of_entries_text_color).val(Data.no_of_entries_text_color);
+    $(page_heading_color).val(Data.page_heading_color);
+    $(btn_success_color).val(Data.btn_success_color);
+    $(btn_success_border_color).val(Data.btn_success_border_color);
+    $(btn_success_bg_color).val(Data.btn_success_bg_color);
+    $(btn_success_color_hover).val(Data.btn_success_color_hover);
+    $(btn_success_border_color_hover).val(Data.btn_success_border_color_hover);
+    $(btn_success_bg_color_hover).val(Data.btn_success_bg_color_hover);
+    $(btn_success_disable_color).val(Data.btn_success_disable_color);
+    $(btn_success_disable_bg_color).val(Data.btn_success_disable_bg_color);
+    $(btn_success_disable_border_color).val(Data.btn_success_disable_border_color);
+    $(btn_primary_color).val(Data.btn_primary_color);
+    $(btn_primary_border_color).val(Data.btn_primary_border_color);
+    $(btn_primary_bg_color).val(Data.btn_primary_bg_color);
+    $(btn_primary_color_hover).val(Data.btn_primary_color_hover);
+    $(btn_primary_border_color_hover).val(Data.btn_primary_border_color_hover);
+    $(btn_primary_bg_color_hover).val(Data.btn_primary_bg_color_hover);
+    $(btn_primary_disable_color).val(Data.btn_primary_disable_color);
+    $(btn_primary_disable_bg_color).val(Data.btn_primary_disable_bg_color);
+    $(btn_primary_disable_border_color).val(Data.btn_primary_disable_border_color);
+    $(btn_secondary_color).val(Data.btn_secondary_color);
+    $(btn_secondary_border_color).val(Data.btn_secondary_border_color);
+    $(btn_secondary_bg_color).val(Data.btn_secondary_bg_color);
+    $(btn_secondary_color_hover).val(Data.btn_secondary_color_hover);
+    $(btn_secondary_border_color_hover).val(Data.btn_secondary_border_color_hover);
+    $(btn_secondary_bg_color_hover).val(Data.btn_secondary_bg_color_hover);
+    $(btn_secondary_disable_color).val(Data.btn_secondary_disable_color);
+    $(btn_secondary_disable_bg_color).val(Data.btn_secondary_disable_bg_color);
+    $(btn_secondary_disable_border_color).val(Data.btn_secondary_disable_border_color);
+
+    AdmiGridFormThemeChange(ReplaceFunc("table_header_bg_color", "_", "-"), "#" + Data.table_header_bg_color);
+    AdmiGridFormThemeChange(ReplaceFunc("table_header_text_color", "_", "-"), "#" + Data.table_header_text_color);
+    AdmiGridFormThemeChange(ReplaceFunc("pagination_button_bg_color", "_", "-"), "#" + Data.pagination_button_bg_color);
+    AdmiGridFormThemeChange(ReplaceFunc("pagination_button_text_color", "_", "-"), "#" + Data.pagination_button_text_color);
+    AdmiGridFormThemeChange(ReplaceFunc("pagination_button_bg_color_hover", "_", "-"), "#" + Data.pagination_button_bg_color_hover);
+    AdmiGridFormThemeChange(ReplaceFunc("pagination_button_text_color_hover", "_", "-"), "#" + Data.pagination_button_text_color_hover);
+    AdmiGridFormThemeChange(ReplaceFunc("pagination_button_next_bg_color_hover", "_", "-"), "#" + Data.pagination_button_next_bg_color_hover);
+    AdmiGridFormThemeChange(ReplaceFunc("no_of_entries_text_color", "_", "-"), "#" + Data.no_of_entries_text_color);
+    AdmiGridFormThemeChange(ReplaceFunc("page_heading_color", "_", "-"), "#" + Data.page_heading_color);
+    AdmiGridFormThemeChange(ReplaceFunc("btn_success_color", "_", "-"), "#" + Data.btn_success_color);
+    AdmiGridFormThemeChange(ReplaceFunc("btn_success_border_color", "_", "-"), "#" + Data.btn_success_border_color);
+    AdmiGridFormThemeChange(ReplaceFunc("btn_success_bg_color", "_", "-"), "#" + Data.btn_success_bg_color);
+    AdmiGridFormThemeChange(ReplaceFunc("btn_success_color_hover", "_", "-"), "#" + Data.btn_success_color_hover);
+    AdmiGridFormThemeChange(ReplaceFunc("btn_success_border_color_hover", "_", "-"), "#" + Data.btn_success_border_color_hover);
+    AdmiGridFormThemeChange(ReplaceFunc("btn_success_bg_color_hover", "_", "-"), "#" + Data.btn_success_bg_color_hover);
+    AdmiGridFormThemeChange(ReplaceFunc("btn_success_disable_color", "_", "-"), "#" + Data.btn_success_disable_color);
+    AdmiGridFormThemeChange(ReplaceFunc("btn_success_disable_bg_color", "_", "-"), "#" + Data.btn_success_disable_bg_color);
+    AdmiGridFormThemeChange(ReplaceFunc("btn_success_disable_border_color", "_", "-"), "#" + Data.btn_success_disable_border_color);
+    AdmiGridFormThemeChange(ReplaceFunc("btn_primary_color", "_", "-"), "#" + Data.btn_primary_color);
+    AdmiGridFormThemeChange(ReplaceFunc("btn_primary_border_color", "_", "-"), "#" + Data.btn_primary_border_color);
+    AdmiGridFormThemeChange(ReplaceFunc("btn_primary_bg_color", "_", "-"), "#" + Data.btn_primary_bg_color);
+    AdmiGridFormThemeChange(ReplaceFunc("btn_primary_color_hover", "_", "-"), "#" + Data.btn_primary_color_hover);
+    AdmiGridFormThemeChange(ReplaceFunc("btn_primary_border_color_hover", "_", "-"), "#" + Data.btn_primary_border_color_hover);
+    AdmiGridFormThemeChange(ReplaceFunc("btn_primary_bg_color_hover", "_", "-"), "#" + Data.btn_primary_bg_color_hover);
+    AdmiGridFormThemeChange(ReplaceFunc("btn_primary_disable_color", "_", "-"), "#" + Data.btn_primary_disable_color);
+    AdmiGridFormThemeChange(ReplaceFunc("btn_primary_disable_bg_color", "_", "-"), "#" + Data.btn_primary_disable_bg_color);
+    AdmiGridFormThemeChange(ReplaceFunc("btn_primary_disable_border_color", "_", "-"), "#" + Data.btn_primary_disable_border_color);
+    AdmiGridFormThemeChange(ReplaceFunc("btn_secondary_color", "_", "-"), "#" + Data.btn_secondary_color);
+    AdmiGridFormThemeChange(ReplaceFunc("btn_secondary_border_color", "_", "-"), "#" + Data.btn_secondary_border_color);
+    AdmiGridFormThemeChange(ReplaceFunc("btn_secondary_bg_color", "_", "-"), "#" + Data.btn_secondary_bg_color);
+    AdmiGridFormThemeChange(ReplaceFunc("btn_secondary_color_hover", "_", "-"), "#" + Data.btn_secondary_color_hover);
+    AdmiGridFormThemeChange(ReplaceFunc("btn_secondary_border_color_hover", "_", "-"), "#" + Data.btn_secondary_border_color_hover);
+    AdmiGridFormThemeChange(ReplaceFunc("btn_secondary_bg_color_hover", "_", "-"), "#" + Data.btn_secondary_bg_color_hover);
+    AdmiGridFormThemeChange(ReplaceFunc("btn_secondary_disable_color", "_", "-"), "#" + Data.btn_secondary_disable_color);
+    AdmiGridFormThemeChange(ReplaceFunc("btn_secondary_disable_bg_color", "_", "-"), "#" + Data.btn_secondary_disable_bg_color);
+    AdmiGridFormThemeChange(ReplaceFunc("btn_secondary_disable_border_color", "_", "-"), "#" + Data.btn_secondary_disable_border_color);
+}
+
+function ReplaceFunc(string, pattern, replacement) {
+    var MyString = string.replaceAll(pattern, replacement);
+
+    return MyString
 }
 
 //$().buttonLoader("start") / $().buttonLoader("stop") function Start
